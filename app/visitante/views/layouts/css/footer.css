@@ -1,0 +1,70 @@
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;/*1 rem es 10 px*/
+    }
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* Elimina márgenes y rellenos globalmente */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.footer {
+    background-color: #6d9aa6;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+   
+}
+
+.footer-container1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-container2 {
+    background-color: #262626;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    
+}
+.logoEmpresa {
+    text-align: center;
+    margin-left: 3rem;
+}
+
+.logoEmpresa .nombre {
+    justify-content: center;
+}
+.contactos {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    text-align: left;
+    margin-right: 3rem;
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: left;
+    width: 100%;
+    
+}
+.footer-info, .footer-contact {
+    max-width: 400px;
+    margin: 10px;
+}
+
+
+.correos {
+    line-height: 0.7rem;
+}
