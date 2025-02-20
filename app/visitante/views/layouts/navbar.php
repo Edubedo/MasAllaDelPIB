@@ -10,14 +10,14 @@
     <nav>
         <input type="checkbox" id="toggle">
         <div class="logo">
-            <img src="./img/logo.png" alt="imagen logo empresa" width="50" height="50">
+            <img src="/app/visitante/views/layouts/img/logo.png" alt="imagen logo empresa" width="50" height="50">
             MAS ALLA DEL PIB
         </div>
         <ul class="list">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Inicio de Sesión</a></li>
-            <li><a href="#">Publicaciones</a></li>
-            <li><a href="#">Nosotros</a></li>
+            <li><a href="/index.php">Inicio</a></li>
+            <li><a href="/app/visitante/views/layouts/login.php">Inicio de Sesión</a></li>
+            <li><a href="/app/visitante/views/layouts/spubli.php">Publicaciones</a></li>
+            <li><a href="/app/visitante/views/layouts/snosotros.php">Nosotros</a></li>
         </ul>
         <label for="toggle" class="icon-bars">&#9776;
         </label>

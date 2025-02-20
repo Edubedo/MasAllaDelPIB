@@ -7,11 +7,11 @@
         <!--Logo-->    
         <div class="logoEmpresa">
             <div class="imagen">
-                <img src="app/visitante/views/layouts/img/logo.png" alt="imagen logo empresa">
+                <img src="/app/visitante/views/layouts/img/logo.png" alt="imagen logo empresa">
             </div>
             
             <div class="nombre"> 
-                <h2>(Nombre Empresa)</h2>
+                <h2>INNOMINDS</h2>
             </div>
         </div>
         <!--Logo--> 
@@ -19,7 +19,9 @@
         <!--Informacion--> 
         <div class="footer-info">
             <h3>SOBRE NOSOTROS</h3>
-            <p>Somos una organizacion que se enfoca en el ODS numero 8, priorizando informar a las personas desde distintos puntos de vista y que tengan en cuenta los problemas que radican en este tema.</p>
+            <p>Somos una organizacion que se enfoca en el ODS numero 8, 
+                priorizando informar a las personas desde distintos puntos de vista y 
+                que tengan en cuenta los problemas que radican en este tema.</p>
         </div>
         <!--Informacion--> 
 
