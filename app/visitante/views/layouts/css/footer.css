@@ -9,6 +9,9 @@ html {
 
 /* Elimina márgenes y rellenos globalmente */
 html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     margin: 0;
     padding: 0;
 }
@@ -18,13 +21,18 @@ html, body {
     color: white;
     text-align: center;
     font-size: 14px;
-   
+    bottom: 0;
+    margin-top: auto;
+    
 }
 
 .footer-container1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-top: 3rem;
+    
+    
 }
 
 .footer-container2 {
@@ -32,23 +40,48 @@ html, body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem;
+    padding: 0.8rem;
+    width: 100%;
     
 }
 .logoEmpresa {
     text-align: center;
     margin-left: 3rem;
+    margin-bottom: 3.5rem;
+    margin-right: 2rem;
+    position: relative;
+    top: -1.2rem;
 }
 
 .logoEmpresa .nombre {
     justify-content: center;
+    position: relative;
+    top: 0.5rem;
 }
+
+
+
+.logoEmpresa .imagen img {
+    width: 16rem;  /* Ajusta el ancho según sea necesario */
+    height: auto;   /* Mantiene la proporción */
+    max-width: 100%; /* Evita que la imagen sea más grande que su contenedor */
+}
+
 .contactos {
     display: flex;
     flex-direction: column;
     align-items: left;
     text-align: left;
-    margin-right: 3rem;
+    margin-right: 2.7rem;
+    position: relative;
+    top: -2rem;
+
+}
+
+.correos {
+    line-height: 1.8rem;
+    position: relative;
+    top: 1.82rem;
 }
 
 .footer-info {
@@ -57,14 +90,40 @@ html, body {
     text-align: left;
     align-items: left;
     width: 100%;
-    
+
 }
 .footer-info, .footer-contact {
-    max-width: 400px;
-    margin: 10px;
+    max-width: 40rem;
+    margin: 1rem;
 }
 
 
-.correos {
-    line-height: 0.7rem;
+
+.sobrenosotros-titulo {
+    position: relative;
+    top: -4rem;
+}
+.sobrenosotros-info {
+    position: relative;
+    top: -2rem;
+    line-height: 2.2rem;
+}
+
+.footer-bottom { /*CLASE QUE CONTIENE MAS ALLA DEL PIB*/
+    flex: 1;
+    text-align: center;
+    margin-left: 15rem;
+    
+}
+
+.bottom-texto { /*texto MAS ALLA DEL PIB*/
+    font-size: 2.5rem;
+}
+
+
+.iconos svg {
+    width: 4rem;
+    height: 4rem;
+    position: relative;
+    top: 0.5rem;
 }
