@@ -1,15 +1,13 @@
 <link rel="stylesheet" href="app/visitante/views/layouts/css/footer.css">
 
 
-<footer class="footer
-">
+<footer class="footer">
     <div class="footer-container1">
         <!--Logo-->    
         <div class="logoEmpresa">
             <div class="imagen">
                 <img src="/app/visitante/views/layouts/img/logo.png" alt="imagen logo empresa">
             </div>
-            
             <div class="nombre"> 
                 <h2>INNOMINDS</h2>
             </div>
