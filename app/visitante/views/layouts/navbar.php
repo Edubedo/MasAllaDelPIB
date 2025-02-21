@@ -10,7 +10,7 @@
     <nav>
         <input type="checkbox" id="toggle">
         <div class="logo">
-            <img src="/app/visitante/views/layouts/img/logo.png" alt="imagen logo empresa" width="50" height="50">
+            <img src="/app/visitante/views/layouts/img/logo.png" alt="imagen logo empresa" width="50" height=40">
             MAS ALLA DEL PIB
         </div>
         <ul class="list">
