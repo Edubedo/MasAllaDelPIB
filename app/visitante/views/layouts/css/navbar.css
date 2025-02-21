@@ -18,7 +18,7 @@ nav {
 
 nav .logo {
     float: left;
-    width: 40%;
+    width: 30%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -74,4 +74,10 @@ nav .icon-bars .line {
     margin: 5px;
     border-radius: 3px;
     transition: all .3s ease-in-out;
+}
+nav .logo img {
+    margin-right: auto;
+    margin-left: 0;
+    padding: 0;
+    display: block;
 }
