@@ -38,7 +38,7 @@
             </p>
         </div>
         <div class="foto">
-            <img class="img" src="\app\visitante\views\layouts\img\imagen_nosotros.png" alt="imagen de nosotros">
+            <img class="img" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
         </div>
     </div>
     
