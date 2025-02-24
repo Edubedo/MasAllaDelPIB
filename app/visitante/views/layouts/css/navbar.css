@@ -79,7 +79,7 @@ nav .icon-bars .line {
 }
 
 /* Media Query para Tablets y Móviles */
-@media (max-width: 768px) {
+@media (max-width: 939px) {
     nav .list {
         position: fixed;
         top: 7rem;
