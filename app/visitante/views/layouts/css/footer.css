@@ -127,3 +127,50 @@ html, body {
     position: relative;
     top: 0.5rem;
 }
+
+.redes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2rem;
+    font-size: 1.5rem;
+}
+
+
+@media (max-width: 940px) {
+    .contactos {
+        margin-right: 1rem;
+        font-size: 1rem;
+    }
+    
+}
+
+@media (max-width: 820px) {
+    .footer-bottom {
+        margin-left: 10rem;
+    }
+    .bottom-texto {
+        font-size: 1.5rem;
+    }
+
+    .redes {
+        margin-right: 1rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-bottom {
+        margin-left: 0.5rem;
+    }
+    .bottom-texto {
+        font-size: 1rem;
+    }
+
+    .contactos {
+        margin-right: 1rem;
+        font-size: 0.5rem;
+    }
+    
+    
+}

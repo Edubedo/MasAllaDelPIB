@@ -117,6 +117,7 @@ body {
     transform: scale(1.05);
 }
 
+
 /* Media Queries */
 @media (max-width: 1024px) {
     .titulo h3 {
