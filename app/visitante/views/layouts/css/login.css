@@ -1,21 +1,25 @@
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-    font-family: "Montserrat", sans-serif; /* Asegurando una fuente sans-serif */
+    font-family: "Montserrat", sans-serif;
 }
 
 body {
-    background-image: url("../image/fondo-.jpg"); /* Asegúrate de que la ruta sea correcta */
-    background-size: cover;  /* Cubre toda la pantalla */
-    background-repeat: no-repeat;  /* Evita que la imagen se repita */
-    background-attachment: fixed;  /* Fija la imagen al hacer scroll */
-    background-position: center; /* Centra la imagen */
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
+    background-image: url("../image/fondo-.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 main {
+    flex-grow: 1;
     width: 100%;
     padding: 20px;
     margin: auto;
@@ -34,9 +38,9 @@ main {
     padding: 10px 20px;
     display: flex;
     justify-content: center;
-    backdrop-filter: blur(4px); /* Agregando un mayor desenfoque para mejor visibilidad */
-    background-color: #6d9aa6; /* Con transparencia para ver el fondo */
-    border-radius: 10px; /* Bordes redondeados para un diseño más suave */
+    backdrop-filter: blur(4px);
+    background-color: #6d9aa6;
+    border-radius: 10px;
 }
 
 .caja__tracera div {
@@ -51,8 +55,8 @@ main {
 }
 
 .caja__tracera div h3 {
-    font-weight: 600; /* Negrita para los títulos */
-    font-size: 28px; /* Ajuste de tamaño */
+    font-weight: 600;
+    font-size: 28px;
 }
 
 .caja__tracera button {
@@ -65,7 +69,7 @@ main {
     color: #fff;
     outline: none;
     transition: all 300ms;
-    border-radius: 5px; /* Bordes redondeados en botones */
+    border-radius: 5px;
 }
 
 .caja__tracera button:hover {
@@ -73,7 +77,6 @@ main {
     color: #6d9aa6;
 }
 
-/* Formularios */
 .contenedor__Login-register {
     display: flex;
     align-items: center;
@@ -108,7 +111,7 @@ main {
     background: #f2f2f2;
     font-size: 16px;
     outline: none;
-    border-radius: 5px; /* Bordes redondeados en inputs */
+    border-radius: 5px;
 }
 
 .contenedor__Login-register form button {
@@ -120,7 +123,7 @@ main {
     color: #fff;
     cursor: pointer;
     outline: none;
-    border-radius: 5px; /* Bordes redondeados en botón */
+    border-radius: 5px;
 }
 
 .formulario__login {
@@ -132,7 +135,8 @@ main {
     display: none;
 }
 
-/* Diseño Responsivo */
+
+
 @media screen and (max-width: 850px) {
     main {
         margin-top: 50px;
@@ -143,7 +147,7 @@ main {
         height: 300px;
         flex-direction: column;
         margin: auto;
-        padding: 15px; /* Mejorando el espacio en móviles */
+        padding: 15px;
     }
 
     .caja__tracera div {
@@ -158,20 +162,20 @@ main {
 
     .contenedor__Login-register form {
         position: relative;
-        padding: 50px 20px; /* Ajustando padding en pantallas pequeñas */
+        padding: 50px 20px;
     }
 
     .contenedor__Login-register form h2 {
-        font-size: 26px; /* Reduciendo tamaño de título en pantallas pequeñas */
+        font-size: 26px;
     }
 
     .contenedor__Login-register form input {
-        font-size: 14px; /* Reduciendo tamaño de fuente en inputs para móviles */
+        font-size: 14px;
         padding: 8px;
     }
 
     .contenedor__Login-register form button {
-        font-size: 12px; /* Ajustando tamaño de fuente en el botón */
-        margin-top: 30px; /* Reducción de espacio para mejorar en pantallas pequeñas */
+        font-size: 12px;
+        margin-top: 30px;
     }
 }
