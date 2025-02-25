@@ -20,7 +20,7 @@
                 <h3>SOBRE NOSOTROS</h3>
             </div>
             <div class="sobrenosotros-info">
-                <p>Somos una organizacion que se enfoca en el ODS numero 8, 
+                <p>Somos una organización que se enfoca en el ODS número 8, 
                 priorizando informar a las personas desde distintos puntos de vista y 
                 que tengan en cuenta los problemas que radican en este tema.</p>
             </div>

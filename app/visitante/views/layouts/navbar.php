@@ -18,6 +18,7 @@
             <li><a href="/app/visitante/views/layouts/login.php">Inicio de Sesión</a></li>
             <li><a href="/app/visitante/views/layouts/spubli.php">Publicaciones</a></li>
             <li><a href="/app/visitante/views/layouts/snosotros.php">Nosotros</a></li>
+            <li><a href="/app/visitante/views/layouts/publi_unica.php">borrar despues</a></li> <!--se añadió para visualizar la noticia unica. Borrar despues-->
         </ul>
         <label for="toggle" class="icon-bars">&#9776;
         </label>
