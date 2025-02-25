@@ -1,0 +1,151 @@
+.nav_public {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    top: 5rem;
+    font-family:Arial, Helvetica, sans-serif;
+    padding: 0 5%;
+    height: 3rem;
+    background-color: #6d9aa6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav_public .list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav_public .list li {
+    list-style: none;
+}
+
+.nav_public .list li a {
+    color: aliceblue;
+    text-decoration: none;
+    padding: 1rem 6rem;
+    font-size: 1.4rem;
+    transition: color 0.3s ease;
+}
+
+.nav_public .list a:hover {
+    color: #000000;
+}
+
+
+
+
+.encabezado {
+    margin-top: 10rem;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+
+.cuerpo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    flex-direction: row;
+}
+
+.p1 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 21rem;
+    height: 20rem;
+    background-color: #d9d9d9;
+    border-radius: 10%;
+    justify-content: center;
+    text-align: center;
+}
+
+.imagen1{
+    width: 15rem;
+    height: 10rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.texto1{
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 1.5rem;  
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+/* Ícono de Hamburguesa */
+#toggle {
+    display: none;
+
+}
+
+.icon-bars {
+    display: none;
+    cursor: pointer;
+    position:absolute;
+    top: 1.5rem;
+    right: 2rem;
+    z-index: 20;
+}
+
+.icon-bars .line {
+    width: 10px;
+    height: 2px;
+    background-color: aliceblue;
+    margin: 5px;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 1030px) {
+    .icon-bars {
+        display: block;
+    }
+
+    .nav_public .list {
+        position: fixed;
+        top: 7rem;
+        right: 0;
+        width: 50%;
+        height: calc(100vh - 7rem);
+        background-color: #242526;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        gap: 2rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    }
+
+    .nav_public .list li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav_public .list li a {
+        display: block;
+        width: 100%;
+        padding: 1.5rem 0;
+    }
+
+    #toggle:checked ~ .list {
+        transform: translateX(0);
+    }
+
+}
+

@@ -13,26 +13,20 @@
     <?php include '../layouts/navbar.php'; ?> 
     <nav class="nav_public">
         <input type="checkbox" id="toggle">
-        <label for="toggle" class="icon-bars">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-        </label>
         <ul class="list">
             <li><a href="/app/visitante/views/layouts/spubli.php">Todas las categorias</a></li>
             <li><a href="/app/visitante/views/layouts/catCE.php">Crecimiento Economico</a></li>
             <li><a href="/app/visitante/views/layouts/catEYN.php">Emprendimiento y Negocios</a></li>
             <li><a href="/app/visitante/views/layouts/catML.php">Mundo Laboral</a></li>
         </ul>
-    </nav>
-
+    </nav class="nav_public">
     <div class="encabezado">
-        <h1>TODAS LAS CATEGORIAS</h1>
+        <h1>CRECIMIENTO ECONOMICO</h1>
     </div>
     <div class="cuerpo">
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="/app/visitante/views/layouts/img/crecimiento.jpeg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -41,7 +35,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="/app/visitante/views/layouts/img/crecimiento.jpeg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -50,7 +44,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="/app/visitante/views/layouts/img/crecimiento.jpeg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -59,7 +53,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="/app/visitante/views/layouts/img/crecimiento.jpeg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -68,7 +62,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="/app/visitante/views/layouts/img/crecimiento.jpeg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -77,7 +71,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="/app/visitante/views/layouts/img/crecimiento.jpeg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -86,7 +80,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="/app/visitante/views/layouts/img/crecimiento.jpeg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -95,7 +89,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="/app/visitante/views/layouts/img/crecimiento.jpeg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -104,7 +98,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="/app/visitante/views/layouts/img/crecimiento.jpeg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -113,7 +107,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="/app/visitante/views/layouts/img/crecimiento.jpeg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -122,7 +116,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="/app/visitante/views/layouts/img/crecimiento.jpeg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -131,7 +125,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="/app/visitante/views/layouts/img/crecimiento.jpeg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -140,7 +134,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="/app/visitante/views/layouts/img/crecimiento.jpeg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -149,7 +143,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="/app/visitante/views/layouts/img/crecimiento.jpeg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -158,7 +152,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="/app/visitante/views/layouts/img/crecimiento.jpeg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>

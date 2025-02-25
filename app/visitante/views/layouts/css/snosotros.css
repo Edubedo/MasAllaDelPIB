@@ -10,7 +10,6 @@ html {
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
     background-color: #f5f5f5;
     color: #333;
@@ -56,20 +55,11 @@ body {
     color: #000;
 }
 
-/* Línea de contorno */
-.linea_contorno {
-    background-color: #000;
-    width: 100%;
-    height: 0.5rem;
-}
-.linea {
-    background-color: #6d9aa6;
-    width: 100%;
-    height: 100%;
-}
+
 
 /* Cuerpo */
 .cuerpo {
+    font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
