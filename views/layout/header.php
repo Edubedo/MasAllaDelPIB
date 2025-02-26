@@ -38,10 +38,10 @@ if (isset($_SESSION['user-id'])) {
                     <h2>MAS ALLÁ DEL PIB</h2>
                 </span>
             </a>
-            <ul class="nav__items">
+            <ul class="nav__items" style="font-size: 1.2rem;">
                 <li><a href="index.php">Inicio</a></li>
                 <li><a href="<?= "views/" ?>posts.php">Publicaciones</a></li>
-                <li><a href="<?= "views/" ?>about.php">Sobre nosotros</a></li>
+                <li><a href="<?= "views/" ?>about.php">Nosotros</a></li>
                 <li><a href="<?= "views/" ?>contact.php">Contacto</a></li>
 
                 <!-- MOSTRAR EL PERFIL SI ES QUE TIENE -->
