@@ -56,7 +56,7 @@
                     </li>
                 <?php // else : 
                 ?> -->
-                <li><a href="<?= "" ?>signin.php">Iniciar Sesión</a></li>
+                <li><a href="<?= "views/" ?>signin.php">Iniciar Sesión</a></li>
                 <? // php endif 
                 ?>
             </ul>
