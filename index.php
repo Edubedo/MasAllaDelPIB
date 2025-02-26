@@ -18,7 +18,7 @@ require 'config/database.php';
 
 <body>
     <!-- Incluyendo la barra de navegación -->
-    <?php include 'app/visitante/views/layouts/navbar.php'; ?>
+    <?php include 'views/layout/header.php'; ?>
 
     <!-- Primer contenedor con contenido -->
     <div class="item1">
