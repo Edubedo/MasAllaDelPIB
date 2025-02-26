@@ -34,7 +34,7 @@
         <div class="container nav__container">
             <a href="<?= "/" ?>index.php" class="nav__logo">
                 <span class="nav__logo-name">
-                    <img src="/app/visitante/views/layouts/img/logo.png" alt="imagen logo empresa" width="50" height=40">
+                    <img src="../../assets/img/logo.png" alt="imagen logo empresa" width="50" height=40">
                     <h2>MAS ALLÁ DEL PIB</h2>
                 </span>
             </a>

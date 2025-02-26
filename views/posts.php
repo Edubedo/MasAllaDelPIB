@@ -1,3 +1,4 @@
+<!-- AQUI ESTARÍA BUENO HACERLO REUTILIZABLE, NO TENER QUE DUPLICAR LAS CATEGORÍAS -->
 <!DOCTYPE html>
 <html lang="es">
 
@@ -26,10 +27,10 @@
             <div class="line"></div>
         </label>
         <ul class="list">
-            <li><a href="/app/visitante/views/layouts/spubli.php">Todas las categorias</a></li>
-            <li><a href="/app/visitante/views/layouts/catCE.php">Crecimiento Economico</a></li>
-            <li><a href="/app/visitante/views/layouts/catEYN.php">Emprendimiento y Negocios</a></li>
-            <li><a href="/app/visitante/views/layouts/catML.php">Mundo Laboral</a></li>
+            <li><a href="../assets/img/spubli.php">Todas las categorias</a></li>
+            <li><a href="../assets/img/catCE.php">Crecimiento Economico</a></li>
+            <li><a href="../assets/img/catEYN.php">Emprendimiento y Negocios</a></li>
+            <li><a href="../assets/img/catML.php">Mundo Laboral</a></li>
         </ul>
     </nav> -->
 
@@ -37,9 +38,20 @@
         <h1>TODAS LAS CATEGORIAS</h1>
     </div>
     <div class="cuerpo">
+        <a href="/views/layouts/publi_unica.php">
+            <div class="p1">
+                <div>
+                    <img class="imagen1" src="../assets/img/img/imagen_nosotros.png" alt="imagen de nosotros">
+                </div>
+                <div class="texto1">
+                    <h4>Titulo de la publicacion</h4>
+                    <p>Pequeña informacion sobre la publicacion para dar interes</p>
+                </div>
+            </div>
+        </a>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/img/imagen_nosotros.png" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -48,7 +60,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/img/imagen_nosotros.png" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -57,7 +69,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/img/imagen_nosotros.png" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -66,7 +78,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/img/imagen_nosotros.png" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -75,7 +87,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/img/imagen_nosotros.png" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -84,7 +96,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/img/imagen_nosotros.png" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -93,7 +105,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/img/imagen_nosotros.png" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -102,7 +114,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/img/imagen_nosotros.png" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -111,7 +123,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/img/imagen_nosotros.png" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -120,7 +132,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/img/imagen_nosotros.png" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -129,7 +141,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/img/imagen_nosotros.png" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -138,7 +150,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/img/imagen_nosotros.png" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -147,7 +159,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/img/imagen_nosotros.png" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -156,16 +168,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
-            </div>
-            <div class="texto1">
-                <h4>Titulo de la publicacion</h4>
-                <p>Pequeña informacion sobre la publicacion para dar interes</p>
-            </div>
-        </div>
-        <div class="p1">
-            <div>
-                <img class="imagen1" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/img/imagen_nosotros.png" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -174,6 +177,8 @@
         </div>
     </div>
 
+    <!-- IMPORTAR EL FOOTER -->
     <?php include './layout/footer.php'; ?>
+    <!-- IMPORTAR EL FOOTER -->
 
 </body>

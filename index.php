@@ -11,9 +11,9 @@ require 'config/database.php';
     <title>MasAllaDelPIB</title>
 
     <!-- Incluyendo los estilos -->
-    <link rel="stylesheet" href="app/visitante/views/layouts/css/navbar.css">
-    <link rel="stylesheet" href="app/visitante/public/css/footer.css">
-    <link rel="stylesheet" href="app/visitante/views/layouts/css/index.css">
+    <link rel="stylesheet" href="./views/css/navbar.css">
+    <link rel="stylesheet" href="./views/css/footer.css">
+    <link rel="stylesheet" href="./views/css/index.css">
 
     <!-- carrouse -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -40,31 +40,31 @@ require 'config/database.php';
             <!-- Elementos de la grilla con noticias -->
             <div class="item2">
                 <h2 class="titulo">Nueva Estrategia Económica en Colima</h2>
-                <img src="app/visitante/views/layouts/img/estrategia-economica.jpg" alt="Estrategia Económica">
+                <img src="./assets/img/estrategia-economica.jpg" alt="Estrategia Económica">
                 <p>El gobierno de Colima presenta una estrategia para impulsar la economía local, enfocándose en el emprendimiento y las inversiones extranjeras.</p>
             </div>
 
             <div class="item3">
                 <h2 class="titulo">Apertura de Nuevas Tiendas en Colima</h2>
-                <img src="app/visitante/views/layouts/img/nuevas-tiendas.avif" alt="Nuevas Tiendas">
+                <img src="./assets/img/nuevas-tiendas.avif" alt="Nuevas Tiendas">
                 <p>Colima expande su oferta comercial con nuevas tiendas y centros comerciales, generando más oportunidades laborales.</p>
             </div>
 
             <div class="item4">
                 <h2 class="titulo">Iniciativa de Sostenibilidad en la Ciudad</h2>
-                <img src="app/visitante/views/layouts/img/sostenibilidad.jpg" alt="Sostenibilidad">
+                <img src="./assets/img/sostenibilidad.jpg" alt="Sostenibilidad">
                 <p>Colima promueve la sostenibilidad mediante energías renovables y la creación de espacios verdes urbanos.</p>
             </div>
 
             <div class="item5">
                 <h2 class="titulo">Nuevo Plan de Infraestructura para Colima</h2>
-                <img src="app/visitante/views/layouts/img/infraestructura.jpeg" alt="Infraestructura">
+                <img src="./assets/img/infraestructura.jpeg" alt="Infraestructura">
                 <p>El nuevo plan de infraestructura mejorará las carreteras y creará nuevas autopistas para mejorar la conectividad en Colima.</p>
             </div>
 
             <div class="item6">
                 <h2 class="titulo">Educación y Formación para el Futuro</h2>
-                <img src="app/visitante/views/layouts/img/educacion.webp" alt="Educación">
+                <img src="./assets/img/educacion.webp" alt="Educación">
                 <p>Colima promueve programas de educación y formación técnica para mejorar las oportunidades laborales en la región.</p>
             </div>
         </div>

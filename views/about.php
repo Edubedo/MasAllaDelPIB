@@ -5,14 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MasAllaDelPIB</title>
-    <link rel="stylesheet" href="../layouts/css/snosotros.css">
-    <link rel="stylesheet" href="../layouts/css/navbar.css">
-    <link rel="stylesheet" href='../layouts/css/footer.css'>
+    <link rel="stylesheet" href="./css/navbar.css">
+    <link rel="stylesheet" href='./css/footer.css'>
+    <link rel="stylesheet" href='./css/spubli.css'>
 
 </head>
 
 <body>
-    <?php include '../layouts/navbar.php'; ?>
+    <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
+    <!-- <?php include './layout/header.php'; ?> -->
+    <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
+
     <div class="cuadrosuperior">
         <div class="titulo">
             <h3 class="empresa">INNOMINDS</h3>
@@ -40,10 +43,12 @@
             </p>
         </div>
         <div class="foto">
-            <img class="img" src="/app/visitante/views/layouts/img/imagen_nosotros.png" alt="imagen de nosotros">
+            <img class="img" src="../assets/img/imagen_nosotros.png" alt="imagen de nosotros">
         </div>
     </div>
 
-    <?php include '../layouts/footer.php'; ?>
+    <!-- IMPORTAR EL FOOTER -->
+    <?php include './layout/footer.php'; ?>
+    <!-- IMPORTAR EL FOOTER -->
 
 </body>

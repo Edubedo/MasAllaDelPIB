@@ -6,7 +6,7 @@
         <!--Logo-->
         <div class="logoEmpresa">
             <div class="imagen">
-                <img src="/app/visitante/views/layouts/img/logo.png" alt="imagen logo empresa">
+                <img src="../../assets/img/logo.png" alt="imagen logo empresa">
             </div>
             <div class="nombre">
                 <h2>INNOMINDS</h2>
