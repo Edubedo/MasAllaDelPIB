@@ -1,7 +1,7 @@
 :root {
-	--color-primary: #6f6af8;
-	--color-primary-light: hsl(242, 91%, 69%, 18%);
-	--color-primary-variant: #5854c7;
+	--color-primary: #242526;;
+	--color-primary-light: #3b3d3e;
+	--color-primary-variant: #181a1c;
 	--color-red: #da0f3f;
 	--color-red-light: hsl(346, 87%, 46%, 15%);
 	--color-green: #00c476;
@@ -128,6 +128,15 @@ nav button {
 	justify-content: space-between;
 }
 
+.nav__logo-name {
+	display: flex;
+	align-items: center;
+}
+
+.nav__logo-name img {
+	width: 5rem;
+	margin-right: 1rem;
+}
 .avatar {
 	width: 2.5rem;
 	/* aspect-ratio: 1/1; */
@@ -870,120 +879,83 @@ select {
 /* START  MEDIA QUERIES (Small-Sized Devices) */
 
 @media screen and (max-width: 600px) {
-	section {
-		margin-top: 2rem;
-	}
+    .nav__items {
+        display: none;
+        position: absolute;
+        flex-direction: column;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 0;
+    }
 
-	h1 {
-		font-size: 2rem;
-	}
+    .nav__items li {
+        width: 100%;
+        height: 4.5rem;
+        display: flex;
+        align-items: center;
+        box-shadow: -2rem 3rem 7rem rgba(0, 0, 0, 0.7);
+        background: var(--color-gray-900);
+        border-top: 1px solid var(--color-bg);
+        opacity: 0;
 
-	.featured {
-		margin-top: 6rem;
-	}
+        animation: animateDropdown 400ms 0s ease forwards;
+        transform-origin: top;
+    }
 
-	.featured__container {
-		grid-template-columns: 1fr;
-		gap: 0;
-	}
+    .nav__items li:nth-child(2) {
+        animation-delay: 150ms;
+    }
 
-	.posts__container {
-		grid-template-columns: 1fr;
-	}
+    .nav__items li:nth-child(3) {
+        animation-delay: 250ms;
+    }
 
-	.category__buttons-container {
-		grid-template-columns: 1fr 1fr;
-	}
+    .nav__items li:nth-child(4) {
+        animation-delay: 350ms;
+    }
 
-	.footer__container {
-		grid-template-columns: 1fr;
-		text-align: center;
-		gap: 2rem;
-	}
+    .nav__items li:nth-child(5) {
+        animation-delay: 450ms;
+    }
 
-	/* START  BLOG */
-	.search__bar-container {
-		width: var(--container-width-md);
-	}
+    .nav__items li:nth-child(6) {
+        animation-delay: 550ms;
+    }
 
-	/* END  BLOG */
+    .nav__items a {
+        border-radius: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--color-gray-900);
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+    }
 
-	/* START  SINGLE POST */
-	.singlepost__container {
-		background-color: transparent;
-		padding: 0;
-	}
+    .nav__profile {
+        background: var(--color-gray-900);
+    }
 
-	/* END  SINGLE POST */
+    .nav__profile ul {
+        top: 100%;
+        width: 100%;
+    }
 
-	/* START  GENERAL FORM*/
-	.form__section-container {
-		padding: 0;
-	}
+    .nav__profile ul li a {
+        padding: 0 2rem;
+        display: block;
+        width: 100%;
+        text-align: left;
+        align-self: center;
+        display: flex;
+    }
 
-	.form__section form a {
-		padding-bottom: 2rem;
-	}
-
-	/* END  GENERAL FORM*/
-
-	/* START  DASHBAORD*/
-	.dashboard {
-		margin-top: 5rem;
-	}
-
-	.dashboard__container {
-		grid-template-columns: 1fr;
-		gap: 0;
-	}
-
-	.dashboard main {
-		margin: 0;
-	}
-
-	.dashboard main h2 {
-		margin-top: 1rem;
-	}
-
-	.dashboard aside {
-		position: fixed;
-		box-shadow: 2rem 0 4rem rgba(0, 0, 0, 0.4);
-		left: 0;
-		z-index: 2;
-		height: 100vh;
-		transition: var(--transition);
-		background: var(--color-primary);
-	}
-
-	.singlepost__container {
-		box-shadow: none;
-	}
-
-	.dashboard .sidebar__toggle {
-		display: inline-block;
-		background: var(--color-primary-variant);
-		color: var(--color-white);
-		position: fixed;
-		right: 0;
-		bottom: 4rem;
-		z-index: 1;
-		width: 2.5rem;
-		height: 2.5rem;
-		border-radius: 50% 0 0 50%;
-		font-size: 1.3rem;
-		cursor: pointer;
-		box-shadow: -1rem 0 2rem rgba(0, 0, 0, 0.4);
-	}
-
-	.dashboard aside a h5 {
-		display: inline-block;
-	}
-
-	#hide_sidebar-btn {
-		display: none;
-	}
-
-	/* END  DASHBAORD*/
+    .nav__profile .avatar {
+        margin-left: 2rem;
+    }
 }
 
 /* END  MEDIA QUERIES (Small-Sized Devices) */

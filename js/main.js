@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Handle window resize
         window.addEventListener("resize", () => {
-            if (window.innerWidth > 600) {
+            if (window.innerWidth > 1024) {
                 navItem.style.display = "flex";
                 openNavBtn.style.display = "none";
                 closeNavBtn.style.display = "none";
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Error occurred in toggle functionality:", error);
     }
 
-    if (window.innerWidth <= 600) {
+    if (window.innerWidth <= 1024) {
         try {
             const sidebar = document.querySelector("aside");
             const showSidebarBtn = document.querySelector("#show__sidebar-btn");
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Handle window resize
             window.addEventListener("resize", () => {
-                if (window.innerWidth > 600) {
+                if (window.innerWidth > 1024) {
                     sidebar.style.left = "0";
                     showSidebarBtn.style.display = "none";
                     hideSidebarBtn.style.display = "none";
