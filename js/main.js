@@ -1,23 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
     try {
-        const navItem = document.querySelector(".nav__items");
-        const openNavBtn = document.querySelector("#open__nav-btn");
-        const closeNavBtn = document.querySelector("#close__nav-btn");
+        const navItem = document.querySelector(".nav__items"); // Selecting the nav items
+        const openNavBtn = document.querySelector("#open__nav-btn"); // Selecting the open nav button
+        const closeNavBtn = document.querySelector("#close__nav-btn"); // Selecting the close nav button
+
         const openNav = () => {
             navItem.style.display = "flex";
             openNavBtn.style.display = "none";
             closeNavBtn.style.display = "inline-block";
         };
+
         const closeNav = () => {
             navItem.style.display = "none";
             openNavBtn.style.display = "inline-block";
             closeNavBtn.style.display = "none";
         };
+
         openNavBtn.addEventListener("click", openNav);
         closeNavBtn.addEventListener("click", closeNav);
 
-        // Handle window resize
-        window.addEventListener("resize", () => {
+        const handleResize = () => {
             if (window.innerWidth > 1024) {
                 navItem.style.display = "flex";
                 openNavBtn.style.display = "none";
@@ -27,7 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 openNavBtn.style.display = "inline-block";
                 closeNavBtn.style.display = "none";
             }
-        });
+        };
+
+        window.addEventListener("resize", handleResize);
+        handleResize(); // Call once to set initial state
     } catch (error) {
         console.error("Error occurred in toggle functionality:", error);
     }
@@ -53,10 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
             showSidebarBtn.addEventListener("click", showSidebar);
             hideSidebarBtn.addEventListener("click", hideSidebar);
 
-            window.onload = showSidebar;
-
-            // Handle window resize
-            window.addEventListener("resize", () => {
+            const handleSidebarResize = () => {
                 if (window.innerWidth > 1024) {
                     sidebar.style.left = "0";
                     showSidebarBtn.style.display = "none";
@@ -66,7 +68,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     showSidebarBtn.style.display = "inline-block";
                     hideSidebarBtn.style.display = "none";
                 }
-            });
+            };
+
+            window.addEventListener("resize", handleSidebarResize);
+            handleSidebarResize(); // Call once to set initial state
         } catch (error) {
             console.error("Error occurred in sidebar functionality:", error);
         }
