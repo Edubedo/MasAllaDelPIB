@@ -56,7 +56,7 @@
             </div>
         </div>
     </main>
-    <script src="js/login.js"></script>
+    <script src="../js/login.js"></script>
 
     <!-- IMPORTAR EL FOOTER -->
     <?php include './layout/footer.php'; ?>
