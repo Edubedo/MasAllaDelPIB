@@ -1,11 +1,11 @@
 <?php
-require 'config/database.php';
-if (isset($_SESSION['user-id'])) {
-    $id = filter_var($_SESSION['user-id'], FILTER_SANITIZE_NUMBER_INT);
-    $query = "SELECT avatar FROM users WHERE id='$id'";
-    $result = mysqli_query($connection, $query);
-    $avatar =  mysqli_fetch_assoc($result);
-}
+// require 'config/database.php';
+// if (isset($_SESSION['user-id'])) {
+//     $id = filter_var($_SESSION['user-id'], FILTER_SANITIZE_NUMBER_INT);
+//     $query = "SELECT avatar FROM users WHERE id='$id'";
+//     $result = mysqli_query($connection, $query);
+//     $avatar =  mysqli_fetch_assoc($result);
+// }
 
 ?>
 
@@ -44,9 +44,9 @@ if (isset($_SESSION['user-id'])) {
                 <li><a href="<?= "views/" ?>about.php">Nosotros</a></li>
                 <li><a href="<?= "views/" ?>contact.php">Contacto</a></li>
 
-                <!-- MOSTRAR EL PERFIL SI ES QUE TIENE -->
-                <?php if (isset($_SESSION['user-id'])) : ?>
-                    <!-- LINKS SI LE DA CLICK AL PERFIL -->
+                <!-- MOSTRAR EL PERFIL SI ES QUE TIENE 
+                <?php // if (isset($_SESSION['user-id'])) : 
+                ?>
                     <li class="nav__profile">
                         <div class="avatar">
                             <img src="<?= "" . 'images/' . $avatar['avatar'] ?>">
@@ -56,9 +56,11 @@ if (isset($_SESSION['user-id'])) {
                             <li><a href="<?= "" ?>logout.php">Logout</a></li>
                         </ul>
                     </li>
-                <?php else : ?>
-                    <li><a href="<?= "" ?>signin.php">Iniciar Sesión</a></li>
-                <?php endif ?>
+                <?php // else : 
+                ?> -->
+                <li><a href="<?= "" ?>signin.php">Iniciar Sesión</a></li>
+                <? // php endif 
+                ?>
             </ul>
 
             <button id="open__nav-btn"><i class="uil uil-bars"></i></button>

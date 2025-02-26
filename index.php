@@ -36,20 +36,6 @@ require 'config/database.php';
 
         <!-- IMAGE CALL ATENTIONS -->
 
-        <!-- Primer contenedor con contenido -->
-        <div class="item1">
-            <div class="wrapper">
-                <h1 class="titulo">Trabajo Colima invita a participar en la expo virtual de Empleo</h1>
-                <div class="contenido">
-                    <img src="app/visitante/views/layouts/img/principal.jpg" alt="PIB">
-                    <p>¡Trabajo Colima te invita a participar en la Expo Virtual de Empleo! Este evento es una excelente oportunidad para interactuar con empresas de diversos sectores en busca de talento.
-                        Durante la expo, podrás explorar vacantes, postularte directamente desde la plataforma y asistir a talleres y charlas sobre desarrollo profesional.
-                        Además, tendrás acceso a consejos sobre cómo mejorar tu perfil profesional y enfrentar entrevistas laborales. Lo mejor es que la Expo es completamente virtual, permitiéndote participar desde cualquier lugar con acceso a internet.
-                        ¡No pierdas la oportunidad de impulsar tu carrera y acercarte a tu futuro profesional!</p>
-                </div>
-            </div>
-        </div>
-
         <div class="grid">
             <!-- Elementos de la grilla con noticias -->
             <div class="item2">
@@ -86,7 +72,7 @@ require 'config/database.php';
 
     </main>
     <!-- Incluyendo el pie de página -->
-    <?php include 'app/visitante/views/layouts/footer.php'; ?>
+    <?php include './views/layout/footer.php'; ?>
 </body>
 
 </html>

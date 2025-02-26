@@ -1,0 +1,121 @@
+/* Reset y configuración básica */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos Generales de la Barra de Navegación */
+nav {
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    top: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 0 5%;
+    height: 5rem;
+    background-color: #242526;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .logo {
+    display: flex;
+    align-items: center;
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: aliceblue;
+    text-transform: uppercase;
+}
+
+nav .logo img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+nav .list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+nav .list li {
+    list-style: none;
+}
+
+nav .list li a {
+    color: aliceblue;
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    font-size: 1.8rem;
+    transition: color 0.3s ease;
+}
+
+nav .list a:hover {
+    color: #f9ab00;
+}
+
+/* Ícono de Hamburguesa */
+#toggle {
+    display: none;
+
+}
+
+nav .icon-bars {
+    display: none;
+    cursor: pointer;
+}
+
+nav .icon-bars .line {
+    width: 30px;
+    height: 4px;
+    background-color: aliceblue;
+    margin: 5px;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Media Query para Tablets y Móviles */
+@media (max-width: 939px) {
+    nav .list {
+        position: fixed;
+        top: 7rem;
+        right: 0;
+        width: 50%;
+        height: calc(100vh - 7rem);
+        background-color: #242526;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        gap: 2rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    }
+
+    nav .list li {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav .list li a {
+        display: block;
+        width: 100%;
+        padding: 1.5rem 0;
+    }
+
+    #toggle:checked ~ .list {
+        transform: translateX(0);
+    }
+
+    nav .icon-bars {
+        display: block;
+    }
+
+    nav .logo {
+        width: auto;
+    }
+}
+
