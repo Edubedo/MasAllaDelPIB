@@ -21,7 +21,6 @@
 
     <script src="js/main.js"></script>
     <!-- CUSTOM STYLESHEET -->
-    <link rel="stylesheet" href="css/style.css">
     <!-- ICONSCOUT CDN -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <!-- GOOGLE FONT(MONTSERATE) -->
