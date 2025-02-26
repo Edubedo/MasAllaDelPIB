@@ -43,35 +43,39 @@ document.addEventListener("DOMContentLoaded", () => {
             const showSidebarBtn = document.querySelector("#show__sidebar-btn");
             const hideSidebarBtn = document.querySelector("#hide__sidebar-btn");
 
-            const showSidebar = () => {
-                sidebar.style.left = "0";
-                showSidebarBtn.style.display = "none";
-                hideSidebarBtn.style.display = "inline-block";
-            };
-
-            const hideSidebar = () => {
-                sidebar.style.left = "-100%";
-                showSidebarBtn.style.display = "inline-block";
-                hideSidebarBtn.style.display = "none";
-            };
-
-            showSidebarBtn.addEventListener("click", showSidebar);
-            hideSidebarBtn.addEventListener("click", hideSidebar);
-
-            const handleSidebarResize = () => {
-                if (window.innerWidth > 1024) {
+            if (showSidebarBtn && hideSidebarBtn) {
+                const showSidebar = () => {
                     sidebar.style.left = "0";
                     showSidebarBtn.style.display = "none";
-                    hideSidebarBtn.style.display = "none";
-                } else {
+                    hideSidebarBtn.style.display = "inline-block";
+                };
+
+                const hideSidebar = () => {
                     sidebar.style.left = "-100%";
                     showSidebarBtn.style.display = "inline-block";
                     hideSidebarBtn.style.display = "none";
-                }
-            };
+                };
 
-            window.addEventListener("resize", handleSidebarResize);
-            handleSidebarResize(); // Call once to set initial state
+                showSidebarBtn.addEventListener("click", showSidebar);
+                hideSidebarBtn.addEventListener("click", hideSidebar);
+
+                const handleSidebarResize = () => {
+                    if (window.innerWidth > 1024) {
+                        sidebar.style.left = "0";
+                        showSidebarBtn.style.display = "none";
+                        hideSidebarBtn.style.display = "none";
+                    } else {
+                        sidebar.style.left = "-100%";
+                        showSidebarBtn.style.display = "inline-block";
+                        hideSidebarBtn.style.display = "none";
+                    }
+                };
+
+                window.addEventListener("resize", handleSidebarResize);
+                handleSidebarResize(); // Call once to set initial state
+            } else {
+                console.error("Sidebar buttons not found in the DOM.");
+            }
         } catch (error) {
             console.error("Error occurred in sidebar functionality:", error);
         }
