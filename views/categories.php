@@ -7,7 +7,7 @@
     <title>MasAllaDelPIB</title>
     <link rel="stylesheet" href='./css/footer.css'>
     <link rel="stylesheet" href='./css/posts.css'>
-    <link rel="stylesheet" href='./css/publi_unica.css'>
+    <link rel="stylesheet" href='./css/post.css'>
 
 </head>
 
@@ -18,10 +18,10 @@
     <nav class="nav_public">
         <input type="checkbox" id="toggle">
         <ul class="list">
-            <li><a href="../assets/img/posts.php">Todas las categorias</a></li>
-            <li><a href="../assets/img/catCE.php">Crecimiento Economico</a></li>
-            <li><a href="../assets/img/catEYN.php">Emprendimiento y Negocios</a></li>
-            <li><a href="../assets/img/catML.php">Mundo Laboral</a></li>
+            <li><a href="./posts.php">Todas las categorias</a></li>
+            <li><a href="./categories.php?=crecimiento-economico">Crecimiento Economico</a></li>
+            <li><a href="./categories.php?=emprendimiento-negocios">Emprendimiento y Negocios</a></li>
+            <li><a href="./categories.php?=mundo-laboral">Mundo Laboral</a></li>
         </ul>
     </nav class="nav_public">
     <div class="encabezado">

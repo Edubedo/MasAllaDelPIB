@@ -36,7 +36,7 @@
     <nav class="nav_public">
         <input type="checkbox" id="toggle">
         <ul class="list">
-            <li><a href="#">Todas las categorias</a></li>
+            <li><a href="./posts.php">Todas las categorias</a></li>
             <li><a href="./categories.php?=crecimiento-economico">Crecimiento Economico</a></li>
             <li><a href="./categories.php?=emprendimiento-negocios">Emprendimiento y Negocios</a></li>
             <li><a href="./categories.php?=mundo-laboral">Mundo Laboral</a></li>
@@ -58,7 +58,7 @@
                 </div>
             </div>
         </a>
-        <a href="/views/layouts/publi_unica.php">
+        <a href="/views/layouts/post.php">
             <div class="p1">
                 <div>
                     <img class="imagen1" src="../assets/img/imagen_nosotros.png" alt="imagen de nosotros">

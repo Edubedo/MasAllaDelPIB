@@ -5,21 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MasAllaDelPIB</title>
-    <link rel="stylesheet" href="../layouts/css/navbar.css">
-    <link rel="stylesheet" href='../layouts/css/footer.css'>
-    <link rel="stylesheet" href='../layouts/css/publi_unica.css'>
+    <link rel="stylesheet" href="./css/navbar.css">
+    <link rel="stylesheet" href='./css/footer.css'>
+    <link rel="stylesheet" href='./css/post.css'>
 
 </head>
 
 <body>
-    <?php include '../layouts/navbar.php'; ?>
+    <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
+    <!-- <?php include './layout/header.php'; ?> -->
+    <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
 
     <div class="noticia">
         <div class="titulo">
             <h1>EJEMPLO DE NOTICIA</h1>
         </div>
 
-        <img class="img" src="img/imagen_nosotros.png" alt="Imagen de la noticia">
+        <img class="img" src="../assets/img/educacion.webp" alt="Imagen de la noticia">
 
         <div class="info">
             <div class="texto">
@@ -36,8 +38,9 @@
     </div>
 
 
-    <?php include '../layouts/footer.php'; ?>
-
+    <!-- IMPORTAR EL FOOTER -->
+    <?php include './layout/footer.php'; ?>
+    <!-- IMPORTAR EL FOOTER -->
 </body>
 
 </html>
