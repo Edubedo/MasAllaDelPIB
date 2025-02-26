@@ -12,7 +12,8 @@
 </head>
 
 <body>
-    <?php include '../layouts/navbar.php'; ?>
+    <?php //include '../views/layout/header.php'; 
+    ?>
 
     <div class="noticia">
         <div class="titulo">
@@ -36,7 +37,8 @@
     </div>
 
 
-    <?php include '../layouts/footer.php'; ?>
+    <?php //include '../layouts/footer.php'; 
+    ?>
 
 </body>
 

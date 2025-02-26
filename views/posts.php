@@ -15,10 +15,10 @@
 <body>
 
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
-    <!-- <?php include '../layout/header.php'; ?> -->
+    <!-- <?php include './layout/header.php'; ?> -->
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
 
-    <nav class="nav_public">
+    <!-- <nav class="nav_public">
         <input type="checkbox" id="toggle">
         <label for="toggle" class="icon-bars">
             <div class="line"></div>
@@ -31,7 +31,7 @@
             <li><a href="/app/visitante/views/layouts/catEYN.php">Emprendimiento y Negocios</a></li>
             <li><a href="/app/visitante/views/layouts/catML.php">Mundo Laboral</a></li>
         </ul>
-    </nav>
+    </nav> -->
 
     <div class="encabezado">
         <h1>TODAS LAS CATEGORIAS</h1>
@@ -174,6 +174,6 @@
         </div>
     </div>
 
-    <?php include '../layouts/footer.php'; ?>
+    <?php include './layout/footer.php'; ?>
 
 </body>

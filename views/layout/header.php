@@ -32,17 +32,16 @@
 
     <nav>
         <div class="container nav__container">
-            <a href="<?= "" ?>index.php" class="nav__logo">
+            <a href="<?= "/" ?>index.php" class="nav__logo">
                 <span class="nav__logo-name">
                     <img src="/app/visitante/views/layouts/img/logo.png" alt="imagen logo empresa" width="50" height=40">
                     <h2>MAS ALLÁ DEL PIB</h2>
                 </span>
             </a>
             <ul class="nav__items" style="font-size: 1.2rem;">
-                <li><a href="index.php">Inicio</a></li>
-                <li><a href="<?= "views/" ?>posts.php">Publicaciones</a></li>
-                <li><a href="<?= "views/" ?>about.php">Nosotros</a></li>
-                <li><a href="<?= "views/" ?>contact.php">Contacto</a></li>
+                <li><a href="/index.php">Inicio</a></li>
+                <li><a href="<?= "/views/" ?>posts.php">Publicaciones</a></li>
+                <li><a href="<?= "/views/" ?>about.php">Nosotros</a></li>
 
                 <!-- MOSTRAR EL PERFIL SI ES QUE TIENE 
                 <?php // if (isset($_SESSION['user-id'])) : 
