@@ -7,7 +7,7 @@
     <title>MasAllaDelPIB</title>
     <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href='./css/footer.css'>
-    <link rel="stylesheet" href='./css/spubli.css'>
+    <link rel="stylesheet" href='./css/posts.css'>
     <link rel="stylesheet" href='css/index.css'>
     <link rel="stylesheet" href='./css/login.css'>
 

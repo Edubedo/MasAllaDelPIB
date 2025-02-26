@@ -5,18 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MasAllaDelPIB</title>
-    <link rel="stylesheet" href="../layouts/css/navbar.css">
-    <link rel="stylesheet" href='../layouts/css/footer.css'>
-    <link rel="stylesheet" href='../layouts/css/spubli.css'>
+    <link rel="stylesheet" href='./css/footer.css'>
+    <link rel="stylesheet" href='./css/posts.css'>
+    <link rel="stylesheet" href='./css/publi_unica.css'>
 
 </head>
 
 <body>
-    <?php include '../layouts/navbar.php'; ?>
+    <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
+    <!-- <?php include './layout/header.php'; ?> -->
+    <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
     <nav class="nav_public">
         <input type="checkbox" id="toggle">
         <ul class="list">
-            <li><a href="../assets/img/spubli.php">Todas las categorias</a></li>
+            <li><a href="../assets/img/posts.php">Todas las categorias</a></li>
             <li><a href="../assets/img/catCE.php">Crecimiento Economico</a></li>
             <li><a href="../assets/img/catEYN.php">Emprendimiento y Negocios</a></li>
             <li><a href="../assets/img/catML.php">Mundo Laboral</a></li>
@@ -28,7 +30,7 @@
     <div class="cuerpo">
         <div class="p1">
             <div>
-                <img class="imagen1" src="../assets/img/img/laboral.jpg" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/laboral.jpg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -37,7 +39,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="../assets/img/img/laboral.jpg" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/laboral.jpg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -46,7 +48,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="../assets/img/img/laboral.jpg" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/laboral.jpg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -55,7 +57,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="../assets/img/img/laboral.jpg" alt="imagen mundo laboral">
+                <img class="imagen1" src="../assets/img/laboral.jpg" alt="imagen mundo laboral">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -64,7 +66,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="../assets/img/img/laboral.jpg" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/laboral.jpg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -73,7 +75,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="../assets/img/img/laboral.jpg" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/laboral.jpg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -82,7 +84,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="../assets/img/img/laboral.jpg" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/laboral.jpg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -91,7 +93,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="../assets/img/img/laboral.jpg" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/laboral.jpg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -100,7 +102,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="../assets/img/img/laboral.jpg" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/laboral.jpg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -109,7 +111,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="../assets/img/img/laboral.jpg" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/laboral.jpg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -118,7 +120,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="../assets/img/img/laboral.jpg" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/laboral.jpg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -127,7 +129,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="../assets/img/img/laboral.jpg" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/laboral.jpg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -136,7 +138,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="../assets/img/img/laboral.jpg" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/laboral.jpg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -145,7 +147,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="../assets/img/img/laboral.jpg" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/laboral.jpg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -154,7 +156,7 @@
         </div>
         <div class="p1">
             <div>
-                <img class="imagen1" src="../assets/img/img/laboral.jpg" alt="imagen de nosotros">
+                <img class="imagen1" src="../assets/img/laboral.jpg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>
@@ -163,6 +165,7 @@
         </div>
     </div>
 
-    <?php include '../layouts/footer.php'; ?>
-
+    <!-- IMPORTAR EL FOOTER -->
+    <?php include './layout/footer.php'; ?>
+    <!-- IMPORTAR EL FOOTER -->
 </body>

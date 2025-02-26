@@ -24,7 +24,7 @@
     <div id="blog-carousel" class="carousel slide overlay-bottom" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="w-100" src="assets/img/img_empleo.jpg " alt="Image">
+                <img class="w-100" src="assets/img/img_carrousel.jpg " alt="Image">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <h1 class="m-0 display-1 text-primary">
                         Trabajo Colima
