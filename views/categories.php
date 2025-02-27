@@ -7,6 +7,7 @@
     <title>MasAllaDelPIB</title>
     <script src="../js/main.js"></script>
 
+    <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href='./css/footer.css'>
     <link rel="stylesheet" href='./css/posts.css'>
     <link rel="stylesheet" href='./css/post.css'>
@@ -60,6 +61,15 @@
         <div class="p1">
             <div>
                 <img class="imagen1" src="../assets/img/laboral.jpg" alt="imagen mundo laboral">
+            </div>
+            <div class="texto1">
+                <h4>Titulo de la publicacion</h4>
+                <p>Pequeña informacion sobre la publicacion para dar interes</p>
+            </div>
+        </div>
+        <div class="p1">
+            <div>
+                <img class="imagen1" src="../assets/img/laboral.jpg" alt="imagen de nosotros">
             </div>
             <div class="texto1">
                 <h4>Titulo de la publicacion</h4>

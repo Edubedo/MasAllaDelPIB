@@ -33,13 +33,17 @@
             <div class="contactos-titulo">
                 <h3>CONTACTOS</h3>
             </div>
-            <div class="correos">
-                <p>Nancy Laureano - nlaureano@ucol.mx</p>
-                <p>Eduardo Escobedo - ehernandez@ucol.mx</p>
-                <p>Juan Angelina - jangelina@ucol.mx</p>
-                <p>Pablo Alcala - jalcala@ucol.mx</p>
-                <p>Pamela Rodriguez - prodriguez@ucol.mx</p>
-                <p>Jesus Quintero - jquintero@ucol.mx</p>
+            <div class="correos-container"> <!-- Nuevo contenedor para alinear -->
+                <div class="correos">
+                    <p>nlaureano@ucol.mx</p>
+                    <p>ehernandez@ucol.mx</p>
+                    <p>jangelina@ucol.mx</p>
+                </div>
+                <div class="correos">
+                    <p>jalcala@ucol.mx</p>
+                    <p>prodriguez@ucol.mx</p>
+                    <p>jquintero@ucol.mx</p>
+                </div>
             </div>
         </div>
         <!--Contactos-->

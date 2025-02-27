@@ -1,4 +1,3 @@
-
 html {
     box-sizing: border-box;
     font-size: 62.5%;/*1 rem es 10 px*/
@@ -21,19 +20,18 @@ html, body {
     background-color: #6d9aa6;
     color: white;
     text-align: center;
-    font-size: 14px;
-    bottom: 0;
+    font-size: 10px;
+    bottom: 0%;
     margin-top: auto;
-    
 }
 
 .footer-container1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 3rem;
-    
-    
+    padding-top: 0rem;
+    height: 10rem;
+
 }
 
 .footer-container2 {
@@ -41,14 +39,15 @@ html, body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.8rem;
     width: 100%;
-    
+    height: 4rem;
+    bottom: 0%;
 }
+
 .logoEmpresa {
     text-align: center;
     margin-left: 3rem;
-    margin-bottom: 3.5rem;
+    margin-bottom: 1rem;
     margin-right: 2rem;
     position: relative;
     top: -1.2rem;
@@ -57,13 +56,13 @@ html, body {
 .logoEmpresa .nombre {
     justify-content: center;
     position: relative;
-    top: 0.5rem;
+    bottom: 5%;
 }
 
 
 
 .logoEmpresa .imagen img {
-    width: 16rem;  /* Ajusta el ancho según sea necesario */
+    width: 12rem;  /* Ajusta el ancho según sea necesario */
     height: auto;   /* Mantiene la proporción */
     max-width: 100%; /* Evita que la imagen sea más grande que su contenedor */
 }
@@ -72,17 +71,27 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: left;
-    text-align: left;
+    text-align: center;
     margin-right: 2.7rem;
     position: relative;
     top: -2rem;
+    font-size: 1.2rem;
 
 }
 
+.correos-container { /* Contenedor de correos para poder tener 3 y 3 */
+    display: flex;
+    gap: 2rem; /* Espacio entre columnas */
+    top: 4rem;
+}
+
 .correos {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinea los textos al centro */
+    text-align: center;
     line-height: 1.8rem;
-    position: relative;
-    top: 1.82rem;
+    top: -2rem;
 }
 
 .footer-info {
@@ -91,8 +100,9 @@ html, body {
     text-align: left;
     align-items: left;
     width: 100%;
-
+    font-size: 1.3rem;
 }
+
 .footer-info, .footer-contact {
     max-width: 40rem;
     margin: 1rem;
@@ -102,7 +112,7 @@ html, body {
 
 .sobrenosotros-titulo {
     position: relative;
-    top: -4rem;
+    top: -2rem;
 }
 .sobrenosotros-info {
     position: relative;
@@ -123,8 +133,8 @@ html, body {
 
 
 .iconos svg {
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
     position: relative;
     top: 0.5rem;
 }
@@ -158,9 +168,21 @@ html, body {
         margin-right: 1rem;
         font-size: 1rem;
     }
+
+    .contactos {
+        margin-right: 1rem;
+        font-size: 0.8rem;
+    }
+
+    .footer-info {
+        margin-left: 0.5rem;
+        font-size: 0.9rem;
+        margin-top: -1rem;
+    }
+    
 }
 
-@media (max-width: 480px) {
+@media (max-width: 520px) {
     .footer-bottom {
         margin-left: 0.5rem;
     }
@@ -173,5 +195,11 @@ html, body {
         font-size: 0.5rem;
     }
     
+    .footer-info {
+        margin-left: 0.5rem;
+        font-size: 0.7rem;
+        margin-top: -1rem;
+    }
     
 }
+
