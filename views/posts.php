@@ -71,6 +71,72 @@
                 </div>
             </div>
         </a>
+        <a href="/views/layouts/post.php">
+            <div class="p1">
+                <div>
+                    <img class="imagen1" src="../assets/img/imagen_nosotros.png" alt="imagen de nosotros">
+                </div>
+                <div class="texto1">
+                    <h4>Titulo de la publicacion</h4>
+                    <p>Pequeña informacion sobre la publicacion para dar interes</p>
+                </div>
+            </div>
+        </a>
+        <a href="/views/layouts/post.php">
+            <div class="p1">
+                <div>
+                    <img class="imagen1" src="../assets/img/imagen_nosotros.png" alt="imagen de nosotros">
+                </div>
+                <div class="texto1">
+                    <h4>Titulo de la publicacion</h4>
+                    <p>Pequeña informacion sobre la publicacion para dar interes</p>
+                </div>
+            </div>
+        </a>
+        <a href="/views/layouts/post.php">
+            <div class="p1">
+                <div>
+                    <img class="imagen1" src="../assets/img/imagen_nosotros.png" alt="imagen de nosotros">
+                </div>
+                <div class="texto1">
+                    <h4>Titulo de la publicacion</h4>
+                    <p>Pequeña informacion sobre la publicacion para dar interes</p>
+                </div>
+            </div>
+        </a>
+        <a href="/views/layouts/post.php">
+            <div class="p1">
+                <div>
+                    <img class="imagen1" src="../assets/img/imagen_nosotros.png" alt="imagen de nosotros">
+                </div>
+                <div class="texto1">
+                    <h4>Titulo de la publicacion</h4>
+                    <p>Pequeña informacion sobre la publicacion para dar interes</p>
+                </div>
+            </div>
+        </a>
+        <a href="/views/layouts/post.php">
+            <div class="p1">
+                <div>
+                    <img class="imagen1" src="../assets/img/imagen_nosotros.png" alt="imagen de nosotros">
+                </div>
+                <div class="texto1">
+                    <h4>Titulo de la publicacion</h4>
+                    <p>Pequeña informacion sobre la publicacion para dar interes</p>
+                </div>
+            </div>
+        </a>
+        <a href="/views/layouts/post.php">
+            <div class="p1">
+                <div>
+                    <img class="imagen1" src="../assets/img/imagen_nosotros.png" alt="imagen de nosotros">
+                </div>
+                <div class="texto1">
+                    <h4>Titulo de la publicacion</h4>
+                    <p>Pequeña informacion sobre la publicacion para dar interes</p>
+                </div>
+            </div>
+        </a>
 
 
 
