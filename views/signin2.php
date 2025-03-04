@@ -34,9 +34,9 @@
 
             <!-- Formularios de login y registro -->
             <div class="contenedor__Login-register">
-                <form action="../config/validacion.php" method="POST" class="formulario__login">
+                <form action="../config/valicacioon.php" method="POST" class="formulario__login">
                     <h2>Iniciar Sesión</h2>
-                    <input type="text" name="email" placeholder="Correo Electrónico" required>
+                    <input type="text" name="username" placeholder="Correo Electrónico" required>
                     <input type="password" name="password" placeholder="Contraseña" required>
                     <button>Entrar</button>
                 </form>
