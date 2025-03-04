@@ -1,25 +1,19 @@
-.page-wrapper{
-    display: flex;  
-    height: 30rem;
-    background-color: #f5f5f5;
-}
-
 .post-slider{
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+    border: 1px solid red;
 }
 
-.slider-titlle{
-    display: flex;
-    width: 20rem;
-    font-family: 'Courier New', Courier, monospace;
-    margin-top: 1 rem;
-    align-items: center;
-    justify-content: center;
+.post-slider .post-wrapper{
+    width: 84%;
+    height: 350px;
+    margin: 0px auto;
+    border: 1px dashed red;
 }
 
+.post-slider .post-wrapper .post{
+    color: black;
+    width: 300px;
+    height: 350px;
+    display: inline-block;
+    background: #05f7ff;
+    
+}
