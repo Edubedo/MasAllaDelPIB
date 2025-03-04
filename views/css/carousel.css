@@ -1,0 +1,25 @@
+.page-wrapper{
+    display: flex;  
+    height: 30rem;
+    background-color: #f5f5f5;
+}
+
+.post-slider{
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.slider-titlle{
+    display: flex;
+    width: 20rem;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 1 rem;
+    align-items: center;
+    justify-content: center;
+}
+

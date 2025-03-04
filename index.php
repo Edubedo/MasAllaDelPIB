@@ -15,14 +15,7 @@ require 'config/database.php';
     <link rel="stylesheet" href="./views/css/footer.css">
     <link rel="stylesheet" href="./views/css/index.css">
 
-    <!-- carrouse -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&family=Roboto:wght@400;500;700&display=swap"
-        rel="stylesheet">
-    <link href="css/style.min.css" rel="stylesheet">
 
-    <!-- Incluyendo los scripts -->
 </head>
 
 <body>
