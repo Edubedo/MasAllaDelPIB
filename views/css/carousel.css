@@ -1,12 +1,78 @@
 .post-slider{
-    border: 1px solid red;
+    border: 1px solid;
+
 }
 
 .post-slider .post-wrapper{
     width: 84%;
     height: 350px;
     margin: 0px auto;
-    border: 1px dashed red;
+    border: 1px dashed;
+    overflow: hidden;
+}
+
+.post-slider .post-wrapper .post{
+    width: 300px;
+    height: 330px;
+    display: inline-block;
+    color: #000;
+    margin: 0px 10px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 1rem 1rem 1rem -1rem #a0a0a033;
+}
+
+.post-slider .post-wrapper .post .post-info{
+    height: 130px;
+    border: 1px solid; /* Esto debería aparecer */
+    padding: 0px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente */
+    gap: 5px; /* Espaciado entre elementos */
+}
+
+.post-info h4 {
+    font-size: 16px;
+    color: #444;
+    margin: 5px
+}
+
+
+.post-slider .post-wrapper .post .slider-image{
+    width: 100%;
+    height: 200px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+}
+
+.slider-title{
+    color: #000000;
+    text-align: center;
+    margin: 30px auto;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
+}
+
+.post-slider .prev, 
+.post-slider .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: black;
+    cursor: pointer;
+    z-index: 100;
+    color: #6D9AA6;
+}
+
+.post-slider .prev {
+    left: 50px;
+}
+
+.post-slider .next {
+    right: 50px;
 }
 
 .post-slider .post-wrapper .post{
@@ -14,6 +80,6 @@
     width: 300px;
     height: 350px;
     display: inline-block;
-    background: #05f7ff;
+    background: #ffffff;
     
 }
