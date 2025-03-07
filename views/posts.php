@@ -34,99 +34,6 @@
         <h1>Publicaciones</h1>
     </div>
     <div class="cuerpo">
-<<<<<<< HEAD
-        <a href="./post.php?=1">
-            <div class="p1">
-                <div>
-                    <img class="imagen1" src="../assets/img/imagen_nosotros.png" alt="imagen de nosotros">
-                </div>
-                <div class="texto1">
-                    <h4>Titulo de la publicacion</h4>
-                    <p>Pequeña informacion sobre la publicacion para dar interes</p>
-                </div>
-            </div>
-        </a>
-        <a href="/views/layouts/post.php">
-            <div class="p1">
-                <div>
-                    <img class="imagen1" src="../assets/img/imagen_nosotros.png" alt="imagen de nosotros">
-                </div>
-                <div class="texto1">
-                    <h4>Titulo de la publicacion</h4>
-                    <p>Pequeña informacion sobre la publicacion para dar interes</p>
-                </div>
-            </div>
-        </a>
-        <a href="/views/layouts/post.php">
-            <div class="p1">
-                <div>
-                    <img class="imagen1" src="../assets/img/imagen_nosotros.png" alt="imagen de nosotros">
-                </div>
-                <div class="texto1">
-                    <h4>Titulo de la publicacion</h4>
-                    <p>Pequeña informacion sobre la publicacion para dar interes</p>
-                </div>
-            </div>
-        </a>
-        <a href="/views/layouts/post.php">
-            <div class="p1">
-                <div>
-                    <img class="imagen1" src="../assets/img/imagen_nosotros.png" alt="imagen de nosotros">
-                </div>
-                <div class="texto1">
-                    <h4>Titulo de la publicacion</h4>
-                    <p>Pequeña informacion sobre la publicacion para dar interes</p>
-                </div>
-            </div>
-        </a>
-        <a href="/views/layouts/post.php">
-            <div class="p1">
-                <div>
-                    <img class="imagen1" src="../assets/img/imagen_nosotros.png" alt="imagen de nosotros">
-                </div>
-                <div class="texto1">
-                    <h4>Titulo de la publicacion</h4>
-                    <p>Pequeña informacion sobre la publicacion para dar interes</p>
-                </div>
-            </div>
-        </a>
-        <a href="/views/layouts/post.php">
-            <div class="p1">
-                <div>
-                    <img class="imagen1" src="../assets/img/imagen_nosotros.png" alt="imagen de nosotros">
-                </div>
-                <div class="texto1">
-                    <h4>Titulo de la publicacion</h4>
-                    <p>Pequeña informacion sobre la publicacion para dar interes</p>
-                </div>
-            </div>
-        </a>
-        <a href="/views/layouts/post.php">
-            <div class="p1">
-                <div>
-                    <img class="imagen1" src="../assets/img/imagen_nosotros.png" alt="imagen de nosotros">
-                </div>
-                <div class="texto1">
-                    <h4>Titulo de la publicacion</h4>
-                    <p>Pequeña informacion sobre la publicacion para dar interes</p>
-                </div>
-            </div>
-        </a>
-        <a href="/views/layouts/post.php">
-            <div class="p1">
-                <div>
-                    <img class="imagen1" src="../assets/img/imagen_nosotros.png" alt="imagen de nosotros">
-                </div>
-                <div class="texto1">
-                    <h4>Titulo de la publicacion</h4>
-                    <p>Pequeña informacion sobre la publicacion para dar interes</p>
-                </div>
-            </div>
-        </a>
-
-
-
-=======
         <?php
         $posts = json_decode(file_get_contents('../data/posts.json'), true); // Obtener los posts
         foreach ($posts as $post) { // Recorrer los posts
@@ -143,7 +50,6 @@
                   </a>';
         }
         ?>
->>>>>>> 1504c762522f6f9e15ce3afb02ced21638a047a6
     </div>
 
     <!-- IMPORTAR EL FOOTER -->
