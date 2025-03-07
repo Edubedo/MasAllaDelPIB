@@ -1,5 +1,12 @@
+main, .page-wrapper {
+    margin: 0 !important;
+    padding: 0;
+}
+
 .post-slider{
     border: 1px solid;
+    margin-top: 20px;
+    padding-top: 0;
 
 }
 
@@ -52,6 +59,7 @@
     text-align: center;
     margin: 30px auto;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 5rem;
     
 }
 
