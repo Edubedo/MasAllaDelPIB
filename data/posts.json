@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "Titulo de la publicacion 1",
+        "description": "Pequeña informacion sobre la publicacion para dar interes",
+        "image": "../assets/img/imagen_nosotros.png",
+        "link": "./post.php?id=1",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "category": ""
+    },
+    {
+        "id": 2,
+        "title": "Titulo de la publicacion 2",
+        "description": "Pequeña informacion sobre la publicacion para dar interes",
+        "image": "../assets/img/imagen_nosotros.png",
+        "link": "/views/layouts/post.php",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "category": ""
+    }
+]
