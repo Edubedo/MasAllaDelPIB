@@ -6,13 +6,8 @@
     z-index: 10;
     left: 0;
     right: 0;
-<<<<<<< HEAD
-    top: 4rem;
-    font-family:Arial, Helvetica, sans-serif;
-=======
     top: 5rem;
     font-family: Arial, Helvetica, sans-serif;
->>>>>>> 1504c762522f6f9e15ce3afb02ced21638a047a6
     padding: 0 5%;
     height: 3rem;
     background-color: #6d9aa6;
@@ -44,10 +39,6 @@
     color: #000000;
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 1504c762522f6f9e15ce3afb02ced21638a047a6
 .encabezado {
     margin-top: 10rem;
     font-size: 2rem;
@@ -71,15 +62,9 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
-    width: 25rem;
-    height: 20rem;
-    background-color: #d9d9d9;
-=======
     width: 23rem; /* Increased width */
     height: 25rem; /* Increased height */
     background-color: #f0f0f0; /* Lighter background color */
->>>>>>> 1504c762522f6f9e15ce3afb02ced21638a047a6
     border-radius: 10%;
     justify-content: center;
     text-align: center;
