@@ -36,7 +36,7 @@
     <div class="cuerpo">
         <?php
         $posts = json_decode(file_get_contents('../data/posts.json'), true); // Obtener los posts
-        foreach ($posts as $post) {
+        foreach ($posts as $post) { // Recorrer los posts
             echo '<a href="./post.php?id=' . $post['id'] . '">
                     <div class="p1">
                         <div>
