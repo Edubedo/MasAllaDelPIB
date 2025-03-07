@@ -1,0 +1,19 @@
+.post-slider{
+    border: 1px solid red;
+}
+
+.post-slider .post-wrapper{
+    width: 84%;
+    height: 350px;
+    margin: 0px auto;
+    border: 1px dashed red;
+}
+
+.post-slider .post-wrapper .post{
+    color: black;
+    width: 300px;
+    height: 350px;
+    display: inline-block;
+    background: #05f7ff;
+    
+}
