@@ -1,4 +1,3 @@
-<!-- AQUI ESTARÍA BUENO HACERLO REUTILIZABLE, NO TENER QUE DUPLICAR LAS CATEGORÍAS -->
 <!DOCTYPE html>
 <html lang="es">
 
@@ -21,34 +20,21 @@
     <!-- <?php include './layout/header.php'; ?> -->
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
 
-    <!-- <nav class="nav_public">
-        <input type="checkbox" id="toggle">
-        <label for="toggle" class="icon-bars">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-        </label>
-        <ul class="list">
-            <li><a href="../assets/img/posts.php">Todas las categorias</a></li>
-            <li><a href="../assets/img/catCE.php">Crecimiento Economico</a></li>
-            <li><a href="../assets/img/catEYN.php">Emprendimiento y Negocios</a></li>
-            <li><a href="../assets/img/catML.php">Mundo Laboral</a></li>
-        </ul>
-    </nav> -->
     <nav class="nav_public">
         <input type="checkbox" id="toggle">
         <ul class="list">
             <li><a href="./posts.php">Todas las categorias</a></li>
-            <li><a href="./categories.php?=crecimiento-economico">Crecimiento Economico</a></li>
-            <li><a href="./categories.php?=emprendimiento-negocios">Emprendimiento y Negocios</a></li>
-            <li><a href="./categories.php?=mundo-laboral">Mundo Laboral</a></li>
+            <li><a href="./categories.php?category=crecimiento-economico">Crecimiento Economico</a></li>
+            <li><a href="./categories.php?category=emprendimiento-negocios">Emprendimiento y Negocios</a></li>
+            <li><a href="./categories.php?category=mundo-laboral">Mundo Laboral</a></li>
         </ul>
     </nav class="nav_public">
 
     <div class="encabezado">
-        <h1>TODOS LOS POSTS</h1>
+        <h1>Publicaciones</h1>
     </div>
     <div class="cuerpo">
+<<<<<<< HEAD
         <a href="./post.php?=1">
             <div class="p1">
                 <div>
@@ -140,6 +126,24 @@
 
 
 
+=======
+        <?php
+        $posts = json_decode(file_get_contents('../data/posts.json'), true); // Obtener los posts
+        foreach ($posts as $post) { // Recorrer los posts
+            echo '<a href="./post.php?id=' . $post['id'] . '">
+                    <div class="p1">
+                        <div>
+                            <img class="imagen" src="' . $post['image'] . '" alt="imagen de nosotros">
+                        </div>
+                        <div class="texto1">
+                            <h4>' . $post['title'] . '</h4>
+                            <p>' . $post['description'] . '</p>
+                        </div>
+                    </div>
+                  </a>';
+        }
+        ?>
+>>>>>>> 1504c762522f6f9e15ce3afb02ced21638a047a6
     </div>
 
     <!-- IMPORTAR EL FOOTER -->
@@ -147,3 +151,5 @@
     <!-- IMPORTAR EL FOOTER -->
 
 </body>
+
+</html>
