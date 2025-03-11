@@ -47,6 +47,40 @@
         <div class="foto">
             <img class="img" src="../assets/img/imagen_nosotros.png" alt="imagen de nosotros">
         </div>
+        
+
+        <div class="title">
+            <h1>COLABORADORES</h1>
+        </div>
+
+
+        <div class="contacts">
+            <div class="foto2">
+                <img class="img2" src="../assets/img/team.jpg" alt="imagen del equipo">
+            </div>
+            <div class="info-contacts">
+                <p class="texto-contacts">
+                    Este blog fue realizado por parte de estuadiantes de la universidad de Colima como 
+                    parte de un proyecto escolar en donde el objetivo es contribuir a la sociedad 
+                    por medios digitales y Diseñar e implementar aplicaciones web mediante la integración de                    
+                    herramientas de desarrollo tales como IDEs, navegadores, frameworks, librerías, lenguajes 
+                    de programación, servidores y gestores de bases de datos.
+                </p>
+
+                <ul class="team-list">
+                    <li><span>Nancy Laureano</span> - nlaureano@ucol.mx</li>
+                    <li><span>Eduardo Escobedo</span> - ehernandez@ucol.mx</li>
+                    <li><span>Pamela Rodriguez</span> - drodriguez@ucol.mx</li>
+                    <li><span>Juan Pablo Angelina</span> - jangelina@ucol.mx</li>
+                    <li><span>Juan Pablo Alcala</span> - jalcala@ucol.mx</li>
+                    <li><span>Jesus Antonio Quintero</span> - jquintero@ucol.mx</li>
+                </ul>
+            </div>
+            
+        </div>
+
+
+
     </div>
 
     <!-- IMPORTAR EL FOOTER -->
