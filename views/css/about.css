@@ -107,6 +107,89 @@ body {
     transform: scale(1.05);
 }
 
+/* Informacion de Contactos */
+
+.contacts{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.title h1{
+    font-size: 4rem;
+    color: #333;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 2rem 0;
+}
+
+.foto2 {
+    flex: 1 1 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.img2 {
+    width: 100%;
+    height: auto;
+    border-radius: 1.5rem;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.img2:hover {
+    transform: scale(1.05);
+}
+
+.foto2, .info-contacts {
+    flex: 1;
+    max-width: 50%;
+    min-height: 100%; /* Asegura altura uniforme */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-contacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(240, 240, 240);
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.texto-contacts{
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.contacts .team-list {
+    list-style: none;
+    padding: 0;
+}
+
+.contacts .team-list li {
+    font-size: 1.6rem;
+    color: #333;
+    margin: 0.5rem 0;
+}
+
+.contacts .team-list li span {
+    font-weight: bold;
+}
+
 
 /* Media Queries */
 @media (max-width: 1024px) {
@@ -131,6 +214,18 @@ body {
     .foto {
         width: 80%;
     }
+    .contacts {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .foto2 {
+        width: 90%;
+    }
+    .info-contacts {
+        width: 90%;
+        padding: 1.5rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -148,5 +243,15 @@ body {
     }
     .info, .foto {
         width: 100%;
+    }
+    .contacts {
+        padding: 1rem;
+    }
+    .foto2 {
+        width: 100%;
+    }
+    .info-contacts {
+        width: 100%;
+        padding: 1rem;
     }
 }
