@@ -1,43 +1,131 @@
+/* Barra de navegación */
 .nav_public {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
     position: fixed;
-    z-index: 10;
+    top: 4.5rem;
     left: 0;
     right: 0;
-    top: 5rem;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 0 5%;
-    height: 3rem;
-    background-color: #6d9aa6;
+    z-index: 100;
+    background-color: #6d9aa6; /* Color azul claro */
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 1rem 5%;
+    height: 4rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    transition: background-color 0.3s ease-in-out;
 }
 
+/* Lista de navegación */
 .nav_public .list {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     gap: 2rem;
 }
 
+/* Ítems de la lista */
 .nav_public .list li {
     list-style: none;
 }
 
 .nav_public .list li a {
-    color: aliceblue;
+    color: #fffdfd; /* Color oscuro para los enlaces */
     text-decoration: none;
-    padding: 1rem 6rem;
-    font-size: 1.4rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
     transition: color 0.3s ease;
+    border-radius: 5px;
 }
 
-.nav_public .list a:hover {
-    color: #000000;
+.nav_public .list li a:hover {
+    color: #ffffff;
+    background-color: #4682B4; /* Color azul más oscuro al pasar el ratón */
 }
+
+/* Menú hamburguesa (móvil) */
+.icon-bars {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    top: 1.2rem;
+    right: 2rem;
+    z-index: 20;
+}
+
+.icon-bars .line {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Estilos para la versión móvil */
+@media (max-width: 1030px) {
+    .nav_public {
+        padding: 1rem;
+        height: 5rem;
+    }
+
+    /* Menú hamburguesa visible en pantallas pequeñas */
+    .icon-bars {
+        display: block;
+    }
+
+    .nav_public .list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 6rem;
+        right: 0;
+        width: 60%;
+        height: calc(100vh - 6rem);
+        background-color: #ADD8E6;
+        gap: 2rem;
+        transform: translateX(100%); /* Comienza fuera de la pantalla */
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .nav_public .list li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav_public .list li a {
+        display: block;
+        width: 100%;
+        padding: 1.5rem 0;
+        font-size: 1.5rem;
+    }
+
+    /* Mostrar el menú cuando el checkbox está marcado */
+    #toggle:checked ~ .list {
+        transform: translateX(0); /* Desliza el menú hacia la pantalla */
+    }
+
+    /* Botón hamburguesa transformado cuando se abre el menú */
+    #toggle:checked ~ .icon-bars .line:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    #toggle:checked ~ .icon-bars .line:nth-child(2) {
+        opacity: 0;
+    }
+
+    #toggle:checked ~ .icon-bars .line:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+}
+
+/* Botón de cierre para el menú */
+#toggle:checked ~ .list {
+    transform: translateX(0); /* Mostrar el menú */
+}
+
+
 
 .encabezado {
     margin-top: 10rem;
@@ -152,26 +240,35 @@ a img {
     transition: transform 0.5s;
     object-fit: contain;
 }
-
 @media (max-width: 1030px) {
-    .icon-bars {
-        display: block;
-    }
-
     .nav_public .list {
+        display: flex; /* Asegura que la lista se muestre */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         position: fixed;
         top: 7rem;
         right: 0;
         width: 50%;
         height: calc(100vh - 7rem);
         background-color: #242526;
-        flex-direction: column;
-        justify-content: start;
-        align-items: center;
         gap: 2rem;
         transform: translateX(100%);
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease-in-out;
     }
+
+    .nav_public .list li a {
+        color: white !important; /* Hace el texto visible */
+        font-size: 1.5rem;
+    }
+
+    /* Cuando el menú está activo */
+    #toggle:checked ~ .list {
+        transform: translateX(0);
+        display: flex;
+    }
+}
+
 
     .nav_public .list li {
         width: 100%;
@@ -187,4 +284,3 @@ a img {
     #toggle:checked ~ .list {
         transform: translateX(0);
     }
-}
