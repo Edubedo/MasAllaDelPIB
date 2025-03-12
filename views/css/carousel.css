@@ -11,16 +11,18 @@ main, .page-wrapper {
 }
 
 .post-slider .post-wrapper{
-    width: 84%;
+    width: 85%;
     height: 350px;
+    padding: 0;
     margin: 0px auto;
     border: 1px dashed;
     overflow: hidden;
+    
 }
 
 .post-slider .post-wrapper .post{
     width: 300px;
-    height: 330px;
+    height: 350px;
     display: inline-block;
     color: #000;
     margin: 0px 10px;
@@ -32,18 +34,26 @@ main, .page-wrapper {
 .post-slider .post-wrapper .post .post-info{
     height: 130px;
     border: 1px solid; /* Esto debería aparecer */
-    padding: 0px 5px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centra el contenido verticalmente */
-    gap: 5px; /* Espaciado entre elementos */
+    justify-content: space-between;
 }
 
 .post-info h4 {
-    font-size: 16px;
+    font-size: 20px;
     color: #444;
-    margin: 5px
+    margin: 5px;
 }
+
+
+.post-slider .post-wrapper .post .post-info .post-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 12px;
+}
+
 
 
 .post-slider .post-wrapper .post .slider-image{

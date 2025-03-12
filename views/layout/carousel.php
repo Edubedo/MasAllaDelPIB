@@ -1,6 +1,30 @@
 <?php
 require 'config/database.php';
 
+//cargar los datos desde el json
+$jsonFile = __DIR__ . '/../../data/posts.json';
+if (!file_exists($jsonFile)) {
+    die("Error: No se encontró el archivo JSON en " . $jsonFile);
+}
+
+// Intentar leer el contenido del archivo
+$data = file_get_contents($jsonFile);
+if ($data === false) {
+    die("Error: No se pudo leer el archivo JSON.");
+}
+
+$posts = json_decode($data, true);
+
+if (!is_array($posts)) {
+    die("Error: El JSON no es válido o está vacío.");
+}
+
+usort($posts, function ($a, $b) {
+    return strtotime($b['date']) - strtotime($a['date']);
+});
+
+$filteredPosts = array_slice($posts, 0, 5);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -26,18 +50,21 @@ require 'config/database.php';
 
                         <div class="post-wrapper">
                             
-                            <a href="single.html">
-                                <div class="post">
-                                    <img src="./assets/img/estrategia-economica.jpg" class="slider-image">
-                                    <div class="post-info">
-                                        <h4>Nueva Estrategia Económica en Colima</h4>
-                                        <p></p>
-                                        <i class="far fa-user">Nancy Laureano</i>
-                                        &nbsp;
-                                        <i class="far fa-calendar"> Marzo 03, 2025</i>
+                            <?php foreach ($filteredPosts as $post): ?> 
+                                <a href="<?= $post['link']; ?>">
+                                    <div class="post">
+                                        <img src="<?= $post['image']; ?>" class="slider-image">                                        
+                                        <div class="post-info">
+                                            <h4><?= $post['title']; ?></h4>
+                                            <div class="post-footer">
+                                                <i class="far fa-user"><?= $post['user']; ?></i>
+                                                <i class="far fa-calendar"><?= date("F d, Y", strtotime($post['date'])); ?></i>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            <?php endforeach; ?>
+                                
                             
                         </div>
                     </div>
