@@ -31,10 +31,10 @@ require 'config/database.php';
                                     <img src="./assets/img/estrategia-economica.jpg" class="slider-image">
                                     <div class="post-info">
                                         <h4>Nueva Estrategia Económica en Colima</h4>
-                                        <p></p>
-                                        <i class="far fa-user">Nancy Laureano</i>
-                                        &nbsp;
-                                        <i class="far fa-calendar"> Marzo 03, 2025</i>
+                                        <div class="post-footer">
+                                            <i class="far fa-user">Nancy Laureano</i>
+                                            <i class="far fa-calendar"> Marzo 03, 2025</i>
+                                        </div>
                                     </div>
                                 </div>
                             </a>
