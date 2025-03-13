@@ -11,6 +11,10 @@
     <link rel="stylesheet" href='./css/footer.css'>
     <link rel="stylesheet" href='./css/posts.css'>
     <link rel="stylesheet" href='css/index.css'>
+
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 
 <body>
@@ -41,22 +45,28 @@
     </div>
 
     <!-- Cuerpo de las publicaciones -->
+     
     <div class="cuerpo">
         <?php
         $posts = json_decode(file_get_contents('../data/posts.json'), true); // Obtener los posts
         foreach ($posts as $post) { // Recorrer los posts
             echo '<a href="./post.php?id=' . $post['id'] . '">
                     <div class="p1">
-                        <div>
-                            <img class="imagen1" src="' . $post['image'] . '" alt="imagen del post">
+                        <div class="titulo1">
+                            <h4>' . htmlspecialchars($post['title']) . '</h4>
+                            <div class="datos1">
+                                <i class="far fa-user"> ' . htmlspecialchars($post['user']) . ' </i>
+                                <i class="far fa-calendar"> ' . date("F d, Y", strtotime($post['date'])) . ' </i>
+                            </div>
                         </div>
-                        <div class="texto1">
-                            <h4>' . $post['title'] . '</h4>
-                            <p>' . $post['description'] . '</p>
+                        <div class="info_post">
+                            <img class="imagen1" src="' . htmlspecialchars($post['image']) . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
+                            <p class="texto1">' . htmlspecialchars($post['description']) . '</p>
                         </div>
                     </div>
-                  </a>';
+                 </a>';
         }
+
         ?>
     </div>
 

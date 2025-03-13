@@ -38,12 +38,16 @@ require 'config/database.php';
             foreach ($posts as $post) { // Recorrer los posts
                 echo '<a href="/views/post.php?id=' . $post['id'] . '">
                         <div class="p1">
-                            <div>
-                                <img class="imagen" src="' . $post['image'] . '" alt="imagen de nosotros">
+                            <div class="titulo1">
+                                <h4>' . htmlspecialchars($post['title']) . '</h4>
+                                <div class="datos1">
+                                    <i class="far fa-user"> ' . htmlspecialchars($post['user']) . ' </i>
+                                    <i class="far fa-calendar"> ' . date("F d, Y", strtotime($post['date'])) . ' </i>
+                                </div>
                             </div>
-                            <div class="texto1">
-                                <h4>' . $post['title'] . '</h4>
-                                <p>' . $post['description'] . '</p>
+                            <div class="info_post">
+                                <img class="imagen1" src="' . htmlspecialchars($post['image']) . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
+                                <p class="texto1">' . htmlspecialchars($post['description']) . '</p>
                             </div>
                         </div>
                       </a>';

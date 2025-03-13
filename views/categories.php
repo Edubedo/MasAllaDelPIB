@@ -9,6 +9,10 @@
     <link rel="icon" href="../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href='./css/footer.css'>
     <link rel="stylesheet" href='./css/posts.css'>
+
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 
 <body>
@@ -39,15 +43,21 @@
     <div class="cuerpo">
         <?php foreach ($filteredPosts as $post): ?>
             <div class="p1">
-                <div>
-                    <img class="imagen1" src="<?php echo $post['image']; ?>" alt="imagen de <?php echo $post['title']; ?>">
-                </div>
-                <div class="texto1">
+                <div class="titulo1">
                     <h4><?php echo $post['title']; ?></h4>
-                    <p><?php echo $post['description']; ?></p>
+                    <div class="datos1">
+                        <i class="far fa-user"><?= $post['user']; ?></i>
+                        <i class="far fa-calendar"><?= date("F d, Y", strtotime($post['date'])); ?></i>
+                    </div>
                 </div>
+                <div class="info_post">
+                    <img class="imagen1" src="<?php echo $post['image']; ?>" alt="imagen de <?php echo $post['title']; ?>">
+                    <p class="texto1"><?php echo $post['description']; ?></p>
+                </div>
+                    
             </div>
         <?php endforeach; ?>
+
     </div>
 
     <!-- IMPORTAR EL FOOTER -->
