@@ -71,72 +71,119 @@
         <div class="container-inferior">
             
             <div class="elecciones">
-                <!-- Elecciones de la publicación -->
-                <div class="titulos-publicacion-editor">
-                    <select class="titulos">
-                        <option value="" disabled selected hidden>Titulos de la publicación </option><!-- Placeholder -->
-                        <?php
-                            $titles = array(); // Crear un array para titulos
-                            foreach ($posts as $post) {
-                                $titles[] = $post['title']; // Agregar los titulos al array
-                            }
-                            foreach ($titles as $title) {
-                                echo "<option value='$title'>" . ucwords(str_replace('-', ' ', $title)) . "</option>";
-                            }
-                        ?>
-                    </select>
-                </div>
-                <!-- Categoría de la publicación -->
-                <div class="categoria">
-                    <select class="categorias-editor">
-                        <option value="" disabled selected hidden>Categoría</option><!-- Placeholder -->
-                        <?php
-                            foreach ($categories as $category) {
-                                echo "<option value='$category'>" . ucwords(str_replace('-', ' ', $category)) . "</option>";
-                            }
-                        ?>
-                    </select>
-                </div>
-                <!-- Usuario de la publicación -->
-                <div class="administradores">
-                    <select class="usuario">
-                        <option value="" disabled selected hidden>Usuario</option><!-- Placeholder -->
-                        <?php
-                            $users = array(); // Crear un array para los usuarios
-                            foreach ($posts as $post) {
-                                $users[] = $post['user']; // Agregar los usuarios al array
-                            }
-                            $users = array_unique($users); // Eliminar duplicados
-                            foreach ($users as $user) {
-                                echo "<option value='$user'>" . ucwords(str_replace('-', ' ', $user)) . "</option>";
-                            }
-                        ?>
-                    </select>
-                </div>
-                <div class="fechas">
-                    <select class="fecha-publicacion">
-                        <option value="" disabled selected hidden>Fecha de publicación</option><!-- Placeholder -->
-                        <option value="">fecha</option>
-                        
-                    </select>
-                </div>
+                                
+                    <!-- Ordenar las publicaciones por fecha (de más reciente a más antigua) -->
+                    <?php
+                        // Función para comparar fechas
+                        function compararFechas($a, $b) {
+                            return strtotime($b['date']) - strtotime($a['date']); // Orden descendente - strtotime, convierte las fechas en timestamps (números enteros).
+                        }
+
+                        // Ordenar el array $posts por fecha
+                        usort($posts, 'compararFechas');
+                    ?>
+
+
+                    <!-- Elecciones de la publicación -->
+                    <div class="titulos-publicacion-editor">
+                        <select class="titulos">
+                            <option value="" disabled selected hidden>Titulos de la publicación </option><!-- Placeholder -->
+                            <?php
+                                $titles = array(); // Crear un array para titulos
+                                foreach ($posts as $post) {
+                                    $titles[] = $post['title']; // Agregar los titulos al array
+                                }
+                                foreach ($titles as $title) {
+                                    echo "<option value='$title'>" . ucwords(str_replace('-', ' ', $title)) . "</option>";
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <!-- Categoría de la publicación -->
+                    <div class="categoria">
+                        <select class="categorias-editor">
+                            <option value="" disabled selected hidden>Categoría</option><!-- Placeholder -->
+                            <?php
+                                foreach ($categories as $category) {
+                                    echo "<option value='$category'>" . ucwords(str_replace('-', ' ', $category)) . "</option>";
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <!-- Usuario de la publicación -->
+                    <div class="administradores">
+                        <select class="usuario">
+                            <option value="" disabled selected hidden>Usuario</option><!-- Placeholder -->
+                            <?php
+                                $users = array(); // Crear un array para los usuarios
+                                foreach ($posts as $post) {
+                                    $users[] = $post['user']; // Agregar los usuarios al array
+                                }
+                                $users = array_unique($users); // Eliminar duplicados
+                                foreach ($users as $user) {
+                                    echo "<option value='$user'>" . ucwords(str_replace('-', ' ', $user)) . "</option>";
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="fechas">
+                        <select class="fecha-publicacion">
+                            <option value="" disabled selected hidden>Fecha de publicación</option><!-- Placeholder -->
+                            <?php
+                                $fechas = array(); // Crear un array para los usuarios
+                                foreach ($posts as $post) {
+                                    $fechas[] = $post['date']; // Agregar los usuarios al array
+                                }
+                                $fechas = array_unique($fechas); // Eliminar duplicados
+                                foreach ($fechas as $fecha) {
+                                    echo "<option value='$fecha'>" . $fecha . "</option>";
+                                }
+                            ?>
+                            
+                        </select>
+                    </div>
+                    <div class="acciones-texto">
+                        <h3>Acciones</h3>
+
+                    </div>
+                    
             </div> <!-- Elecciones -->
             
             <!-- Tabla de Publicaciones -->
             <div class="publicaciones">
                 <div class="grid-container">
+                
+        
+            
                     <?php
+                
+
                     foreach ($posts as $post) {
-                        echo "<div class='grid-item'>";
-                            echo "<div class='title'>" . ucwords(str_replace('-', ' ', $post['title'])) . "</div>";
-                            echo "<div class='category'>" . ucwords(str_replace('-', ' ', $post['category'])) . "</div>";
-                            echo "<div class='user'>" . ucwords(str_replace('-', ' ', $post['user'])) . "</div>";
-                            echo "<div class='date'>" . $post['date'] . "</div>";
+                        $url = 'posts-detalles.php?id=' . $post['id'];
+                        echo "<div class='grid-item' data-id=" . $post['id'] .">";
+                            echo "<div class='title' oncontextmenu='mostrarModal(event, " .$post['id'] . ")'>" . ucwords(str_replace('-', ' ', $post['title'])) . "</div>";
+
+                            echo "<div class='category' oncontextmenu='mostrarModal(event, " .$post['id'] . ")'>" . ucwords(str_replace('-', ' ', $post['category'])) . "</div>";
+                            
+                            echo "<div class='user' oncontextmenu='mostrarModal(event, " .$post['id'] . ")'>" . ucwords(str_replace('-', ' ', $post['user'])) . "</div>";
+            
+                            echo "<div class='date' oncontextmenu='mostrarModal(event, " .$post['id'] . ")'>" . $post['date'] . "</div>";
+                            
+                        
+                            echo "<div class='botones-derecha'>";
+                                echo "<button id='btn-editar' onclick='editarPublicacion(" . $post['id'] . ")'>Editar</button>";
+                                echo "<button id='btn-eliminar' onclick='eliminarPublicacion(" . $post['id'] . ")'>Eliminar</button>";
+                            echo "</div>";
                         echo "</div>";
                     }
+                        
+                    
+                
                     ?>
                 </div>
             </div>
+        </div>
+
             
         </div>
     </main>
