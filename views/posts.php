@@ -47,7 +47,7 @@
             echo '<a href="./post.php?id=' . $post['id'] . '">
                     <div class="p1">
                         <div>
-                            <img class="imagen" src="' . $post['image'] . '" alt="imagen de nosotros">
+                            <img class="imagen1" src="' . $post['image'] . '" alt="imagen del post">
                         </div>
                         <div class="texto1">
                             <h4>' . $post['title'] . '</h4>
