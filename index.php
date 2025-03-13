@@ -9,7 +9,7 @@ require 'config/database.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MasAllaDelPIB</title>
-
+    <link rel="icon" href="assets/img/logo.png" type="image/x-icon">
     <!-- Incluyendo los estilos -->
     <link rel="stylesheet" href="./views/css/navbar.css">
     <link rel="stylesheet" href="./views/css/footer.css">
