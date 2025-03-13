@@ -8,79 +8,104 @@
 }  
 
 body {
-    background-color: #28535f;
-    background-size: cover;
+    background: linear-gradient(90deg, #0ba93a, #828bef) !important;
+    /*background: url('/assets/img//fonde_login.jpg') no-repeat center center fixed !important*/; 
+    background-size: cover !important;
     background-attachment: fixed;
     background-position: center;
     min-height: 100vh;
     display: flex;
     justify-content: center;
+    
+    
 }
-
-
 
 /* Contenedor del formulario */
 .contenedor__todo {
     display: flex;
     justify-content: center;
+    flex: 1 !important;
+}
+/* Animación de entrada suave */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Formulario de Login */
 .contenedor__Login-register {
-    width: 100%;
-    max-width: 380px;
-    background: rgba(255, 255, 255, 0.9);
+    animation: fadeIn 1s ease-in-out;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    margin-top: 100px;
+    margin-bottom: 50px;
+
 }
 
-.contenedor__Login-register form {
-    width: 100%;
-    text-align: center;
-}
+
 
 .contenedor__Login-register form h2 {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+        .contenedor__Login-register form {
+        text-align: center !important; /* Centra el contenido dentro del formulario */
+    }
+    
+    .contenedor__Login-register form h2 {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size: 24px;
+        color: #15424d;
+        margin-bottom: 20px;
+    }
     font-size: 24px;
-    color: #28535f;
+    color: #15424d;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .contenedor__Login-register form input {
     width: 100%;
     margin-top: 15px;
     padding: 10px;
-    border: 1px solid #ccc;
-    background: #f2f2f2;
+    background: transparent !important;
+    background-color: transparent !important; /* Asegura que el fondo sea transparente */
     font-size: 16px;
     outline: none;
-    border-radius: 5px;
+    border: none; /* Elimina todos los bordes */
+    border-bottom: 1px solid #050000; /* Añade una línea en la parte inferior */
+    color: black;
+    -webkit-appearance: none; /* Elimina el estilo predeterminado en navegadores WebKit */
+    -moz-appearance: none; /* Elimina el estilo predeterminado en Firefox */
+    appearance: none; /* Elimina el estilo predeterminado en otros navegadores */
 }
 
 .contenedor__Login-register form button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 20px;
+    color: rgb(254, 254, 254);
+    background: #4b57da;
+    font-size: 18px;
     border: none;
-    font-size: 16px;
-    background: #4f7b87;
-    color: #fff;
-    cursor: pointer;
-    outline: none;
-    border-radius: 5px;
-    transition: background 0.3s ease-in-out;
+    padding: 12px;
+    border-radius: 25px;
+    transition: all 0.3s;
 }
 
 .contenedor__Login-register form button:hover {
-    background: #28535f;
+    background: #050355;
 }
-
-
 
 /* Responsividad */
 @media screen and (max-width: 600px) {
     .contenedor__Login-register {
         padding: 30px;
+        margin-top: 50px;
     }
 
     .contenedor__Login-register form h2 {
