@@ -50,7 +50,7 @@ main, .page-wrapper {
 }
 
 
-.post-slider .post-wrapper .post .post-info .post-footer{
+.post-slider .post-wrapper .post .post-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -58,7 +58,10 @@ main, .page-wrapper {
     font-size: 12px;
 }
 
-
+.post-footer{
+    font-family:Arial, Helvetica, sans-serif;
+    margin-left: 1rem;
+}
 
 .post-slider .post-wrapper .post .slider-image{
     width: 100%;
