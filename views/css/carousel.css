@@ -12,28 +12,32 @@ main, .page-wrapper {
 
 .post-slider .post-wrapper{
     width: 85%;
-    height: 350px;
-    padding: 0;
+    height: 355px;
+    padding: 0 auto;
     margin: 0px auto;
     border: 1px dashed;
     overflow: hidden;
+    gap: 15px;
+    padding: 10px;
+    
     
 }
 
 .post-slider .post-wrapper .post{
-    width: 300px;
-    height: 350px;
+    width: 320px;
+    height: 380px;
     display: inline-block;
-    color: #000;
-    margin: 0px 10px;
     background: white;
-    border-radius: 5px;
-    box-shadow: 1rem 1rem 1rem -1rem #a0a0a033;
+    border-radius: 15px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .post-slider .post-wrapper .post .post-info{
     height: 130px;
-    border: 1px solid; /* Esto debería aparecer */
+    border: 0px solid; /* Esto debería aparecer */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -41,7 +45,7 @@ main, .page-wrapper {
 
 .post-info h4 {
     font-size: 20px;
-    color: #444;
+    color: #050000;
     margin: 5px;
 }
 
@@ -65,7 +69,7 @@ main, .page-wrapper {
 }
 
 .slider-title{
-    color: #15404d;
+    color: #252b2b;
     text-align: center;
     margin: 30px auto;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
