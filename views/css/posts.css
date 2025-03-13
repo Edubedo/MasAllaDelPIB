@@ -18,8 +18,10 @@
 /* Lista de navegación */
 .nav_public .list {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 2rem;
+    width: 100%;
 }
 
 /* Ítems de la lista */
