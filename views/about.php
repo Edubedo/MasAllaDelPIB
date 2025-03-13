@@ -33,16 +33,20 @@
         <div class="container-nosotros">
             <div class="info">
                 <p class="texto">
-                    Este blog tiene como objetivo informar y crear conciencia sobre la importancia del trabajo
-                    decente y el crecimiento económico, destacando su impacto en la sociedad y en el desarrollo
-                    sostenible. Buscamos generar un espacio de reflexión y debate en el que las personas puedan
-                    conocer más sobre sus derechos laborales, las oportunidades de empleo digno y las acciones
-                    necesarias para fomentar una economía inclusiva y equitativa.
+                    Este blog fue creado por estudiantes de la Universidad de Colima como parte de un 
+                    proyecto escolar cuyo objetivo es contribuir a la sociedad a través de medios 
+                    digitales. A través de esta iniciativa, buscamos generar contenido de valor que pueda 
+                    servir de apoyo a la comunidad, aprovechando las ventajas de la tecnología y el desarrollo web.
+                    El proyecto se enfoca en el diseño e implementación de aplicaciones web mediante la 
+                    integración de diversas herramientas de desarrollo. Estas tecnologías nos permiten 
+                    construir soluciones innovadoras y funcionales que respondan a necesidades específicas, 
+                    fomentando el aprendizaje práctico y el trabajo en equipo entre los estudiantes.
+
                 </p>
                 <p class="texto">
-                    Somos un grupo de universitarios apasionados por estos temas, y a través de este proyecto,
-                    no solo buscamos aportar información valiosa a nuestra comunidad, sino también adquirir experiencia,
-                    desarrollar nuestras habilidades y generar un impacto positivo en la sociedad.
+                    Además, este blog representa un espacio de exploración y experimentación en el ámbito 
+                    del desarrollo web, donde podemos aplicar nuestros conocimientos, compartir experiencias 
+                    y fortalecer nuestras habilidades para futuros proyectos profesionales.
                 </p>
             </div>
             <div class="foto">
