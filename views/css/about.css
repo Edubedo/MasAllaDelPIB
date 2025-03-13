@@ -80,23 +80,25 @@ body {
 }
 
 .info {
-    height: 40rem;
+    height: auto;
+    min-height: 45rem;
     justify-content: center;
     flex: 1 1 60%;
     background-color: rgb(240, 240, 240);
     padding: 2rem;
     border-radius: 1.5rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    text-align: center;
+    text-align: justify;
     max-width: 100%;
     overflow-wrap: break-word;
     word-wrap: break-word;
 }
 
 .texto {
-    font-size: 2.2rem;
+    height: auto;
+    font-size: 2rem;
     color: #333;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     line-height: 1.8;
 }
 
@@ -216,7 +218,7 @@ body {
     }
 
     .info {
-        font-size: 1rem; 
+        font-size: 1.5rem; 
         padding: 2rem; 
         max-width: 100%;
         height: auto; 
@@ -234,7 +236,7 @@ body {
     .info {
         width: 100%;
         max-width: 100%;
-        padding: 1.5rem; 
+        padding: 1.2rem; 
         font-size: 1.6rem; 
         word-wrap: break-word;
         overflow-wrap: break-word;
@@ -251,6 +253,7 @@ body {
     .foto2, .info-contacts {
         width: 100%;
         max-width: 100%;
+        font-size: 1.2rem;
     }
    
 }
@@ -269,7 +272,7 @@ body {
     .info{
         width: 100%;
         padding: 1rem;
-        font-size: 1.6rem; /* Texto más pequeño para que no se desborde */
+        font-size: 1rem; 
         line-height: 1.6; /* Ajusta el espacio entre líneas */
         max-width: 100%;
         word-wrap: break-word;
@@ -287,6 +290,7 @@ body {
         width: 100%;
     }
     .info-contacts {
+        font-size: 1rem;
         width: 100%;
         padding: 1rem;
     }

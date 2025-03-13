@@ -148,16 +148,12 @@
     flex-direction: row;
 }
 
-.p1 {
-    align-items: center;
+.p1{
     display: flex;
     flex-direction: column;
-    width: 23rem; /* Increased width */
-    height: 25rem; /* Increased height */
-    background-color: #f0f0f0; /* Lighter background color */
-    border-radius: 10%;
-    justify-content: center;
-    text-align: center;
+    width: 50rem;
+    height: auto;
+    background-color: #f0f0f0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -167,19 +163,41 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.imagen1 {
-    width: 20rem; /* Increased width */
-    height: 15rem; /* Increased height */
+.titulo1{
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgb(0, 0, 0);
+}
+
+.datos1{
+    font-size: 1.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(0, 0, 0);
+}
+
+.info_post{
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: auto;
     margin-top: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 5%;
+}
+
+.imagen1{
+    width: 20rem;
+    height: auto;
+    top: 1rem;
     object-fit: cover;
 }
 
-.texto1 {
-    font-size: 1.4rem; /* Increased font size */
-    color: #333;
-    padding: 0 1rem; /* Added padding for better text alignment */
+.texto1{
+    font-size: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(0, 0, 0);
+    top: 1rem;
+    margin-left: 1rem;
 }
 
 .categoria {
@@ -199,21 +217,6 @@
 .categoria:hover {
     transform: translateY(-10px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.imagen_categoria {
-    width: 20rem; /* Increased width */
-    height: 15rem; /* Increased height */
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 5%;
-    object-fit: cover;
-}
-
-.texto_categoria {
-    font-size: 1.4rem; /* Increased font size */
-    color: #333;
-    padding: 0 1rem; /* Added padding for better text alignment */
 }
 
 .icon-bars {
