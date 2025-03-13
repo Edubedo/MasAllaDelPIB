@@ -88,6 +88,9 @@ body {
     border-radius: 1.5rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
     text-align: center;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .texto {
@@ -211,25 +214,40 @@ body {
     .titulo h1, .title h1 {
         font-size: 3.4rem;
     }
-    .texto {
-        font-size: 1.6rem;
+
+    .info {
+        font-size: 1rem; 
+        padding: 2rem; 
+        max-width: 100%;
+        height: auto; 
+        overflow-wrap: break-word;
+        word-wrap: break-word;
     }
+    
 }
 
 @media (max-width: 768px) {
     .container-nosotros {
         flex-direction: column;
+        align-items: center;
     }
     .info {
-        width: 90%;
+        width: 100%;
+        max-width: 100%;
+        padding: 1.5rem; 
+        font-size: 1.6rem; 
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     .foto {
         width: 80%;
     }
+   
     .contacts {
         flex-direction: column-reverse;
         align-items: center;
     }
+
     .foto2, .info-contacts {
         width: 100%;
         max-width: 100%;
@@ -247,10 +265,18 @@ body {
     .titulo h1, .tittle h1 {
         font-size: 2.6rem;
     }
-    .texto {
-        font-size: 1.4rem;
+    
+    .info{
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.6rem; /* Texto más pequeño para que no se desborde */
+        line-height: 1.6; /* Ajusta el espacio entre líneas */
+        max-width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
-    .info, .foto {
+
+    .foto {
         width: 100%;
     }
     .contacts {
