@@ -8,7 +8,7 @@
 }  
 
 body {
-    background: linear-gradient(90deg, #0ba93a, #828bef) !important;
+    background: linear-gradient(40deg, #0ba93a, #828bef) !important;
     /*background: url('/assets/img//fonde_login.jpg') no-repeat center center fixed !important*/; 
     background-size: cover !important;
     background-attachment: fixed;
@@ -41,17 +41,17 @@ body {
 /* Formulario de Login */
 .contenedor__Login-register {
     animation: fadeIn 1s ease-in-out;
-    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     padding: 40px;
     border-radius: 15px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
-    margin-top: 100px;
+    margin-top: 200px;
     margin-bottom: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9); /* Añade una ligera sombra */
 
 }
-
-
+h2 i {
+    margin-right: 10px;
+}
 
 .contenedor__Login-register form h2 {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
@@ -85,20 +85,43 @@ body {
     -webkit-appearance: none; /* Elimina el estilo predeterminado en navegadores WebKit */
     -moz-appearance: none; /* Elimina el estilo predeterminado en Firefox */
     appearance: none; /* Elimina el estilo predeterminado en otros navegadores */
+
 }
+.contenedor__Login-register form input::placeholder {
+    color: #193a31; /* Cambia el color del texto del placeholder (por ejemplo, gris claro) */
+}
+
 
 .contenedor__Login-register form button {
     color: rgb(254, 254, 254);
-    background: #4b57da;
+    background: #225d81;
     font-size: 18px;
     border: none;
     padding: 12px;
     border-radius: 25px;
     transition: all 0.3s;
+    position: relative; /* Necesario para el efecto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra normal */
 }
 
 .contenedor__Login-register form button:hover {
-    background: #050355;
+    background: #0f3a38;
+}
+
+/* Estilo del enlace de recordar contraseña */
+form p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+form p a {
+    color: #090c2b;  /* Color del enlace */
+    text-decoration: none;  /* Quita el subrayado */
+    font-size: 14px;
+}
+
+form p a:hover {
+    text-decoration: underline;  /* Subraya el enlace al pasar el ratón */
 }
 
 /* Responsividad */
