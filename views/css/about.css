@@ -69,7 +69,19 @@ body {
     background-color: #d9d9d9;
 }
 
+.container-nosotros{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: #d9d9d9;
+}
+
 .info {
+    height: 40rem;
+    justify-content: center;
     flex: 1 1 60%;
     background-color: rgb(240, 240, 240);
     padding: 2rem;
@@ -79,7 +91,7 @@ body {
 }
 
 .texto {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     color: #333;
     margin-bottom: 1.5rem;
     line-height: 1.8;
@@ -196,7 +208,7 @@ body {
     .titulo h3 {
         font-size: 2rem;
     }
-    .titulo h1 {
+    .titulo h1, .title h1 {
         font-size: 3.4rem;
     }
     .texto {
@@ -205,7 +217,7 @@ body {
 }
 
 @media (max-width: 768px) {
-    .cuerpo {
+    .container-nosotros {
         flex-direction: column;
     }
     .info {
@@ -215,17 +227,14 @@ body {
         width: 80%;
     }
     .contacts {
-        flex-direction: column;
+        flex-direction: column-reverse;
         align-items: center;
-        text-align: center;
     }
-    .foto2 {
-        width: 90%;
+    .foto2, .info-contacts {
+        width: 100%;
+        max-width: 100%;
     }
-    .info-contacts {
-        width: 90%;
-        padding: 1.5rem;
-    }
+   
 }
 
 @media (max-width: 480px) {
@@ -235,7 +244,7 @@ body {
     .titulo h3 {
         font-size: 1.6rem;
     }
-    .titulo h1 {
+    .titulo h1, .tittle h1 {
         font-size: 2.6rem;
     }
     .texto {
@@ -245,6 +254,7 @@ body {
         width: 100%;
     }
     .contacts {
+        flex-direction: column-reverse;
         padding: 1rem;
     }
     .foto2 {
