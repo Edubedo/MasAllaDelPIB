@@ -47,7 +47,7 @@
     <!-- Cuerpo de las publicaciones -->
      
     <div class="cuerpo">
-        <?php
+    <?php
         $posts = json_decode(file_get_contents('../data/posts.json'), true); // Obtener los posts
         foreach ($posts as $post) { // Recorrer los posts
             echo '<a href="./post.php?id=' . $post['id'] . '">
@@ -55,8 +55,8 @@
                         <div class="titulo1">
                             <h4>' . htmlspecialchars($post['title']) . '</h4>
                             <div class="datos1">
-                                <i class="far fa-user"> ' . htmlspecialchars($post['user']) . ' </i>
-                                <i class="far fa-calendar"> ' . date("F d, Y", strtotime($post['date'])) . ' </i>
+                                <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user']) . '</span>
+                                <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['date'])) . '</span>
                             </div>
                         </div>
                         <div class="info_post">
@@ -66,8 +66,7 @@
                     </div>
                  </a>';
         }
-
-        ?>
+    ?>
     </div>
 
     <!-- Footer -->

@@ -57,8 +57,8 @@ $filteredPosts = array_slice($posts, 0, 5);
                                         <div class="post-info">
                                             <h4><?= $post['title']; ?></h4>
                                             <div class="post-footer">
-                                                <i class="far fa-user"><?= $post['user']; ?></i>
-                                                <i class="far fa-calendar"><?= date("F d, Y", strtotime($post['date'])); ?></i>
+                                            <i class="far fa-user"></i> <span><?php echo $post['user']; ?></span>
+                                            <i class="far fa-calendar"></i> <span><?php echo date("F d, Y", strtotime($post['date'])); ?></span>
                                             </div>
                                         </div>
                                     </div>

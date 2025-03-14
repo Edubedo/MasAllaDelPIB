@@ -46,8 +46,8 @@
                 <div class="titulo1">
                     <h4><?php echo $post['title']; ?></h4>
                     <div class="datos1">
-                        <i class="far fa-user"><?= $post['user']; ?></i>
-                        <i class="far fa-calendar"><?= date("F d, Y", strtotime($post['date'])); ?></i>
+                        <i class="far fa-user"></i> <span><?php echo $post['user']; ?></span>
+                        <i class="far fa-calendar"></i> <span><?php echo date("F d, Y", strtotime($post['date'])); ?></span>
                     </div>
                 </div>
                 <div class="info_post">
