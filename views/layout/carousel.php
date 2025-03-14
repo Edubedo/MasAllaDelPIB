@@ -47,8 +47,7 @@ $filteredPosts = array_slice($posts, 0, 5);
                     <i class="fas fa-chevron-left prev"></i>
                     <i class="fas fa-chevron-right next"></i>
 
-                    <div class="post-wrapper">
-                            
+                    <div class="post-wrapper"
                         <?php foreach ($filteredPosts as $post): ?> 
                             <a href="<?= $post['link']; ?>">
                                 <div class="post">

@@ -56,6 +56,7 @@
                     </div>
                     <p class="texto1"><?php echo $post['description']; ?></p>
                 </div>
+
             </div>
         <?php endforeach; ?>
 
