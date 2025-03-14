@@ -50,8 +50,8 @@ nav .list li {
 .texto_a {
     color: aliceblue;
     text-decoration: none;
-    padding: 1rem 3rem;
-    font-size: 1.4rem;
+    padding: 1rem 1rem;
+    font-size: 1.7rem;
 }
 
 .texto_a:hover {
