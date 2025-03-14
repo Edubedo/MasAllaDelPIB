@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MasAllaDelPIB</title>
+    <title>MasAllaDelPIB - Publicaciones</title>
     <script src="../js/main.js"></script>
     <link rel="icon" href="../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/navbar.css">
@@ -29,7 +29,7 @@
             <div class="line"></div>
             <div class="line"></div>
         </label>
-        
+
         <!-- Lista de enlaces -->
         <ul class="list">
             <li><a href="./posts.php">Todas las categorias</a></li>
@@ -45,7 +45,7 @@
     </div>
 
     <!-- Cuerpo de las publicaciones -->
-     
+
     <div class="cuerpo">
     <?php
         $posts = json_decode(file_get_contents('../data/posts.json'), true); // Obtener los posts

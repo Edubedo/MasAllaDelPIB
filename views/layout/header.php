@@ -36,10 +36,10 @@
             <a href="<?= "/" ?>index.php" class="nav__logo">
                 <span class="nav__logo-name">
                     <img src="../../assets/img/logo.png" alt="imagen logo empresa" width="50" height=40">
-                    <h2 style="color:white">INNOMINDS</h2>
+                    <h2 style="color:white h2_logo">Mas Allá Del PIB</h2>
                 </span>
             </a>
-            <ul class="nav__items"style="font-size: 1.2rem;"> 
+            <ul class="nav__items" style="font-size: 1.2rem;">
                 <li><a class="texto_a" href="/index.php">Inicio</a></li>
                 <li><a class="texto_a" href="<?= "/views/" ?>posts.php">Publicaciones</a></li>
                 <li><a class="texto_a" href="<?= "/views/" ?>about.php">Nosotros</a></li>
