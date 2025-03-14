@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MasAllaDelPIB - Categorias</title>
+    <title>MasAllaDelPIB - Categorías</title>
     <script src="../js/main.js"></script>
     <link rel="icon" href="../assets/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href='./css/footer.css'>
     <link rel="stylesheet" href='./css/posts.css'>
+    <link rel="stylesheet" href='css/index.css'>
 
     <!-- Font Awesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -54,7 +56,7 @@
                     <img class="imagen1" src="<?php echo $post['image']; ?>" alt="imagen de <?php echo $post['title']; ?>">
                     <p class="texto1"><?php echo $post['description']; ?></p>
                 </div>
-                    
+
             </div>
         <?php endforeach; ?>
 

@@ -79,6 +79,52 @@ nav .icon-bars .line {
     transition: all 0.3s ease-in-out;
 }
 
+.container {
+    padding: 10px;
+}
+
+nav {
+	background: var(--color-primary);
+	width: 100vw;
+	height: 4.5rem;
+	position: fixed;
+	top: 0;
+	z-index: 10;
+	box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+nav button {
+	display: none;
+}
+
+.nav__container {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.nav__logo-name {
+	display: flex;
+	align-items: center;
+}
+
+.nav__logo-name img {
+	width: 5rem;
+	margin-right: 1rem;
+}
+
+.nav__logo-name h2 {
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--color-white);
+}
+
+.nav__logo {
+	font-weight: 600;
+	font-size: 1.2rem;
+}
+
 /* Media Query para Tablets y Móviles */
 @media (max-width: 939px) {
     nav .list {

@@ -8,8 +8,6 @@
 }  
 
 body {
-    background: linear-gradient(40deg, #0ba93a, #828bef) !important;
-    /*background: url('/assets/img//fonde_login.jpg') no-repeat center center fixed !important*/; 
     background-size: cover !important;
     background-attachment: fixed;
     background-position: center;
@@ -42,10 +40,10 @@ body {
 .contenedor__Login-register {
     animation: fadeIn 1s ease-in-out;
     backdrop-filter: blur(10px);
-    padding: 40px;
+    padding: 50px;
     border-radius: 15px;
-    margin-top: 200px;
-    margin-bottom: 50px;
+    margin-top: 50px;
+    margin-bottom: 40px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9); /* Añade una ligera sombra */
 
 }
