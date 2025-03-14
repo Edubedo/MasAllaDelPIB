@@ -25,7 +25,7 @@ html, body {
     font-size: 1.2rem;
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     padding-top: 2rem;
     position: relative;
@@ -48,6 +48,7 @@ html, body {
     display: flex;
     align-items: center; /* Alinea todos los elementos verticalmente */
     gap: 1.5rem;
+    margin:1rem;
 }
 
 /* Logo de la empresa */
