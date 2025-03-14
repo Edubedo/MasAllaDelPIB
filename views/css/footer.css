@@ -2,6 +2,8 @@
 html {
     box-sizing: border-box;
     font-size: 62.5%; /* 1 rem = 10 px */
+    height: 100%;
+    
 }
 
 *, *:before, *:after {
@@ -29,6 +31,7 @@ html, body {
     align-items: center;
     padding-top: 2rem;
     position: relative;
+    margin-top: auto;
 }
 
 /* Contenedor oscuro dentro del footer */
@@ -48,7 +51,7 @@ html, body {
     display: flex;
     align-items: center; /* Alinea todos los elementos verticalmente */
     gap: 1.5rem;
-    margin:1rem;
+    margin: 1rem;
 }
 
 /* Logo de la empresa */

@@ -19,32 +19,35 @@
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
 
     <main>
-        <div class="contenedor__todo">
-            <!-- Formularios de login y registro -->
-            <div class="contenedor__Login-register">
-                <!-- Formulario con action para redirigir al login -->
-                <form action="../admin/posts/posts-consulta.php" method="POST" class="formulario__login">
-                    <h2><i class="fas fa-user-circle fa-3x"></i></h2>
+        <div class="loginn">
+            <div class="contenedor__todo">
+                <!-- Formularios de login y registro -->
+                <div class="contenedor__Login-register">
+                    <!-- Formulario con action para redirigir al login -->
+                    <form action="../admin/posts/posts-consulta.php" method="POST" class="formulario__login">
+                        <h2><i class="fas fa-user-circle fa-3x"></i></h2>
 
-                    <!-- Contenedor para los iconos y los inputs -->
-                    <div class="input-container">
-                        <i class="fas fa-envelope icon fa-2x"></i>
-                        <input type="text" placeholder="Correo Electrónico" name="email">
-                    </div>
+                        <!-- Contenedor para los iconos y los inputs -->
+                        <div class="input-container">
+                            <i class="fas fa-envelope icon fa-2x"></i>
+                            <input type="text" placeholder="Correo Electrónico" name="email">
+                        </div>
 
-                    <div class="input-container">
-                        <i class="fas fa-lock icon fa-2x"></i>
-                        <input type="password" placeholder="Contraseña" name="password">
-                    </div>
+                        <div class="input-container">
+                            <i class="fas fa-lock icon fa-2x"></i>
+                            <input type="password" placeholder="Contraseña" name="password">
+                        </div>
 
-                    <!-- Enlace para recordar contraseña -->
-                    <p><a href="#">¿Olvidaste tu contraseña?</a></p>
+                        <!-- Enlace para recordar contraseña -->
+                        <p><a href="#">¿Olvidaste tu contraseña?</a></p>
 
-                    <!-- Botón de enviar -->
-                    <button type="submit">Entrar</button>
-                </form>
+                        <!-- Botón de enviar -->
+                        <button type="submit">Entrar</button>
+                    </form>
+                </div>
             </div>
         </div>
+        
     </main>
 
     <!-- IMPORTAR EL FOOTER -->
