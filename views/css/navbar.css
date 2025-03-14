@@ -52,13 +52,11 @@ nav .list li {
     text-decoration: none;
     padding: 1rem 3rem;
     font-size: 1.4rem;
-
 }
 
 .texto_a:hover {
     color: rgb(255, 184, 61) !important;
 }
-
 
 /* Ícono de Hamburguesa */
 #toggle {
@@ -84,54 +82,55 @@ nav .icon-bars .line {
 }
 
 nav {
-	background: var(--color-primary);
-	width: 100vw;
-	height: 4.5rem;
-	position: fixed;
-	top: 0;
-	z-index: 10;
-	box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
+    background: var(--color-primary);
+    width: 100vw;
+    height: 4.5rem;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
 }
 
 nav button {
-	display: none;
+    display: none;
 }
 
 .nav__container {
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .nav__logo-name {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .nav__logo-name img {
-	width: 5rem;
-	margin-right: 1rem;
+    width: 5rem;
+    margin-right: 1rem;
 }
 
 .nav__logo-name h2 {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 600;
     color: var(--color-white);
 }
 
 .nav__logo {
-	font-weight: 600;
-	font-size: 1.2rem;
+    font-weight: 600;
+    font-size: 1.2rem;
 }
 
 /* Media Query para Tablets y Móviles */
 @media (max-width: 939px) {
+    /* Hacer que la lista se oculte por defecto y solo se vea cuando se active */
     nav .list {
         position: fixed;
         top: 7rem;
         right: 0;
-        width: 50%;
+        width: 100%;
         height: calc(100vh - 7rem);
         background-color: #242526;
         flex-direction: column;
@@ -140,8 +139,11 @@ nav button {
         gap: 2rem;
         transform: translateX(100%);
         transition: transform 0.3s ease;
+        padding: 2rem;
+        z-index: 5;
     }
 
+    /* Estilos para los elementos dentro de la lista */
     nav .list li {
         width: 100%;
         text-align: center;
@@ -153,15 +155,43 @@ nav button {
         padding: 1.5rem 0;
     }
 
+    /* Mostrar la lista cuando el toggle está activado */
     #toggle:checked ~ .list {
         transform: translateX(0);
     }
 
+    /* Mostrar el ícono de hamburguesa cuando la pantalla sea pequeña */
     nav .icon-bars {
         display: block;
+        cursor: pointer;
+    }
+
+    /* Estilo del ícono de hamburguesa */
+    nav .icon-bars .line {
+        width: 30px;
+        height: 4px;
+        background-color: aliceblue;
+        margin: 5px;
+        border-radius: 3px;
+        transition: all 0.3s ease-in-out;
     }
 
     nav .logo {
         width: auto;
+    }
+}
+
+/* Estilos para móviles más pequeños */
+@media (max-width: 480px) {
+    nav .logo {
+        font-size: 1.8rem;
+    }
+
+    nav .texto_a {
+        font-size: 1.2rem;
+    }
+
+    nav .list {
+        padding: 1.5rem;
     }
 }

@@ -3,7 +3,6 @@
     --color-fondo: #e2e2e2;
     --color-sombra: rgba(0, 0, 0, 0.2);
     --color-gris: #c5c7c9;
-   
 }
 
 /* Box-sizing global */
@@ -21,7 +20,8 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
     padding: 20px;
-    margin-top: 50px;
+    margin-top: 100px !important;  /* Aumenta el margen superior */
+    margin-bottom: 50px !important;
 }
 
 /* Estilo general para todos los divs dentro de la grilla */
@@ -35,12 +35,13 @@
 
 /* Estilo para el contenedor .item1 */
 .item1 {
+    position: relative;  /* Añadido para control de posición */
     grid-column: 1 / span 5;
     background-color: var(--color-fondo);
     border-radius: 10px;
     box-shadow: 2px 2px 8px var(--color-sombra);
-    padding: 15px;
-    margin-top: 80px;
+    padding: 50px 15px;
+    margin-top: 150px !important;  /* Ajusta el margin-top para bajar la caja */
 }
 
 /* Contenedor interno para control de padding */
@@ -110,6 +111,7 @@
 .item2 h2, .item3 h2, .item4 h2, .item5 h2, .item6 h2, .item7 h2 {
     font-size: 20px;
 }
+
 /* Reducir tamaño del texto dentro de los divs */
 .item2 p, .item3 p, .item4 p, .item5 p, .item6 p, .item7 p {
     font-size: 14px;  /* Reducir el tamaño del texto */

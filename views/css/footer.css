@@ -1,12 +1,13 @@
+/* Reseteo de márgenes y padding globales */
 html {
     box-sizing: border-box;
-    font-size: 62.5%;/*1 rem es 10 px*/
-    }
+    font-size: 62.5%; /* 1 rem = 10 px */
+}
+
 *, *:before, *:after {
     box-sizing: inherit;
 }
 
-/* Elimina márgenes y rellenos globalmente */
 html, body {
     height: 100%;
     display: flex;
@@ -16,190 +17,169 @@ html, body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Footer principal */
 .footer {
     background-color: #6d9aa6;
     color: white;
-    text-align: center;
-    font-size: 10px;
-    bottom: 0%;
-    margin-top: auto;
-}
-
-.footer-container1 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 0rem;
-    height: 10rem;
-
-}
-
-.footer-container2 {
-    background-color: #262626;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-align: center !important;
+    font-size: 1.2rem;
     width: 100%;
-    height: 4rem;
-    bottom: 0%;
-}
-
-.logoEmpresa {
-    text-align: center;
-    margin-left: 3rem;
-    margin-bottom: 1rem;
-    margin-right: 2rem;
-    position: relative;
-    top: -1.2rem;
-}
-
-.logoEmpresa .nombre {
-    justify-content: center;
-    position: relative;
-    bottom: 5%;
-}
-
-
-
-.logoEmpresa .imagen img {
-    width: 12rem;  /* Ajusta el ancho según sea necesario */
-    height: auto;   /* Mantiene la proporción */
-    max-width: 100%; /* Evita que la imagen sea más grande que su contenedor */
-}
-
-.contactos {
     display: flex;
     flex-direction: column;
-    align-items: left;
-    text-align: center;
-    margin-right: 2.7rem;
+    align-items: center;
+    padding-top: 2rem;
     position: relative;
-    top: -2rem;
-    font-size: 1.2rem;
-
 }
 
-.correos-container { /* Contenedor de correos para poder tener 3 y 3 */
+/* Contenedor oscuro dentro del footer */
+.footer-container1 {
     display: flex;
-    gap: 2rem; /* Espacio entre columnas */
-    top: 4rem;
+    justify-content: center; /* Distribuye los elementos de forma uniforme entre los extremos */
+    align-items: center; /* Alinea verticalmente todos los elementos */
+    padding: 2rem 5rem;
+    background-color: #262626;
+    width: 90%;
+    max-width: 1200px;
+    flex-wrap: nowrap;
+}
+
+/* Secciones alineadas */
+.logoEmpresa, .contactos, .redes-siguenos {
+    display: flex;
+    align-items: center; /* Alinea todos los elementos verticalmente */
+    gap: 1.5rem;
+}
+
+/* Logo de la empresa */
+.logoEmpresa {
+    flex-direction: row; /* Asegura que los elementos dentro del logo estén en fila */
+    justify-content: flex-start; /* Alinea el logo a la izquierda */
+    flex-grow: 0; /* No debe crecer */
+    width: auto; /* No limita el ancho */
+    margin-right: auto; /* Esto asegura que el logo se empuje hacia la izquierda */
+}
+
+/* Imagen del logo */
+.logoEmpresa .imagen img {
+    width: 12rem; /* Tamaño de la imagen */
+    height: auto;
+    max-width: 100%;
+}
+
+/* Contactos */
+.contactos {
+    font-size: 1.4rem;
+    justify-content: center; /* Centra los contactos */
+    flex-grow: 0; /* No debe crecer */
+}
+
+/* Contenedor de correos electrónicos */
+.contacto-contenedor {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.icono-correo {
+    font-size: 4rem;
+    color: white;
+}
+
+.correos-container {
+    display: flex;
+    gap: 1.5rem;
 }
 
 .correos {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Alinea los textos al centro */
-    text-align: center;
-    line-height: 1.8rem;
-    top: -2rem;
-}
-
-.footer-info {
-    display: flex;
-    flex-direction: column;
     text-align: left;
-    align-items: left;
-    width: 100%;
-    font-size: 1.3rem;
 }
 
-.footer-info, .footer-contact {
-    max-width: 40rem;
-    margin: 1rem;
+.correos p {
+    margin: 0;
 }
 
-
-
-.sobrenosotros-titulo {
-    position: relative;
-    top: -2rem;
-}
-.sobrenosotros-info {
-    position: relative;
-    top: -2rem;
-    line-height: 2.2rem;
-}
-
-.footer-bottom { /*CLASE QUE CONTIENE MAS ALLA DEL PIB*/
-    flex: 1;
-    text-align: center;
-    margin-left: 15rem;
-    
-}
-
-.bottom-texto { /*texto MAS ALLA DEL PIB*/
-    font-size: 2.5rem;
-}
-
-
-.iconos svg {
-    width: 3rem;
-    height: 3rem;
-    position: relative;
-    top: 0.5rem;
-}
-
-.redes {
+/* Redes sociales */
+.redes-siguenos {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 2rem;
-    font-size: 1.5rem;
+    flex-direction: row;
+    align-items: center; /* Alinea todos los iconos de redes sociales verticalmente */
+    gap: 1rem;
+    justify-content: flex-end; /* Alinea las redes sociales a la derecha */
+    flex-grow: 0; /* No debe crecer */
 }
 
+/* Icono de corazón */
+.redes-siguenos i.fas.fa-heart {
+    font-size: 4rem;
+}
 
-@media (max-width: 940px) {
+/* Iconos de redes sociales */
+.redes-sociales {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.redes-sociales i {
+    font-size: 3rem;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.redes-sociales i:hover {
+    color: #f0a500;
+}
+
+/* Contenedor inferior del footer */
+.footer-bottom {
+    background-color: #222; /* Fondo oscuro */
+    color: white; /* Texto blanco */
+    text-align: center; /* Centrado del texto */
+    padding: 1rem 0; /* Espaciado superior e inferior */
+    width: 100%;
+    font-size: 1rem; /* Tamaño de fuente más pequeño */
+}
+
+.footer-bottom .copyright {
+    font-size: 2rem; /* Aumenta el tamaño del icono de copyright */
+    color: white; /* Asegúrate de que el color sea blanco */
+}
+
+/* Estilos responsivos */
+@media (max-width: 1024px) {
+    .footer-container1 {
+        justify-content: space-between;
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-container1 {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .logoEmpresa, .contactos, .redes-siguenos {
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-container1 {
+        padding: 1rem;
+    }
+
     .contactos {
-        margin-right: 1rem;
         font-size: 1rem;
     }
-    
+
+    .redes-sociales i {
+        font-size: 2rem;
+    }
 }
-
-@media (max-width: 820px) {
-    .footer-bottom {
-        margin-left: 10rem;
-    }
-    .bottom-texto {
-        font-size: 1.5rem;
-    }
-
-    .redes {
-        margin-right: 1rem;
-        font-size: 1rem;
-    }
-
-    .contactos {
-        margin-right: 1rem;
-        font-size: 0.8rem;
-    }
-
-    .footer-info {
-        margin-left: 0.5rem;
-        font-size: 0.9rem;
-        margin-top: -1rem;
-    }
-    
-}
-
-@media (max-width: 520px) {
-    .footer-bottom {
-        margin-left: 0.5rem;
-    }
-    .bottom-texto {
-        font-size: 1rem;
-    }
-
-    .contactos {
-        margin-right: 1rem;
-        font-size: 0.5rem;
-    }
-    
-    .footer-info {
-        margin-left: 0.5rem;
-        font-size: 0.7rem;
-        margin-top: -1rem;
-    }
-    
-}
-
