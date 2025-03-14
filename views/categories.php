@@ -45,18 +45,17 @@
     <div class="cuerpo">
         <?php foreach ($filteredPosts as $post): ?>
             <div class="p1">
-                <div class="titulo1">
-                    <h4><?php echo $post['title']; ?></h4>
+                <div class="imagen_post">
+                    <img class="imagen1" src="<?php echo $post['image']; ?>" alt="imagen de <?php echo $post['title']; ?>">
+                </div>
+                <div class="info_post">
+                    <h4 class="titulo1"><?php echo $post['title']; ?></h4>
                     <div class="datos1">
                         <i class="far fa-user"></i> <span><?php echo $post['user']; ?></span>
                         <i class="far fa-calendar"></i> <span><?php echo date("F d, Y", strtotime($post['date'])); ?></span>
                     </div>
-                </div>
-                <div class="info_post">
-                    <img class="imagen1" src="<?php echo $post['image']; ?>" alt="imagen de <?php echo $post['title']; ?>">
                     <p class="texto1"><?php echo $post['description']; ?></p>
                 </div>
-
             </div>
         <?php endforeach; ?>
 
