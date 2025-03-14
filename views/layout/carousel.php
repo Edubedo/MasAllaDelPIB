@@ -56,10 +56,12 @@ $filteredPosts = array_slice($posts, 0, 5);
                                         <img src="<?= $post['image']; ?>" class="slider-image">                                        
                                         <div class="post-info">
                                             <h4><?= $post['title']; ?></h4>
-                                            <div class="post-footer">
-                                            <i class="far fa-user"></i> <span><?php echo $post['user']; ?></span>
-                                            <i class="far fa-calendar"></i> <span><?php echo date("F d, Y", strtotime($post['date'])); ?></span>
+                                            <div class="post-data">
+                                                <i class="far fa-user"></i> <span><?php echo $post['user']; ?></span>
+                                                <i class="far fa-calendar"></i> <span><?php echo date("F d, Y", strtotime($post['date'])); ?></span>
                                             </div>
+                                            <p><?= $post['description']; ?></p>
+                                            
                                         </div>
                                     </div>
                                 </a>

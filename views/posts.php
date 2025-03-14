@@ -50,24 +50,24 @@
     <?php
         $posts = json_decode(file_get_contents('../data/posts.json'), true); // Obtener los posts
         foreach ($posts as $post) { // Recorrer los posts
-            echo '<a href="./post.php?id=' . $post['id'] . '">
+            echo '<a href="./post.php?id=' . htmlspecialchars($post['id']) . '">
                     <div class="p1">
-                        <div class="titulo1">
-                            <h4>' . htmlspecialchars($post['title']) . '</h4>
+                        <div class="imagen_post">
+                            <img class="imagen1" src="' . htmlspecialchars($post['image']) . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
+                        </div>
+                        <div class="info_post">
+                            <h4 class="titulo1">' . htmlspecialchars($post['title']) . '</h4>
                             <div class="datos1">
                                 <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user']) . '</span>
                                 <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['date'])) . '</span>
                             </div>
-                        </div>
-                        <div class="info_post">
-                            <img class="imagen1" src="' . htmlspecialchars($post['image']) . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
                             <p class="texto1">' . htmlspecialchars($post['description']) . '</p>
                         </div>
                     </div>
                  </a>';
         }
     ?>
-    </div>
+</div>
 
     <!-- Footer -->
     <?php include './layout/footer.php'; ?>

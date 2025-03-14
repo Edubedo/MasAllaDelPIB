@@ -150,7 +150,6 @@
 
 .p1{
     display: flex;
-    flex-direction: column;
     width: 50rem;
     height: auto;
     background-color: #f0f0f0;
@@ -178,27 +177,24 @@
 }
 
 .info_post{
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
     display: flex;
     width: 100%;
     height: auto;
-    margin-top: 1rem;
+    margin: 1rem;
 }
 
 .imagen1{
     width: 20rem;
-    height: auto;
     top: 1rem;
     object-fit: cover;
 }
 
 .texto1{
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(0, 0, 0);
-    top: 1rem;
-    margin-left: 1rem;
+    margin-top: 1rem;
 }
 
 .categoria {
