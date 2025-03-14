@@ -1,10 +1,9 @@
 * {
-    margin-top: 10rem;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-    
+    position: relative;
 }  
 
 body {
@@ -14,15 +13,22 @@ body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    
-    
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+}
+
+.loginn{
+    height: 80rem;
+    display: flex;
 }
 
 /* Contenedor del formulario */
 .contenedor__todo {
     display: flex;
     justify-content: center;
-    flex: 1 !important;
+    align-items: center;
+    height: auto;
 }
 /* Animación de entrada suave */
 @keyframes fadeIn {
@@ -45,7 +51,6 @@ body {
     margin-top: 50px;
     margin-bottom: 40px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9); /* Añade una ligera sombra */
-
 }
 h2 i {
     margin-right: 10px;
