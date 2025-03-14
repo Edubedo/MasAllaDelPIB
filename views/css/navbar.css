@@ -13,14 +13,13 @@ nav {
     right: 0;
     top: 0;
     font-family: 'Times New Roman', Times, serif;
-    padding: 0 5%;
+    padding: 0 2%;
     height: 5rem;
-    background-color: #242526;
+    background-color: #25384c !important;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-
 
 nav .logo {
     display: flex;
@@ -31,7 +30,6 @@ nav .logo {
     text-transform: uppercase;
     font-family: 'Times New Roman', Times, serif;
 }
-
 
 nav .logo img {
     width: 40px;
@@ -49,22 +47,22 @@ nav .list li {
     list-style: none;
 }
 
-nav .list li a {
+.texto_a {
     color: aliceblue;
     text-decoration: none;
-    padding: 1rem 1.5rem;
-    font-size: 1.8rem;
-    transition: color 0.3s ease;
+    padding: 1rem 3rem;
+    font-size: 1.4rem;
+
 }
 
-nav .list a:hover {
-    color: #f9ab00;
+.texto_a:hover {
+    color: rgb(255, 184, 61) !important;
 }
+
 
 /* Ícono de Hamburguesa */
 #toggle {
     display: none;
-
 }
 
 nav .icon-bars {
@@ -121,4 +119,3 @@ nav .icon-bars .line {
         width: auto;
     }
 }
-

@@ -12,6 +12,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="max-age=3600">
@@ -23,6 +24,7 @@
     <!-- CUSTOM STYLESHEET -->
     <!-- ICONSCOUT CDN -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="stylesheet" href="/css/navbar.css">
     <!-- GOOGLE FONT(MONTSERATE) -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,800;1,700&display=swap" rel="stylesheet">
 </head>
@@ -37,10 +39,10 @@
                     <h2 style="color:white">INNOMINDS</h2>
                 </span>
             </a>
-            <ul class="nav__items" style="font-size: 1.2rem;">
-                <li><a href="/index.php">Inicio</a></li>
-                <li><a href="<?= "/views/" ?>posts.php">Publicaciones</a></li>
-                <li><a href="<?= "/views/" ?>about.php">Nosotros</a></li>
+            <ul class="nav__items"style="font-size: 1.2rem;"> 
+                <li><a class="texto_a" href="/index.php">Inicio</a></li>
+                <li><a class="texto_a" href="<?= "/views/" ?>posts.php">Publicaciones</a></li>
+                <li><a class="texto_a" href="<?= "/views/" ?>about.php">Nosotros</a></li>
 
                 <!-- MOSTRAR EL PERFIL SI ES QUE TIENE 
                 <?php // if (isset($_SESSION['user-id'])) : 
@@ -56,7 +58,7 @@
                     </li>
                 <?php // else : 
                 ?> -->
-                <li><a href="/views/signin.php">Iniciar Sesión</a></li>
+                <li><a class="texto_a" href="/views/signin.php">Iniciar Sesión</a></li>
                 <? // php endif 
                 ?>
             </ul>

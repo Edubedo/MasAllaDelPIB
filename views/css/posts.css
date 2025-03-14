@@ -5,7 +5,7 @@
     left: 0;
     right: 0;
     z-index: 100;
-    background-color: #6d9aa6; /* Color azul claro */
+    background-color: #6d9aa6 !important; /* Color azul claro */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -40,7 +40,7 @@
 }
 
 .nav_public .list li a:hover {
-    color: #ffffff;
+    color: #ffffff !important;
     background-color: #4682B4; /* Color azul más oscuro al pasar el ratón */
 }
 
