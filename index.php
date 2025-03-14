@@ -32,28 +32,41 @@ require 'config/database.php';
         <div class="encabezado">
             <h1>Publicaciones</h1>
         </div>
+
         <div class="cuerpo">
-            <?php
-            $posts = json_decode(file_get_contents('./data/posts.json'), true); // Obtener los posts
-            foreach ($posts as $post) { // Recorrer los posts
-                echo '<a href="/views/post.php?id=' . $post['id'] . '">
-                        <div class="p1">
-                            <div class="titulo1">
-                                <h4>' . htmlspecialchars($post['title']) . '</h4>
-                                <div class="datos1">
-                                    <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user']) . '</span>
-                                    <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['date'])) . '</span>
+        <?php
+            $file = __DIR__ . '/data/posts.json';
+
+            if (!file_exists($file)) {
+                echo "<p>Error: No se encontró el archivo de publicaciones.</p>";
+            } else {
+                $jsonContent = file_get_contents($file);
+                $posts = json_decode($jsonContent, true);
+
+                if (!$posts) {
+                    echo "<p>Error: El archivo JSON está vacío o mal formado.</p>";
+                } else {
+                    foreach ($posts as $post) {
+                        echo '<a href="./post.php?id=' . htmlspecialchars($post['id']) . '">
+                                <div class="p1">
+                                    <div class="imagen_post">
+                                        <img class="imagen1" src="' . htmlspecialchars($post['image']) . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
+                                    </div>
+                                    <div class="info_post">
+                                        <h4 class="titulo1">' . htmlspecialchars($post['title']) . '</h4>
+                                        <div class="datos1">
+                                            <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user']) . '</span>
+                                            <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['date'])) . '</span>
+                                        </div>
+                                        <p class="texto1">' . htmlspecialchars($post['description']) . '</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="info_post">
-                                <img class="imagen1" src="' . htmlspecialchars($post['image']) . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
-                                <p class="texto1">' . htmlspecialchars($post['description']) . '</p>
-                            </div>
-                        </div>
-                      </a>';
+                            </a>';
+                    }
+                }
             }
-            ?>
-        </div>
+        ?>
+    </div>
     </main>
     <!-- Incluyendo el pie de página -->
     <?php include './views/layout/footer.php'; ?>
