@@ -1,57 +1,57 @@
 [
     {
         "id": 1,
-        "title": "Nueva Estrategia Económica en Colima",
-        "description": "El gobierno de Colima presenta una estrategia para impulsar la economía local, enfocándose en el emprendimiento y las inversiones extranjeras.",
-        "image": "../assets/img/estrategia-economica.jpg",
-        "link": "./post.php?id=5",
-        "content": "El gobierno de Colima presenta una estrategia para impulsar la economía local, enfocándose en el emprendimiento y las inversiones extranjeras.",
-        "category": "crecimiento-economico",
-        "user": "Escobedo",
-        "date": "2021-10-01"
+        "title": "Nueva Estrategia Econ\u00f3mica en Colima",
+        "description": "El gobierno de Colima presenta una estrategia para impulsar la econom\u00eda local, enfoc\u00e1ndose en el emprendimiento y las inversiones extranjeras.",
+        "image": "..\/assets\/img\/estrategia-economica.jpg",
+        "link": ".\/post.php?id=5",
+        "content": "El gobierno de Colima presenta una estrategia para impulsar la econom\u00eda local, enfoc\u00e1ndose en el emprendimiento y las inversiones extranjeras.",
+        "category": "crecimiento-económico",
+        "user": "Eduardo Escobedo",
+        "date": "2025-03-07"
     },
     {
         "id": 2,
         "title": "Apertura de Nuevas Tiendas en Colima",
-        "description": "Colima expande su oferta comercial con nuevas tiendas y centros comerciales, generando más oportunidades laborales.",
-        "image": "../assets/img/nuevas-tiendas.avif",
-        "link": "./post.php?id=6",
-        "content": "Colima expande su oferta comercial con nuevas tiendas y centros comerciales, generando más oportunidades laborales.",
+        "description": "Colima expande su oferta comercial con nuevas tiendas y centros comerciales, generando m\u00e1s oportunidades laborales.",
+        "image": "..\/assets\/img\/nuevas-tiendas.avif",
+        "link": ".\/post.php?id=6",
+        "content": "Colima expande su oferta comercial con nuevas tiendas y centros comerciales, generando m\u00e1s oportunidades laborales.",
         "category": "emprendimiento-negocios",
-        "user": "Juan Pablo",
-        "date": "2021-10-02"
+        "user": "Pablo Alcal\u00e1",
+        "date": "2025-03-05"
     },
     {
         "id": 3,
         "title": "Iniciativa de Sostenibilidad en la Ciudad",
-        "description": "Colima promueve la sostenibilidad mediante energías renovables y la creación de espacios verdes urbanos.",
-        "image": "../assets/img/sostenibilidad.jpg",
-        "link": "./post.php?id=7",
-        "content": "Colima promueve la sostenibilidad mediante energías renovables y la creación de espacios verdes urbanos.",
-        "category": "sostenibilidad",
-        "user": "Pamela",
-        "date": "2021-10-03"
+        "description": "Colima promueve la sostenibilidad mediante energ\u00edas renovables y la creaci\u00f3n de espacios verdes urbanos.",
+        "image": "..\/assets\/img\/sostenibilidad.jpg",
+        "link": ".\/post.php?id=7",
+        "content": "Colima promueve la sostenibilidad mediante energ\u00edas renovables y la creaci\u00f3n de espacios verdes urbanos.",
+        "category": "mundo-laboral",
+        "user": "Daira Pamela",
+        "date": "2025-03-03"
     },
     {
         "id": 4,
         "title": "Nuevo Plan de Infraestructura para Colima",
-        "description": "El nuevo plan de infraestructura mejorará las carreteras y creará nuevas autopistas para mejorar la conectividad en Colima.",
-        "image": "../assets/img/infraestructura.jpeg",
-        "link": "./post.php?id=8",
-        "content": "El nuevo plan de infraestructura mejorará las carreteras y creará nuevas autopistas para mejorar la conectividad en Colima.",
-        "category": "infraestructura",
+        "description": "El nuevo plan de infraestructura mejorar\u00e1 las carreteras y crear\u00e1 nuevas autopistas para mejorar la conectividad en Colima.",
+        "image": "..\/assets\/img\/infraestructura.jpeg",
+        "link": ".\/post.php?id=8",
+        "content": "El nuevo plan de infraestructura mejorar\u00e1 las carreteras y crear\u00e1 nuevas autopistas para mejorar la conectividad en Colima.",
+        "category": "crecimiento-económico",
         "user": "Juan",
-        "date": "2021-10-04"
+        "date": "2025-03-08"
     },
     {
         "id": 5,
-        "title": "Educación y Formación para el Futuro",
-        "description": "Colima promueve programas de educación y formación técnica para mejorar las oportunidades laborales en la región.",
-        "image": "../assets/img/educacion.webp",
-        "link": "./post.php?id=9",
-        "content": "Colima promueve programas de educación y formación técnica para mejorar las oportunidades laborales en la región.",
-        "category": "educacion",
+        "title": "Educaci\u00f3n y Formaci\u00f3n para el Futuro",
+        "description": "Colima promueve programas de educaci\u00f3n y formaci\u00f3n t\u00e9cnica para mejorar las oportunidades laborales en la regi\u00f3n.",
+        "image": "..\/assets\/img\/educacion.webp",
+        "link": ".\/post.php?id=9",
+        "content": "Colima promueve programas de educaci\u00f3n y formaci\u00f3n t\u00e9cnica para mejorar las oportunidades laborales en la regi\u00f3n.",
+        "category": "emprendimiento-negocios",
         "user": "Quintero",
-        "date": "2021-10-05"
+        "date": "2025-03-08"
     }
 ]

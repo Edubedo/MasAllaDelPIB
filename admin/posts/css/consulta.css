@@ -186,6 +186,7 @@ button:hover {
 }
 
 /* Contenedor donde vendrá toda la info*/
+/* Contenedor donde vendrá toda la info */
 .container-inferior {
     border-radius: 0.5rem;
     padding: 2rem;
@@ -193,29 +194,28 @@ button:hover {
     min-height: 55rem;
     background-color: white;
     padding: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Contenedor de elecciones (titulos de las publi,categorias,usuario y fecha)*/
+/* Contenedor de elecciones (títulos de las publicaciones, categorías, usuario y fecha) */
 .elecciones {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: 1fr 1fr 1fr 1fr auto; /* Columnas flexibles */
     gap: 1rem; /* Espacio entre los selectores */
     margin-bottom: 2rem;
     overflow: hidden; /* Evita que los elementos se desborden */
 }
 
+
 /* Selectores de elecciones */
 .elecciones select {
     width: 100%; /* Ocupa el 100% del ancho de la columna */
-    max-width: 100%; /* Evita que el selector exceda el ancho del contenedor */
     padding: 0.5rem;
     background-color: white;
     border: 0.2rem solid #ccc;
     border-radius: 0.5rem;
     color: #262626;
     font-size: 1.5rem;
-    text-align: left;
     box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
 }
 
@@ -234,7 +234,7 @@ button:hover {
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: 1fr 1fr 1fr 1fr auto; /* Alinea las publicaciones en 4 columnas */
     gap: 1rem; /* Espacio entre las columnas */
     align-items: start; /* Alinea el contenido al inicio verticalmente */
 }
@@ -243,10 +243,16 @@ button:hover {
     display: contents; /* Hace que los hijos directos sean parte del grid */
 }
 
+
+
 .title, .category, .user, .date {
     padding: 0.5rem; /* Espaciado interno para mejorar la legibilidad */
     border-right: 1px solid #ccc; 
+    margin-top: 1.4rem;
+    border-bottom: 1px solid #ccc;
 }
+
+
 
 .title {
     grid-column: 1; /* El título va en la primera columna */
@@ -263,6 +269,63 @@ button:hover {
 .date {
     grid-column: 4; /* La fecha va en la cuarta columna */
 }
+
+
+a {
+    color: #ffffff!important;
+}
+
+/*Modal de las publicaciones (editar o eliminar)*/
+.modal-opciones {
+    display: none; /* Oculta el modal por defecto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    background-color: rgba(183, 30, 30, 0.5); /* Fondo semitransparente */
+}
+
+.modal-editar-eliminar {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(5%, -70%);
+    padding: 2rem;
+    border: 1px solid #888;
+    min-width: 10rem;
+    text-align: center;
+    position: absolute; /*Hace que aparezca el modal donde da click*/
+}
+#btn-editar, #btn-eliminar {
+    
+    margin: 0.5rem;
+    padding: 1rem;
+    cursor: pointer;
+    max-width: 50%;
+}
+
+
+.botones-derecha{
+    justify-self: end;
+    grid-template-columns: minmax(100px, 1fr);
+}
+#btn-editar {
+    background-color: #0082c8;
+    color: white;
+}
+
+#btn-eliminar {
+    background-color: #f44336;
+    color: white;
+}
+
+#btn-editar:hover {
+    background-color: #0061ab;
+}
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .elecciones {

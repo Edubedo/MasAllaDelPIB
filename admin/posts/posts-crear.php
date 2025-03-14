@@ -22,13 +22,12 @@
                 </div>
                 <div class="form-group">
                     <label for="categoria">Categoría:</label>
-                    <select class="categorias" id="">
-                        <option value="" disabled selected hidden>Categorías</option><!-- Placeholder -->
-                        <option value="">Crecimiento económico</option>
-                        <option value="">Emprendimiento Negocios</option>
-                        <option value="">Sostenibilidad</option>
-                        <option value="">Infraestructura</option>
-                        <option value="">Educación</option>
+                    <select name="categoria" id="categoria" required>
+                        <option value="" disabled selected hidden>Categorías</option>
+                        <option value="crecimiento-economico">Crecimiento Económico</option>
+                        <option value="emprendimiento-negocios">Emprendimiento Negocios</option>
+                        <option value="mundo-laboral">Mundo laboral</option>
+                        
                     </select>
                 </div>
                 <div class="form-group">
@@ -45,14 +44,14 @@
                 </div>
                 <div class="form-group">
                     <label for="usuario">Usuario:</label>
-                    <select class="categorias" id="">
-                        <option value="" disabled selected hidden>Usuario</option><!-- Placeholder -->
-                        <option value="">Pablo Alcalá</option>
-                        <option value="">Eduardo Escobedo</option>
-                        <option value="">Daira Pamela</option>
-                        <option value="">Nancy</option>
-                        <option value="">Quintero</option>
-                        <option value="">Juan</option>
+                    <select name="usuario" id="usuario" required>
+                        <option value="" disabled selected hidden>Usuario</option>
+                        <option value="Pablo Alcalá">Pablo Alcalá</option>
+                        <option value="Eduardo Escobedo">Eduardo Escobedo</option>
+                        <option value="Daira Pamela">Daira Pamela</option>
+                        <option value="Nancy">Nancy</option>
+                        <option value="Quintero">Quintero</option>
+                        <option value="Juan">Juan</option>
                     </select>
                 </div>
                 <button type="submit">Guardar Publicación</button>
