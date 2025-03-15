@@ -31,14 +31,20 @@
                 <i class="fas fa-envelope icono-correo"></i>
                 <div class="correos-container">
                     <div class="correos">
-                        <p>nlaureano@ucol.mx</p>
-                        <p>ehernandez@ucol.mx</p>
-                        <p>jangelina@ucol.mx</p>
+                        <p><a href="https://mail.google.com/mail/?view=cm&fs=1&to=nlaureano@ucol.mx" 
+                        target="_blank">nlaureano@ucol.mx</a></p>
+                        <p><a href="https://mail.google.com/mail/?view=cm&fs=1&to=ehernandez71@ucol.mx" 
+                        target="_blank"">ehernandez71@ucol.mx</a></p>
+                        <p><a href="https://mail.google.com/mail/?view=cm&fs=1&to=jangelina@ucol.mx" 
+                        target="_blank"">jangelina@ucol.mx</a></p>
                     </div>
                     <div class="correos">
-                        <p>jalcala@ucol.mx</p>
-                        <p>prodriguez@ucol.mx</p>
-                        <p>jquintero@ucol.mx</p>
+                        <p><a href="https://mail.google.com/mail/?view=cm&fs=1&to=jalcala5@ucol.mx" 
+                        target="_blank"">jalcala5@ucol.mx</a></p>
+                        <p><a href="https://mail.google.com/mail/?view=cm&fs=1&to=drodriguez64@ucol.mx" 
+                        target="_blank"">drodriguez64@ucol.mx</a></p>
+                        <p><a href="https://mail.google.com/mail/?view=cm&fs=1&to=jquintero12@ucol.mx" 
+                        target="_blank"">jquintero12@ucol.mx</a></p>
                     </div>
                 </div>
             </div>
