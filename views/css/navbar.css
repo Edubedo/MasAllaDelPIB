@@ -1,0 +1,197 @@
+/* Reset y configuración básica */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos Generales de la Barra de Navegación */
+nav {
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    top: 0;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 0 2%;
+    height: 5rem;
+    background-color: #25384c !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .logo {
+    display: flex;
+    align-items: center;
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: aliceblue;
+    text-transform: uppercase;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+nav .logo img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+nav .list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+nav .list li {
+    list-style: none;
+}
+
+.texto_a {
+    color: aliceblue;
+    text-decoration: none;
+    padding: 1rem 1rem;
+    font-size: 1.7rem;
+}
+
+.texto_a:hover {
+    color: rgb(255, 184, 61) !important;
+}
+
+/* Ícono de Hamburguesa */
+#toggle {
+    display: none;
+}
+
+nav .icon-bars {
+    display: none;
+    cursor: pointer;
+}
+
+nav .icon-bars .line {
+    width: 30px;
+    height: 4px;
+    background-color: aliceblue;
+    margin: 5px;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.container {
+    padding: 10px;
+}
+
+nav {
+    background: var(--color-primary);
+    width: 100vw;
+    height: 4.5rem;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+nav button {
+    display: none;
+}
+
+.nav__container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav__logo-name {
+    display: flex;
+    align-items: center;
+}
+
+.nav__logo-name img {
+    width: 5rem;
+    margin-right: 1rem;
+}
+
+.nav__logo-name h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-white);
+}
+
+.nav__logo {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* Media Query para Tablets y Móviles */
+@media (max-width: 939px) {
+    /* Hacer que la lista se oculte por defecto y solo se vea cuando se active */
+    nav .list {
+        position: fixed;
+        top: 7rem;
+        right: 0;
+        width: 100%;
+        height: calc(100vh - 7rem);
+        background-color: #242526;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        gap: 2rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        padding: 2rem;
+        z-index: 5;
+    }
+
+    /* Estilos para los elementos dentro de la lista */
+    nav .list li {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav .list li a {
+        display: block;
+        width: 100%;
+        padding: 1.5rem 0;
+    }
+
+    /* Mostrar la lista cuando el toggle está activado */
+    #toggle:checked ~ .list {
+        transform: translateX(0);
+    }
+
+    /* Mostrar el ícono de hamburguesa cuando la pantalla sea pequeña */
+    nav .icon-bars {
+        display: block;
+        cursor: pointer;
+    }
+
+    /* Estilo del ícono de hamburguesa */
+    nav .icon-bars .line {
+        width: 30px;
+        height: 4px;
+        background-color: aliceblue;
+        margin: 5px;
+        border-radius: 3px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    nav .logo {
+        width: auto;
+    }
+}
+
+/* Estilos para móviles más pequeños */
+@media (max-width: 480px) {
+    nav .logo {
+        font-size: 1.8rem;
+    }
+
+    nav .texto_a {
+        font-size: 1.2rem;
+    }
+
+    nav .list {
+        padding: 1.5rem;
+    }
+}

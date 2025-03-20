@@ -1,0 +1,533 @@
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; /* 1 rem = 10px */
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #E0E0E0;
+    
+}
+
+/* Capa oscura */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(2px); /*efecto de desenfoque */
+    z-index: 1;
+}
+
+/* Modal */
+#modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);  
+    z-index: 2;
+    border-radius: .6rem;
+    width: 90%; /* Ancho del modal */
+    max-width: 850px; /* Ancho máximo para pantallas grandes */
+    height: auto; /* Altura automática */
+    min-height: 390px; /* Altura mínima */
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal:hover {
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.3);
+}
+
+/* Título del modal */
+.titulo-modal {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    background: linear-gradient(90deg, #86acb5, #15687f); /* Degradado */
+    -webkit-background-clip: text; /* Aplicar degradado al texto */
+    color: transparent;
+}
+
+button {
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    background: #6d9aa6;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+}
+
+button:hover {
+    background: #1c6d83;
+    transform: scale(1.02);
+}
+
+/* Panel de administrador */
+#admin-panel {
+    padding: 2rem;
+    background-color: #E0E0E0;
+}
+
+
+/*Contiene el título y el botón de cerrar sesión*/
+.container-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2.5rem;
+    margin-bottom: 2rem;
+    
+}
+
+/* Logo */
+.container-header img {
+    width: 50px;
+    height: 50px;
+}
+
+/* Nombre del admin */
+.container-header h1 {
+    font-size: 2.4rem;
+    margin: 0;
+    color: #262626; 
+    font-weight: 600;
+}
+
+/* Botón de cerrar sesión */
+.container-header button {
+    margin-left: auto;
+    background-color: #d9534f;
+}
+
+.container-header button:hover {
+    background-color: #c9302c; 
+}
+
+/* Contenedor de categorias y nueva publicacion*/
+.container-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    background-color: #FAFAFA;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 1rem; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+
+.categories, .titulos, .categorias-editor, .usuario, .fecha-publicacion {
+    width: 100%;
+    min-width: 35rem;
+    height: 4rem;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    border: 0.2rem solid #ccc;
+    border-radius: 0.5rem;
+    background-color: white; 
+}
+
+.categories {
+    width: 40rem;
+    color: #262626;
+}
+
+/*Texto de nueva publicacion y logo */
+.new-post {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 2.5rem;
+    margin: 1rem 0;
+}
+
+.new-post .texto {
+    margin-top: 2.3rem;
+    font-size: 2rem;
+    color: #262626; 
+}
+
+/* Botones de nueva publi */	
+#add-post-btn {
+    background-color: #FAFAFA;
+    border: 0.2rem solid #b1a0a0;
+    padding: 0.5rem 1rem;
+    margin-right: 2rem;
+    margin-bottom: 1.5rem;
+    min-width: 8rem;
+}
+
+#add-post-btn span {
+    color: #074680; 
+    font-weight: bold;
+    font-size: 4rem;
+}
+
+
+/* Contenedor donde se encuentra la tabla */
+.container-inferior {
+    border-radius: 0.5rem;
+    padding: 2rem;
+    margin: 1rem;
+    min-height: 55rem;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    overflow-x: auto; /* Scroll horizontal */
+    width: 100%; /* Ocupa todo el ancho */
+}
+
+/* Estilos para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Encabezado de la tabla */
+table th {
+    background-color: #1b1158;
+    color: #fff; /* Letra blanca */
+    padding: 1rem;
+    font-size: 1.1rem;
+    text-align: left;
+}
+
+/* Estilo global para todas las celdas (td) */
+table td {
+    color: #000; 
+    padding: 5px; 
+    text-align: left; 
+    line-height: 1.4;
+    background-color: #f8f8f8;
+    font-size: 1rem;
+    border-bottom: 1px solid #ddd; 
+}
+
+/* Estilo para la columna de contenido */
+table td:nth-child(3) {
+    max-height: 100px;
+    overflow-y: auto;  
+    white-space: pre-wrap; 
+    word-wrap: break-word;
+}
+
+    
+
+/* Filas con hover */
+table tr:hover {
+    background-color: #e1f5fe;
+}
+
+/* Filas alternas */
+table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+/* Bordes para tabla y celdas */
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+/* Ajuste del texto largo */
+table td, table th {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Estilos para las celdas con texto más grande */
+th, td {
+    font-size: 1.1rem; /* Puedes modificar el tamaño aquí */
+    font-weight: normal;
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.image-post {
+    width: 100px; 
+    height: auto;
+    cursor: pointer;
+}
+
+
+
+/* Estilo base para los botones */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Botón Editar */
+.btn.editar {
+    background-color: #0fd246;
+    color: white;
+    border: 2px solid #0fd246;
+}
+
+.btn.editar:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Botón Eliminar */
+.btn.eliminar {
+    background-color: #dc3545;
+    color: white;
+    border: 2px solid #dc3545;
+}
+
+.btn.eliminar:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+    transform: translateY(-2px);
+}
+
+/* Efecto cuando el botón es presionado */
+.btn:active {
+    transform: translateY(2px);
+}
+
+
+
+/* Contenedor de elecciones (títulos de las publicaciones, categorías, usuario y fecha) */
+.elecciones {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr auto; /* Columnas flexibles */
+    gap: 1rem; /* Espacio entre los selectores */
+    margin-bottom: 2rem;
+    overflow: hidden; /* Evita que los elementos se desborden */
+}
+
+
+/* Selectores de elecciones */
+.elecciones select {
+    width: 100%; /* Ocupa el 100% del ancho de la columna */
+    padding: 0.5rem;
+    background-color: white;
+    border: 0.2rem solid #ccc;
+    border-radius: 0.5rem;
+    color: #262626;
+    font-size: 1.5rem;
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+}
+
+/* TEXTO INICIO Y PUBLICACIONES DEL HEADER */
+.nav__items {
+    gap: 9rem;
+    margin-right: 3rem;
+}
+
+.publicaciones {
+    width: 100%; /* Ocupa el 100% del contenedor padre */
+    color: #262626;
+    font-size: 1.5rem;
+    text-align: left;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr auto; /* Alinea las publicaciones en 4 columnas */
+    gap: 1rem; /* Espacio entre las columnas */
+    align-items: start; /* Alinea el contenido al inicio verticalmente */
+}
+
+.grid-item {
+    display: contents; /* Hace que los hijos directos sean parte del grid */
+}
+
+
+
+.title, .category, .user, .date {
+    padding: 0.5rem; /* Espaciado interno para mejorar la legibilidad */
+    border-right: 1px solid #ccc; 
+    margin-top: 1.4rem;
+    border-bottom: 1px solid #ccc;
+}
+
+
+
+.title {
+    grid-column: 1; /* El título va en la primera columna */
+}
+
+.category {
+    grid-column: 2; /* La categoría va en la segunda columna */
+}
+
+.user {
+    grid-column: 3; /* El usuario va en la tercera columna */
+}
+
+.date {
+    grid-column: 4; /* La fecha va en la cuarta columna */
+}
+
+
+a {
+    color: #ffffff!important;
+}
+
+/*Modal de las publicaciones (editar o eliminar)*/
+.modal-opciones {
+    display: none; /* Oculta el modal por defecto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    background-color: rgba(183, 30, 30, 0.5); /* Fondo semitransparente */
+}
+
+.modal-editar-eliminar {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(5%, -70%);
+    padding: 2rem;
+    border: 1px solid #888;
+    min-width: 10rem;
+    text-align: center;
+    position: absolute; /*Hace que aparezca el modal donde da click*/
+}
+#btn-editar, #btn-eliminar {
+    
+    margin: 0.5rem;
+    padding: 1rem;
+    cursor: pointer;
+    max-width: 50%;
+}
+
+
+.botones-derecha{
+    justify-self: end;
+    grid-template-columns: minmax(100px, 1fr);
+}
+#btn-editar {
+    background-color: #0082c8;
+    color: white;
+}
+
+#btn-eliminar {
+    background-color: #f44336;
+    color: white;
+}
+
+#btn-editar:hover {
+    background-color: #0061ab;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .elecciones {
+        grid-template-columns: 1fr 1fr; /* Dos columnas en pantallas pequeñas */
+    }
+
+    .elecciones select {
+        min-width: auto; /* Elimina el ancho mínimo fijo */
+    }
+
+    .container-superior {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #apply-btn, #ignore-btn {
+        max-width: 100%;
+    }
+
+    .new-post {
+        justify-content: flex-start;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr 1fr; /* Dos columnas en pantallas pequeñas */
+    }
+
+    .title {
+        grid-column: 1; /* El título va en la primera columna */
+    }
+
+    .category {
+        grid-column: 2; /* La categoría va en la segunda columna */
+    }
+
+    .user, .date {
+        display: none; /* Oculta las columnas de usuario y fecha en pantallas pequeñas */
+    }
+
+    
+}
+
+@media (max-width: 480px) {
+    .elecciones {
+        grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+    }
+    
+    .titulo-modal {
+        font-size: 2rem;
+    }
+
+    
+    .container-header h1 {
+        font-size: 2rem;
+    }
+
+    #modal {
+        min-height: 300px;
+    }
+
+    .new-post .texto {
+        font-size: 1.8rem;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+    }
+
+    .category {
+        grid-column: 1; /* La categoría va en la primera columna */
+    }
+
+    .elecciones select {
+        font-size: 1.2rem; /* Reduce el tamaño de la fuente en pantallas muy pequeñas */
+    }
+}

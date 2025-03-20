@@ -1,0 +1,189 @@
+/* Reseteo de márgenes y padding globales */
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; /* 1 rem = 10 px */
+    height: 100%;
+    
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Footer principal */
+.footer {
+    background-color: #6d9aa6;
+    color: white;
+    text-align: center !important;
+    font-size: 1.2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 2rem;
+    position: relative;
+    margin-top: auto;
+}
+
+/* Contenedor oscuro dentro del footer */
+.footer-container1 {
+    display: flex;
+    justify-content: center; /* Distribuye los elementos de forma uniforme entre los extremos */
+    align-items: center; /* Alinea verticalmente todos los elementos */
+    padding: 2rem 5rem;
+    background-color: #262626;
+    width: 90%;
+    max-width: 1200px;
+    flex-wrap: nowrap;
+}
+
+/* Secciones alineadas */
+.logoEmpresa, .contactos, .redes-siguenos {
+    display: flex;
+    align-items: center; /* Alinea todos los elementos verticalmente */
+    gap: 1.5rem;
+    margin: 1rem;
+}
+
+/* Logo de la empresa */
+.logoEmpresa {
+    flex-direction: row; /* Asegura que los elementos dentro del logo estén en fila */
+    justify-content: flex-start; /* Alinea el logo a la izquierda */
+    flex-grow: 0; /* No debe crecer */
+    width: auto; /* No limita el ancho */
+    margin-right: auto; /* Esto asegura que el logo se empuje hacia la izquierda */
+}
+
+/* Imagen del logo */
+.logoEmpresa .imagen img {
+    width: 12rem; /* Tamaño de la imagen */
+    height: auto;
+    max-width: 100%;
+}
+
+/* Contactos */
+.contactos {
+    font-size: 1.4rem;
+    justify-content: center; /* Centra los contactos */
+    flex-grow: 0; /* No debe crecer */
+}
+
+/* Contenedor de correos electrónicos */
+.contacto-contenedor {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.icono-correo {
+    font-size: 4rem;
+    color: white;
+}
+
+.correos-container {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.correos {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.correos p {
+    margin: 0;
+}
+
+/* Redes sociales */
+.redes-siguenos {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Alinea todos los iconos de redes sociales verticalmente */
+    gap: 1rem;
+    justify-content: flex-end; /* Alinea las redes sociales a la derecha */
+    flex-grow: 0; /* No debe crecer */
+}
+
+/* Icono de corazón */
+.redes-siguenos i.fas.fa-heart {
+    font-size: 4rem;
+}
+
+/* Iconos de redes sociales */
+.redes-sociales {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.redes-sociales i {
+    font-size: 3rem;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.redes-sociales i:hover {
+    color: #f0a500;
+}
+
+/* Contenedor inferior del footer */
+.footer-bottom {
+    background-color: #222; /* Fondo oscuro */
+    color: white; /* Texto blanco */
+    text-align: center; /* Centrado del texto */
+    padding: 1rem 0; /* Espaciado superior e inferior */
+    width: 100%;
+    font-size: 1rem; /* Tamaño de fuente más pequeño */
+}
+
+.footer-bottom .copyright {
+    font-size: 2rem; /* Aumenta el tamaño del icono de copyright */
+    color: white; /* Asegúrate de que el color sea blanco */
+}
+
+/* Estilos responsivos */
+@media (max-width: 1024px) {
+    .footer-container1 {
+        justify-content: space-between;
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-container1 {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .logoEmpresa, .contactos, .redes-siguenos {
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-container1 {
+        padding: 1rem;
+    }
+
+    .contactos {
+        font-size: 1rem;
+    }
+
+    .redes-sociales i {
+        font-size: 2rem;
+    }
+}
