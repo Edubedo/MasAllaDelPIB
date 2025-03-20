@@ -1,1 +1,5 @@
+*.exe
+*.zip
+*.msi
+*.bak
 .env

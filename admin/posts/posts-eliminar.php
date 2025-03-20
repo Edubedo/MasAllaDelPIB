@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 // Obtén el ID de la publicación desde la URL
 $id = $_GET['id'];
 
@@ -17,3 +18,19 @@ file_put_contents('../../data/posts.json', json_encode(array_values($posts)));
 header('Location: posts-consulta.php');
 exit;
 ?>
+=======
+include '../../config/database.php';
+$mensaje = ''; 
+
+if (!empty($_GET["id"])) {
+    $id = $_GET["id"];
+    $sql = $conexion->query("DELETE FROM posts WHERE Id_posts = $id");
+
+    if ($sql) {
+        $mensaje = "<div>Post eliminado correctamente.</div>";
+    } else {
+        $mensaje = "<div>Error al eliminar el post.</div>";
+    }
+}
+?>
+>>>>>>> 1d60cb5cc742af83398ba68ee53a9f3dc9bb29e5

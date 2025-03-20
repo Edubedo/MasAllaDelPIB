@@ -1,14 +1,28 @@
+<<<<<<< HEAD
+=======
+<?php 
+include '../../config/database.php';  
+include "posts-eliminar.php"; 
+?>
+
+>>>>>>> 1d60cb5cc742af83398ba68ee53a9f3dc9bb29e5
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administrador</title>
+<<<<<<< HEAD
 
     
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="css/consulta.css">
 
+=======
+    
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="css/consulta.css">
+>>>>>>> 1d60cb5cc742af83398ba68ee53a9f3dc9bb29e5
 </head>
 <body>
     
@@ -16,6 +30,7 @@
     
     <div id="overlay"></div> <!-- Capa oscura -->
 
+<<<<<<< HEAD
     <!-- Modal -->
     <section id="modal">
         
@@ -25,6 +40,21 @@
         
     </section>
 
+=======
+    <!-- Obtencion de nombre del administrador-->
+    <?php
+        session_start(); 
+        $nombreUsuario = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+    ?>
+
+    <!-- Modal -->
+    <section id="modal">
+        <h2 class="titulo-modal">¡Bienvenido al Panel de Administrador <?php echo $nombreUsuario; ?>!</h2>
+        <button id="botonContinuar">Continuar</button>
+    </section>
+
+
+>>>>>>> 1d60cb5cc742af83398ba68ee53a9f3dc9bb29e5
     <!-- Panel de Administración -->
     <main id="admin-panel">
         <header>
@@ -40,6 +70,7 @@
             <div class="category-menu">
                 <select class="categories">
                     <option value="" disabled selected hidden>Categorías</option><!-- Placeholder -->
+<<<<<<< HEAD
                         <?php
                             $posts = json_decode(file_get_contents('../../data/posts.json'), true); // Obtener los posts
                             $categories = array(); // Crear un array para las categorías
@@ -58,11 +89,31 @@
             <!-- Botón de Nueva Publicación -->
             <div class="new-post">
                 <h2 class="texto">Nueva publicación</h2>
+=======
+                    <?php
+                        $posts = json_decode(file_get_contents('../../data/posts.json'), true); // Obtener los posts
+                        $categories = array(); // Crear un array para las categorías
+                        foreach ($posts as $post) {
+                            $categories[] = $post['category']; // Agregar las categorías al array
+                        }
+                        $categories = array_unique($categories); // Eliminar duplicados
+                        foreach ($categories as $category) {
+                            echo "<option value='$category'>" . ucwords(str_replace('-', ' ', $category)) . "</option>";
+                        }
+                    ?>
+                </select>
+            </div>
+
+            <!-- Botón de Nueva Publicación -->
+            <div class="new-post">
+                <h2 class="texto" name="crear_posts">Nueva publicación</h2>
+>>>>>>> 1d60cb5cc742af83398ba68ee53a9f3dc9bb29e5
                 <a href="posts-crear.php">
                     <button id="add-post-btn">
                         <span>+</span>
                     </button>
                 </a>
+<<<<<<< HEAD
                 
             </div>
         </div>
@@ -192,4 +243,65 @@
     <script src="../../js/posts-consulta.js"></script>
 </body>
 
+=======
+            </div>
+        </div>
+
+        <!-- Mostrar mensaje de eliminación si se ha ejecutado -->
+        <div class="_eliminacion">
+            <?php if (isset($mensaje) && $mensaje != '') {
+                echo $mensaje;
+            } ?>
+        </div>
+
+        <!-- Tabla de posts -->
+        <div class="container-inferior">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Titulo</th>
+                        <th>Cotenido</th>
+                        <th>Categoria</th>
+                        <th>Imagen</th>
+                        <th>Creador</th>
+                        <th>Fecha</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    //Consulta para mostrar datos en la tabla
+                    $sql = "SELECT * FROM posts";
+                    $result = mysqli_query($conexion, $sql);
+                    while($mostrar = mysqli_fetch_array($result)) {
+                    ?>
+                    <tr>
+                        <td><?php echo $mostrar['Id_posts']; ?></td>
+                        <td><?php echo $mostrar['title']; ?></td>
+                        <td><?php echo $mostrar['content']; ?></td>
+                        <td><?php echo $mostrar['category']; ?></td>
+                        <td><img src="<?= $mostrar['image']; ?>" alt="Imagen del post" class="image-post"></td>
+                        <td><?php echo $mostrar['user_creation']; ?></td>
+                        <td><?php echo $mostrar['post_date']; ?></td>
+                        <td> 
+                         <!-- Botón de modificar post -->
+                        <a href="posts-modificar.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn editar">Editar</a>
+                        <!-- Botón de eliminar publicación -->
+                        <a href="posts-consulta.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn eliminar">Eliminar</a>
+
+                        </td>
+                    </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <script src="../../js/posts-consulta.js"></script>
+</body>
+>>>>>>> 1d60cb5cc742af83398ba68ee53a9f3dc9bb29e5
 </html>

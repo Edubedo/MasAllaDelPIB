@@ -18,3 +18,4 @@ function eliminarPublicacion(id) {
         window.location.href = `posts-eliminar.php?id=${id}`;
     }
 }
+

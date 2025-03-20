@@ -1,7 +1,32 @@
 <?php
 require 'config/database.php';
 
+// Definir la ruta de la imagen predeterminada
+$imagenPredeterminada = 'admin/posts/uploads/preterminada.jpg'; // Cambia esto por la ruta correcta
+
+// Se hace la consulta y se obtienen los datos de las publicaciones 
+$query = "SELECT Id_posts, title, content, post_date, category, user_creation 
+          FROM posts 
+          ORDER BY RAND() 
+          LIMIT 4"; // Aquí ajustamos el límite de las publicaciones a mostrar debajo del carrusel
+
+try {
+    // Preparar y ejecutar la consulta
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+
+    // Se obtienen los datos en un array
+    $postsDB = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Verificación
+    if (!$postsDB) {
+        die("No se encontraron publicaciones en la base de datos.");
+    }
+} catch (PDOException $e) {
+    die("Error al consultar los posts en la base de datos: " . $e->getMessage());
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -15,8 +40,6 @@ require 'config/database.php';
     <link rel="stylesheet" href="./views/css/footer.css">
     <link rel="stylesheet" href="./views/css/index.css">
     <link rel="stylesheet" href="./views/css/posts.css">
-
-
 </head>
 
 <body>
@@ -25,49 +48,43 @@ require 'config/database.php';
 
     <!-- Contenido principal -->
     <main>
-        <!-- IMAGE CALL ATENTIONS -->
+        <!-- Carrusel de imágenes -->
         <?php include("views/layout/carousel.php"); ?>
 
-        <!-- POSTS -->
+        <!-- Sección de Publicaciones -->
         <div class="encabezado">
             <h1>Publicaciones</h1>
         </div>
 
         <div class="cuerpo">
-        <?php
-            $file = __DIR__ . '/data/posts.json';
+            <?php
+                // Mostrar las publicaciones obtenidas de la base de datos
+                foreach ($postsDB as $post) {
+                    // Usar la imagen predeterminada para todas las publicaciones
+                    $imagen = $imagenPredeterminada;
 
-            if (!file_exists($file)) {
-                echo "<p>Error: No se encontró el archivo de publicaciones.</p>";
-            } else {
-                $jsonContent = file_get_contents($file);
-                $posts = json_decode($jsonContent, true);
-
-                if (!$posts) {
-                    echo "<p>Error: El archivo JSON está vacío o mal formado.</p>";
-                } else {
-                    foreach ($posts as $post) {
-                        echo '<a href="./post.php?id=' . htmlspecialchars($post['id']) . '">
-                                <div class="p1">
-                                    <div class="imagen_post">
-                                        <img class="imagen1" src="' . htmlspecialchars($post['image']) . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
-                                    </div>
-                                    <div class="info_post">
-                                        <h4 class="titulo1">' . htmlspecialchars($post['title']) . '</h4>
-                                        <div class="datos1">
-                                            <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user']) . '</span>
-                                            <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['date'])) . '</span>
-                                        </div>
-                                        <p class="texto1">' . htmlspecialchars($post['description']) . '</p>
-                                    </div>
+                    echo '<a href="./post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
+                            <div class="p1">
+                                <div class="imagen_post">
+                                    <!-- Imagen predeterminada -->
+                                    <img class="imagen1" src="' . $imagen . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
                                 </div>
-                            </a>';
-                    }
+                                <div class="info_post">
+                                    <h4 class="titulo1">' . htmlspecialchars($post['title']) . '</h4>
+                                    <div class="datos1">
+                                        <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user_creation']) . '</span>
+                                        <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['post_date'])) . '</span>
+                                    </div>
+                                    <p class="texto1">' . htmlspecialchars($post['content']) . '</p>
+                                </div>
+                            </div>
+                        </a>';
                 }
-            }
-        ?>
-    </div>
+            ?>
+        </div>
+
     </main>
+
     <!-- Incluyendo el pie de página -->
     <?php include './views/layout/footer.php'; ?>
 </body>

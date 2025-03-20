@@ -48,8 +48,8 @@
 
     <div class="cuerpo">
     <?php
-        $posts = json_decode(file_get_contents('../data/posts.json'), true); // Obtener los posts
-        foreach ($posts as $post) { // Recorrer los posts
+        $posts = json_decode(file_get_contents('../data/posts.json'), true); 
+        foreach ($posts as $post) { 
             echo '<a href="./post.php?id=' . htmlspecialchars($post['id']) . '">
                     <div class="p1">
                         <div class="imagen_post">
