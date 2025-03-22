@@ -55,7 +55,7 @@ try {
                                         <i class="far fa-user"></i> <span><?= htmlspecialchars($post['user_creation']); ?></span>
                                         <i class="far fa-calendar"></i> <span><?= date("F d, Y", strtotime($post['post_date'])); ?></span>
                                     </div>
-                                    <p><?= htmlspecialchars($post['content']); ?></p>
+                                    <p><?= htmlspecialchars(substr($post['content'],0,120) . "..."); ?></p>
                                 </div>
                             </div>
                         </a>
