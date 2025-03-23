@@ -1,5 +1,7 @@
 <?php
-include  '../../config/database.php';
+
+include '././config/database.php';
+
 
 $imagenPredeterminada = './../admin/posts/uploads/preterminada.jpg';
 // consulta a la base de datos y limitamos a 6 el carousel

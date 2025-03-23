@@ -6,7 +6,7 @@ if (isset($_SESSION['username'])) {
 
     $username = $_SESSION['username'];
 
-    $sql = "SELECT * FROM usuarios WHERE username = '$username'";
+    $sql = "SELECT * FROM users WHERE username = '$username'";
     $result = mysqli_query($conexion, $sql);
 
     if (mysqli_num_rows($result) > 0) {

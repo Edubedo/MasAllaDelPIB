@@ -185,30 +185,23 @@ button:hover {
     font-size: 4rem;
 }
 
-<<<<<<< HEAD
-/* Contenedor donde vendrá toda la info*/
-/* Contenedor donde vendrá toda la info */
-=======
 
 /* Contenedor donde se encuentra la tabla */
->>>>>>> 1d60cb5cc742af83398ba68ee53a9f3dc9bb29e5
 .container-inferior {
     border-radius: 0.5rem;
     padding: 2rem;
     margin: 1rem;
     min-height: 55rem;
     background-color: white;
-<<<<<<< HEAD
-    padding: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-=======
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     overflow-x: auto; /* Scroll horizontal */
     width: 100%; /* Ocupa todo el ancho */
 }
 
+.search-box {
+    position: absolute;
+    left: 29.7%; 
+}
 /* Estilos para la tabla */
 table {
     width: 100%;
@@ -332,7 +325,6 @@ th, td {
 
 
 
->>>>>>> 1d60cb5cc742af83398ba68ee53a9f3dc9bb29e5
 /* Contenedor de elecciones (títulos de las publicaciones, categorías, usuario y fecha) */
 .elecciones {
     display: grid;

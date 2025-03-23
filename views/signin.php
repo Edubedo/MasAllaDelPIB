@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,19 +10,19 @@
     <script src="../js/main.js"></script>
     <link rel="icon" href="../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="./css/navbar.css">
-    <link rel="stylesheet" href="./css/login.css">
-    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 
 <body>
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
-    <!-- <?php include './layout/header.php'; ?> -->
+    <!-- <?php include 'layout/header.php'; ?> -->
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
 
 
     <!-- Session start -->
-    <!-- <?php include '../../config/session_start.php'; ?> -->
+    <!-- <?php include './config/session_start.php'; ?> -->
     <!-- Session start -->
     <main>
         <div class="loginn">
@@ -41,6 +43,11 @@
                         <i class="fas fa-lock icon fa-2x"></i>
                         <input type="password" placeholder="Contraseña" name="password">
                     </div>
+
+                    <!-- Mensaje de error -->
+                    <?php if (isset($_SESSION['error_message'])): ?>
+                        <p style="color: red;"><?php echo $_SESSION['error_message']; unset($_SESSION['error_message']); ?></p>
+                    <?php endif; ?>
                     
                     <!-- Enlace para recordar contraseña -->
                     <p><a href="#">¿Olvidaste tu contraseña?</a></p>
