@@ -49,8 +49,10 @@
                         <p style="color: red;"><?php echo $_SESSION['error_message']; unset($_SESSION['error_message']); ?></p>
                     <?php endif; ?>
                     
+                    <p><a href="registro-usuarios.php">Regristrarme</a></p>
                     <!-- Enlace para recordar contraseña -->
                     <p><a href="#">¿Olvidaste tu contraseña?</a></p>
+
                     
                     <!-- Botón de enviar -->
                     <button type="submit">Entrar</button>
