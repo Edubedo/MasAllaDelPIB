@@ -1,3 +1,38 @@
+<?php
+require '../config/database.php';
+
+// Definir la ruta de la imagen predeterminada
+$imagenPredeterminada = '../admin/posts/uploads/preterminada.jpg'; // Cambia esto por la ruta correcta
+
+// Se hace la consulta y se obtienen los datos de las publicaciones 
+$query = "SELECT Id_posts, title, content, post_date, category, user_creation 
+          FROM posts 
+          ORDER BY RAND() 
+          LIMIT 4"; // Aquí ajustamos el límite de las publicaciones a mostrar debajo del carrusel
+
+try {
+    // Preparar y ejecutar la consulta
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+
+    // Se obtienen los datos en un array
+    $postsDB = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Verificación
+    if (!$postsDB) {
+        die("No se encontraron publicaciones en la base de datos.");
+    }
+} catch (PDOException $e) {
+    die("Error al consultar los posts en la base de datos: " . $e->getMessage());
+}
+
+$category = $_GET['category'];
+    $filteredPosts = array_filter($postsDB, function ($postDB) use ($category) {
+        return $postDB['category'] == $category;
+    });
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -22,14 +57,6 @@
     <!-- <?php include './layout/header.php'; ?> -->
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
 
-    <?php
-    $category = $_GET['category'];
-    $posts = json_decode(file_get_contents('../data/posts.json'), true);
-    $filteredPosts = array_filter($posts, function ($post) use ($category) {
-        return $post['category'] == $category;
-    });
-    ?>
-
     <nav class="nav_public">
         <ul class="list">
             <li><a href="./posts.php">Todas las categorias</a></li>
@@ -42,26 +69,32 @@
     <div class="encabezado">
         <h1><?php echo strtoupper(str_replace('-', ' ', $category)); ?></h1>
     </div>
+
     <div class="cuerpo">
-        <?php foreach ($filteredPosts as $post): ?>
-            <div class="p1">
-                <div class="imagen_post">
-                    <img class="imagen1" src="<?php echo $post['image']; ?>" alt="imagen de <?php echo $post['title']; ?>">
-                </div>
-                <div class="info_post">
-                    <h4 class="titulo1"><?php echo $post['title']; ?></h4>
-                    <div class="datos1">
-                        <i class="far fa-user"></i> <span><?php echo $post['user']; ?></span>
-                        <i class="far fa-calendar"></i> <span><?php echo date("F d, Y", strtotime($post['date'])); ?></span>
-                    </div>
-                    <p class="texto1"><?php echo $post['description']; ?></p>
-                </div>
+        <?php
+            foreach ($postsDB as $post) { 
+                $imagen = $imagenPredeterminada;
 
-            </div>
-        <?php endforeach; ?>
-
+                echo '<a href="./post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
+                        <div class="p1">
+                            <div class="imagen_post">
+                                <img class="imagen1" src="' . $imagen . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
+                            </div>
+                            <div class="info_post">
+                                <h4 class="titulo1">' . htmlspecialchars($post['title']) . '</h4>
+                                <div class="datos1">
+                                    <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user_creation']) . '</span>
+                                    <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['post_date'])) . '</span>
+                                </div>
+                                <p class="texto1">' . htmlspecialchars(substr($post['content'],0,180) . "...") . '</p>
+                            </div>
+                        </div>
+                    </a>';
+            }
+        ?>
+        
     </div>
-
+    
     <!-- IMPORTAR EL FOOTER -->
     <?php include './layout/footer.php'; ?>
     <!-- IMPORTAR EL FOOTER -->
