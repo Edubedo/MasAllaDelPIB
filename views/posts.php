@@ -1,3 +1,32 @@
+<?php
+require '../config/database.php';
+
+// Definir la ruta de la imagen predeterminada
+$imagenPredeterminada = '../admin/posts/uploads/preterminada.jpg'; // Cambia esto por la ruta correcta
+
+// Se hace la consulta y se obtienen los datos de las publicaciones 
+$query = "SELECT Id_posts, title, content, post_date, category, user_creation 
+          FROM posts 
+          ORDER BY RAND() 
+          LIMIT 4"; // Aquí ajustamos el límite de las publicaciones a mostrar debajo del carrusel
+
+try {
+    // Preparar y ejecutar la consulta
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+
+    // Se obtienen los datos en un array
+    $postsDB = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Verificación
+    if (!$postsDB) {
+        die("No se encontraron publicaciones en la base de datos.");
+    }
+} catch (PDOException $e) {
+    die("Error al consultar los posts en la base de datos: " . $e->getMessage());
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -47,27 +76,28 @@
     <!-- Cuerpo de las publicaciones -->
 
     <div class="cuerpo">
-    <?php
-        $posts = json_decode(file_get_contents('../data/posts.json'), true); 
-        foreach ($posts as $post) { 
-            echo '<a href="./post.php?id=' . htmlspecialchars($post['id']) . '">
-                    <div class="p1">
-                        <div class="imagen_post">
-                            <img class="imagen1" src="' . htmlspecialchars($post['image']) . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
-                        </div>
-                        <div class="info_post">
-                            <h4 class="titulo1">' . htmlspecialchars($post['title']) . '</h4>
-                            <div class="datos1">
-                                <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user']) . '</span>
-                                <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['date'])) . '</span>
+        <?php
+            foreach ($postsDB as $post) { 
+                $imagen = $imagenPredeterminada;
+
+                echo '<a href="./post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
+                        <div class="p1">
+                            <div class="imagen_post">
+                                <img class="imagen1" src="' . $imagen . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
                             </div>
-                            <p class="texto1">' . htmlspecialchars($post['description']) . '</p>
+                            <div class="info_post">
+                                <h4 class="titulo1">' . htmlspecialchars($post['title']) . '</h4>
+                                <div class="datos1">
+                                    <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user_creation']) . '</span>
+                                    <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['post_date'])) . '</span>
+                                </div>
+                                <p class="texto1">' . htmlspecialchars(substr($post['content'],0,180) . "...") . '</p>
+                            </div>
                         </div>
-                    </div>
-                 </a>';
-        }
-    ?>
-</div>
+                    </a>';
+            }
+        ?>
+    </div>
 
     <!-- Footer -->
     <?php include './layout/footer.php'; ?>
