@@ -45,7 +45,7 @@
 }
 
 /* Menú hamburguesa (móvil) */
-.icon-bars {
+.icon-bars {                
     display: none;
     cursor: pointer;
     position: absolute;
