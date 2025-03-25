@@ -30,7 +30,7 @@ main {
     display: flex;
     justify-content: center;
     backdrop-filter: blur(1px); /* Agregando un mayor desenfoque para mejor visibilidad */
-    background-color: rgba(25, 157, 227, 0.5); /* Con transparencia para ver el fondo */
+    background-color: rgba(6, 37, 53, 0.5); /* Con transparencia para ver el fondo */
     border-radius: 10px; /* Bordes redondeados para un diseño más suave */
 }
 
@@ -49,6 +49,7 @@ main {
 .caja__tracera div h3 {
     font-weight: 600; /* Negrita para los títulos */
     font-size: 28px; /* Ajuste de tamaño */
+    color: white;
 }
 
 .caja__tracera button {

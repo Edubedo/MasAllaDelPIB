@@ -20,7 +20,7 @@ html, body {
     left: 0;
     width: 100%;
     height: 100vh;  /* Ocupa toda la pantalla */
-    background: linear-gradient(to left, #a8acf7, #787efd);
+    background: linear-gradient(to left, #8f94fb, #4e54c8);
     z-index: -1;  /* Se va al fondo */
 }
 
