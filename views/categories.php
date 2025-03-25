@@ -6,9 +6,7 @@ $imagenPredeterminada = '../admin/posts/uploads/preterminada.jpg'; // Cambia est
 
 // Se hace la consulta y se obtienen los datos de las publicaciones 
 $query = "SELECT Id_posts, title, content, post_date, category, user_creation 
-          FROM posts 
-          ORDER BY RAND() 
-          LIMIT 4"; // Aquí ajustamos el límite de las publicaciones a mostrar debajo del carrusel
+          FROM posts"; 
 
 try {
     // Preparar y ejecutar la consulta
@@ -31,7 +29,10 @@ $category = $_GET['category'];
         return $postDB['category'] == $category;
     });
 
+$pdo = null;
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

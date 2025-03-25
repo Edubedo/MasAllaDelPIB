@@ -5,10 +5,9 @@ require '../config/database.php';
 $imagenPredeterminada = '../admin/posts/uploads/preterminada.jpg'; // Cambia esto por la ruta correcta
 
 // Se hace la consulta y se obtienen los datos de las publicaciones 
-$query = "SELECT Id_posts, title, content, post_date, category, user_creation 
+$query = "SELECT Id_posts, title, content, post_date, category, image, user_creation
           FROM posts 
-          ORDER BY RAND() 
-          LIMIT 4"; // Aquí ajustamos el límite de las publicaciones a mostrar debajo del carrusel
+          "; 
 
 try {
     // Preparar y ejecutar la consulta
@@ -25,6 +24,8 @@ try {
 } catch (PDOException $e) {
     die("Error al consultar los posts en la base de datos: " . $e->getMessage());
 }
+
+$pdo = null;
 ?>
 
 <!DOCTYPE html>
@@ -78,12 +79,11 @@ try {
     <div class="cuerpo">
         <?php
             foreach ($postsDB as $post) { 
-                $imagen = $imagenPredeterminada;
 
                 echo '<a href="./post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
                         <div class="p1">
                             <div class="imagen_post">
-                                <img class="imagen1" src="' . $imagen . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
+                                <img class="imagen1" src="' . htmlspecialchars($post['image']) . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
                             </div>
                             <div class="info_post">
                                 <h4 class="titulo1">' . htmlspecialchars($post['title']) . '</h4>

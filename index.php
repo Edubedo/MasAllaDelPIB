@@ -25,6 +25,8 @@ try {
 } catch (PDOException $e) {
     die("Error al consultar los posts en la base de datos: " . $e->getMessage());
 }
+
+$pdo = null;
 ?>
 
 <!DOCTYPE html>
