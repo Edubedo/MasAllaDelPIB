@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/bg-animation.css">
+
 </head>
 
 <body>
@@ -24,44 +26,59 @@
     <!-- Session start -->
     <!-- <?php include './config/session_start.php'; ?> -->
     <!-- Session start -->
+    <div class="area">
+            <ul class="circles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
     <main>
-        <div class="loginn">
-            <div class="contenedor__todo">
-                <!-- Formularios de login y registro -->
-                <div class="contenedor__Login-register">
-                    <!-- Formulario con action para redirigir al login -->
-                    <form action="../../config/validacionLogin.php" method="POST" class="formulario__login">
-                    <h2><i class="fas fa-user-circle fa-3x"></i></h2>
-                    
-                    <!-- Contenedor para los iconos y los inputs -->
-                    <div class="input-container">
-                        <i class="fas fa-envelope icon fa-2x"></i>
-                        <input type="text" placeholder="Correo Electrónico" name="email">
-                    </div>
-                    
-                    <div class="input-container">
-                        <i class="fas fa-lock icon fa-2x"></i>
-                        <input type="password" placeholder="Contraseña" name="password">
-                    </div>
-
-                    <!-- Mensaje de error -->
-                    <?php if (isset($_SESSION['error_message'])): ?>
-                        <p style="color: red;"><?php echo $_SESSION['error_message']; unset($_SESSION['error_message']); ?></p>
-                    <?php endif; ?>
-                    
-                    <p><a href="registro-usuarios.php">Regristrarme</a></p>
-                    <!-- Enlace para recordar contraseña -->
-                    <p><a href="#">¿Olvidaste tu contraseña?</a></p>
-
-                    
-                    <!-- Botón de enviar -->
-                    <button type="submit">Entrar</button>
-                </form>
+        
+        <div class="contenedor__todo">
+            <div class="caja__tracera">
+                <div class="caja__tracera-login">
+                    <h3>¿Ya tienes una cuenta aquí?</h3>
+                    <p>Inicia sesión para entrar en la página</p>
+                    <button id="btn__Iniciar-Sesión">Iniciar Sesión</button>
+                </div>
+                <div class="caja__tracera-register">
+                    <h3>¿Aún no tienes una cuenta?</h3>
+                    <p>Regístrate para que puedas iniciar sesión</p>
+                    <button id="btn__registrarse">Regístrate</button>
                 </div>
             </div>
+            
+            <!-- Formularios de login y registro -->
+            <div class="contenedor__Login-register">
+                <form action="../../admin/posts/posts-consulta.php" method="POST" class="formulario__login">
+                    <h2>Iniciar Sesión</h2>
+                    <input type="text" name="email" placeholder="Correo Electrónico" required>
+                    <input type="password" name="password" placeholder="Contraseña" required>
+                    <button type="submit">Entrar</button>
+                </form>
+
+
+                <!-- Formulario de registro -->
+                <form action="" class="formulario__register">
+                    <h2>Regístrate</h2>
+                    <input type="text" name="fullname" placeholder="Nombre Completo" required>
+                    <input type="email" name="email" placeholder="Correo Electrónico" required>
+                    <input type="text" name="username" placeholder="Usuario" required>
+                    <input type="password" name="password" placeholder="Contraseña" required>
+                    <button type="submit">Registrarse</button>
+                </form>
+            </div>
         </div>
-        
     </main>
+    <script src="../js/login.js"></script>
 
     <!-- IMPORTAR EL FOOTER -->
     <?php include './layout/footer.php'; ?>

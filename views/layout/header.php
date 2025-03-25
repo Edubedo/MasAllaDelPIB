@@ -24,7 +24,7 @@
     <!-- CUSTOM STYLESHEET -->
     <!-- ICONSCOUT CDN -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="../../css/navbar.css">
     <!-- GOOGLE FONT(MONTSERATE) -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,800;1,700&display=swap" rel="stylesheet">
 </head>

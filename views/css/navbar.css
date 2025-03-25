@@ -66,6 +66,7 @@ nav .list li {
 nav .icon-bars {
     display: none;
     cursor: pointer;
+    
 }
 
 nav .icon-bars .line {
