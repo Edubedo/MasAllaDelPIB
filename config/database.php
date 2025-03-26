@@ -14,4 +14,6 @@ try {
 } catch (PDOException $e) {
     die("Error de conexión: " . $e->getMessage());
 }
+mysqli_close($conexion);
+
 ?>
