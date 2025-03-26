@@ -70,7 +70,7 @@ $pdo = null;
 
     <div class="cuerpo">
         <?php
-            foreach ($postsDB as $post) { 
+            foreach ($filteredPosts as $post) { 
                 // Si no hay imagen, usamos la imagen predeterminada
                 $imageSrc = !empty($post['image']) ? "../admin/posts/" . htmlspecialchars($post['image']) : "../admin/posts/uploads/preterminada.jpg";
 
