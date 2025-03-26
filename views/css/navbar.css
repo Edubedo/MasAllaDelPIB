@@ -66,7 +66,6 @@ nav .list li {
 nav .icon-bars {
     display: none;
     cursor: pointer;
-    
 }
 
 nav .icon-bars .line {
@@ -142,18 +141,6 @@ nav button {
         transition: transform 0.3s ease;
         padding: 2rem;
         z-index: 5;
-    }
-
-    /* Estilos para los elementos dentro de la lista */
-    nav .list li {
-        width: 100%;
-        text-align: center;
-    }
-
-    nav .list li a {
-        display: block;
-        width: 100%;
-        padding: 1.5rem 0;
     }
 
     /* Mostrar la lista cuando el toggle está activado */
