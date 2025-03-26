@@ -403,6 +403,33 @@ a {
     color: #ffffff!important;
 }
 
+.referencias-links{
+    color: black!important;
+    text-decoration: underline;
+}
+
+th, td {
+    word-wrap: break-word;
+    white-space: normal;
+    max-width: 25rem; /* Ajusta el ancho máximo de las columnas */
+    overflow-wrap: break-word;
+}
+
+td:nth-child(2) {  /* Segunda columna: "Título" */
+    max-width: 17rem;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+tr td:nth-child(9) a.btn {
+    max-width: auto;
+}
+
+.search-box input::placeholder {
+    color: white; /* Cambia el color del placeholder a blanco */
+    opacity: 1;   /* Asegura que sea completamente opaco */
+}
 /*Modal de las publicaciones (editar o eliminar)*/
 .modal-opciones {
     display: none; /* Oculta el modal por defecto */

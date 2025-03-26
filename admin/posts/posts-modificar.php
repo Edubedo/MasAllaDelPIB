@@ -14,7 +14,7 @@ $sql = $conexion->query("SELECT * FROM posts WHERE Id_posts = $id");
 </head>
 <body> 
     <div class="container">
-        <h1>Crear nueva publicación</h1>
+        <h1>Modificar publicación</h1>
 
         <!-- Agregar campo oculto para pasar el ID -->
         <input type="hidden" name="id" value="<?= $_GET['id'] ?>">

@@ -67,7 +67,7 @@ if (isset($_SESSION['username'])) {
 
             <!-- Buscador General -->
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search">
+                <input type="text" id="searchInput" placeholder="Buscar">
             </div>
 
             <!-- Botón de Nueva Publicación -->
@@ -94,11 +94,11 @@ if (isset($_SESSION['username'])) {
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Titulo</th>
-                        <th>Cotenido</th>
-                        <th>Categoria</th>
+                        <th>Título</th>
+                        <th>Contenido</th>
+                        <th>Categoría</th>
                         <th>Imagen</th>
-                        <th>Referencia</th>
+                        <th>Referencias</th>
                         <th>Creador</th>
                         <th>Fecha</th>
                         <th></th>
@@ -117,7 +117,7 @@ if (isset($_SESSION['username'])) {
                         <td><?php echo $mostrar['content']; ?></td> 
                         <td><?php echo $mostrar['category']; ?></td>
                         <td><img src="<?= $mostrar['image']; ?>" alt="Imagen del post" class="image-post"></td>
-                        <td><?php echo $mostrar['referencia_posts']; ?></td>
+                        <td><a class="referencias-links" href="<?= htmlspecialchars($mostrar['referencia_posts']) ?>" style="color:black;"><?= htmlspecialchars($mostrar['referencia_posts']) ?></a></td>
                         <td><?php echo $mostrar['user_creation']; ?></td>
                         <td><?php echo $mostrar['post_date']; ?></td>
                         <td> 
