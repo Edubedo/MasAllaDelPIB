@@ -422,6 +422,9 @@ td:nth-child(2) {  /* Segunda columna: "Título" */
     overflow-wrap: break-word;
 }
 
+td:nth-child(3) {  /* Tercera columna: "Contenido" */
+    max-width: 29rem;
+}
 tr td:nth-child(9) a.btn {
     max-width: auto;
 }
