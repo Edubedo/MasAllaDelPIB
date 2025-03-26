@@ -3,9 +3,9 @@
 include '././config/database.php';
 
 
-$imagenPredeterminada = './../admin/posts/uploads/preterminada.jpg';
+
 // consulta a la base de datos y limitamos a 6 el carousel
-$query = "SELECT Id_posts, title, content, post_date, category, user_creation 
+$query = "SELECT Id_posts, title, content, post_date, category, image, user_creation 
           FROM posts 
           ORDER BY post_date DESC 
           LIMIT 6";
@@ -23,6 +23,8 @@ try {
 } catch (PDOException $e) {
     die("Error al consultar los posts: " . $e->getMessage());
 }
+
+$pdo = null;
 ?>
 
 <!DOCTYPE html>
@@ -44,12 +46,14 @@ try {
 
                 <div class="post-wrapper">
                     <!-- El foreach aqui porque trabajamos con array y es mas dinamico -->
-                    <?php foreach ($posts as $post): ?> 
-                        <!-- Mandamos a llamar de momento la imagen predeterminada -->
+                    <?php foreach ($posts as $post): 
+                        // Si no hay imagen, usamos la imagen predeterminada
+                        $imageSrc = !empty($post['image']) ? "../admin/posts/" . htmlspecialchars($post['image']) : "../admin/posts/uploads/preterminada.jpg";
+                    ?>
                         <a href="" target="_blank"> 
                             <div class="post">
                                 <!-- Usar la imagen predeterminada -->
-                                <img src="<?= $imagenPredeterminada; ?>" class="slider-image">
+                                <img src="<?= $imageSrc; ?>" class="slider-image">
                                 
                                 <div class="post-info">
                                     <h4><?= htmlspecialchars($post['title']); ?></h4>
