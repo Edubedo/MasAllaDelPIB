@@ -98,6 +98,7 @@ if (isset($_SESSION['username'])) {
                         <th>Cotenido</th>
                         <th>Categoria</th>
                         <th>Imagen</th>
+                        <th>Referencia</th>
                         <th>Creador</th>
                         <th>Fecha</th>
                         <th></th>
@@ -113,9 +114,10 @@ if (isset($_SESSION['username'])) {
                     <tr class="postRow">
                         <td><?php echo $mostrar['Id_posts']; ?></td>
                         <td><?php echo $mostrar['title']; ?></td>
-                        <td><?php echo $mostrar['content']; ?></td>
+                        <td><?php echo $mostrar['content']; ?></td> 
                         <td><?php echo $mostrar['category']; ?></td>
                         <td><img src="<?= $mostrar['image']; ?>" alt="Imagen del post" class="image-post"></td>
+                        <td><?php echo $mostrar['referencia_posts']; ?></td>
                         <td><?php echo $mostrar['user_creation']; ?></td>
                         <td><?php echo $mostrar['post_date']; ?></td>
                         <td> 
@@ -135,6 +137,7 @@ if (isset($_SESSION['username'])) {
     </main>
 
     <script src="../../js/posts-consulta.js"></script>
+    
     <script>
 
         // Función para filtrar los posts por categoría
