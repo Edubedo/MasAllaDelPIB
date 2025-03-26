@@ -39,6 +39,7 @@ html, body {
     display: flex;
     justify-content: center; /* Distribuye los elementos de forma uniforme entre los extremos */
     align-items: center; /* Alinea verticalmente todos los elementos */
+    flex-wrap: wrap;
     padding: 2rem 5rem;
     background-color: #262626;
     width: 90%;
@@ -160,7 +161,22 @@ html, body {
     }
 }
 
-@media (max-width: 768px) {
+/* Laptops y tablets grandes */
+@media (max-width: 1200px) {
+    .footer-container1 {
+        padding: 2rem 4rem;
+    }
+
+    .logoEmpresa .imagen img {
+        max-width: 13rem;
+    }
+
+    .icono-correo {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 868px) {
     .footer-container1 {
         flex-direction: column;
         align-items: center;
@@ -185,5 +201,104 @@ html, body {
 
     .redes-sociales i {
         font-size: 2rem;
+    }
+}
+
+/* Móviles grandes */
+@media (max-width: 768px) {
+    .footer-container1 {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .logoEmpresa, .contactos, .redes-siguenos {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .logoEmpresa .imagen img {
+        max-width: 12rem;
+    }
+
+    .redes-sociales i {
+        font-size: 2rem;
+    }
+
+    .contactos {
+        font-size: 1.4rem;
+    }
+}
+
+/* Móviles medianos */
+@media (max-width: 600px) {
+    .footer-container1 {
+        padding: 1.5rem;
+    }
+
+    .logoEmpresa, .contactos, .redes-siguenos {
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .icono-correo {
+        font-size: 3rem;
+    }
+
+    .redes-sociales i {
+        font-size: 1.8rem;
+    }
+
+    .footer-bottom {
+        font-size: 1rem;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .footer-container1 {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .contactos, .redes-siguenos {
+        font-size: 1.2rem;
+    }
+
+    .redes-sociales i {
+        font-size: 1.6rem;
+    }
+
+    .icono-correo {
+        font-size: 2.5rem;
+    }
+
+    .footer-bottom {
+        font-size: 0.9rem;
+    }
+}
+
+/* Pantallas extrapequeñas (menos de 360px) */
+@media (max-width: 360px) {
+    .footer-container1 {
+        padding: 0.8rem;
+    }
+
+    .logoEmpresa .imagen img {
+        max-width: 10rem;
+    }
+
+    .contactos {
+        font-size: 1rem;
+    }
+
+    .redes-sociales i {
+        font-size: 1.4rem;
+    }
+
+    .footer-bottom {
+        font-size: 0.8rem;
     }
 }
