@@ -56,12 +56,12 @@ $pdo = null;
                                 <img src="<?= $imageSrc; ?>" class="slider-image">
                                 
                                 <div class="post-info">
-                                    <h4><?= htmlspecialchars($post['title']); ?></h4>
+                                    <h4><?= htmlspecialchars(strlen($post['title']) > 44 ? substr($post['title'], 0, 46) . "..." : $post['title']); ?></h4>
                                     <div class="post-data">
                                         <i class="far fa-user"></i> <span><?= htmlspecialchars($post['user_creation']); ?></span>
                                         <i class="far fa-calendar"></i> <span><?= date("F d, Y", strtotime($post['post_date'])); ?></span>
                                     </div>
-                                    <p><?= htmlspecialchars(substr($post['content'],0,120) . "..."); ?></p>
+                                    <p><?= htmlspecialchars(strlen($post['content']) > 120 ? substr($post['content'],0,120) . "..." :  $post['content']); ?></p>
                                 </div>
                             </div>
                         </a>
