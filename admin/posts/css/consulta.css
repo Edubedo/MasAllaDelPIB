@@ -425,6 +425,10 @@ td:nth-child(2) {  /* Segunda columna: "Título" */
 td:nth-child(3) {  /* Tercera columna: "Contenido" */
     max-width: 29rem;
 }
+
+td:nth-child(6) {  /* Cuarta columna: "referencias" */
+    max-width: 17.5rem;
+}
 tr td:nth-child(9) a.btn {
     max-width: auto;
 }
