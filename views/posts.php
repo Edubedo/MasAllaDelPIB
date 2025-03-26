@@ -1,13 +1,10 @@
 <?php
 require '../config/database.php';
 
-// Definir la ruta de la imagen predeterminada
-$imagenPredeterminada = '../admin/posts/uploads/preterminada.jpg'; // Cambia esto por la ruta correcta
-
 // Se hace la consulta y se obtienen los datos de las publicaciones 
 $query = "SELECT Id_posts, title, content, post_date, category, image, user_creation
-          FROM posts 
-          "; 
+          FROM posts"; 
+
 
 try {
     // Preparar y ejecutar la consulta
@@ -76,14 +73,18 @@ $pdo = null;
 
     <!-- Cuerpo de las publicaciones -->
 
+
+
     <div class="cuerpo">
         <?php
             foreach ($postsDB as $post) { 
+                // Si no hay imagen, usamos la imagen predeterminada
+                $imageSrc = !empty($post['image']) ? "../admin/posts/" . htmlspecialchars($post['image']) : "../admin/posts/uploads/preterminada.jpg";
 
                 echo '<a href="./post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
                         <div class="p1">
                             <div class="imagen_post">
-                                <img class="imagen1" src="' . htmlspecialchars($post['image']) . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
+                                <img class="imagen1" src="' . $imageSrc . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
                             </div>
                             <div class="info_post">
                                 <h4 class="titulo1">' . htmlspecialchars($post['title']) . '</h4>
@@ -98,6 +99,8 @@ $pdo = null;
             }
         ?>
     </div>
+
+    
 
     <!-- Footer -->
     <?php include './layout/footer.php'; ?>

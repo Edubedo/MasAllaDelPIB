@@ -5,7 +5,7 @@ require 'config/database.php';
 $imagenPredeterminada = 'admin/posts/uploads/preterminada.jpg'; // Cambia esto por la ruta correcta
 
 // Se hace la consulta y se obtienen los datos de las publicaciones 
-$query = "SELECT Id_posts, title, content, post_date, category, user_creation 
+$query = "SELECT Id_posts, title, content, post_date, category, image, user_creation 
           FROM posts 
           ORDER BY RAND() 
           LIMIT 4"; // Aquí ajustamos el límite de las publicaciones a mostrar debajo del carrusel
@@ -62,14 +62,15 @@ $pdo = null;
             <?php
                 // Mostrar las publicaciones obtenidas de la base de datos
                 foreach ($postsDB as $post) {
-                    // Usar la imagen predeterminada para todas las publicaciones
-                    $imagen = $imagenPredeterminada;
+                    // Si no hay imagen, usamos la imagen predeterminada
+                    $imageSrc = !empty($post['image']) ? "../admin/posts/" . htmlspecialchars($post['image']) : "../admin/posts/uploads/preterminada.jpg";
+
 
                     echo '<a href="./post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
                             <div class="p1">
                                 <div class="imagen_post">
                                     <!-- Imagen predeterminada -->
-                                    <img class="imagen1" src="' . $imagen . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
+                                    <img class="imagen1" src="' . $imageSrc . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
                                 </div>
                                 <div class="info_post">
                                     <h4 class="titulo1">' . htmlspecialchars($post['title']) . '</h4>
