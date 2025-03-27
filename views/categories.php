@@ -86,7 +86,7 @@ $pdo = null;
                                     <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user_creation']) . '</span>
                                     <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['post_date'])) . '</span>
                                 </div>
-                                <p class="texto1">' . htmlspecialchars(substr($post['content'],0,180) . "...") . '</p>
+                                <p class="texto1">' . htmlspecialchars(strlen($post['title']) > 60 ? substr($post['content'],0,125) . "..." :  substr($post['content'],0,180) . "...")  . '</p>
                             </div>
                         </div>
                     </a>';
