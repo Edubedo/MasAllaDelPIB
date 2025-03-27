@@ -45,7 +45,7 @@
 }
 
 /* Menú hamburguesa (móvil) */
-.icon-bars {                
+.iconos {                
     display: none;
     cursor: pointer;
     position: absolute;
@@ -54,17 +54,19 @@
     z-index: 20;
 }
 
-.icon-bars .line {
-    width: 25px;
+.iconos .line {
+    width: 20px;
     height: 3px;
-    background-color: white;
-    margin: 5px;
+    background-color: rgb(0, 0, 0) !important;
+    margin: 3px;
     border-radius: 3px;
     transition: all 0.3s ease-in-out;
 }
 
+
+
 /* Estilos para la versión móvil */
-@media (max-width: 1030px) {
+@media (max-width: 768px) {
     .nav_public {
         padding: 1rem;
         height: 5rem;
@@ -152,7 +154,7 @@
     display: flex;
     width: 50rem;
     height: auto;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -219,24 +221,6 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.icon-bars {
-    display: none;
-    cursor: pointer;
-    position: absolute;
-    top: 1.5rem;
-    right: 2rem;
-    z-index: 20;
-}
-
-.icon-bars .line {
-    width: 10px;
-    height: 2px;
-    background-color: aliceblue;
-    margin: 5px;
-    border-radius: 3px;
-    transition: all 0.3s ease-in-out;
-}
-
 a {
     margin: 1rem;
 }
@@ -245,6 +229,8 @@ a img {
     transition: transform 0.5s;
     object-fit: contain;
 }
+
+
 @media (max-width: 1030px) {
     .nav_public .list {
         display: flex; /* Asegura que la lista se muestre */

@@ -62,6 +62,12 @@ $pdo = null;
             <li><a href="./categories.php?category=emprendimiento-negocios">Emprendimiento y Negocios</a></li>
             <li><a href="./categories.php?category=mundo-laboral">Mundo Laboral</a></li>
         </ul>
+        <input type="checkbox" id="toggle" style="display: none;">
+        <label for="toggle" class="icon-bar">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </label>
     </nav>
 
     <div class="encabezado">
