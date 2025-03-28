@@ -1,9 +1,10 @@
-<?php 
+<?php
+session_start(); 
 include('../../config/database.php');
 $id = $_GET['id']; 
 
 // Iniciar sesión para usar mensajes de éxito
-session_start();
+
 
 // Obtener los datos del usuario para mostrarlos en el formulario
 $sql = $conexion->query("SELECT * FROM users WHERE iduser = $id");
