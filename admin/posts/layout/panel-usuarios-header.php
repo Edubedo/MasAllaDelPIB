@@ -40,6 +40,7 @@
             <ul class="nav__items" style="font-size: 1.2rem;">
                 <li><a href="/index.php">Inicio</a></li>
                 <li><a href="<?= "/views/" ?>posts.php">Publicaciones</a></li>
+                <li><a href="<?= "/admin/posts/panel-usuarios.php" ?>">Panel de usuarios</a></li>
                 
             </ul>
             
