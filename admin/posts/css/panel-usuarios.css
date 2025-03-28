@@ -189,7 +189,9 @@ button:hover {
     left: 29.7%; 
 }
 
-
+#logo_admin {
+    cursor: pointer;
+}
 
 #userPopup {
     display: none;
