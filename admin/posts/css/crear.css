@@ -87,3 +87,12 @@ button:hover {
     background-color: #0056b3;
     transform: scale(1.02);
 }
+
+.success-message {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}

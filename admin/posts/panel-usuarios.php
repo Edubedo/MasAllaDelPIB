@@ -7,7 +7,8 @@ include '../../config/database.php';
 if (isset($_SESSION['username'])) {
 
     $username = $_SESSION['username'];
-    $email = $_SESSION['email'];  
+    $email = $_SESSION['email'];
+    $iduser = $_SESSION['iduser'];  
 
 } else {
     // Si no hay usuario logueado lo va a redirigir al login
@@ -49,7 +50,7 @@ if (isset($_SESSION['username'])) {
                 <p><span id="username"><?php echo htmlspecialchars($username); ?></span></p>
                 <p><strong>Email</strong> 
                 <p><span id="email"><?php echo htmlspecialchars($email); ?></span></p>
-                <a href="editar-perfil.php">
+                <a href="editar-perfil.php?id=<?php echo $iduser; ?>">
                     <button>Editar perfil</button>
                 </a>
             </div>
@@ -90,7 +91,7 @@ if (isset($_SESSION['username'])) {
                         <td><?php echo $mostrar['password']; ?></td>
                         <td> 
                          <!-- Botón de modificar usuario -->
-                        <a href="usuario-modificar.php?id=<?php echo $mostrar['iduser']; ?>" class="btn editar">Editar</a>
+                        <a href="editar-perfil.php?id=<?php echo $mostrar['iduser']; ?>" class="btn editar">Editar</a>
                         <!-- Botón de eliminar usuario -->
                         <a href="usuario-eliminar.php?id=<?php echo $mostrar['iduser']; ?>" class="btn eliminar">Eliminar</a>
                         </td>

@@ -198,10 +198,45 @@ button:hover {
     width: 100%; /* Ocupa todo el ancho */
 }
 
+#logo_admin{
+    cursor: pointer;
+}
+
 .search-box {
     position: absolute;
     left: 29.7%; 
 }
+
+#userPopup {
+    display: none;
+    position: absolute;
+    top: 10rem;
+    left: 4rem;
+    width: 25rem;
+    height: 18rem;
+    background: white;
+    padding: 1rem;
+    padding-top: 1.5rem;
+    border: 0.1rem solid #ccc;
+    border-radius: 1rem;
+}
+
+#userPopup p {
+    color: #000;
+    margin: 0.5rem 0;
+    text-align: left;
+    font-size: 1.4rem;
+}
+
+#userPopup button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
 /* Estilos para la tabla */
 table {
     width: 100%;
