@@ -4,7 +4,7 @@
     top: 4.5rem;
     left: 0;
     right: 0;
-    z-index: 100;
+    z-index: 1;
     background-color: #6d9aa6 !important; /* Color azul claro */
     display: flex;
     align-items: center;
@@ -45,19 +45,19 @@
 }
 
 /* Menú hamburguesa (móvil) */
-.iconos {                
+.icon-bars-public {                
     display: none;
     cursor: pointer;
     position: absolute;
     top: 1.2rem;
     right: 2rem;
-    z-index: 20;
+    z-index: 10;
 }
 
-.iconos .line {
+.icon-bars-public .line {
     width: 20px;
     height: 3px;
-    background-color: rgb(0, 0, 0) !important;
+    background-color: rgb(255, 255, 255) !important;
     margin: 3px;
     border-radius: 3px;
     transition: all 0.3s ease-in-out;
@@ -73,7 +73,7 @@
     }
 
     /* Menú hamburguesa visible en pantallas pequeñas */
-    .icon-bars {
+    .icon-bars-public {
         display: block;
     }
 
