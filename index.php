@@ -7,7 +7,7 @@ $imagenPredeterminada = 'admin/posts/uploads/preterminada.jpg'; // Cambia esto p
 // Se hace la consulta y se obtienen los datos de las publicaciones 
 $query = "SELECT Id_posts, title, content, post_date, category, image, user_creation 
           FROM posts 
-          ORDER BY post_date DESC 
+          ORDER BY post_date DESC
           LIMIT 4"; // Aquí ajustamos el límite de las publicaciones a mostrar debajo del carrusel
 
 try {
@@ -55,7 +55,7 @@ $pdo = null;
 
         <!-- Sección de Publicaciones -->
         <div class="encabezado">
-            <h1>Mas recientes</h1>
+            <h1>Mas Recientes</h1>
         </div>
 
         <div class="cuerpo">
