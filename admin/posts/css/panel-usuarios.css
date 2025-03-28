@@ -63,6 +63,7 @@ body {
     color: transparent;
 }
 
+
 button {
     padding: 1rem 2rem;
     font-size: 1.6rem;
@@ -187,13 +188,52 @@ button:hover {
     position: absolute;
     left: 29.7%; 
 }
+
+
+#logo_admin {
+    cursor: pointer;
+}
+
+#userPopup {
+    display: none;
+    position: absolute;
+    top: 10rem;
+    left: 4rem;
+    width: 25rem;
+    height: 18rem;
+    background: white;
+    padding: 1rem;
+    padding-top: 1.5rem;
+    border: 0.1rem solid #ccc;
+    border-radius: 1rem;
+}
+
+#userPopup p {
+    color: #000;
+    margin: 0.5rem 0;
+    text-align: left;
+    font-size: 1.4rem;
+}
+
+#userPopup button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
 /* Estilos para la tabla */
 table {
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
-    font-family: 'Arial', sans-serif;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
 }
 
 /* Encabezado de la tabla */
@@ -201,7 +241,8 @@ table th {
     background-color: #1b1158;
     color: #fff; /* Letra blanca */
     padding: 1rem;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
+
     text-align: left;
 }
 
@@ -212,7 +253,9 @@ table td {
     text-align: left; 
     line-height: 1.4;
     background-color: #f8f8f8;
-    font-size: 1rem;
+
+    font-size: 1.4rem;
+
     border-bottom: 1px solid #ddd; 
 
 }
@@ -359,30 +402,6 @@ table td:last-child, table th:last-child {
 
 
 
-.title, .category, .user, .date {
-    padding: 0.5rem; /* Espaciado interno para mejorar la legibilidad */
-    border-right: 1px solid #ccc; 
-    margin-top: 1.4rem;
-    border-bottom: 1px solid #ccc;
-}
-
-
-
-.title {
-    grid-column: 1; /* El título va en la primera columna */
-}
-
-.category {
-    grid-column: 2; /* La categoría va en la segunda columna */
-}
-
-.user {
-    grid-column: 3; /* El usuario va en la tercera columna */
-}
-
-.date {
-    grid-column: 4; /* La fecha va en la cuarta columna */
-}
 
 
 a {
