@@ -189,6 +189,7 @@ button:hover {
     left: 29.7%; 
 }
 
+
 #logo_admin {
     cursor: pointer;
 }
@@ -223,13 +224,16 @@ button:hover {
     cursor: pointer;
 }
 
+
 /* Estilos para la tabla */
 table {
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
+
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
 }
 
 /* Encabezado de la tabla */
@@ -238,6 +242,7 @@ table th {
     color: #fff; /* Letra blanca */
     padding: 1rem;
     font-size: 1.4rem;
+
     text-align: left;
 }
 
@@ -248,7 +253,9 @@ table td {
     text-align: left; 
     line-height: 1.4;
     background-color: #f8f8f8;
+
     font-size: 1.4rem;
+
     border-bottom: 1px solid #ddd; 
 
 }
