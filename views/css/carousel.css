@@ -91,7 +91,7 @@ main, .page-wrapper {
     font-size: 24px;
     color: black;
     cursor: pointer;
-    z-index: 100;
+    z-index: 1;
     color: #6D9AA6;
 }
 
