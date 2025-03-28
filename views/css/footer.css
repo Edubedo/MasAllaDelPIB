@@ -102,8 +102,11 @@ html, body {
     text-align: left;
 }
 
-.correos p {
+.correos a {
     margin: 0;
+}
+.correos a:hover {
+    color: #f0a500;
 }
 
 /* Redes sociales */
