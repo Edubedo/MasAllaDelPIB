@@ -51,7 +51,7 @@ $pdo = null;
     <!-- BARRA DE NAVEGACIÓN -->
     <nav class="nav_public">
         <input type="checkbox" id="toggle" style="display: none;">
-        <label class="icon-bars-public" for="toggle">
+        <label class="icon-bars" for="toggle">
             <div class="line"></div>
             <div class="line"></div>
             <div class="line"></div>

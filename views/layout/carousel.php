@@ -50,7 +50,7 @@ $pdo = null;
                             // Si no hay imagen, usamos la imagen predeterminada
                             $imageSrc = !empty($post['image']) ? "../admin/posts/" . htmlspecialchars($post['image']) : "../admin/posts/uploads/preterminada.jpg";
                         ?>
-                            <a href="/views/post.php?id=<?= htmlspecialchars($post['Id_posts']); ?>" target="_blank">
+                            <a href="/views/post.php?id=<?= htmlspecialchars($post['Id_posts']); ?>">
                                 <div class="post">
                                     <!-- Usar la imagen predeterminada -->
                                     <img src="<?= $imageSrc; ?>" class="slider-image">
