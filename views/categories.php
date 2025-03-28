@@ -81,7 +81,7 @@ $pdo = null;
                 $imageSrc = !empty($post['image']) ? "../admin/posts/" . htmlspecialchars($post['image']) : "../admin/posts/uploads/preterminada.jpg";
 
 
-                echo '<a href="./post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
+                echo '<a href="post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
                         <div class="p1">
                             <div class="imagen_post">
                                 <img class="imagen1" src="' . $imageSrc . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
