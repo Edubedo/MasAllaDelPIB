@@ -129,8 +129,6 @@
     transform: translateX(0); /* Mostrar el menú */
 }
 
-
-
 .encabezado {
     margin-top: 10rem;
     font-size: 2rem;
@@ -151,18 +149,25 @@
 }
 
 .p1{
-    display: flex;
+    flex-direction: column;
     width: 50rem;
     height: auto;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
     border-radius: 15px;
+    margin: 0;
+    padding: 0;
 }
 
 .p1:hover {
     transform: translateY(-10px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.cuerpo_post{
+    display: flex;
+    width: 100%;
 }
 
 .titulo1{
@@ -190,9 +195,7 @@
 .imagen1{
     width: 20rem;
     height: 20rem;
-    top: 1rem;
     object-fit: cover;
-    
 }
 
 .texto1{
@@ -202,6 +205,55 @@
     margin-top: 1rem;
 }
 
+.interaccion{
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem;
+    height: 3rem;
+}
+
+.interaccion .comentarios {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem; /* Espaciado a la derecha */
+    color: #19324d;
+}
+
+.interaccion .likes {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem; /* Espaciado a la izquierda */
+}
+
+.interaccion .likes a {
+    display: inline-block;
+    margin-right: 10px;  /* Espaciado entre los iconos */
+    font-size: 24px;  /* Tamaño del icono */
+    color: #19324d;  /* Azul fuerte */
+    transition: color 0.3s ease;  /* Transición suave al pasar el cursor */
+}
+
+/* Efecto de cambio de color cuando se pasa el cursor */
+.interaccion .likes a:hover {
+    color: #0f141b;  /* Azul más oscuro al hacer hover */
+    transform: scale(1.1);  /* Aumenta el tamaño del icono al hacer hover */
+    transition: transform 0.3s ease;  /* Transición suave al aumentar el tamaño */
+
+}
+
+/* Alinear los iconos a la izquierda */
+.interaccion .likes {
+    display: flex;
+    justify-content: flex-start;  /* Alinea los iconos a la izquierda */
+    align-items: center;
+}
+
+.likes_count {
+    font-size: 14px;
+    color: #19324d; /* Color azul fuerte */
+    margin-left: 8px; /* Espaciado entre los íconos de like y el contador */
+    font-weight: bold;
+}
 
 .categoria {
     align-items: center;

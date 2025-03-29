@@ -80,4 +80,33 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Error occurred in sidebar functionality:", error);
         }
     }
+
+    // Verificar si jQuery está disponible antes de ejecutar código jQuery
+    if (window.jQuery) {
+        $(document).ready(function () {
+            $(".options").on("click", function () {
+                var post_id = $(this).attr("id").replace(/\D/g, '');
+                var vote_type = $(this).data("vote-type");
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'vote.php',
+                    dataType: 'json',
+                    data: { post_id: post_id, vote_type: vote_type },
+                    success: function (response) {
+                        if (!response.error) {
+                            $("#vote_up_count_" + response.post_id).text(response.vote_up);
+                            $("#vote_down_count_" + response.post_id).text(response.vote_down);
+                        } else {
+                            alert("Error: " + response.error);
+                        }
+                    }
+                });
+            });
+        });
+    } else {
+        console.warn("jQuery no está cargado, la funcionalidad de votos no funcionará.");
+    }
+
+    
 });
