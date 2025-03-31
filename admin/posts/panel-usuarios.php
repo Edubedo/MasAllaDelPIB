@@ -32,10 +32,7 @@ if (isset($_SESSION['username'])) {
 
 <body>
 
-    <?php include './layout/panel-usuarios-header.php'; ?>
-
-
-
+    <?php include './layout/posts-header.php'; ?>
 
     <!-- Panel de Administración -->
     <main id="admin-panel">
