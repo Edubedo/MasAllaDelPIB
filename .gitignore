@@ -3,3 +3,6 @@
 *.msi
 *.bak
 .env
+composer.phar
+vendor/
+composer.lock
