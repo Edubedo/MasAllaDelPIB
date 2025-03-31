@@ -129,9 +129,9 @@ $idtypeuser = $row['id_type_user'];
                     <?php
                     //Consulta para mostrar datos en la tabla
                     $sql = null;
-                    if ($idtypeuser == 2) { // si el usuario es administrador
+                    if ($idtypeuser == 1) { // si el usuario es administrador
                         $sql = "SELECT * FROM posts";
-                    } else if ($idtypeuser == 1) { // si el usuario es autor
+                    } else if ($idtypeuser == 2) { // si el usuario es autor
                         $sql = "SELECT * FROM posts WHERE user_creation = '$username'";
                     }
 
