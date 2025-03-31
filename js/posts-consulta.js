@@ -1,4 +1,4 @@
-document.getElementById("botonContinuar").addEventListener("click", function() {
+document.getElementById("botonContinuar").addEventListener("click", function () {
     document.getElementById("modal").style.display = "none"; // Oculta el modal
     document.getElementById("overlay").style.display = "none"; // Quita la capa oscura
 });
@@ -19,7 +19,7 @@ function eliminarPublicacion(id) {
     }
 }
 
-document.getElementById("logo_admin").addEventListener("click", function(event) {
+document.getElementById("logo_admin").addEventListener("click", function (event) {
     let popup = document.getElementById("userPopup");
     if (popup.style.display === "block") {
         popup.style.display = "none";
@@ -30,7 +30,7 @@ document.getElementById("logo_admin").addEventListener("click", function(event) 
     }
 });
 
-document.addEventListener("click", function(event) {
+document.addEventListener("click", function (event) {
     let popup = document.getElementById("userPopup");
     let logo = document.getElementById("logo_admin");
     if (popup.style.display === "block" && event.target !== popup && event.target !== logo) {

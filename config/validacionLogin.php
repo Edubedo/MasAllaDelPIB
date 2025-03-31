@@ -1,5 +1,5 @@
 <?php
-include('database.php'); 
+include('database.php');
 
 if (isset($_POST["email"]) && isset($_POST["password"])) {
     $email = $_POST["email"];
@@ -20,21 +20,19 @@ $stmt->execute([
     ':password' => $password
 ]);
 
-// verificacion si hay usuarios
+// Verificación si hay usuarios
 if ($stmt->rowCount() > 0) {
-
-    // obtenemos el resultado de usuario desde un array
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    
     $_SESSION["email"] = $email;
-    $_SESSION['username'] = $user['username']; 
-    
-    // Redireccion al panel si tiene acceso
+    $_SESSION['username'] = $user['username'];
+    $_SESSION['id_type_user'] = $user['id_type_user']; // Corrección aquí
+
+    // Redirección al panel si tiene acceso
     header('Location: ../admin/posts/posts-consulta.php');
     exit();
 } else {
     $_SESSION['error_message'] = 'Correo electrónico o contraseña incorrectos.';
+    // No redirigimos, volvemos al formulario
     header('Location: ../views/signin.php');
     exit();
 }
-?>

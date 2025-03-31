@@ -1,12 +1,22 @@
 <?php
-// require 'config/database.php';
-// if (isset($_SESSION['user-id'])) {
-//     $id = filter_var($_SESSION['user-id'], FILTER_SANITIZE_NUMBER_INT);
-//     $query = "SELECT avatar FROM users WHERE id='$id'";
-//     $result = mysqli_query($connection, $query);
-//     $avatar =  mysqli_fetch_assoc($result);
-// }
+include '../../config/database.php';
+include "posts-eliminar.php";
 
+// Verifica si hay una session activa y mandamos a llamar el nombre del usuario
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+    $email = $_SESSION['email'];
+} else {
+    // Si no hay usuario logueado lo va a redirigir al login
+    header("Location: ../../views/signin.php");
+    exit();
+}
+
+// Obtener el tipo de usuario del usuario
+$sql = "SELECT * FROM users WHERE email = '$email'";
+$result = mysqli_query($conexion, $sql);
+$row = mysqli_fetch_assoc($result);
+$idtypeuser = $row['id_type_user'];
 ?>
 
 <!DOCTYPE HTML>
@@ -40,9 +50,14 @@
             <ul class="nav__items" style="font-size: 1.2rem;">
                 <li><a href="/index.php">Inicio</a></li>
                 <li><a href="<?= "/views/" ?>posts.php">Publicaciones</a></li>
-                <li><a href="<?= "/admin/posts/panel-usuarios.php" ?>">Panel de usuarios</a></li>
-                
+                <?php
+                if ($idtypeuser == 1) { // si es administrador
+                    echo '<li><a href="/admin/posts/panel-usuarios.php">Panel de usuarios</a></li>';
+                } else if ($idtypeuser == 2) { // si es autor
+                    echo '';
+                }
+                ?>
             </ul>
-            
+
         </div>
     </nav>

@@ -27,21 +27,21 @@
     <!-- <?php include './config/session_start.php'; ?> -->
     <!-- Session start -->
     <div class="area">
-            <ul class="circles">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
     <main>
-        
+
         <div class="contenedor__todo">
             <div class="caja__tracera">
                 <div class="caja__tracera-login">
@@ -55,16 +55,20 @@
                     <button id="btn__registrarse">Regístrate</button>
                 </div>
             </div>
-            
+
             <!-- Formularios de login y registro -->
             <div class="contenedor__Login-register">
                 <form action="../config/validacionLogin.php" method="POST" class="formulario__login">
                     <h2>Iniciar Sesión</h2>
+
                     <input type="text" name="email" placeholder="Correo Electrónico" required>
                     <input type="password" name="password" placeholder="Contraseña" required>
+                    <?php if (isset($_SESSION['error_message'])): ?>
+                        <p style="font-size:14px;margin-top:2px;color: red;"><?= $_SESSION['error_message']; ?></p>
+                        <?php unset($_SESSION['error_message']); ?>
+                    <?php endif; ?>
                     <button type="submit">Entrar</button>
                 </form>
-
 
                 <!-- Formulario de registro -->
                 <form action="" class="formulario__register">
