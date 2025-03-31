@@ -204,7 +204,7 @@ button:hover {
 
 .search-box {
     position: absolute;
-    margin-left: 29.7%; 
+    left: 29.7%; 
 }
 
 #userPopup {
@@ -527,13 +527,6 @@ tr td:nth-child(9) a.btn {
 @media (max-width: 768px) {
     .elecciones {
         grid-template-columns: 1fr 1fr; /* Dos columnas en pantallas pequeñas */
-    }
-        
-    .search-box {
-        position: relative; 
-        margin-left: 0;  
-        width: 100%; 
-        padding: 10px;
     }
 
     .elecciones select {
