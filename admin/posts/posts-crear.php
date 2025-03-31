@@ -1,5 +1,6 @@
 <?php
 include('../../config/database.php');
+include ('../../config/session_start.php')
 ?>
 
 <!DOCTYPE html>
@@ -40,17 +41,12 @@ include('../../config/database.php');
                 <input type="date" id="fecha_publicacion" name="fecha_publicacion_posts" required>
             </div>
             <div class="form-group">
-                <label for="usuario">Usuario:</label>
-                <select name="usuario_posts" id="usuario" required>
-                    <option value="" disabled selected hidden>Usuario</option>
-                    <option value="Pablo Alcalá">Pablo Alcalá</option>
-                    <option value="Eduardo Escobedo">Eduardo Escobedo</option>
-                    <option value="Daira Pamela">Daira Pamela</option>
-                    <option value="Nancy">Nancy</option>
-                    <option value="Quintero">Quintero</option>
-                    <option value="Juan">Juan</option>
-                </select>
+                <?php if(isset($_SESSION['username'])): ?>
+                    <label for="usuario">Usuario:</label>
+                    <span class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                <?php endif; ?>
             </div>
+
             <button type="submit" name="crear_post">Guardar Publicación</button>
         </form>
     </div>
@@ -58,43 +54,36 @@ include('../../config/database.php');
 
 <?php
 if (isset($_POST["crear_post"])) {
+    include 'database.php'; 
 
     $titulo = $_POST['titulo_posts'];
     $categoria = $_POST['categoria_posts'];
     $contenido = $_POST['contenido_posts'];
     $fecha = $_POST['fecha_publicacion_posts'];
-    $usuario = $_POST['usuario_posts'];
+    $usuario = $_SESSION['username'];  
 
-    // imagen
     $imagen_name = $_FILES['imagen_posts']['name'];
     $imagen_tmp_name = $_FILES['imagen_posts']['tmp_name'];
-    $imagen_size = $_FILES['imagen_posts']['size'];
-    $imagen_error = $_FILES['imagen_posts']['error'];
-    
-    // Aqui se guardara la imagen 
     $target_dir = 'uploads/';
     $target_file = $target_dir . basename($imagen_name);
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-
-  
-
-    // Movera la imagen al directorio de destino
     if (move_uploaded_file($imagen_tmp_name, $target_file)) {
-        // Aqui inserta los datos a la base de datos 
         $query = "INSERT INTO posts (title, content, post_date, category, image, user_creation) 
                   VALUES ('$titulo', '$contenido', '$fecha', '$categoria', '$target_file', '$usuario')";
 
         if (mysqli_query($conexion, $query)) {
-            header("Location: posts-consulta.php");
+            header("Location: posts-consulta.php");  
             exit();
         } else {
             echo "<p>Error al crear la publicación.</p>";
         }
+    } else {
+        echo "<p>Error al subir la imagen.</p>";
     }
 }
-
 ?>
+
+
 
 </body>
 </html>

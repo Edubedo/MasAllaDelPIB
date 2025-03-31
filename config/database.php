@@ -4,7 +4,6 @@ require_once __DIR__ . '/../vendor/autoload.php'; // Usa __DIR__ para rutas abso
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-// Necesitas ejecutar el siguiente comando para instalar la librería de dotenv
 // composer require vlucas/phpdotenv
 $host = $_ENV['DB_HOST'];
 $user = $_ENV['DB_USER'];
