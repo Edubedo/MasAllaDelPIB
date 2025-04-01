@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '../config/database.php';
 
 // Se hace la consulta y se obtienen los datos de las publicaciones 
