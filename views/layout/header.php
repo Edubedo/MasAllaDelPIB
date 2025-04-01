@@ -36,6 +36,7 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
                 <?php
 
                 if ($idtypeuser == 1) { // Administrador
+                    echo '<li><a class="texto_a" href="/index.php">Inicio</a></li>';
                     echo '<li><a class="texto_a" href="/admin/posts/posts-consulta.php">Panel de publicaciones</a></li>';
                     echo '<li><a class="texto_a" href="/admin/posts/panel-usuarios.php">Panel de usuarios</a></li>';
                 }elseif ($idtypeuser == 2) { // Autor
