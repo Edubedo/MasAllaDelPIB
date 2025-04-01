@@ -16,12 +16,14 @@ body {
 }
 
 .container {
-    max-width: 60rem;
     margin: 5rem auto;
     padding: 3rem;
+    width: 80%;
     background-color: #fff;
     border-radius: 1rem;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-content: space-between;
 }
 
 h1 {
@@ -31,8 +33,38 @@ h1 {
     color: #000000;
 }
 
-.form-group {
+.form-groupA {
     margin-bottom: 2rem;
+    background-color: #0056b3;
+}
+
+.form-groupB {
+    margin-bottom: 2rem;
+    background-color: #28a745;
+}
+
+.cat-fA{
+    background-color: #da8ccc;
+}
+
+.img-fA{
+    background-color: rgb(231, 154, 154);
+}
+
+.fecha-fA{
+    background-color: #74e4e6;
+}
+
+.user-fA{
+    background-color: #e1a0ec;
+}
+
+.title-fB{
+    background-color: #af7070;
+}
+
+.content-fB{
+    background-color: rgb(209, 170, 118);
 }
 
 label {
