@@ -59,8 +59,10 @@
             <!-- Formularios de login y registro -->
             <div class="contenedor__Login-register">
                 <form action="../config/validacionLogin.php" method="POST" class="formulario__login">
-                    <h2 class="fa fa-user" style="font-size: 40px; margin-bottom: 10px; text-align: center; display: block;"></h2>
+                    <h2 class="fa fa-user" style="font-size: 40px; margin-bottom: 30px; text-align: center; display: block;"></h2>
+                    <p class="fa fa-envelope" style="font-size: 20px; margin-right: 5px; color:rgb(55, 72, 155);"></p>
                     <input type="text" name="email" placeholder="Correo Electrónico" required>
+                    <p class="fa fa-lock" style="font-size: 20px; margin-right: 10px; color:rgb(55, 72, 155);"></p>
                     <input type="password" name="password" placeholder="Contraseña" required>
                     <?php if (isset($_SESSION['error_message'])): ?>
                         <p style="font-size:14px;margin-top:2px;color: red;"><?= $_SESSION['error_message']; ?></p>
