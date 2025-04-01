@@ -15,36 +15,43 @@ include ('../../config/session_start.php')
     <div class="container">
         <h1>Crear nueva publicación</h1>
         <form action="#" name="crear_posts" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="titulo">Título:</label>
-                <input type="text" id="titulo" name="titulo_posts" required>
+
+            <div class="form-groupA">
+                <div class="cat-fA">
+                    <label for="categoria">Categoría:</label>
+                    <select name="categoria_posts" id="categoria" required>
+                        <option value="" disabled selected hidden>Categorías</option>
+                        <option value="crecimiento-economico">Crecimiento Económico</option>
+                        <option value="emprendimiento-negocios">Emprendimiento Negocios</option>
+                        <option value="mundo-laboral">Mundo laboral</option>
+                    </select>
+                </div>
+                <div class="img-fA">
+                    <label for="imagen">Imagen:</label>
+                    <input type="file" id="imagen" name="imagen_posts" accept="image/*" required>
+                </div>
+                <div class="fecha-fA">
+                    <label for="fecha_publicacion">Fecha de Publicación:</label>
+                    <input type="date" id="fecha_publicacion" name="fecha_publicacion_posts" required>
+                </div>
+                <div class="user-fA">
+                    <?php if(isset($_SESSION['username'])): ?>
+                        <label for="usuario">Usuario:</label>
+                        <span class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                    <?php endif; ?>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="categoria">Categoría:</label>
-                <select name="categoria_posts" id="categoria" required>
-                    <option value="" disabled selected hidden>Categorías</option>
-                    <option value="crecimiento-economico">Crecimiento Económico</option>
-                    <option value="emprendimiento-negocios">Emprendimiento Negocios</option>
-                    <option value="mundo-laboral">Mundo laboral</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="contenido">Contenido:</label>
-                <textarea id="contenido" name="contenido_posts" rows="6" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="imagen">Imagen:</label>
-                <input type="file" id="imagen" name="imagen_posts" accept="image/*" required>
-            </div>
-            <div class="form-group">
-                <label for="fecha_publicacion">Fecha de Publicación:</label>
-                <input type="date" id="fecha_publicacion" name="fecha_publicacion_posts" required>
-            </div>
-            <div class="form-group">
-                <?php if(isset($_SESSION['username'])): ?>
-                    <label for="usuario">Usuario:</label>
-                    <span class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
-                <?php endif; ?>
+
+            <div class="form-groupB">
+                <div class="title-fB">
+                    <label for="titulo">Título:</label>
+                    <input type="text" id="titulo" name="titulo_posts" required>
+                </div>
+                
+                <div class="content-fB">
+                    <label for="contenido">Contenido:</label>
+                    <textarea id="contenido" name="contenido_posts" rows="6" required></textarea>
+                </div>
             </div>
 
             <button type="submit" name="crear_post">Guardar Publicación</button>

@@ -1,6 +1,7 @@
 <?php
-
 $idtypeuser = $_SESSION['id_type_user'] ?? null;
+// Si no hay valor en $_SESSION['id_type_user'], asignar por defecto "visitante"
+$idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
 ?>
 
 <!DOCTYPE HTML>
@@ -31,35 +32,26 @@ $idtypeuser = $_SESSION['id_type_user'] ?? null;
                 </span>
             </a>
             <ul class="nav__items" style="font-size: 1.5rem;">
-                <li><a class="texto_a" href="/index.php">Inicio</a></li>
-                <li><a class="texto_a" href="<?= "/views/" ?>posts.php">Publicaciones</a></li>
-                <li><a class="texto_a" href="<?= "/views/" ?>about.php">Nosotros</a></li>
-
+                
                 <?php
+
                 if ($idtypeuser == 1) { // Administrador
-                    echo '<li><a href="/admin/posts/posts-consulta.php">Panel de publicaciones</a></li>';
-                    echo '<li><a href="/admin/posts/panel-usuarios.php">Panel de usuarios</a></li>';
-                } elseif ($idtypeuser == 2) { // Autor
-                    echo '<li><a href="/admin/posts/posts-consulta.php">Panel de control</a></li>';
+                    echo '<li><a class="texto_a" href="/admin/posts/posts-consulta.php">Panel de publicaciones</a></li>';
+                    echo '<li><a class="texto_a" href="/admin/posts/panel-usuarios.php">Panel de usuarios</a></li>';
+                }elseif ($idtypeuser == 2) { // Autor
+                    echo '<li><a class="texto_a" href="/index.php">Inicio</a></li>';
+                    echo '<li><a class="texto_a" href="/views/posts.php">Publicaciones</a></li>';
+                    echo '<li><a class="texto_a" href="/views/about.php">Nosotros</a></li>';
+                    echo '<li><a class="texto_a" href="/admin/posts/posts-consulta.php">Panel de control</a></li>';
 
-                }
-
-                // Si el usuario está autenticado
-                if ($idtypeuser) {
-                    $avatarPath = isset($_SESSION['avatar']) ? 'images/' . $_SESSION['avatar'] : 'images/default-avatar.png';
-                    echo '
-                    <li class="nav__profile">
-                        <div class="avatar">
-                            <img src="' . $avatarPath . '" alt="Avatar">
-                        </div>
-                        <ul>
-                            <li><a href="/config/logout.php">Cerrar Sesión</a></li>
-                        </ul>
-                    </li>';
-                } else {
-                    // Si no está autenticado, mostrar "Iniciar Sesión"
+                }elseif($idtypeuser == 3){ //visitante
+                    echo '<li><a class="texto_a" href="/index.php">Inicio</a></li>';
+                    echo '<li><a class="texto_a" href="/views/posts.php">Publicaciones</a></li>';
+                    echo '<li><a class="texto_a" href="/views/about.php">Nosotros</a></li>';
                     echo '<li><a class="texto_a" href="/views/signin.php">Iniciar Sesión</a></li>';
                 }
+                
+                
                 ?>
             </ul>
 

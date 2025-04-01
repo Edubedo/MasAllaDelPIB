@@ -39,11 +39,7 @@ $idtypeuser = $row['id_type_user'];
 <body>
 
     <?php 
-    if ($idtypeuser == 1) { // si el usuario es administrador
-        include './layout/posts-header.php';
-    } else if ($idtypeuser == 2) { // si el usuario es autor
-        include '../../views/layout/header.php';
-    }
+    include ('../../views/layout/header.php')
     
     ?>
 

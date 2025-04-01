@@ -27,12 +27,12 @@ if (isset($_SESSION['username'])) {
 
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="css/panel-usuarios.css">
-
+    <link rel="stylesheet" href="../../views/css/navbar.css">
 </head>
 
 <body>
 
-    <?php include './layout/posts-header.php'; ?>
+    <?php include '../../views/layout/header.php'; ?>
 
     <!-- Panel de Administración -->
     <main id="admin-panel">
