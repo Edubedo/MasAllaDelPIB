@@ -77,7 +77,7 @@ $idtypeuser = $row['id_type_user'];
                     <button>Editar perfil</button>
                 </a>
 
-                <a href="../../views/signin.php" >
+                <a href="/config/logout.php" >
                     <button style="background-color: red;">Cerrar sesion</button>
                 </a>
             </div>
@@ -148,7 +148,7 @@ $idtypeuser = $row['id_type_user'];
                             <td><?php echo $mostrar['title']; ?></td>
                             <td><?php echo $mostrar['category']; ?></td>
                             <td><img src="<?= $mostrar['image']; ?>" alt="Imagen del post" class="image-post"></td>
-                            <?= htmlspecialchars($mostrar['referencia_posts']) ?>" style="color:black;"><?= htmlspecialchars($mostrar['referencia_posts']) ?></a></td> -->
+                            <!-- <td><a class="referencias-links" href="<?= htmlspecialchars($mostrar['referencia_posts']) ?>" style="color:black;"><?= htmlspecialchars($mostrar['referencia_posts']) ?></a></td> -->
                             <td><?php echo $mostrar['user_creation']; ?></td>
                             <td><?php echo $mostrar['post_date']; ?></td>
                             <td>

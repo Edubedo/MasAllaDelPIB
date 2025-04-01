@@ -48,7 +48,7 @@ if (isset($_SESSION['username'])) {
                 <h1>Bienvenido, <?php echo htmlspecialchars($username);
                                 echo $idtypeuser
                                 ?></h1>
-                <button id="cerrar-sesion-btn">Cerrar sesión</button>
+                
             </div>
             <div id="userPopup">
                 <p><strong>Usuario</strong></p>
@@ -57,6 +57,10 @@ if (isset($_SESSION['username'])) {
                 <p><span id="email"><?php echo htmlspecialchars($email); ?></span></p>
                 <a href="editar-perfil.php?id=<?php echo $iduser; ?>">
                     <button>Editar perfil</button>
+                </a>
+
+                <a href="/config/logout.php" >
+                    <button style="background-color: red;">Cerrar sesion</button>
                 </a>
             </div>
 

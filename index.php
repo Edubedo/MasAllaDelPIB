@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'config/database.php';
 
 // Definir la ruta de la imagen predeterminada
