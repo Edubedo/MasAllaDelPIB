@@ -19,8 +19,6 @@ $sql = "SELECT * FROM users WHERE email = '$email'";
 $result = mysqli_query($conexion, $sql);
 $row = mysqli_fetch_assoc($result);
 $idtypeuser = $row['id_type_user'];
-
-
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +40,7 @@ $idtypeuser = $row['id_type_user'];
 
     <?php 
     if ($idtypeuser == 1) { // si el usuario es administrador
-        include './layout/admin-header.php';
+        include './layout/posts-header.php';
     } else if ($idtypeuser == 2) { // si el usuario es autor
         include '../../views/layout/header.php';
     }
