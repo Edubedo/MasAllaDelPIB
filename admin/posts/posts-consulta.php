@@ -34,12 +34,20 @@ $idtypeuser = $row['id_type_user'];
 
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="css/consulta.css">
+    <link rel="stylesheet" href="../../views/css/navbar.css">
 
 </head>
 
 <body>
 
-    <?php include './layout/posts-header.php'; ?>
+    <?php 
+    if ($idtypeuser == 1) { // si el usuario es administrador
+        include './layout/admin-header.php';
+    } else if ($idtypeuser == 2) { // si el usuario es autor
+        include '../../views/layout/header.php';
+    }
+    
+    ?>
 
     <div id="overlay"></div> <!-- Capa oscura -->
 
