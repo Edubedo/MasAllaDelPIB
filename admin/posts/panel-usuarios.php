@@ -2,6 +2,7 @@
 session_start();
 
 include '../../config/database.php';
+include "usuario-eliminar.php";
 
 // Verifica si hay una session activa y mandamos a llamar el nombre del usuario
 if (isset($_SESSION['username'])) {
@@ -104,7 +105,8 @@ if (isset($_SESSION['username'])) {
                                 <!-- Botón de modificar usuario -->
                                 <a href="editar-perfil.php?id=<?php echo $mostrar['iduser']; ?>" class="btn editar">Editar</a>
                                 <!-- Botón de eliminar usuario -->
-                                <a href="usuario-eliminar.php?id=<?php echo $mostrar['iduser']; ?>" class="btn eliminar">Eliminar</a>
+                                <a href="panel-usuarios.php?id=<?php echo $mostrar['iduser']; ?>" class="btn eliminar" onclick="return ConfirmDelete()">Eliminar</a>
+                                
                             </td>
                         </tr>
                     <?php
@@ -119,7 +121,18 @@ if (isset($_SESSION['username'])) {
 
     <script src="../../js/panel_usuarios.js"></script>
 
-
+    // Función que abre ventana emergente para confirmar la eliminacion de un usuario
+    <script>
+        function ConfirmDelete(){
+            var respuesta = confirm("¿Estas seguro que deseas eliminar usuario?")
+            if(respuesta == true){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    </script>
 
 </body>
 
