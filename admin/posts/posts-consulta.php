@@ -76,32 +76,36 @@ $idtypeuser = $row['id_type_user'];
                 <a href="editar-perfil.php?id=<?php echo $iduser; ?>">
                     <button>Editar perfil</button>
                 </a>
+
+                <a href="../../views/signin.php" >
+                    <button style="background-color: red;">Cerrar sesion</button>
+                </a>
             </div>
         </header>
 
-        <div class="container-superior">
-            <!-- Menú de Categorías -->
-            <div class="category-menu">
-                <select class="categories" id="categoryFilter">
-                    <option value="" disabled selected hidden>Categorías</option><!-- Placeholder -->
-                    <?php
-                    // Obtener categorías desde la base de datos
-                    $sql = "SELECT DISTINCT category FROM posts"; // Consulta para obtener categorías únicas
-                    $result = mysqli_query($conexion, $sql);
-                    while ($row = mysqli_fetch_array($result)) {
-                        echo "<option value='" . $row['category'] . "'>" . ucwords(str_replace('-', ' ', $row['category'])) . "</option>";
-                    }
-                    ?>
-                </select>
-            </div>
+        
+      
+            <div class="container-superior">
+                <!-- Menú de Categorías -->
+                <div class="category-menu">
+                    <select class="categories" id="categoryFilter">
+                        <option value="" disabled selected hidden>Categorías</option>
+                        <option value="">Todas las categorías</option> 
+                        <?php
+                        // Obtener categorías desde la base de datos
+                        $sql = "SELECT DISTINCT category FROM posts"; 
+                        $result = mysqli_query($conexion, $sql);
+                        while ($row = mysqli_fetch_array($result)) {
+                            echo "<option value='" . $row['category'] . "'>" . ucwords(str_replace('-', ' ', $row['category'])) . "</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
 
-            <!-- Buscador General -->
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Buscar">
-            </div>
-
-            <!-- Botón de Nueva Publicación -->
-            
+                <!-- Buscador General -->
+           <div class="search-box">
+               <input type="text" id="searchInput" placeholder="Buscar">
+           </div>
         </div>
 
         <!-- Mostrar mensaje de eliminación si se ha ejecutado -->
@@ -144,14 +148,14 @@ $idtypeuser = $row['id_type_user'];
                             <td><?php echo $mostrar['title']; ?></td>
                             <td><?php echo $mostrar['category']; ?></td>
                             <td><img src="<?= $mostrar['image']; ?>" alt="Imagen del post" class="image-post"></td>
-                            <!-- <td><a class="referencias-links" href="<?= htmlspecialchars($mostrar['referencia_posts']) ?>" style="color:black;"><?= htmlspecialchars($mostrar['referencia_posts']) ?></a></td> -->
+                            <?= htmlspecialchars($mostrar['referencia_posts']) ?>" style="color:black;"><?= htmlspecialchars($mostrar['referencia_posts']) ?></a></td> -->
                             <td><?php echo $mostrar['user_creation']; ?></td>
                             <td><?php echo $mostrar['post_date']; ?></td>
                             <td>
                                 <!-- Botón de modificar post -->
                                 <a href="posts-modificar.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn editar">Editar</a>
                                 <!-- Botón de eliminar publicación -->
-                                <a href="posts-consulta.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn eliminar">Eliminar</a>
+                                <a href="posts-consulta.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn eliminar" onclick="return ConfirmDelete()">Eliminar</a>
                             </td>
                         </tr>
                     <?php
@@ -166,20 +170,22 @@ $idtypeuser = $row['id_type_user'];
     <script src="../../js/posts-consulta.js"></script>
 
     <script>
-        // Función para filtrar los posts por categoría
-        document.getElementById('categoryFilter').addEventListener('change', function() {
+       document.getElementById('categoryFilter').addEventListener('change', function() {
             let selectedCategory = this.value;
             let rows = document.querySelectorAll('.postRow');
 
+            // Si no se seleccionó ninguna categoría o se seleccionó todas
             rows.forEach(function(row) {
-                let categoryCell = row.cells[2].innerText.toLowerCase(); // Cambiado a índice 2
-                if (selectedCategory === '' || categoryCell.includes(selectedCategory.toLowerCase())) {
-                    row.style.display = '';
+                let categoryCell = row.cells[2].innerText.toLowerCase(); // Índice 2 es la columna de categorías
+
+                if (selectedCategory === '' || selectedCategory === 'todas las categorías' || categoryCell.includes(selectedCategory.toLowerCase())) {
+                    row.style.display = ''; 
                 } else {
-                    row.style.display = 'none';
+                    row.style.display = 'none'; 
                 }
             });
         });
+
 
         // Función para el buscador general que filtra por cualquier palabra en cualquier columna
         document.getElementById('searchInput').addEventListener('input', function() {
@@ -204,6 +210,19 @@ $idtypeuser = $row['id_type_user'];
                 }
             });
         });
+    </script>
+
+// Función que abre ventana emergente para confirmar la eliminacion de un usuario
+    <script>
+        function ConfirmDelete(){
+            var respuesta = confirm("¿Estas seguro que deseas eliminar posts?")
+            if(respuesta == true){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
     </script>
 </body>
 
