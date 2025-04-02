@@ -3,6 +3,7 @@
     $id = $_GET['id']; 
 
     $sql = $conexion->query("SELECT * FROM posts WHERE Id_posts = $id");
+    $datos = $sql->fetch_object(); // Obtener el objeto antes del formulario
 ?>
 <!DOCTYPE html>
 
@@ -10,7 +11,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Modificar datos</title>
+        <title>Modificar publicacion</title>
         <link rel="stylesheet" href="css/crear.css">
     </head>
     <body> 
@@ -19,74 +20,75 @@
                 <h1>Modificar publicación</h1>
             </div>
 
-            <!-- Agregar campo oculto para pasar el ID -->
-            <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
-
             <!-- Incluir el archivo de procesamiento -->
-            <?php
-            include('posts-guardar-modificado.php');
-            while($datos = $sql ->fetch_object()){  
-            ?>
+            <?php include('posts-guardar-modificado.php'); ?>
 
             <form action="#" name="crear_posts" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<?= htmlspecialchars($id) ?>">
+                <input type="hidden" name="usuario_posts" value="<?= htmlspecialchars($_SESSION['username']) ?>">
+
                 <div class="contenedor-general">
+                    <div class="izquierdo">
+                        <h2>Configuración</h2>
 
-                <div class="izquierdo">
+                        <div class="categoria_div">
+                            <label for="categoria">Categoría:</label>
+                            <select name="categoria_posts" id="categoria" required>
+                                <option value="" disabled hidden>Categorías</option>
+                                <option value="crecimiento-economico" <?= $datos->category == 'crecimiento-economico' ? 'selected' : '' ?>>Crecimiento Económico</option>
+                                <option value="emprendimiento-negocios" <?= $datos->category == 'emprendimiento-negocios' ? 'selected' : '' ?>>Emprendimiento Negocios</option>
+                                <option value="mundo-laboral" <?= $datos->category == 'mundo-laboral' ? 'selected' : '' ?>>Mundo Laboral</option>
+                            </select>
+                        </div>
 
-                    <h2>Configuracion</h2>
+                        <div class="fecha_div">
+                            <label for="fecha_publicacion">Fecha de Publicación:</label>
+                            <input class="fecha" type="date" id="fecha_publicacion" name="fecha_publicacion_posts" value="<?= $datos->post_date ?>" required>
+                        </div>
 
-                    <div class="categoria_div">
-                        <label for="categoria">Categoría:</label>
-                        <select name="categoria_posts" id="categoria" required>
-                            <option value="" disabled selected hidden>Categorías</option>
-                            <option value="crecimiento-economico">Crecimiento Económico</option>
-                            <option value="emprendimiento-negocios">Emprendimiento Negocios</option>
-                            <option value="mundo-laboral">Mundo laboral</option>
-                        </select>
+                        <div class="autor_div">
+                            <?php if(isset($_SESSION['username'])): ?>
+                                <label for="usuario">Usuario:</label>
+                                <span class="username"><?= htmlspecialchars($_SESSION['username']) ?></span>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="boton-div">
+                            <button type="submit" name="modificar_post">Guardar Publicación</button>
+                        </div>
                     </div>
 
-                    <div class="fecha_div">
-                        <label for="fecha_publicacion">Fecha de Publicación:</label>
-                        <input class="fecha" type="date" id="fecha_publicacion" name="fecha_publicacion_posts" required>
+                    <div class="derecho">
+                        <div class="titulodelposts">
+                            <label for="titulo">Título del post:</label>
+                            <input type="text" id="titulo" name="titulo_posts" value="<?= htmlspecialchars($datos->title) ?>" required>
+                        </div>
+                        <div class="contenidodelposts">
+                            <label for="contenido">Contenido:</label>
+                            <textarea id="contenido" name="contenido_posts" rows="6" required><?= htmlspecialchars($datos->content) ?></textarea>
+                        </div>
+                        <div class="imagendelpost">
+                            <label for="imagen">Imagen:</label>
+                            <input type="file" id="imagen" name="imagen_posts" accept="image/*">
+                            <p>Imagen actual:</p>
+                            <img src="<?= htmlspecialchars($datos->image) ?>" alt="Imagen actual" width="150">
+                        </div>
                     </div>
-
-                    <div class="autor_div">
-                        <?php if(isset($_SESSION['username'])): ?>
-                            <label for="usuario">Usuario:</label>
-                            <span class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
-                        <?php endif; ?>
-                    </div>
-
-                    <div class="boton-div">
-                        <button type="submit" name="crear_post">Guardar Publicación</button>
-                    </div>
-                    
                 </div>
-
-                <div class="derecho">
-                    <div class="titulodelposts">
-                        <label for="titulo">Título del post:</label>
-                        <input type="text" id="titulo" name="titulo_posts" required>
-                    </div>
-                    <div class="contenidodelposts">
-                        <label for="contenido">Contenido:</label>
-                        <textarea id="contenido" name="contenido_posts" rows="6" required></textarea>
-                    </div>
-                    <div class="imagendelpost">
-                        <label for="imagen">Imagen:</label>
-                        <input type="file" id="imagen" name="imagen_posts" accept="image/*" required>
-                    </div>
-                </div>
-            </div>
-                    
             </form>
-
-            <?php
-            }
-            ?>
         </div>
+
+        <!-- Script para mostrar el popup -->
+        <script>
+            <?php if (isset($_SESSION['post_update_success']) && $_SESSION['post_update_success']) { ?>
+                window.onload = function() {
+                    alert('Publicación modificada');
+                    window.location.href = 'posts-consulta.php'; // Redirigir a la página de consulta
+                };
+                <?php unset($_SESSION['post_update_success']); ?>  // Eliminar la bandera después de usarla
+            <?php } 
+            ?>
+        </script>
+
     </body>
 </html>
-
-
-
