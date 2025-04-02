@@ -1,6 +1,9 @@
 document.getElementById("botonContinuar").addEventListener("click", function () {
     document.getElementById("modal").style.display = "none"; // Oculta el modal
     document.getElementById("overlay").style.display = "none"; // Quita la capa oscura
+
+    // Enviar petición a PHP para marcar que el modal ya se mostró
+    fetch("ocultar_modal.php", { method: "POST" });
 });
 
 
