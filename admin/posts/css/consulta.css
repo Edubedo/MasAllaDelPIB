@@ -215,29 +215,88 @@ button:hover {
     position: absolute;
     top: 10rem;
     left: 4rem;
-    width: 25rem;
-    height: 18rem;
-    background: white;
+    width: 35rem;
+    height: auto;
+    background-color: rgb(236, 245, 253);
     padding: 1rem;
     padding-top: 1.5rem;
     border: 0.1rem solid #ccc;
     border-radius: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-#userPopup p {
+.imagen-pop {
+    display: flex;
+    justify-content: center; /* Centra la imagen */
+    margin-bottom: 1rem; /* Espacio debajo de la imagen */
+}
+
+#img_user {
+    width: 8rem; /* Tamaño ajustado de la imagen */
+    height: 8rem; /* Tamaño ajustado de la imagen */
+    border-radius: 50%; /* Hacer la imagen redonda */
+}
+
+.nombre-pop {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
     color: #000;
-    margin: 0.5rem 0;
-    text-align: left;
-    font-size: 1.4rem;
+}
+
+.info-pop{
+    margin-top: 2rem;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    margin-bottom: 0.2rem;
+    background-color: #ffffff;
+    color: #000;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+}
+
+.nombredeluser {
+    margin: 1rem;
+    margin-bottom: 0;
+    font-size: 1.5rem;
+}
+
+.emaildeluser {
+    margin: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.botones-pop {
+    margin: 1rem;
+    margin-bottom: 2rem;
+    margin-top: 0.2rem;
 }
 
 #userPopup button {
-    margin-top: 1rem;
+    margin-top: 0.3rem;
     padding: 0.5rem 1rem;
-    background: #007bff;
-    color: white;
-    border: none;
+    background: #ffffff;
+    color: #000;
+    /*border: 1px solid #ccc;*/
     cursor: pointer;
+    border-radius: 0.3rem; /* Bordes ligeramente redondeados */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 90%;
+    height: 4rem;
+    border-radius: 1rem;
+}
+
+
+#userPopup button:hover {
+    background-color: #86acb5; /* Color más oscuro en hover */
+    transform: scale(1.05); /* Efecto de zoom ligero en hover */
+}
+
+#userPopup button:active {
+    transform: scale(1); /* Restablece el tamaño al hacer clic */
 }
 
 /* Estilos para la tabla */
