@@ -57,6 +57,7 @@ body {
 .titulo-modal {
     font-size: 4rem;
     margin-bottom: 2rem;
+    margin-top: 8rem;
     text-align: center;
     background: linear-gradient(90deg, #86acb5, #15687f); /* Degradado */
     -webkit-background-clip: text; /* Aplicar degradado al texto */
@@ -474,29 +475,7 @@ tr td:nth-child(9) a.btn {
     color: white; /* Cambia el color del placeholder a blanco */
     opacity: 1;   /* Asegura que sea completamente opaco */
 }
-/*Modal de las publicaciones (editar o eliminar)*/
-.modal-opciones {
-    display: none; /* Oculta el modal por defecto */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    background-color: rgba(183, 30, 30, 0.5); /* Fondo semitransparente */
-}
 
-.modal-editar-eliminar {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    top: 50%;
-    left: 50%;
-    transform: translate(5%, -70%);
-    padding: 2rem;
-    border: 1px solid #888;
-    min-width: 10rem;
-    text-align: center;
-    position: absolute; /*Hace que aparezca el modal donde da click*/
-}
 #btn-editar, #btn-eliminar {
     
     margin: 0.5rem;

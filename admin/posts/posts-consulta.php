@@ -14,6 +14,11 @@ if (isset($_SESSION['username'])) {
     exit();
 }
 
+//Verifica si ya se mostró el modal de bienvenida
+if (!isset($_SESSION["modal_mostrado"])) {
+    $_SESSION["modal_mostrado"] = false;
+}
+
 // Obtener el tipo de usuario del usuario
 $sql = "SELECT * FROM users WHERE email = '$email'";
 $result = mysqli_query($conexion, $sql);
@@ -43,11 +48,9 @@ $idtypeuser = $row['id_type_user'];
     
     ?>
 
-    <div id="overlay"></div> <!-- Capa oscura -->
+    <div id="overlay" style="display: <?php echo $_SESSION["modal_mostrado"] ? 'none' : 'block'; ?>;"></div>
 
-    <!-- Modal -->
-    <section id="modal">
-
+    <section id="modal" style="display: <?php echo $_SESSION["modal_mostrado"] ? 'none' : 'block'; ?>;">
         <h2 class="titulo-modal">¡Bienvenido al Panel de <?php echo $idtypeuser == 2 ? htmlspecialchars("Autor") : htmlspecialchars("Administrador"); ?>, <?php echo htmlspecialchars($username); ?>!</h2>
         <button id="botonContinuar">Continuar</button>
     </section>
