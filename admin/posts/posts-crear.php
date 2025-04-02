@@ -21,8 +21,11 @@ include '../../config/database.php';
         
         <form action="#" name="crear_posts" method="post" enctype="multipart/form-data">
             <div class="contenedor-general">
+
                 <div class="izquierdo">
+
                     <h2>Configuracion</h2>
+
                     <div class="categoria_div">
                         <label for="categoria">Categoría:</label>
                         <select name="categoria_posts" id="categoria" required>
@@ -32,17 +35,23 @@ include '../../config/database.php';
                             <option value="mundo-laboral">Mundo laboral</option>
                         </select>
                     </div>
+
                     <div class="fecha_div">
                         <label for="fecha_publicacion">Fecha de Publicación:</label>
-                        <input type="date" id="fecha_publicacion" name="fecha_publicacion_posts" required>
+                        <input class="fecha" type="date" id="fecha_publicacion" name="fecha_publicacion_posts" required>
                     </div>
+
                     <div class="autor_div">
                         <?php if(isset($_SESSION['username'])): ?>
                             <label for="usuario">Usuario:</label>
                             <span class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
                         <?php endif; ?>
                     </div>
-                    <button type="submit" name="crear_post">Guardar Publicación</button>
+
+                    <div class="boton-div">
+                        <button type="submit" name="crear_post">Guardar Publicación</button>
+                    </div>
+                    
                 </div>
 
                 <div class="derecho">
