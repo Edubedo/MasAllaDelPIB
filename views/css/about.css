@@ -11,13 +11,13 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background-color: #f5f5f5;
+    background: linear-gradient(to left, #9196f4, #7b81f5);
     color: #333;
 }
 
 /* Cuadro Superior */
 .cuadrosuperior {
-    background-color: #6d9aa6;
+    background-color: #5d6eba;
     width: 100%;
     padding: 3rem 2rem;
     display: flex;
@@ -66,7 +66,7 @@ body {
     justify-content: center;
     gap: 2rem;
     padding: 2rem;
-    background-color: #d9d9d9;
+    background: #b7bbfd;
 }
 
 .container-nosotros{
@@ -76,7 +76,6 @@ body {
     justify-content: center;
     gap: 2rem;
     padding: 2rem;
-    background-color: #d9d9d9;
 }
 
 .info {
