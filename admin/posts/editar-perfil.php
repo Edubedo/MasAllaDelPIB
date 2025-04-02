@@ -7,7 +7,6 @@ $id = $_GET['id'];
 
 
 // Obtener los datos del usuario para mostrarlos en el formulario
-echo $id;
 $sql = $conexion->query("SELECT * FROM users WHERE iduser = $id");
 
 // Si el formulario fue enviado, procesamos los datos
@@ -61,7 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <div class="container">
-        <h1>Editar perfil</h1>
+    <div class="encabezado">
+            <h1>Modificacion de usuario</h1>
+        </div>
 
         <!-- Mostrar el mensaje de éxito si está disponible -->
         <?php if (isset($_SESSION['success_message'])): ?>
@@ -77,26 +78,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php while ($datos = $sql->fetch_object()) {  ?>
 
             <form action="" name="editar_perfil" method="post" enctype="multipart/form-data">
+                <div class="moduser-div">
+                    <!-- Campo para el Username -->
+                    <div class="username-div">
+                        <label for="username">Nombre de Usuario:</label>
+                        <input type="text" id="username" name="username" value="<?= $datos->username ?>">
+                    </div>
 
-                <!-- Campo para el Username -->
-                <div class="form-group">
-                    <label for="username">Nombre de Usuario:</label>
-                    <input type="text" id="username" name="username" value="<?= $datos->username ?>">
+                    <!-- Campo para el Email -->
+                    <div class="email-div">
+                        <label for="email">Correo Electrónico:</label>
+                        <input type="email" id="email" name="email" value="<?= $datos->email ?>">
+                    </div>
+
+                    <div class="botonuser-div">
+                        <button type="submit" name="crear_post">Modificar perfil</button>
+                    </div>
+
                 </div>
-
-                <!-- Campo para el Email -->
-                <div class="form-group">
-                    <label for="email">Correo Electrónico:</label>
-                    <input type="email" id="email" name="email" value="<?= $datos->email ?>">
-                </div>
-
-                <!-- Campo para el Password -->
-                <div class="form-group">
-                    <label for="password">Contraseña:</label>
-                    <input type="password" id="password" name="password">
-                </div>
-
-                <button type="submit" name="modificar_perfil">Modificar perfil</button>
             </form>
         <?php } ?>
     </div>
