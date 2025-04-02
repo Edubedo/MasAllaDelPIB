@@ -14,6 +14,11 @@ if (isset($_SESSION['username'])) {
     exit();
 }
 
+//Verifica si ya se mostró el modal de bienvenida
+if (!isset($_SESSION["modal_mostrado"])) {
+    $_SESSION["modal_mostrado"] = false;
+}
+
 // Obtener el tipo de usuario del usuario
 $sql = "SELECT * FROM users WHERE email = '$email'";
 $result = mysqli_query($conexion, $sql);
@@ -43,11 +48,9 @@ $idtypeuser = $row['id_type_user'];
     
     ?>
 
-    <div id="overlay"></div> <!-- Capa oscura -->
+    <div id="overlay" style="display: <?php echo $_SESSION["modal_mostrado"] ? 'none' : 'block'; ?>;"></div>
 
-    <!-- Modal -->
-    <section id="modal">
-
+    <section id="modal" style="display: <?php echo $_SESSION["modal_mostrado"] ? 'none' : 'block'; ?>;">
         <h2 class="titulo-modal">¡Bienvenido al Panel de <?php echo $idtypeuser == 2 ? htmlspecialchars("Autor") : htmlspecialchars("Administrador"); ?>, <?php echo htmlspecialchars($username); ?>!</h2>
         <button id="botonContinuar">Continuar</button>
     </section>
@@ -59,7 +62,7 @@ $idtypeuser = $row['id_type_user'];
         <header>
             <div class="container-header">
                 <img id="logo_admin" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACXUlEQVR4nO2Yz0tVQRTHPykaSZtcPoI27YJAqXWYhNCiNOJB/gkqWhq+doUbzforyh9YO3cFtUhFaJ8+Nbe1KSVeUoH4YuBcuFzm+ubeGZk79T5w4HHfuefO9945Z84MNGnSxBXtQBlYAKrAT7GqXCuLTyG5A+wC9Qb2GRigQLQAswYDT9pTudc7z3IMPrKZIkybuqX1+xp8u8xnWwG7vhK77GDwkd31IWDRoYA5HwK2HQqo+hBQcyigFrqAHz4EbDkUsOlDwLxDAS98CAi+jLYBOyEvZEhXaTP4I+AWnsnTiUY2TQFokdY465ufKUo7HdFvmBNqBb9NQWmTijIntb0mtgG8lP+Uzz/LG+BATP0Oik7gMDbV1O9zBMRDTb48IBCuy7RJClBHMj2uHtIBTMk2Mv6pTWwdOCVxnsgZ0SgwArxuEO9QfIblngWJkXnw6xYL1jWJ051DfD1FlIplzJTFw1QJjXjlYPB1saUsAmxOHx7H4iw7FLCcRYDNZ78Ri3MaWE3x+wNMAiWxilzT+X6QWMYcWQg4n4h1JcWvonluJcW3i4zsWwg4o4m3p/ErafxKGr9v5OC9hYCzhi+kZCjgex4B9ywEXEzEupphCj1K8c1UQhWtFqcQvbE4KvHWjkniimESr2RNYsXlnGdBarPjvYxG3Mwh4lMRFrI4l3JMp74TaCW6sKBDEkxXDnX2MaWZUw3akkEzp07Ch2yauTTUhmNMGr1Gi934MXF6pHVO3lOLNYInzgVgEHgOvJMm7gvwC/gNfJXpl8aERsB9AqIz9C2l4m3Im3r+W/4CaYEHGi2wJakAAAAASUVORK5CYII=" alt="system-administrator-male">
-                <h1><?php echo $idtypeuser == 2 ? htmlspecialchars("Autor") : htmlspecialchars("Administrador"); ?> <?php echo htmlspecialchars($username); ?></h1>
+                <h1><?php echo htmlspecialchars($username); ?></h1>
                 <div class="new-post">
                     <h2 class="texto" name="crear_posts">Nueva publicación</h2>
                     <a href="posts-crear.php">
@@ -71,17 +74,30 @@ $idtypeuser = $row['id_type_user'];
             </div>
 
             <div id="userPopup">
-                <p><strong>Usuario</strong></p>
-                <p><span id="username"><?php echo htmlspecialchars($username); ?></span></p>
-                <p><strong>Email</strong>
-                <p><span id="email"><?php echo htmlspecialchars($email); ?></span></p>
-                <a href="editar-perfil.php?id=<?php echo $iduser; ?>">
-                    <button>Editar perfil</button>
-                </a>
-
-                <a href="/config/logout.php" >
-                    <button style="background-color: red;">Cerrar sesion</button>
-                </a>
+                <div class="imagen-pop">
+                    <img id="img_user" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACXUlEQVR4nO2Yz0tVQRTHPykaSZtcPoI27YJAqXWYhNCiNOJB/gkqWhq+doUbzforyh9YO3cFtUhFaJ8+Nbe1KSVeUoH4YuBcuFzm+ubeGZk79T5w4HHfuefO9945Z84MNGnSxBXtQBlYAKrAT7GqXCuLTyG5A+wC9Qb2GRigQLQAswYDT9pTudc7z3IMPrKZIkybuqX1+xp8u8xnWwG7vhK77GDwkd31IWDRoYA5HwK2HQqo+hBQcyigFrqAHz4EbDkUsOlDwLxDAS98CAi+jLYBOyEvZEhXaTP4I+AWnsnTiUY2TQFokdY465ufKUo7HdFvmBNqBb9NQWmTijIntb0mtgG8lP+Uzz/LG+BATP0Oik7gMDbV1O9zBMRDTb48IBCuy7RJClBHMj2uHtIBTMk2Mv6pTWwdOCVxnsgZ0SgwArxuEO9QfIblngWJkXnw6xYL1jWJ051DfD1FlIplzJTFw1QJjXjlYPB1saUsAmxOHx7H4iw7FLCcRYDNZ78Ri3MaWE3x+wNMAiWxilzT+X6QWMYcWQg4n4h1JcWvonluJcW3i4zsWwg4o4m3p/ErafxKGr9v5OC9hYCzhi+kZCjgex4B9ywEXEzEupphCj1K8c1UQhWtFqcQvbE4KvHWjkniimESr2RNYsXlnGdBarPjvYxG3Mwh4lMRFrI4l3JMp74TaCW6sKBDEkxXDnX2MaWZUw3akkEzp07Ch2yauTTUhmNMGr1Gi934MXF6pHVO3lOLNYInzgVgEHgOvJMm7gvwC/gNfJXpl8aERsB9AqIz9C2l4m3Im3r+W/4CaYEHGi2wJakAAAAASUVORK5CYII=" alt="system-administrator-male">
+                </div>
+                <div class="nombre-pop">
+                    <p>!Hola, <span id="username"><?php echo htmlspecialchars($username); ?></span>!</p>
+                </div>
+                <div class="info-pop">
+                    <div class="nombredeluser">
+                        <p><strong>Nombre de usuario</strong></p>
+                        <p><span id="username"><?php echo htmlspecialchars($username); ?></span></p>
+                    </div>
+                    <div class="emaildeluser">
+                        <p><strong>Email</strong></p>
+                        <p><span id="email"><?php echo htmlspecialchars($email); ?></span></p>
+                    </div>
+                </div>
+                <div class="botones-pop">
+                    <a href="editar-perfil.php?id=<?php echo $iduser; ?>">
+                        <button>Editar perfil</button>
+                    </a>
+                    <a href="/config/logout.php" >
+                        <button>Cerrar sesion</button>
+                    </a>
+                </div>
             </div>
         </header>
 
