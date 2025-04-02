@@ -4,18 +4,8 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Configuración de la base de datos
-$host = "localhost"; 
-$dbname = "masalladelpib"; 
-$username = "root";  
-$password = "Pam3141482608";  
+include '../config/database.php';
 
-try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Error de conexión: " . $e->getMessage());
-}
 
 // Verificar si el formulario fue enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
