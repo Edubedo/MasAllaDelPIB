@@ -18,7 +18,7 @@
                 <img src="../../assets/img/logo.png" alt="imagen logo empresa">
             </div>
             <div class="nombre">
-                <h2>INNOMINDS</h2>
+                <h2 style="color:white;font-size:3rem">Mas Allá del PIB</h2>
             </div>
         </div>
         
