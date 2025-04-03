@@ -28,8 +28,6 @@ body {
 }
 
 .titulo {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    color: #000;
     line-height: 1.2;
     width: 100%; 
     display: flex;
@@ -43,7 +41,7 @@ body {
     font-size: 2.4rem;
     margin: 0;
     font-weight: normal;
-    color: #333;
+    color: #ffffff;
     z-index: 1;
     margin-top: 3rem;
 }
@@ -52,7 +50,7 @@ body {
     font-size: 4rem;
     margin: 0.1rem 0 0;
     font-weight: bold;
-    color: #000;
+    color: #ffffff;
 }
 
 
