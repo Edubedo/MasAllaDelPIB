@@ -70,6 +70,11 @@ $pdo = null;
         <div class="encabezado">
             <h1>Publicaciones</h1>
         </div>
+        
+      <!-- Buscador General -->
+        <div class="">
+            <input type="text" name="buscar" id="buscar" onkeyup="consulta_buscador($('#buscar').val());" placeholder="Buscar">
+        </div>
 
         <!-- Cuerpo de las publicaciones -->
 
