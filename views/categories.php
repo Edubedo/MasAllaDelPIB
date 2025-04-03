@@ -22,12 +22,14 @@ try {
     die("Error al consultar los posts en la base de datos: " . $e->getMessage());
 }
 
-$category = $_GET['category'];
-    $filteredPosts = array_filter($postsDB, function ($postDB) use ($category) {
-        return $postDB['category'] == $category;
-    });
+$category = $_GET['category'] ?? null; 
 
-$pdo = null;
+// Filtrar las publicaciones si hay una categoría seleccionada
+if ($category) {
+    $postsDB = array_filter($postsDB, function ($postDB) use ($category) {
+        return $postDB['category'] === $category; 
+    });
+}
 
 ?>
 
