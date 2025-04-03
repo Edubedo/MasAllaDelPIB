@@ -34,10 +34,13 @@ class Posts{
 
         $sqlVoteQuery = "INSERT INTO {$this->postVotesTable} (post_id, user_id, date) VALUES (:post_id, :user_id, NOW())";
         $stmt = $this->dbConnect->prepare($sqlVoteQuery);
-        return $stmt->execute([
+        if (!$stmt->execute([
             ':post_id' => $postVoteData['post_id'],
             ':user_id' => $postVoteData['user_id']
-        ]);
+        ])) {
+            die(json_encode(["error" => "Error al registrar el voto en post_votes"]));
+        }
+        return true;
     }
 }
 ?>
