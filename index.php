@@ -42,6 +42,7 @@ $pdo = null;
     <link rel="stylesheet" href="./views/css/footer.css">
     <link rel="stylesheet" href="./views/css/index.css">
     <link rel="stylesheet" href="./views/css/posts.css">
+    <link rel="stylesheet" href="./views/css/cookies.css">
 </head>
 
 <body>
@@ -102,9 +103,9 @@ $pdo = null;
         </div>
 
     </main>
-
+    <script src="./js/cookies.js"></script>
+    <div id="cookiesContainer"></div>
     <!-- Incluyendo el pie de página -->
     <?php include './views/layout/footer.php'; ?>
 </body>
-
 </html>
