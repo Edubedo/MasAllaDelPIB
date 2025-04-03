@@ -38,13 +38,14 @@ $idtypeuser = $row['id_type_user'];
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="css/consulta.css">
     <link rel="stylesheet" href="../../views/css/navbar.css">
+    <link rel="stylesheet" href="css/userpop.css"
 
 </head>
 
 <body>
 
     <?php 
-    include ('../../views/layout/header.php')
+        include ('../../views/layout/header.php')
     
     ?>
 
@@ -103,27 +104,28 @@ $idtypeuser = $row['id_type_user'];
 
         
       
-            <div class="container-superior">
-                <!-- Menú de Categorías -->
-                <div class="category-menu">
-                    <select class="categories" id="categoryFilter">
-                        <option value="" disabled selected hidden>Categorías</option>
-                        <option value="">Todas las categorías</option> 
-                        <?php
+        <div class="container-superior">
+            <!-- Menú de Categorías -->
+            <div class="category-menu">
+                <select class="categories" id="categoryFilter">
+                    <option value="" disabled selected hidden>Categorías</option>
+                    <option value="">Todas las categorías</option> 
+                    <?php
                         // Obtener categorías desde la base de datos
                         $sql = "SELECT DISTINCT category FROM posts"; 
                         $result = mysqli_query($conexion, $sql);
                         while ($row = mysqli_fetch_array($result)) {
                             echo "<option value='" . $row['category'] . "'>" . ucwords(str_replace('-', ' ', $row['category'])) . "</option>";
                         }
-                        ?>
-                    </select>
-                </div>
+                    ?>
+                </select>
+            </div>
 
                 <!-- Buscador General -->
            <div class="search-box">
                <input type="text" id="searchInput" placeholder="Buscar">
            </div>
+
         </div>
 
         <!-- Mostrar mensaje de eliminación si se ha ejecutado -->
@@ -230,7 +232,7 @@ $idtypeuser = $row['id_type_user'];
         });
     </script>
 
-// Función que abre ventana emergente para confirmar la eliminacion de un usuario
+    // Función que abre ventana emergente para confirmar la eliminacion de un usuario
     <script>
         function ConfirmDelete(){
             var respuesta = confirm("¿Estas seguro que deseas eliminar posts?")
@@ -242,6 +244,7 @@ $idtypeuser = $row['id_type_user'];
             }
         }
     </script>
+
 </body>
 
 </html>
