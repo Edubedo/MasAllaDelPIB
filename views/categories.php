@@ -22,12 +22,19 @@ try {
     die("Error al consultar los posts en la base de datos: " . $e->getMessage());
 }
 
-$category = $_GET['category'];
-    $filteredPosts = array_filter($postsDB, function ($postDB) use ($category) {
-        return $postDB['category'] == $category;
-    });
+$category = $_GET['category'] ?? null; 
 
-$pdo = null;
+// Filtrar las publicaciones si hay una categoría seleccionada
+if ($category) {
+    $postsDB = array_filter($postsDB, function ($postDB) use ($category) {
+        return $postDB['category'] === $category; 
+    });
+}
+
+$idtypeuser = $_SESSION['id_type_user'] ?? null;
+// Si no hay valor en $_SESSION['id_type_user'], asignar por defecto "visitante"
+$idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
+
 
 ?>
 
@@ -84,7 +91,8 @@ $pdo = null;
                 // Si no hay imagen, usamos la imagen predeterminada
                 $imageSrc = !empty($post['image']) ? "../admin/posts/" . htmlspecialchars($post['image']) : "../admin/posts/uploads/preterminada.jpg";
 
-                echo '<a href="post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
+                if ($idtypeuser == 1 || $idtypeuser == 2){
+                    echo '<a href="post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
                         <div class="p1">
                             <div class="cuerpo_post">
                                 <div class="imagen_post">
@@ -101,9 +109,6 @@ $pdo = null;
                             </div>
 
                             <div class="interaccion">
-                                <div class="comentarios">
-                                    <p>Comentar</p>
-                                </div>
                                 <div class="likes">
                                     <a class="options" data-vote-type="1" id="post_vote_up_' . htmlspecialchars($post['Id_posts']) . '">
                                         <i class="fas fa-thumbs-up" data-original-title="Like this post"></i>
@@ -117,6 +122,26 @@ $pdo = null;
                             </div>
                         </div>
                     </a>';
+
+                }elseif($idtypeuser == 3){
+                    echo '<a href="post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
+                        <div class="p1">
+                            <div class="cuerpo_post">
+                                <div class="imagen_post">
+                                    <img class="imagen1" src="' . $imageSrc . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
+                                </div>
+                                <div class="info_post">
+                                    <h4 class="titulo1">' . htmlspecialchars($post['title']) . '</h4>
+                                    <div class="datos1">
+                                        <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user_creation']) . '</span>
+                                        <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['post_date'])) . '</span>
+                                    </div>
+                                    <p class="texto1">' . htmlspecialchars(strlen($post['title']) > 60 ? substr($post['content'],0,125) . "..." :  substr($post['content'],0,180) . "...")  . '</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>';
+                }
             }
         
         ?>

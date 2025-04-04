@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'config/database.php';
 
 // Definir la ruta de la imagen predeterminada
@@ -42,6 +43,7 @@ $pdo = null;
     <link rel="stylesheet" href="./views/css/footer.css">
     <link rel="stylesheet" href="./views/css/index.css">
     <link rel="stylesheet" href="./views/css/posts.css">
+    <link rel="stylesheet" href="./views/css/cookies.css">
 </head>
 
 <body>
@@ -102,9 +104,9 @@ $pdo = null;
         </div>
 
     </main>
-
+    <div id="cookiesContainer"></div>
+    <script src="./js/cookies.js"></script>
     <!-- Incluyendo el pie de página -->
     <?php include './views/layout/footer.php'; ?>
 </body>
-
 </html>

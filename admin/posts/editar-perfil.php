@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $conexion->query($sql_update);
 
         // Establecer un mensaje de éxito
-        $_SESSION['success_message'] = "Perfil actualizado con éxito!";
+        $_SESSION['success_message'] = "Perfil actualizado con éxito";
 
         // Redirigir para que los cambios se reflejen de inmediato
         header("Location: editar-perfil.php?id=" . $id);
@@ -91,12 +91,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="email" id="email" name="email" value="<?= $datos->email ?>">
                     </div>
 
-                    <div class="botonuser-div">
+                    <div class="botones-div">
+                        <a href="panel-usuarios.php" class="btn-editar-perfil">Regresar</a>
                         <button type="submit" name="crear_post">Modificar perfil</button>
                     </div>
 
                 </div>
             </form>
+            
         <?php } ?>
     </div>
 </body>

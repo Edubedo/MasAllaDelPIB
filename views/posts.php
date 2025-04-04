@@ -1,6 +1,7 @@
 <?php
 session_start();
 require '../config/database.php';
+include ('megusta.php');
 
 // Se hace la consulta y se obtienen los datos de las publicaciones 
 $query = "SELECT Id_posts, title, content, post_date, category, image, user_creation, vote_up, vote_down
@@ -23,7 +24,10 @@ try {
     die("Error al consultar los posts en la base de datos: " . $e->getMessage());
 }
 
-$pdo = null;
+$idtypeuser = $_SESSION['id_type_user'] ?? null;
+// Si no hay valor en $_SESSION['id_type_user'], asignar por defecto "visitante"
+$idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
+
 ?>
 
 <!DOCTYPE html>
@@ -78,17 +82,14 @@ $pdo = null;
             <h1>Publicaciones</h1>
         </div>
         
-
-        <!-- Buscador -->
-
-        <form class="buscador" method="POST" action="posts.php">
+      <!-- Buscador General -->
+      <form class="buscador" method="POST" action="posts.php">
             <i class="fas fa-search" style="font-size: 22px; color:rgb(9, 7, 66);"></i>
             <input type="text" name="buscar" id="buscar" onkeyup="consulta_buscador($('#buscar').val());" placeholder="Buscar">
-
-        <div class="card_busqueda" id="card_busqueda" style="opacity: 0;">
-            <div class="casd shasow-sm p-2">
-                <div class="container m-0 p-0" id="resultados_busqueda_nav">
-
+            
+            <div class="card_busqueda" id="card_busqueda" style="opacity: 0;">
+                <div class="casd shasow-sm p-2">
+                    <div class="container m-0 p-0" id="resultados_busqueda_nav">
                 </div>
             </div>
         </div>
@@ -99,14 +100,16 @@ $pdo = null;
 
         <div class="cuerpo">
             <?php
-                include ('megusta.php');
+                
+                
                 $posts = new Posts($pdo); // instanciar la clase Posts
 
                 foreach ($postsDB as $post) { 
                     // Si no hay imagen, usamos la imagen predeterminada
                     $imageSrc = !empty($post['image']) ? "../admin/posts/" . htmlspecialchars($post['image']) : "../admin/posts/uploads/preterminada.jpg";
 
-                    echo '<a href="post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
+                    if ($idtypeuser == 1 || $idtypeuser == 2){
+                        echo '<a href="post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
                             <div class="p1">
                                 <div class="cuerpo_post">
                                     <div class="imagen_post">
@@ -123,9 +126,6 @@ $pdo = null;
                                 </div>
 
                                 <div class="interaccion">
-                                    <div class="comentarios">
-                                        <p>Comentar</p>
-                                    </div>
                                     <div class="likes">
                                         <a class="options" data-vote-type="1" id="post_vote_up_' . htmlspecialchars($post['Id_posts']) . '">
                                             <i class="fas fa-thumbs-up" data-original-title="Like this post"></i>
@@ -139,6 +139,27 @@ $pdo = null;
                                 </div>
                             </div>
                         </a>';
+
+                    }elseif($idtypeuser == 3){
+                        echo '<a href="post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
+                            <div class="p1">
+                                <div class="cuerpo_post">
+                                    <div class="imagen_post">
+                                        <img class="imagen1" src="' . $imageSrc . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
+                                    </div>
+                                    <div class="info_post">
+                                        <h4 class="titulo1">' . htmlspecialchars($post['title']) . '</h4>
+                                        <div class="datos1">
+                                            <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user_creation']) . '</span>
+                                            <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['post_date'])) . '</span>
+                                        </div>
+                                        <p class="texto1">' . htmlspecialchars(strlen($post['title']) > 60 ? substr($post['content'],0,125) . "..." :  substr($post['content'],0,180) . "...")  . '</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>';
+                    }
+                    
                 }
             ?>
         </div>

@@ -29,6 +29,7 @@ if (isset($_SESSION['username'])) {
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="css/panel-usuarios.css">
     <link rel="stylesheet" href="../../views/css/navbar.css">
+    <link rel="stylesheet" href="css/userpop.css">
 
 </head>
 
@@ -50,23 +51,34 @@ if (isset($_SESSION['username'])) {
                 ?>
 
                 <img id="logo_admin" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACXUlEQVR4nO2Yz0tVQRTHPykaSZtcPoI27YJAqXWYhNCiNOJB/gkqWhq+doUbzforyh9YO3cFtUhFaJ8+Nbe1KSVeUoH4YuBcuFzm+ubeGZk79T5w4HHfuefO9945Z84MNGnSxBXtQBlYAKrAT7GqXCuLTyG5A+wC9Qb2GRigQLQAswYDT9pTudc7z3IMPrKZIkybuqX1+xp8u8xnWwG7vhK77GDwkd31IWDRoYA5HwK2HQqo+hBQcyigFrqAHz4EbDkUsOlDwLxDAS98CAi+jLYBOyEvZEhXaTP4I+AWnsnTiUY2TQFokdY465ufKUo7HdFvmBNqBb9NQWmTijIntb0mtgG8lP+Uzz/LG+BATP0Oik7gMDbV1O9zBMRDTb48IBCuy7RJClBHMj2uHtIBTMk2Mv6pTWwdOCVxnsgZ0SgwArxuEO9QfIblngWJkXnw6xYL1jWJ051DfD1FlIplzJTFw1QJjXjlYPB1saUsAmxOHx7H4iw7FLCcRYDNZ78Ri3MaWE3x+wNMAiWxilzT+X6QWMYcWQg4n4h1JcWvonluJcW3i4zsWwg4o4m3p/ErafxKGr9v5OC9hYCzhi+kZCjgex4B9ywEXEzEupphCj1K8c1UQhWtFqcQvbE4KvHWjkniimESr2RNYsXlnGdBarPjvYxG3Mwh4lMRFrI4l3JMp74TaCW6sKBDEkxXDnX2MaWZUw3akkEzp07Ch2yauTTUhmNMGr1Gi934MXF6pHVO3lOLNYInzgVgEHgOvJMm7gvwC/gNfJXpl8aERsB9AqIz9C2l4m3Im3r+W/4CaYEHGi2wJakAAAAASUVORK5CYII=" alt="system-administrator-male">
-                <h1>Bienvenido, <?php echo htmlspecialchars($username);
-                                echo $idtypeuser
-                                ?></h1>
-                
+                <h1><?php echo htmlspecialchars($username); ?></h1>
             </div>
-            <div id="userPopup">
-                <p><strong>Usuario</strong></p>
-                <p><span id="username"><?php echo htmlspecialchars($username); ?></span></p>
-                <p><strong>Email</strong>
-                <p><span id="email"><?php echo htmlspecialchars($email); ?></span></p>
-                <a href="editar-perfil.php?id=<?php echo $iduser; ?>">
-                    <button>Editar perfil</button>
-                </a>
 
-                <a href="/config/logout.php" >
-                    <button style="background-color: red;">Cerrar sesion</button>
-                </a>
+            <div id="userPopup">
+                <div class="imagen-pop">
+                    <img id="img_user" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACXUlEQVR4nO2Yz0tVQRTHPykaSZtcPoI27YJAqXWYhNCiNOJB/gkqWhq+doUbzforyh9YO3cFtUhFaJ8+Nbe1KSVeUoH4YuBcuFzm+ubeGZk79T5w4HHfuefO9945Z84MNGnSxBXtQBlYAKrAT7GqXCuLTyG5A+wC9Qb2GRigQLQAswYDT9pTudc7z3IMPrKZIkybuqX1+xp8u8xnWwG7vhK77GDwkd31IWDRoYA5HwK2HQqo+hBQcyigFrqAHz4EbDkUsOlDwLxDAS98CAi+jLYBOyEvZEhXaTP4I+AWnsnTiUY2TQFokdY465ufKUo7HdFvmBNqBb9NQWmTijIntb0mtgG8lP+Uzz/LG+BATP0Oik7gMDbV1O9zBMRDTb48IBCuy7RJClBHMj2uHtIBTMk2Mv6pTWwdOCVxnsgZ0SgwArxuEO9QfIblngWJkXnw6xYL1jWJ051DfD1FlIplzJTFw1QJjXjlYPB1saUsAmxOHx7H4iw7FLCcRYDNZ78Ri3MaWE3x+wNMAiWxilzT+X6QWMYcWQg4n4h1JcWvonluJcW3i4zsWwg4o4m3p/ErafxKGr9v5OC9hYCzhi+kZCjgex4B9ywEXEzEupphCj1K8c1UQhWtFqcQvbE4KvHWjkniimESr2RNYsXlnGdBarPjvYxG3Mwh4lMRFrI4l3JMp74TaCW6sKBDEkxXDnX2MaWZUw3akkEzp07Ch2yauTTUhmNMGr1Gi934MXF6pHVO3lOLNYInzgVgEHgOvJMm7gvwC/gNfJXpl8aERsB9AqIz9C2l4m3Im3r+W/4CaYEHGi2wJakAAAAASUVORK5CYII=" alt="system-administrator-male">
+                </div>
+                <div class="nombre-pop">
+                    <p>!Hola, <span id="username"><?php echo htmlspecialchars($username); ?></span>!</p>
+                </div>
+                <div class="info-pop">
+                    <div class="nombredeluser">
+                        <p><strong>Nombre de usuario</strong></p>
+                        <p><span id="username"><?php echo htmlspecialchars($username); ?></span></p>
+                    </div>
+                    <div class="emaildeluser">
+                        <p><strong>Email</strong></p>
+                        <p><span id="email"><?php echo htmlspecialchars($email); ?></span></p>
+                    </div>
+                </div>
+                <div class="botones-pop">
+                    <a href="editar-perfil.php?id=<?php echo $iduser; ?>">
+                        <button>Editar perfil</button>
+                    </a>
+                    <a href="/config/logout.php" >
+                        <button>Cerrar sesion</button>
+                    </a>
+                </div>
             </div>
 
         </header>
