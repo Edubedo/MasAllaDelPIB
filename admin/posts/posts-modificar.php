@@ -54,6 +54,7 @@
                         </div>
 
                         <div class="boton-div">
+                            <a href="posts-consulta.php" class="btn-editar-publicacion">Regresar</a>
                             <button type="submit" name="modificar_post">Guardar Publicación</button>
                         </div>
                     </div>

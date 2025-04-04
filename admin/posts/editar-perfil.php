@@ -91,12 +91,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="email" id="email" name="email" value="<?= $datos->email ?>">
                     </div>
 
-                    <div class="botonuser-div">
+                    <div class="botones-div">
+                        <a href="panel-usuarios.php" class="btn-editar-perfil">Regresar</a>
                         <button type="submit" name="crear_post">Modificar perfil</button>
                     </div>
 
                 </div>
             </form>
+            
         <?php } ?>
     </div>
 </body>
