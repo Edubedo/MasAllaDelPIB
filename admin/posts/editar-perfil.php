@@ -23,6 +23,7 @@ $id = $_GET['id'];
 
 // Obtener los datos del usuario para mostrarlos en el formulario
 $sql = $conexion->query("SELECT * FROM users WHERE iduser = $id");
+
 $idtypeuser = $_SESSION['id_type_user']; // Obtener el tipo de usuario desde la sesión
 // Si el formulario fue enviado, procesamos los datos
 
@@ -48,13 +49,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (count($updates) > 0) {
+        // obtener el nombre de usuario antiguo para actualizar los posts
+        $sql_old_username = "SELECT username FROM users WHERE iduser = $id";
+        $result = $conexion->query($sql_old_username);
+        $row = $result->fetch_assoc();
+        $old_username = $row['username'];
+
         $sql_update = "UPDATE users SET " . implode(", ", $updates) . " WHERE iduser = $id";
         $resultado = $conexion->query($sql_update);
         
         // Actualizar también en posts si cambió el username
         if (!empty($_POST['username'])) {
             $new_username = $_POST['username'];
-            $sql_update_posts = "UPDATE posts SET user_creation = '$new_username' WHERE user_creation = (SELECT username FROM users WHERE iduser = $id)";
+            $sql_update_posts = "UPDATE posts SET user_creation = '$new_username' WHERE user_creation = '$old_username'";
             if (!$conexion->query($sql_update_posts)) {
                 die("Error en la actualización de posts: " . mysqli_error($conexion));
             }
