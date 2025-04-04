@@ -28,7 +28,7 @@ if ($stmt->rowCount() > 0) {
     $_SESSION['id_type_user'] = $user['id_type_user']; // Corrección aquí
 
     // Redirección al panel si tiene acceso
-    header('Location: ../admin/posts/posts-consulta.php');
+    header('Location: ../admin/posts/posts-consulta.php?id=' . $user['iduser']);
     exit();
 } else {
     $_SESSION['error_message'] = 'Correo electrónico o contraseña incorrectos.';
