@@ -75,8 +75,10 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
         </div>
         
       <!-- Buscador General -->
-        <div class="">
+        <div class="buscador">
+            <i class="fas fa-search" style="font-size: 22px; color:rgb(9, 7, 66);"></i>
             <input type="text" name="buscar" id="buscar" onkeyup="consulta_buscador($('#buscar').val());" placeholder="Buscar">
+            
         </div>
 
         <!-- Cuerpo de las publicaciones -->
