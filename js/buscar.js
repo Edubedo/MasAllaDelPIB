@@ -24,7 +24,7 @@ var data = 'buscar';
             document.getElementById("card_busqueda").style.opacity = 1;
         }
 
-        document.getElementById("resultados_busqueda_nav").innerHTML = data;
+        document.getElementById("resultados_busqueda").innerHTML = data;
 
     },
     error:function(data, error){

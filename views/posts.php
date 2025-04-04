@@ -35,7 +35,9 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MasAllaDelPIB - Publicaciones</title>
-        <script src="../js/main.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="../js/main.js"></script> 
+        <script src="../js/buscar.js"></script> 
         <script src="../js/options.js"></script>
         <link rel="icon" href="../assets/img/logo.png" type="image/x-icon">
         <link rel="stylesheet" href="./css/navbar.css">
@@ -75,11 +77,16 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
         </div>
         
       <!-- Buscador General -->
-        <div class="buscador">
+        <form class="buscador" method="POST" action="posts.php">
             <i class="fas fa-search" style="font-size: 22px; color:rgb(9, 7, 66);"></i>
-            <input type="text" name="buscar" id="buscar" onkeyup="consulta_buscador($('#buscar').val());" placeholder="Buscar">
-            
-        </div>
+            <input type="text" name="buscar" id="buscar" onkeyup="consulta_buscador ($('#buscar').val());" placeholder="Buscar">
+            <div class="card_busqueda" id="card_busqueda" style="opacity: 0;">
+                <div class="card shadow-sm p-2">
+                    <div class="container m-0 p-0" id="resultados_busqueda"></div>
+                </div>
+            </div>
+        </form>
+
 
         <!-- Cuerpo de las publicaciones -->
 
