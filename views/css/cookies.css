@@ -1,106 +1,132 @@
-
+/* Estilos generales */
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-    font-size: 16px; /*1 rem = 10px*/
+  font-size: 16px; /* 1 rem = 10px */
+  background-color: rgb(233, 232, 232);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
-.card {
-    width: 30rem;
-    height: 22rem;
-    background-color: rgb(255, 255, 255);
-    border-radius: 0.8rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 3rem;
-    gap: 13px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0.2rem 0.2rem 2rem rgba(0, 0, 0, 0.062);
-    margin: 6rem;
-  }
-  
-  #cookieSvg {
-    width: 5rem;
-  }
-  
-  #cookieSvg g path {
-    fill: rgb(97, 81, 81);
-  }
-  
-  .cookieTitulo {
-    font-size: 1.2em;
-    font-weight: 800;
-    color: rgb(26, 26, 26);
-  }
-  
-  .cookieDescripcion {
-    text-align: center;
-    font-size: 0.7em;
-    font-weight: 600;
-    color: rgb(99, 99, 99);
-  }
-  
-  .cookieDescripcion a {
-    --tw-text-opacity: 1;
-    color: rgb(59 130 246);
-  }
-  
-  .cookieDescripcion a:hover {
-    -webkit-text-decoration-line: underline;
-    text-decoration-line: underline;
-  }
-  
-  .butonContenedor {
-    display: flex;
-    gap: 2rem;
-    flex-direction: row;
-  }
-  
-  .aceptarBoton {
-    width: 8rem;
-    height: 3rem;
-    background-color: #7b57ff;
-    transition-duration: .2s;
-    border: none;
-    color: rgb(241, 241, 241);
-    cursor: pointer;
-    font-weight: 600;
-    border-radius: 2rem;
-    box-shadow: 0 0.4rem 0.6rem -0.1rem #977ef3, 0 0.2rem 0.4rem -0.1rem #977ef3;
-    transition: all .6s ease;
-  }
-  
-  .rachazarBoton {
-    width: 8rem;
-    height: 3rem;
-    background-color: #dadada;
-    transition-duration: .2s;
-    color: rgb(46, 46, 46);
-    border: none;
-    cursor: not-allowed;
-    font-weight: 600;
-    border-radius: 2rem;
-    box-shadow: 0 0.4rem 0.6rem -0.1rem #bebdbd, 0 0.2rem 0.4rem -0.1rem #bebdbd;
-    transition: all .6s ease;
-  }
-  
-  .rachazarBoton:hover {
-    background-color: #ebebeb;
-    box-shadow: 0 1rem 1.5rem -0.3rem #bebdbd, 0 0.4rem 0.6rem -0.2rem #bebdbd;
-    transition-duration: .2s;
-  }
-  
-  .aceptarBoton:hover {
-    background-color: #9173ff;
-    box-shadow: 0 1rem 1.5rem -0.3rem #977ef3, 0 0.4rem 0.6rem -0.2rem #977ef3;
-    transition-duration: .2s;
-  }
+/* Fondo opaco cuando aparece el modal */
+#cookiesContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Negro semi-transparente */
+  display: none; /* Se oculta por defecto */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
 
-  body {
-    background-color: rgb(e9e8e8);
-  }
+/* Clase para mostrar el modal */
+#cookiesContainer.mostrar {
+  display: flex;
+}
+
+/* Bloquear el scroll cuando el modal está activo */
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Estilos del modal */
+.card {
+  width: 30rem;
+  height: 22rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 3rem;
+  gap: 13px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Icono de la cookie */
+#cookieSvg {
+  width: 5rem;
+}
+
+#cookieSvg g path {
+  fill: rgb(97, 81, 81);
+}
+
+/* Estilos del texto */
+.cookieTitulo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: rgb(26, 26, 26);
+}
+
+.cookieDescripcion {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgb(99, 99, 99);
+  max-width: 90%;
+}
+
+.cookieDescripcion a {
+  color: rgb(59, 130, 246);
+  text-decoration: none;
+}
+
+.cookieDescripcion a:hover {
+  text-decoration: underline;
+}
+
+/* Contenedor de botones */
+.butonContenedor {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* Botón Aceptar */
+.aceptarBoton {
+  width: 9rem;
+  height: 3rem;
+  background-color: #7b57ff;
+  border: none;
+  color: rgb(241, 241, 241);
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 2rem;
+  box-shadow: 0 0.4rem 0.6rem -0.1rem #977ef3, 0 0.2rem 0.4rem -0.1rem #977ef3;
+  transition: all 0.3s ease;
+}
+
+.aceptarBoton:hover {
+  background-color: #9173ff;
+  box-shadow: 0 1rem 1.5rem -0.3rem #977ef3, 0 0.4rem 0.6rem -0.2rem #977ef3;
+}
+
+/* Botón Rechazar */
+.rachazarBoton {
+  width: 9rem;
+  height: 3rem;
+  background-color: #dadada;
+  color: rgb(46, 46, 46);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 2rem;
+  box-shadow: 0 0.4rem 0.6rem -0.1rem #bebdbd, 0 0.2rem 0.4rem -0.1rem #bebdbd;
+  transition: all 0.3s ease;
+}
+
+.rachazarBoton:hover {
+  background-color: #ebebeb;
+  box-shadow: 0 1rem 1.5rem -0.3rem #bebdbd, 0 0.4rem 0.6rem -0.2rem #bebdbd;
+}
