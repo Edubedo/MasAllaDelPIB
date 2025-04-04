@@ -6,6 +6,7 @@ include "posts-eliminar.php";
 
 // Verifica si hay una session activa y mandamos a llamar el nombre del usuario
 if (isset($_SESSION['username'])) {
+
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
 } else {
@@ -24,6 +25,7 @@ $sql = "SELECT * FROM users WHERE email = '$email'";
 $result = mysqli_query($conexion, $sql);
 $row = mysqli_fetch_assoc($result);
 $idtypeuser = $row['id_type_user'];
+$iduser = $row['iduser'];
 ?>
 
 <!DOCTYPE html>
