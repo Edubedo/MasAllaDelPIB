@@ -139,7 +139,7 @@ $iduser = $row['iduser'];
 
     <script src="../../js/panel_usuarios.js"></script>
 
-    // Función que abre ventana emergente para confirmar la eliminacion de un usuario
+    
     <script>
         function ConfirmDelete(){
             var respuesta = confirm("¿Estas seguro que deseas eliminar usuario?")

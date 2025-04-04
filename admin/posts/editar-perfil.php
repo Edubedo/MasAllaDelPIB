@@ -66,8 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 die("Error en la actualización de posts: " . mysqli_error($conexion));
             }
             
-            // ACTUALIZAR LA SESIÓN
-            $_SESSION['username'] = $new_username;
+            // SOLO ACTUALIZAR LA SESIÓN SI ESTÁ EDITANDO SU PROPIO PERFIL
+            if ($id == $iduser) {
+                $_SESSION['username'] = $new_username;
+            }
         }
             // Redirigir para que los cambios se reflejen de inmediato
             $_SESSION['success_message'] = "Perfil actualizado con éxito";
