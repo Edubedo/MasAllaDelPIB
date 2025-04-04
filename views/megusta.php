@@ -10,32 +10,48 @@ class Posts{
 
     public function getPosts(){
         $sqlQuery = "SELECT Id_posts, title, content, post_date, category, image, user_creation, status, referencia_posts, vote_up, vote_down FROM {$this->postTable}";
-        $resultado = mysqli_query($this->dbConnect, $sqlQuery);
-        return $resultado ? $resultado->fetch_all(MYSQLI_ASSOC) : [];      
+        $stmt = $this->dbConnect->prepare($sqlQuery);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);     
     }
 
     public function isUserAlreadyVoted($user_creation, $Id_posts) {
-        $sqlQuery = 'SELECT Id_posts, user_creation, vote FROM' .$this->postVotesTable." WHERE user_creation = '".$user_creation."' AND Id_posts = '".$Id_posts."'";
-        $result = mysqli_query($this->dbConnect, $sqlQuery);
-        return $result->num_rows;
+        $sqlQuery = "SELECT Id_posts FROM {$this->postVotesTable} WHERE user_creation = :user_creation AND Id_posts = :Id_posts";
+        $stmt = $this->dbConnect->prepare($sqlQuery);
+        $stmt->execute([
+            ':user_creation' => $user_creation,
+            ':Id_posts' => $Id_posts
+        ]);
+        return $stmt->rowCount() > 0;
     }
     
     public function getPostVotes($Id_posts) {
-        $sqlQuery = 'SELECT Id_posts, vote_up, vote_down FROM' .$this->postTable." WHERE Id_posts = '".$Id_posts."'";
-        $result = mysqli_query($this->dbConnect, $sqlQuery);
-        $row = $result->fetch_array(MYSQLI_ASSOC);
-        return  $row;     
+        $sqlQuery = "SELECT Id_posts, vote_up, vote_down FROM" .$this->postTable." WHERE Id_posts = '".$Id_posts."'";
+        $stmt = $this->dbConnect->prepare($sqlQuery);
+        $stmt->execute([':Id_posts' => $Id_posts]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);  
     }   
     
     public function updatePostVote($postVoteData) {
-        $sqlQuery = "UPDATE ".$this->postTable." SET vote_up = '".$postVoteData['vote_up']."' , vote_down = '".$postVoteData['vote_down']."' WHERE Id_posts = '".$postVoteData['Id_posts']."'";
-        mysqli_query($this->dbConnect, $sqlQuery);      
-        
-        $sqlVoteQuery = "INSERT INTO ".$this->postVotesTable." (id_like, Id_posts, user_creation, id_fecha_creacion) VALUES ('', '".$postVoteData['Id_posts']."', '".$postVoteData['user_creation']."',now())";
-        if($sqlVoteQuery) {
-            mysqli_query($this->dbConnect, $sqlVoteQuery);  
-            return true;            
-        }   
+        if ($this->isUserAlreadyVoted($postVoteData['user_creation'], $postVoteData['Id_posts'])) {
+            return false; // No permite votos duplicados
+        }
+        $sqlQuery = "UPDATE {$this->postTable} SET vote_up = :vote_up, vote_down = :vote_down WHERE Id_posts = :Id_posts";
+        $stmt = $this->dbConnect->prepare($sqlQuery);
+        $stmt->execute([
+            ':vote_up' => $postVoteData['vote_up'],
+            ':vote_down' => $postVoteData['vote_down'],
+            ':Id_posts' => $postVoteData['Id_posts']
+        ]);
+
+        // Registrar el voto en la tabla de likes
+        $sqlVoteQuery = "INSERT INTO {$this->postVotesTable} (Id_posts, user_creation, id_fecha_creacion) VALUES (:Id_posts, :user_creation, NOW())";
+        $stmt = $this->dbConnect->prepare($sqlVoteQuery);
+        return $stmt->execute([
+            ':Id_posts' => $postVoteData['Id_posts'],
+            ':user_creation' => $postVoteData['user_creation']
+
+        ]);
     }
 }
 ?>

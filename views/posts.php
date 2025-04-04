@@ -1,8 +1,6 @@
 <?php
 session_start();
 require '../config/database.php';
-include ('megusta.php');
-
 // Se hace la consulta y se obtienen los datos de las publicaciones 
 $query = "SELECT Id_posts, title, content, post_date, category, image, user_creation, vote_up, vote_down
           FROM posts"; 
@@ -89,9 +87,9 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
 
         <div class="cuerpo">
             <?php
-                
-                
-                $posts = new Posts($pdo); // instanciar la clase Posts
+
+                include ('megusta.php');
+                $posts = new Posts($pdo);
 
                 foreach ($postsDB as $post) { 
                     // Si no hay imagen, usamos la imagen predeterminada
