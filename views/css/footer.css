@@ -179,7 +179,7 @@ html, body {
     }
 }
 
-@media (max-width: 868px) {
+@media (max-width: 960px) {
     .footer-container1 {
         flex-direction: column;
         align-items: center;
