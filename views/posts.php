@@ -1,7 +1,6 @@
 <?php
 session_start();
 require '../config/database.php';
-include ('megusta.php');
 
 // Se hace la consulta y se obtienen los datos de las publicaciones 
 $query = "SELECT Id_posts, title, content, post_date, category, image, user_creation, vote_up, vote_down
@@ -24,10 +23,7 @@ try {
     die("Error al consultar los posts en la base de datos: " . $e->getMessage());
 }
 
-$idtypeuser = $_SESSION['id_type_user'] ?? null;
-// Si no hay valor en $_SESSION['id_type_user'], asignar por defecto "visitante"
-$idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
-
+$pdo = null;
 ?>
 
 <!DOCTYPE html>
@@ -37,11 +33,6 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MasAllaDelPIB - Publicaciones</title>
-        
-        <!-- Incluir jQuery primero -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-        <!-- Tus archivos JS personalizados -->
         <script src="../js/main.js"></script>
         <script src="../js/buscar.js"></script>
 
@@ -83,33 +74,32 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
         </div>
         
       <!-- Buscador General -->
-      <form class="buscador" method="POST" action="posts.php">
-            <i class="fas fa-search" style="font-size: 22px; color:rgb(9, 7, 66);"></i>
+        <div class="">
             <input type="text" name="buscar" id="buscar" onkeyup="consulta_buscador($('#buscar').val());" placeholder="Buscar">
-            
-            <div class="card_busqueda" id="card_busqueda" style="opacity: 0;">
-                <div class="casd shasow-sm p-2">
-                    <div class="container m-0 p-0" id="resultados_busqueda_nav">
+        </div>
+
+        <div class="card_busqueda" id="card_busqueda" style="opacity: 0;">
+            <div class="casd shasow-sm p-2">
+                <div class="container m-0 p-0" id="resultados_busqueda_nav">
+
                 </div>
             </div>
         </div>
-    </form>
+
         <!-- Cuerpo de las publicaciones -->
 
 
 
         <div class="cuerpo">
             <?php
-                
-                
+                include ('megusta.php');
                 $posts = new Posts($pdo); // instanciar la clase Posts
 
                 foreach ($postsDB as $post) { 
                     // Si no hay imagen, usamos la imagen predeterminada
                     $imageSrc = !empty($post['image']) ? "../admin/posts/" . htmlspecialchars($post['image']) : "../admin/posts/uploads/preterminada.jpg";
 
-                    if ($idtypeuser == 1 || $idtypeuser == 2){
-                        echo '<a href="post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
+                    echo '<a href="post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
                             <div class="p1">
                                 <div class="cuerpo_post">
                                     <div class="imagen_post">
@@ -126,6 +116,9 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
                                 </div>
 
                                 <div class="interaccion">
+                                    <div class="comentarios">
+                                        <p>Comentar</p>
+                                    </div>
                                     <div class="likes">
                                         <a class="options" data-vote-type="1" id="post_vote_up_' . htmlspecialchars($post['Id_posts']) . '">
                                             <i class="fas fa-thumbs-up" data-original-title="Like this post"></i>
@@ -139,27 +132,6 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
                                 </div>
                             </div>
                         </a>';
-
-                    }elseif($idtypeuser == 3){
-                        echo '<a href="post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
-                            <div class="p1">
-                                <div class="cuerpo_post">
-                                    <div class="imagen_post">
-                                        <img class="imagen1" src="' . $imageSrc . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
-                                    </div>
-                                    <div class="info_post">
-                                        <h4 class="titulo1">' . htmlspecialchars($post['title']) . '</h4>
-                                        <div class="datos1">
-                                            <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user_creation']) . '</span>
-                                            <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['post_date'])) . '</span>
-                                        </div>
-                                        <p class="texto1">' . htmlspecialchars(strlen($post['title']) > 60 ? substr($post['content'],0,125) . "..." :  substr($post['content'],0,180) . "...")  . '</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>';
-                    }
-                    
                 }
             ?>
         </div>
