@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $conexion->query($sql_update);
 
         // Establecer un mensaje de éxito
-        $_SESSION['success_message'] = "Perfil actualizado con éxito!";
+        $_SESSION['success_message'] = "Perfil actualizado con éxito";
 
         // Redirigir para que los cambios se reflejen de inmediato
         header("Location: editar-perfil.php?id=" . $id);
