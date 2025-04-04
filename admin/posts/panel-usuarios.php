@@ -9,13 +9,19 @@ if (isset($_SESSION['username'])) {
 
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
-    $iduser = $_SESSION['iduser'];
     $idtypeuser = $_SESSION['id_type_user'];
 } else {
     // Si no hay usuario logueado lo va a redirigir al login
     header("Location: ../../views/signin.php");
     exit();
 }
+
+// Obtener el tipo de usuario del usuario
+$sql = "SELECT * FROM users WHERE email = '$email'";
+$result = mysqli_query($conexion, $sql);
+$row = mysqli_fetch_assoc($result);
+$idtypeuser = $row['id_type_user'];
+$iduser = $row['iduser'];
 ?>
 
 <!DOCTYPE html>

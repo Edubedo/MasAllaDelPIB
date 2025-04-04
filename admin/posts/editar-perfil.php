@@ -1,6 +1,21 @@
 <?php
 session_start();
 include('../../config/database.php');
+if (isset($_SESSION['username'])) {
+
+    $username = $_SESSION['username'];
+    $email = $_SESSION['email'];
+} else {
+    // Si no hay usuario logueado lo va a redirigir al login
+    header("Location: ../../views/signin.php");
+    exit();
+}
+$sql = "SELECT * FROM users WHERE email = '$email'";
+$result = mysqli_query($conexion, $sql);
+$row = mysqli_fetch_assoc($result);
+$iduser = $row['iduser'];
+
+
 $id = $_GET['id'];
 
 // Iniciar sesión para usar mensajes de éxito
@@ -8,8 +23,9 @@ $id = $_GET['id'];
 
 // Obtener los datos del usuario para mostrarlos en el formulario
 $sql = $conexion->query("SELECT * FROM users WHERE iduser = $id");
-
+$idtypeuser = $_SESSION['id_type_user']; // Obtener el tipo de usuario desde la sesión
 // Si el formulario fue enviado, procesamos los datos
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $updates = [];
 
@@ -32,16 +48,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (count($updates) > 0) {
-        // Unir las actualizaciones y generar la consulta UPDATE
         $sql_update = "UPDATE users SET " . implode(", ", $updates) . " WHERE iduser = $id";
-        $conexion->query($sql_update);
-
-        // Establecer un mensaje de éxito
-        $_SESSION['success_message'] = "Perfil actualizado con éxito";
-
-        // Redirigir para que los cambios se reflejen de inmediato
-        header("Location: editar-perfil.php?id=" . $id);
-        exit(); // Detener el script después de la redirección
+        $resultado = $conexion->query($sql_update);
+        
+        // Actualizar también en posts si cambió el username
+        if (!empty($_POST['username'])) {
+            $new_username = $_POST['username'];
+            $sql_update_posts = "UPDATE posts SET user_creation = '$new_username' WHERE user_creation = (SELECT username FROM users WHERE iduser = $id)";
+            if (!$conexion->query($sql_update_posts)) {
+                die("Error en la actualización de posts: " . mysqli_error($conexion));
+            }
+            
+            // ACTUALIZAR LA SESIÓN
+            $_SESSION['username'] = $new_username;
+        }
+            // Redirigir para que los cambios se reflejen de inmediato
+            $_SESSION['success_message'] = "Perfil actualizado con éxito";
+            header("Location: editar-perfil.php?id=" . $id);
+            exit(); // Detener el script después de la redirección
     } else {
         echo "No se realizó ningún cambio.";
     }
@@ -92,8 +116,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
 
                     <div class="botones-div">
-                        <a href="panel-usuarios.php" class="btn-editar-perfil">Regresar</a>
-                        <button type="submit" name="crear_post">Modificar perfil</button>
+                    <?php
+
+                        
+                        if ($idtypeuser == 1) { // Si el usuario es administrador
+                            echo '<a href="panel-usuarios.php" class="btn-editar-perfil">Regresar</a>';
+                        } else if ($idtypeuser == 2) { // Si el usuario es autor
+                            echo '<a href="posts-consulta.php?id=' . $iduser . '" class="btn-editar-perfil">Regresar</a>';
+                        }
+                        
+
+
+                    ?>
+
+                        
+                        <button type="submit" name="editar-perfil">Modificar perfil</button>
                     </div>
 
                 </div>
