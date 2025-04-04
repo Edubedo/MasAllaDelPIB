@@ -1,6 +1,7 @@
 <?php
 session_start();
 require '../config/database.php';
+include ('megusta.php');
 
 // Se hace la consulta y se obtienen los datos de las publicaciones 
 $query = "SELECT Id_posts, title, content, post_date, category, image, user_creation, vote_up, vote_down
@@ -34,8 +35,6 @@ $pdo = null;
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MasAllaDelPIB - Publicaciones</title>
         <script src="../js/main.js"></script>
-        <script src="../js/buscar.js"></script>
-
         <link rel="icon" href="../assets/img/logo.png" type="image/x-icon">
         <link rel="stylesheet" href="./css/navbar.css">
         <link rel="stylesheet" href='./css/footer.css'>
@@ -92,7 +91,8 @@ $pdo = null;
 
         <div class="cuerpo">
             <?php
-                include ('megusta.php');
+                
+                
                 $posts = new Posts($pdo); // instanciar la clase Posts
 
                 foreach ($postsDB as $post) { 
