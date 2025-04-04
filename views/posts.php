@@ -33,7 +33,14 @@ $pdo = null;
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MasAllaDelPIB - Publicaciones</title>
+        
+        <!-- Incluir jQuery primero -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- Tus archivos JS personalizados -->
         <script src="../js/main.js"></script>
+        <script src="../js/buscar.js"></script>
+
         <link rel="icon" href="../assets/img/logo.png" type="image/x-icon">
         <link rel="stylesheet" href="./css/navbar.css">
         <link rel="stylesheet" href='./css/footer.css'>
@@ -71,11 +78,21 @@ $pdo = null;
             <h1>Publicaciones</h1>
         </div>
         
-      <!-- Buscador General -->
-        <div class="">
-            <input type="text" name="buscar" id="buscar" onkeyup="consulta_buscador($('#buscar').val());" placeholder="Buscar">
-        </div>
 
+        <!-- Buscador -->
+
+        <form class="buscador" method="POST" action="posts.php">
+            <i class="fas fa-search" style="font-size: 22px; color:rgb(9, 7, 66);"></i>
+            <input type="text" name="buscar" id="buscar" onkeyup="consulta_buscador($('#buscar').val());" placeholder="Buscar">
+
+        <div class="card_busqueda" id="card_busqueda" style="opacity: 0;">
+            <div class="casd shasow-sm p-2">
+                <div class="container m-0 p-0" id="resultados_busqueda_nav">
+
+                </div>
+            </div>
+        </div>
+    </form>
         <!-- Cuerpo de las publicaciones -->
 
 

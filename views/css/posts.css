@@ -139,7 +139,28 @@
     color: rgb(0, 0, 0);
 }
 
+.buscador{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 2rem;
+    padding: 0 5rem; /* Espacio a los lados */
+    gap: 1rem; /* Espacio entre el input y el icono */
+}
+
+.buscador input{
+    border: none;
+    border-bottom: 2px solid #2f458d; /* Color azul claro */
+    background-color: rgba(255, 255, 255, 0.365);
+    outline: none;             /* Elimina el borde azul al hacer clic */
+    padding: 0.5rem;
+    font-size: 1.6rem;
+    color: #0f141b;
+}
+
+
 .cuerpo {
+    
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -324,6 +345,7 @@ a img {
         display: block;
         width: 100%;
         padding: 1.5rem 0;
+        font-size: 2rem;
     }
 
     #toggle:checked ~ .list {
