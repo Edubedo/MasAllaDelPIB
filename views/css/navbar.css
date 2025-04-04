@@ -123,6 +123,12 @@ nav button {
     font-size: 1.2rem;
 }
 
+.nav__items {
+	display: flex;
+	align-items: center;
+	gap: 3rem;
+}
+
 /* Media Query para Tablets y Móviles */
 @media (max-width: 939px) {
     /* Hacer que la lista se oculte por defecto y solo se vea cuando se active */
