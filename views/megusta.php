@@ -15,31 +15,27 @@ class Posts{
     }
 
     public function isUserAlreadyVoted($user_creation, $Id_posts) {
-        $sqlQuery = "SELECT Id_posts, user_creation, vote FROM {$this->postVotesTable} WHERE user_creation = ? AND Id_posts = ?";
+        $sqlQuery = 'SELECT Id_posts, user_creation, vote FROM' .$this->postVotesTable." WHERE user_creation = '".$user_creation."' AND Id_posts = '".$Id_posts."'";
         $result = mysqli_query($this->dbConnect, $sqlQuery);
         return $result->num_rows;
     }
     
     public function getPostVotes($Id_posts) {
-        $sqlQuery = "SELECT Id_posts, vote_up, vote_down FROM {$this->postTable} WHERE Id_posts = ?";
-        $stmt = $this->dbConnect->prepare($sqlQuery);
+        $sqlQuery = 'SELECT Id_posts, vote_up, vote_down FROM' .$this->postTable." WHERE Id_posts = '".$Id_posts."'";
         $result = mysqli_query($this->dbConnect, $sqlQuery);
         $row = $result->fetch_array(MYSQLI_ASSOC);
         return  $row;     
     }   
     
     public function updatePostVote($postVoteData) {
-        // Actualizar votos en la tabla posts
-        $sqlQuery = "UPDATE {$this->postTable} SET vote_up = ?, vote_down = ? WHERE post_id = ?";
-        $stmt = $this->dbConnect->prepare($sqlQuery);
-        $stmt->bind_param("iii", $postVoteData['vote_up'], $postVoteData['vote_down'], $postVoteData['post_id']);
-        $stmt->execute();
+        $sqlQuery = "UPDATE ".$this->postTable." SET vote_up = '".$postVoteData['vote_up']."' , vote_down = '".$postVoteData['vote_down']."' WHERE Id_posts = '".$postVoteData['Id_posts']."'";
+        mysqli_query($this->dbConnect, $sqlQuery);      
         
-        // Insertar el voto en post_votes
-        $sqlVoteQuery = "INSERT INTO {$this->postVotesTable} (post_id, user_id, vote, date) VALUES (?, ?, ?, NOW())";
-        $stmt = $this->dbConnect->prepare($sqlVoteQuery);
-        $stmt->bind_param("iii", $postVoteData['post_id'], $postVoteData['user_id'], $postVoteData['vote']);
-        return $stmt->execute();
+        $sqlVoteQuery = "INSERT INTO ".$this->postVotesTable." (id_like, Id_posts, user_creation, id_fecha_creacion) VALUES ('', '".$postVoteData['Id_posts']."', '".$postVoteData['user_creation']."',now())";
+        if($sqlVoteQuery) {
+            mysqli_query($this->dbConnect, $sqlVoteQuery);  
+            return true;            
+        }   
     }
 }
 ?>
