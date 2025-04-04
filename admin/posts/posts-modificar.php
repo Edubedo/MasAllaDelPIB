@@ -1,9 +1,67 @@
-<?php 
-    include('../../config/database.php');
-    $id = $_GET['id']; 
+<?php
+session_start();
+include('../../config/database.php');
 
-    $sql = $conexion->query("SELECT * FROM posts WHERE Id_posts = $id");
-    $datos = $sql->fetch_object(); // Obtener el objeto antes del formulario
+$id = $_GET['id']; // Obtener el ID de la publicación
+
+// Obtener los datos de la publicación actual
+$sql = $conexion->query("SELECT * FROM posts WHERE Id_posts = $id");
+$datos = $sql->fetch_object();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $updates = [];
+
+    // Verificar y actualizar el título
+    if (!empty($_POST['titulo_posts'])) {
+        $new_title = $conexion->real_escape_string($_POST['titulo_posts']);
+        $updates[] = "title = '$new_title'";
+    }
+
+    // Verificar y actualizar el contenido
+    if (!empty($_POST['contenido_posts'])) {
+        $new_content = $conexion->real_escape_string($_POST['contenido_posts']);
+        $updates[] = "content = '$new_content'";
+    }
+
+    // Verificar y actualizar la categoría
+    if (!empty($_POST['categoria_posts'])) {
+        $new_category = $conexion->real_escape_string($_POST['categoria_posts']);
+        $updates[] = "category = '$new_category'";
+    }
+
+    // Verificar y actualizar la fecha de publicación
+    if (!empty($_POST['fecha_publicacion_posts'])) {
+        $new_date = $conexion->real_escape_string($_POST['fecha_publicacion_posts']);
+        $updates[] = "post_date = '$new_date'";
+    }
+
+    // Verificar y actualizar la imagen si se ha subido una nueva
+    if (!empty($_FILES['imagen_posts']['name'])) {
+        $imagen_nombre = $_FILES['imagen_posts']['name'];
+        $imagen_temp = $_FILES['imagen_posts']['tmp_name'];
+        $ruta_destino = "../../uploads/" . $imagen_nombre; // Ruta donde se guardará la imagen
+
+        // Mover la imagen al servidor
+        if (move_uploaded_file($imagen_temp, $ruta_destino)) {
+            $updates[] = "image = '$ruta_destino'";
+        }
+    }
+
+    // Si hay cambios, realizar la actualización en la base de datos
+    if (count($updates) > 0) {
+        $sql_update = "UPDATE posts SET " . implode(", ", $updates) . " WHERE Id_posts = $id";
+        if ($conexion->query($sql_update)) {
+            // Establecer un mensaje de éxito
+            $_SESSION['success_message'] = "Publicación actualizada con éxito";
+            header("Location: posts-modificar.php?id=" . $id);
+            exit();
+        } else {
+            echo "Error al actualizar la publicación.";
+        }
+    } else {
+        echo "No se realizaron cambios.";
+    }
+}
 ?>
 <!DOCTYPE html>
 
@@ -20,10 +78,17 @@
                 <h1>Modificar publicación</h1>
             </div>
 
-            <!-- Incluir el archivo de procesamiento -->
-            <?php include('posts-guardar-modificado.php'); ?>
+            <!-- Mostrar el mensaje de éxito si está disponible -->
+        <?php if (isset($_SESSION['success_message'])): ?>
+            <div class="success-message">
+                <?php
+                echo $_SESSION['success_message'];
+                unset($_SESSION['success_message']); // Eliminar el mensaje después de mostrarlo
+                ?>
+            </div>
+        <?php endif; ?>
 
-            <form action="#" name="crear_posts" method="post" enctype="multipart/form-data">
+            <form action="" name="modificar_post" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= htmlspecialchars($id) ?>">
                 <input type="hidden" name="usuario_posts" value="<?= htmlspecialchars($_SESSION['username']) ?>">
 
@@ -71,25 +136,12 @@
                         <div class="imagendelpost">
                             <label for="imagen">Imagen:</label>
                             <input type="file" id="imagen" name="imagen_posts" accept="image/*">
-                            <p>Imagen actual:</p>
+                            <label for="imagen_actual">Imagen actual:</label>
                             <img src="<?= htmlspecialchars($datos->image) ?>" alt="Imagen actual" width="150">
                         </div>
                     </div>
                 </div>
             </form>
         </div>
-
-        <!-- Script para mostrar el popup -->
-        <script>
-            <?php if (isset($_SESSION['post_update_success']) && $_SESSION['post_update_success']) { ?>
-                window.onload = function() {
-                    alert('Publicación modificada');
-                    window.location.href = 'posts-consulta.php'; // Redirigir a la página de consulta
-                };
-                <?php unset($_SESSION['post_update_success']); ?>  // Eliminar la bandera después de usarla
-            <?php } 
-            ?>
-        </script>
-
     </body>
 </html>
