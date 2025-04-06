@@ -27,5 +27,5 @@ window.onload = function () {
                 }
             })
             .catch(error => console.error("Error al cargar el modal de cookies:", error));
-    }, 5000); // 5 segundos
+    }, 3000); // 5 segundos
 };
