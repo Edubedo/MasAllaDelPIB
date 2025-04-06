@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         <?php endif; ?>
 
-            <form action="" name="modificar_post" method="post" enctype="multipart/form-data">
+            <form id="modificarForm" action="" name="modificar_post" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= htmlspecialchars($id) ?>">
                 <input type="hidden" name="usuario_posts" value="<?= htmlspecialchars($_SESSION['username']) ?>">
 
@@ -143,5 +143,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </form>
         </div>
+        <div id="modal" class="fondo-alerta" style="display: none;">
+            <div class="alerta">
+                <p id="alert-message"></p>
+                <button class="boton-alerta" onclick="cerrarAlerta()">Aceptar</button>
+            </div>
+        </div>
+        <script>
+            function mostrarAlerta(mensaje) {
+                document.getElementById("alert-message").textContent = mensaje;
+                document.getElementById("modal").style.display = "flex";
+            }
+
+            // Cerrar el modal de alerta
+            function cerrarAlerta() {
+                document.getElementById("modal").style.display = "none";
+            }
+
+            // Validación antes de enviar el formulario
+            document.getElementById("modificarForm").addEventListener("submit", function(e) {
+                const titulo = document.getElementById("titulo").value.trim();
+                const contenido = document.getElementById("contenido").value.trim();
+
+                if (titulo.length < 10) {
+                    e.preventDefault(); // Evita que se envíe el formulario
+                    mostrarAlerta("El título debe tener al menos 10 caracteres.");
+                    return;
+                }
+
+                if (contenido.length < 20) {
+                    e.preventDefault();
+                    mostrarAlerta("El contenido debe tener al menos 20 caracteres.");
+                    return;
+                }
+            });
+        </script>
     </body>
 </html>
