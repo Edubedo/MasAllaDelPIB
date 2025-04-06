@@ -37,8 +37,8 @@ body {
 
 /* Estilos del modal */
 .card {
-  width: 30rem;
-  height: 22rem;
+  width: 80rem;
+  height: 30rem;
   background-color: rgb(255, 255, 255);
   border-radius: 0.8rem;
   display: flex;
@@ -55,7 +55,7 @@ body {
 
 /* Icono de la cookie */
 #cookieSvg {
-  width: 5rem;
+  width: 10rem;
 }
 
 #cookieSvg g path {
@@ -64,14 +64,14 @@ body {
 
 /* Estilos del texto */
 .cookieTitulo {
-  font-size: 1.4rem;
+  font-size: 3rem;
   font-weight: 800;
   color: rgb(26, 26, 26);
 }
 
 .cookieDescripcion {
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: rgb(99, 99, 99);
   max-width: 90%;
@@ -95,13 +95,14 @@ body {
 
 /* Botón Aceptar */
 .aceptarBoton {
-  width: 9rem;
-  height: 3rem;
+  width: 12.5rem;
+  height: 4.5rem;
   background-color: #7b57ff;
   border: none;
   color: rgb(241, 241, 241);
   cursor: pointer;
   font-weight: 600;
+  font-size: 2rem;
   border-radius: 2rem;
   box-shadow: 0 0.4rem 0.6rem -0.1rem #977ef3, 0 0.2rem 0.4rem -0.1rem #977ef3;
   transition: all 0.3s ease;
@@ -114,13 +115,14 @@ body {
 
 /* Botón Rechazar */
 .rachazarBoton {
-  width: 9rem;
-  height: 3rem;
+  width: 12.5rem;
+  height: 4.5rem;
   background-color: #dadada;
   color: rgb(46, 46, 46);
   border: none;
   cursor: pointer;
   font-weight: 600;
+  font-size: 2rem;
   border-radius: 2rem;
   box-shadow: 0 0.4rem 0.6rem -0.1rem #bebdbd, 0 0.2rem 0.4rem -0.1rem #bebdbd;
   transition: all 0.3s ease;
