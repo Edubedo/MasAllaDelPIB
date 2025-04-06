@@ -40,7 +40,7 @@ $iduser = $row['iduser'];
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="css/consulta.css">
     <link rel="stylesheet" href="../../views/css/navbar.css">
-    <link rel="stylesheet" href="css/userpop.css"
+    <link rel="stylesheet" href="css/userpop.css">
 
 </head>
 
@@ -130,13 +130,6 @@ $iduser = $row['iduser'];
 
         </div>
 
-        <!-- Mostrar mensaje de eliminación si se ha ejecutado -->
-        <div class="_eliminacion">
-            <?php if (isset($mensaje) && $mensaje != '') {
-                echo $mensaje;
-            } ?>
-        </div>
-
         <!-- Tabla de posts -->
         <div class="container-inferior">
             <table id="postsTable">
@@ -177,7 +170,7 @@ $iduser = $row['iduser'];
                                 <!-- Botón de modificar post -->
                                 <a href="posts-modificar.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn editar">Editar</a>
                                 <!-- Botón de eliminar publicación -->
-                                <a href="posts-consulta.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn eliminar" onclick="return ConfirmDelete()">Eliminar</a>
+                                <a href="posts-consulta.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn eliminar">Eliminar</a>
                             </td>
                         </tr>
                     <?php
@@ -236,16 +229,62 @@ $iduser = $row['iduser'];
 
     
     <script>
-        function ConfirmDelete(){
-            var respuesta = confirm("¿Estas seguro que deseas eliminar posts?")
-            if(respuesta == true){
-                return true;
+        document.addEventListener('DOMContentLoaded', function() {
+            // Variables del modal
+            const deleteModal = document.getElementById('deleteModal');
+            const confirmDeleteBtn = document.getElementById('confirmDelete');
+            const cancelDeleteBtn = document.getElementById('cancelDelete');
+            let deleteLink = null;
+
+            // Función para mostrar el modal
+            function showDeleteModal(link) {
+                deleteLink = link; // Guardamos el enlace de eliminación
+                deleteModal.style.display = 'flex'; // Mostrar el modal
+                document.body.style.overflow = 'hidden'; // Evitar que el fondo se desplace
             }
-            else{
-                return false;
+
+            // Función para cerrar el modal
+            function closeDeleteModal() {
+                deleteModal.style.display = 'none'; // Ocultar el modal
+                document.body.style.overflow = ''; // Restaurar el desplazamiento del fondo
             }
-        }
+
+            // Confirmar eliminación
+            confirmDeleteBtn.addEventListener('click', function() {
+                if (deleteLink) {
+                    // Redirigir al enlace de eliminación después de un pequeño retraso para que el modal se cierre primero
+                    closeDeleteModal(); // Cerrar el modal
+                    setTimeout(function() {
+                        window.location.href = deleteLink.href; // Redirigir al enlace de eliminación
+                    }, 200); // Retrasar para evitar que el modal desaparezca demasiado rápido
+                }
+            });
+
+            // Cancelar eliminación
+            cancelDeleteBtn.addEventListener('click', function() {
+                closeDeleteModal(); // Cerrar el modal sin eliminar
+            });
+
+            // Asignar el evento de clic a todos los botones de eliminar
+            document.querySelectorAll('.btn.eliminar').forEach(function(btn) {
+                btn.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevenir la acción predeterminada (redirección)
+                    showDeleteModal(this); // Mostrar el modal
+                });
+            });
+        });
     </script>
+
+    <!-- Modal de confirmación -->
+    <div id="deleteModal" class="deletemodal">
+        <div class="deletemodal-content">
+            <h3>¿Estás seguro que deseas eliminar esta publicación?</h3>
+            <div class="deletemodal-buttons">
+                <button id="confirmDelete">Eliminar</button>
+                <button id="cancelDelete">Cancelar</button>
+            </div>
+        </div>
+    </div>
 
 </body>
 

@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         <?php endif; ?>
 
-            <form action="" name="modificar_post" method="post" enctype="multipart/form-data">
+            <form id="modificarForm" action="" name="modificar_post" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= htmlspecialchars($id) ?>">
                 <input type="hidden" name="usuario_posts" value="<?= htmlspecialchars($_SESSION['username']) ?>">
 
@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                         <div class="boton-div">
                             <a href="posts-consulta.php" class="btn-editar-publicacion">Regresar</a>
-                            <button type="submit" name="modificar_post">Guardar Publicación</button>
+                            <button type="submit" name="modificar_post">Modificar Publicación</button>
                         </div>
                     </div>
 
@@ -143,5 +143,72 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </form>
         </div>
+
+        <div id="modal" class="fondo-alerta" style="display: none;">
+            <div class="alerta">
+                <p id="alert-message"></p>
+                <button class="boton-alerta" onclick="cerrarAlerta()">Aceptar</button>
+            </div>
+        </div>
+
+        <!-- Modal de confirmación -->
+        <div id="modal" class="fondo-alerta-modificar" style="display: none;">
+            <div class="alerta-modificar">
+                <p id="alert-message-modificar">¿Estás seguro de que deseas guardar esta publicación?</p>
+                <button class="boton-alerta-modificar" onclick="aceptarEnvio()">Aceptar</button>
+                <button class="boton-alerta-cancelar" onclick="cerrarAlerta()">Cancelar</button>
+            </div>
+        </div>
+        
+        
+        <script>
+            function mostrarAlerta(mensaje) {
+                document.getElementById("alert-message").textContent = mensaje;
+                document.getElementById("modal").style.display = "flex";
+            }
+
+            // Cerrar el modal de alerta
+            function cerrarAlerta() {
+                document.getElementById("modal").style.display = "none";
+            }
+
+            // Validación antes de enviar el formulario
+            document.getElementById("modificarForm").addEventListener("submit", function(e) {
+                const titulo = document.getElementById("titulo").value.trim();
+                const contenido = document.getElementById("contenido").value.trim();
+
+                if (titulo.length < 10) {
+                    e.preventDefault(); // Evita que se envíe el formulario
+                    mostrarAlerta("El título debe tener al menos 10 caracteres.");
+                    return;
+                }
+
+                if (contenido.length < 20) {
+                    e.preventDefault();
+                    mostrarAlerta("El contenido debe tener al menos 20 caracteres.");
+                    return;
+                }
+
+                // Mostrar el modal de confirmación
+                e.preventDefault(); // Evita el envío inmediato del formulario
+                document.getElementById("modal").style.display = "flex"; // Mostrar el modal
+            });
+
+            // Mostrar el mensaje de alerta
+            function mostrarAlerta(mensaje) {
+                document.getElementById("alert-message").textContent = mensaje;
+                document.getElementById("modal").style.display = "flex"; // Mostrar modal de alerta
+            }
+
+            // Función para enviar el formulario cuando el usuario acepta
+            function aceptarEnvio() {
+                document.getElementById("modificarForm").submit(); // Enviar el formulario
+            }
+
+            // Cerrar el modal sin hacer nada
+            function cerrarAlerta() {
+                document.getElementById("modal").style.display = "none"; // Ocultar el modal
+            }
+        </script>
     </body>
 </html>

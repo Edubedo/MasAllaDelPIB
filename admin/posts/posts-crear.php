@@ -1,8 +1,46 @@
 <?php
 session_start();
-
 include '../../config/database.php';
 
+if (isset($_POST["crear_post"])) {
+    $titulo = $_POST['titulo_posts'];
+    $categoria = $_POST['categoria_posts'];
+    $contenido = $_POST['contenido_posts'];
+    $fecha = $_POST['fecha_publicacion_posts'];
+    $usuario = $_SESSION['username'];  
+
+    if (strlen($titulo) < 10) {
+        // Mostrar error en el modal de alerta y no redirigir
+        echo "<script>mostrarAlerta('Título inválido. Debe tener al menos 10 caracteres.');</script>";
+        exit();
+    }
+
+    if (strlen($contenido) < 20) {
+        // Mostrar error en el modal de alerta y no redirigir
+        echo "<script>mostrarAlerta('Contenido inválido. Debe tener al menos 20 caracteres.');</script>";
+        exit();
+    }
+
+    $imagen_name = $_FILES['imagen_posts']['name'];
+    $imagen_tmp_name = $_FILES['imagen_posts']['tmp_name'];
+    $target_dir = 'uploads/';
+    $target_file = $target_dir . basename($imagen_name);
+
+    if (move_uploaded_file($imagen_tmp_name, $target_file)) {
+        $query = "INSERT INTO posts (title, content, post_date, category, image, user_creation) 
+                  VALUES ('$titulo', '$contenido', '$fecha', '$categoria', '$target_file', '$usuario')";
+
+        if (mysqli_query($conexion, $query)) {
+            // Redirigir a la página de consulta
+            header("Location: posts-consulta.php");
+            exit();
+        } else {
+            echo "<p style='color:red;'>Error al crear la publicación.</p>";
+        }
+    } else {
+        echo "<p style='color:red'>Error al subir la imagen.</p>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +57,7 @@ include '../../config/database.php';
             <h1>Crear nueva publicación</h1>
         </div>
         
-        <form action="#" name="crear_posts" method="post" enctype="multipart/form-data">
+        <form id="crearForm" action="#" name="crear_posts" method="post" enctype="multipart/form-data">
             <div class="contenedor-general">
 
                 <div class="izquierdo">
@@ -49,6 +87,7 @@ include '../../config/database.php';
                     </div>
 
                     <div class="boton-div">
+                        <a href="posts-consulta.php" class="btn-editar-publicacion">Regresar</a>
                         <button type="submit" name="crear_post">Guardar Publicación</button>
                     </div>
                     
@@ -70,38 +109,51 @@ include '../../config/database.php';
                 </div>
             </div>
         </form>
+        <script>
+            // Mostrar el modal de alerta cuando no se cumple la validación
+            function mostrarAlerta(mensaje) {
+                const fondo = document.createElement("div");
+                fondo.classList.add("fondo-alerta");
 
-    </body>
-    <?php
-        if (isset($_POST["crear_post"])) {
-            include 'database.php'; 
+                const alerta = document.createElement("div");
+                alerta.classList.add("alerta");
 
-            $titulo = $_POST['titulo_posts'];
-            $categoria = $_POST['categoria_posts'];
-            $contenido = $_POST['contenido_posts'];
-            $fecha = $_POST['fecha_publicacion_posts'];
-            $usuario = $_SESSION['username'];  
+                const texto = document.createElement("p");
+                texto.textContent = mensaje;
 
-            $imagen_name = $_FILES['imagen_posts']['name'];
-            $imagen_tmp_name = $_FILES['imagen_posts']['tmp_name'];
-            $target_dir = 'uploads/';
-            $target_file = $target_dir . basename($imagen_name);
+                const boton = document.createElement("button");
+                boton.textContent = "Aceptar";
+                boton.classList.add("boton-alerta");
 
-            if (move_uploaded_file($imagen_tmp_name, $target_file)) {
-                $query = "INSERT INTO posts (title, content, post_date, category, image, user_creation) 
-                        VALUES ('$titulo', '$contenido', '$fecha', '$categoria', '$target_file', '$usuario')";
+                boton.onclick = function () {
+                    document.body.removeChild(fondo);
+                };
 
-                if (mysqli_query($conexion, $query)) {
-                    header("Location: posts-consulta.php");  
-                    exit();
-                } else {
-                    echo "<p>Error al crear la publicación.</p>";
-                }
-            } else {
-                echo "<p>Error al subir la imagen.</p>";
+                alerta.appendChild(texto);
+                alerta.appendChild(boton);
+                fondo.appendChild(alerta);
+                document.body.appendChild(fondo);
             }
-        }
-    ?>
+
+            // Validaciones antes de enviar el formulario
+            document.getElementById("crearForm").addEventListener("submit", function(e) {
+                const titulo = document.getElementById("titulo").value.trim();
+                const contenido = document.getElementById("contenido").value.trim();
+
+                if (titulo.length < 10) {
+                    e.preventDefault(); // Evita que se envíe el formulario
+                    mostrarAlerta("El título debe tener al menos 10 caracteres.");
+                    return;
+                }
+
+                if (contenido.length < 20) {
+                    e.preventDefault();
+                    mostrarAlerta("El contenido debe tener al menos 20 caracteres.");
+                    return;
+                }
+            });
+        </script>
+
 
     </body>
 </html>
