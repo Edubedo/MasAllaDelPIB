@@ -110,6 +110,13 @@ if (isset($_POST["crear_post"])) {
             </div>
         </form>
         <script>
+            
+            // Obtener la fecha actual
+            let today = new Date().toISOString().split('T')[0];
+
+            // Asignar la fecha actual como valor mínimo
+            document.getElementById('fecha_publicacion').setAttribute('min', today);
+
             // Mostrar el modal de alerta cuando no se cumple la validación
             function mostrarAlerta(mensaje) {
                 const fondo = document.createElement("div");

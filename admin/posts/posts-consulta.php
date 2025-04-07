@@ -179,7 +179,6 @@ $iduser = $row['iduser'];
                 </tbody>
             </table>
         </div>
-
     </main>
 
     <script src="../../js/posts-consulta.js"></script>
@@ -285,7 +284,7 @@ $iduser = $row['iduser'];
             </div>
         </div>
     </div>
-
+    <?php include '../../views/layout/footer.php'; ?>
 </body>
 
 </html>

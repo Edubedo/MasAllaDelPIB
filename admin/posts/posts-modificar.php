@@ -152,9 +152,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
 
         <!-- Modal de confirmación -->
-        <div id="modal" class="fondo-alerta-modificar" style="display: none;">
+        <div id="modal-modificar" class="fondo-alerta-modificar" style="display: none;">
             <div class="alerta-modificar">
-                <p id="alert-message-modificar">¿Estás seguro de que deseas guardar esta publicación?</p>
+                <p id="alert-message-modificar"></p>
                 <button class="boton-alerta-modificar" onclick="aceptarEnvio()">Aceptar</button>
                 <button class="boton-alerta-cancelar" onclick="cerrarAlerta()">Cancelar</button>
             </div>
@@ -165,6 +165,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             function mostrarAlerta(mensaje) {
                 document.getElementById("alert-message").textContent = mensaje;
                 document.getElementById("modal").style.display = "flex";
+            }
+
+            function mostrarAlertaModificar(mensaje) {
+                document.getElementById("alert-message-modificar").textContent = mensaje;
+                document.getElementById("modal-modificar").style.display = "flex";
+            }
+
+            // Función para enviar el formulario cuando el usuario acepta
+            function aceptarEnvio() {
+                document.getElementById("modificarForm").submit(); // Enviar el formulario
             }
 
             // Cerrar el modal de alerta
@@ -181,12 +191,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     e.preventDefault(); // Evita que se envíe el formulario
                     mostrarAlerta("El título debe tener al menos 10 caracteres.");
                     return;
-                }
-
-                if (contenido.length < 20) {
+                }else if (contenido.length < 20) {
                     e.preventDefault();
                     mostrarAlerta("El contenido debe tener al menos 20 caracteres.");
                     return;
+                }else {
+                    e.preventDefault(); 
+                    mostrarAlertaModificar("¿Estás seguro de que deseas modificar la publicación?");
                 }
 
                 // Mostrar el modal de confirmación
@@ -194,21 +205,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 document.getElementById("modal").style.display = "flex"; // Mostrar el modal
             });
 
-            // Mostrar el mensaje de alerta
-            function mostrarAlerta(mensaje) {
-                document.getElementById("alert-message").textContent = mensaje;
-                document.getElementById("modal").style.display = "flex"; // Mostrar modal de alerta
-            }
+            
 
-            // Función para enviar el formulario cuando el usuario acepta
-            function aceptarEnvio() {
-                document.getElementById("modificarForm").submit(); // Enviar el formulario
-            }
-
-            // Cerrar el modal sin hacer nada
-            function cerrarAlerta() {
-                document.getElementById("modal").style.display = "none"; // Ocultar el modal
-            }
+            
         </script>
     </body>
 </html>

@@ -65,15 +65,16 @@ $pdo = null;
                 foreach ($postsDB as $post) { 
                     // Si no hay imagen, usamos la imagen predeterminada
                     $imageSrc = !empty($post['image']) ? "../admin/posts/" . htmlspecialchars($post['image']) : "../admin/posts/uploads/preterminada.jpg";
-
-                    echo '<a href="views/post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
+                    
+                    if ($idtypeuser == 1 || $idtypeuser == 2){
+                        echo '<a href="views/post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
                             <div class="p1">
                                 <div class="cuerpo_post">
                                     <div class="imagen_post">
                                         <img class="imagen1" src="' . $imageSrc . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
                                     </div>
                                     <div class="info_post">
-                                        <h4 class="titulo1">' . htmlspecialchars($post['title']) . '</h4>
+                                        <h4 class="titulo1">' . htmlspecialchars(strlen($post['title']) > 70 ? substr($post['title'], 0, 70) . "..." : $post['title']) . '</h4>
                                         <div class="datos1">
                                             <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user_creation']) . '</span>
                                             <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['post_date'])) . '</span>
@@ -83,9 +84,6 @@ $pdo = null;
                                 </div>
 
                                 <div class="interaccion">
-                                    <div class="comentarios">
-                                        <p>Comentar</p>
-                                    </div>
                                     <div class="likes">
                                         <a class="options" data-vote-type="1" id="post_vote_up_' . htmlspecialchars($post['Id_posts']) . '">
                                             <i class="fas fa-thumbs-up" data-original-title="Like this post"></i>
@@ -99,6 +97,27 @@ $pdo = null;
                                 </div>
                             </div>
                         </a>';
+
+                    }elseif($idtypeuser == 3){
+                        echo '<a href="post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
+                            <div class="p1">
+                                <div class="cuerpo_post">
+                                    <div class="imagen_post">
+                                        <img class="imagen1" src="' . $imageSrc . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
+                                    </div>
+                                    <div class="info_post">
+                                        <h4 class="titulo1">' . htmlspecialchars(strlen($post['title']) > 70 ? substr($post['title'], 0, 70) . "..." : $post['title']) . '</h4>
+                                        <div class="datos1">
+                                            <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user_creation']) . '</span>
+                                            <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['post_date'])) . '</span>
+                                        </div>
+                                        <p class="texto1">' . htmlspecialchars(strlen($post['title']) > 60 ? substr($post['content'],0,125) . "..." :  substr($post['content'],0,180) . "...")  . '</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>';
+                    }
+                    
                 }
             ?>
         </div>
