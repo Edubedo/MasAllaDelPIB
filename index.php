@@ -74,7 +74,7 @@ $pdo = null;
                                         <img class="imagen1" src="' . $imageSrc . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
                                     </div>
                                     <div class="info_post">
-                                        <h4 class="titulo1">' . htmlspecialchars(strlen($post['title']) > 44 ? substr($post['title'], 0, 46) . "..." : $post['title']) . '</h4>
+                                        <h4 class="titulo1">' . htmlspecialchars(strlen($post['title']) > 70 ? substr($post['title'], 0, 70) . "..." : $post['title']) . '</h4>
                                         <div class="datos1">
                                             <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user_creation']) . '</span>
                                             <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['post_date'])) . '</span>
@@ -106,7 +106,7 @@ $pdo = null;
                                         <img class="imagen1" src="' . $imageSrc . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
                                     </div>
                                     <div class="info_post">
-                                        <h4 class="titulo1">' . htmlspecialchars($post['title']) . '</h4>
+                                        <h4 class="titulo1">' . htmlspecialchars(strlen($post['title']) > 70 ? substr($post['title'], 0, 70) . "..." : $post['title']) . '</h4>
                                         <div class="datos1">
                                             <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user_creation']) . '</span>
                                             <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['post_date'])) . '</span>
