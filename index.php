@@ -65,8 +65,41 @@ $pdo = null;
                 foreach ($postsDB as $post) { 
                     // Si no hay imagen, usamos la imagen predeterminada
                     $imageSrc = !empty($post['image']) ? "../admin/posts/" . htmlspecialchars($post['image']) : "../admin/posts/uploads/preterminada.jpg";
+                    
+                    if ($idtypeuser == 1 || $idtypeuser == 2){
+                        echo '<a href="views/post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
+                            <div class="p1">
+                                <div class="cuerpo_post">
+                                    <div class="imagen_post">
+                                        <img class="imagen1" src="' . $imageSrc . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
+                                    </div>
+                                    <div class="info_post">
+                                        <h4 class="titulo1">' . htmlspecialchars(strlen($post['title']) > 44 ? substr($post['title'], 0, 46) . "..." : $post['title']) . '</h4>
+                                        <div class="datos1">
+                                            <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user_creation']) . '</span>
+                                            <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['post_date'])) . '</span>
+                                        </div>
+                                        <p class="texto1">' . htmlspecialchars(strlen($post['title']) > 60 ? substr($post['content'],0,125) . "..." :  substr($post['content'],0,180) . "...")  . '</p>
+                                    </div>
+                                </div>
 
-                    echo '<a href="views/post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
+                                <div class="interaccion">
+                                    <div class="likes">
+                                        <a class="options" data-vote-type="1" id="post_vote_up_' . htmlspecialchars($post['Id_posts']) . '">
+                                            <i class="fas fa-thumbs-up" data-original-title="Like this post"></i>
+                                        </a>
+                                        <span class="likes_count" id="vote_up_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['vote_up'] ?? 0) . '</span>
+                                        <a class="options" data-vote-type="0" id="post_vote_down_' . htmlspecialchars($post['Id_posts']) . '">
+                                            <i class="fas fa-thumbs-down" data-original-title="Dislike this post"></i>
+                                        </a>
+                                        <span class="likes_count" id="vote_down_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['vote_down'] ?? 0) . '</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>';
+
+                    }elseif($idtypeuser == 3){
+                        echo '<a href="post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
                             <div class="p1">
                                 <div class="cuerpo_post">
                                     <div class="imagen_post">
@@ -81,24 +114,10 @@ $pdo = null;
                                         <p class="texto1">' . htmlspecialchars(strlen($post['title']) > 60 ? substr($post['content'],0,125) . "..." :  substr($post['content'],0,180) . "...")  . '</p>
                                     </div>
                                 </div>
-
-                                <div class="interaccion">
-                                    <div class="comentarios">
-                                        <p>Comentar</p>
-                                    </div>
-                                    <div class="likes">
-                                        <a class="options" data-vote-type="1" id="post_vote_up_' . htmlspecialchars($post['Id_posts']) . '">
-                                            <i class="fas fa-thumbs-up" data-original-title="Like this post"></i>
-                                        </a>
-                                        <span class="likes_count" id="vote_up_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['vote_up'] ?? 0) . '</span>
-                                        <a class="options" data-vote-type="0" id="post_vote_down_' . htmlspecialchars($post['Id_posts']) . '">
-                                            <i class="fas fa-thumbs-down" data-original-title="Dislike this post"></i>
-                                        </a>
-                                        <span class="likes_count" id="vote_down_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['vote_down'] ?? 0) . '</span>
-                                    </div>
-                                </div>
                             </div>
                         </a>';
+                    }
+                    
                 }
             ?>
         </div>
