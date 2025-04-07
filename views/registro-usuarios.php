@@ -4,8 +4,8 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include '../config/database.php';
-
+// Incluir la conexión a la base de datos
+include('../config/database.php');  // Asegúrate de que la ruta sea correcta
 
 // Verificar si el formulario fue enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         try {
             // Verificar si el usuario o email ya existen
-            $checkStmt = $conn->prepare("SELECT * FROM users WHERE email = :email OR username = :username");
+            $checkStmt = $pdo->prepare("SELECT * FROM users WHERE email = :email OR username = :username");
             $checkStmt->bindParam(":email", $email);
             $checkStmt->bindParam(":username", $username);
             $checkStmt->execute();
@@ -28,12 +28,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit();
             }
 
+            // Encriptar la contraseña usando MD5
+            $hashedPassword = md5($password);  // Usar MD5
+
             // Insertar datos en la tabla users
-            $stmt = $conn->prepare("INSERT INTO users (email, username, password, id_type_user) 
+            $stmt = $pdo->prepare("INSERT INTO users (email, username, password, id_type_user) 
                                     VALUES (:email, :username, :password, :id_type_user)");
             $stmt->bindParam(":email", $email);
             $stmt->bindParam(":username", $username);
-            $stmt->bindParam(":password", $password);
+            $stmt->bindParam(":password", $hashedPassword); // Almacena la contraseña cifrada con MD5
             $stmt->bindParam(":id_type_user", $id_type_user);
             $stmt->execute();
 
