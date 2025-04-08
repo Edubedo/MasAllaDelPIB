@@ -138,8 +138,7 @@ $iduser = $row['iduser'];
                         <th>ID</th>
                         <th>Título</th>
                         <th>Categoría</th>
-                        <th>Imagen</th>
-                        <!-- <th>Referencias</th> -->
+                        <th>Referencias</th>
                         <th>Creador</th>
                         <th>Fecha</th>
                         <th></th>
@@ -162,8 +161,16 @@ $iduser = $row['iduser'];
                             <td><?php echo $mostrar['Id_posts']; ?></td>
                             <td><?php echo $mostrar['title']; ?></td>
                             <td><?php echo $mostrar['category']; ?></td>
-                            <td><img src="<?= $mostrar['image']; ?>" alt="Imagen del post" class="image-post"></td>
-                            <!-- <td><a class="referencias-links" href="<?= htmlspecialchars($mostrar['referencia_posts']) ?>" style="color:black;"><?= htmlspecialchars($mostrar['referencia_posts']) ?></a></td> -->
+                            <td>
+                                <?php
+                                $referencia = $mostrar['referencia_posts'] ?? '';
+                                if (filter_var($referencia, FILTER_VALIDATE_URL)) {
+                                    echo '<a class="referencias-links" href="' . htmlspecialchars($referencia) . '" style="color:black;">' . htmlspecialchars($referencia) . '</a>';
+                                } else {
+                                    echo '—'; // Muestra guion si no hay referencia válida
+                                }
+                                ?>
+                            </td>
                             <td><?php echo $mostrar['user_creation']; ?></td>
                             <td><?php echo $mostrar['post_date']; ?></td>
                             <td>
