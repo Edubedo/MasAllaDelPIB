@@ -106,6 +106,10 @@ if (isset($_POST["crear_post"])) {
                         <label for="imagen">Imagen:</label>
                         <input type="file" id="imagen" name="imagen_posts" accept="image/*" required>
                     </div>
+                    <div class="referenciadelpost">
+                        <label for="imagen">Referencias:</label>
+                        <textarea id="contenido" name="contenido_posts" rows="6" required></textarea>
+                    </div>
                 </div>
             </div>
         </form>
