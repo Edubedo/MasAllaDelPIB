@@ -68,7 +68,7 @@
                         <p style="font-size:14px;margin-top:2px;color: red;"><?= $_SESSION['error_message']; ?></p>
                         <?php unset($_SESSION['error_message']); ?>
                     <?php endif; ?>
-                    <a href="#"><p style="color: blue; font-size: 14px;">¿Olvidaste tu contraseña?</p></a>
+                    <a href="../views/olvidaste_tu_contraseña.php"><p style="color: blue; font-size: 14px;">¿Olvidaste tu contraseña?</p></a>
                     <button type="submit">Inicia  sesión</button>
                 </form>
 
