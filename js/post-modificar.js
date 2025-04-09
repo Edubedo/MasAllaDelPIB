@@ -96,6 +96,7 @@ document.getElementById("modificarForm").addEventListener("submit", function(e) 
     let referenciasValidas = false;
     let hayReferenciasVacios = false;
     let hayReferenciasCortas = false;
+    let todasReferenciasValidas = true; // Nueva variable para verificar todas las referencias
     
     // Validaciones básicas
     if (titulo.length < 10) {
@@ -107,16 +108,18 @@ document.getElementById("modificarForm").addEventListener("submit", function(e) 
         inputsReferencias.forEach(input => {
             const valor = input.value.trim();
             if (valor.length >= 10) {
-                referenciasValidas = true;
+                referenciasValidas = true; // Al menos una referencia válida
             } else if (valor.length > 0) {
                 hayReferenciasCortas = true;
+                todasReferenciasValidas = false; // Marcar como inválida si alguna es corta
             } else {
                 hayReferenciasVacios = true;
+                todasReferenciasValidas = false; // Marcar como inválida si alguna está vacía
             }
         });
         
         // Mensajes específicos para referencias
-        if (!referenciasValidas) {
+        if (!referenciasValidas || !todasReferenciasValidas) {
             if (inputsReferencias.length === 0) {
                 mensajeError = "Debes agregar al menos una referencia.";
             } else if (hayReferenciasCortas) {
