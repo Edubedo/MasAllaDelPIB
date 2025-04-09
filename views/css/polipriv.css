@@ -1,0 +1,43 @@
+
+/* Estilos generales */
+html {
+    font-size: 62.5%;
+  }
+  
+  body {
+    font-size: 16px; /* 1 rem = 10px */
+    background-color: rgb(233, 232, 232);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }  
+
+/*Estilos de texto*/
+
+.titulo {
+    font-size: 3rem;
+    font-weight: 800;
+    color: rgb(26, 26, 26);
+    text-align: center;
+  }
+  
+.titulo2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: rgb(26, 26, 26);
+    text-align:left;
+  }
+  
+.titulo3 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: rgb(26, 26, 26);
+    text-align: left;
+  }
+  
+.parrafo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: rgb(26, 26, 26);
+    text-align: justify;
+  }
