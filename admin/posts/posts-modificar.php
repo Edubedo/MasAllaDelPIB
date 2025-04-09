@@ -23,6 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $updates[] = "content = '$new_content'";
     }
 
+    if (!empty($_POST['referencias_post'])) {
+        $new_references = $conexion->real_escape_string($_POST['referencias_post']);
+        $updates[] = "referencia_posts = '$new_references'";
+    }
+
     // Verificar y actualizar la categoría
     if (!empty($_POST['categoria_posts'])) {
         $new_category = $conexion->real_escape_string($_POST['categoria_posts']);
@@ -139,6 +144,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <label for="imagen_actual">Imagen actual:</label>
                             <img src="<?= htmlspecialchars($datos->image) ?>" alt="Imagen actual" width="150">
                         </div>
+                        <div class="referenciadelpost">
+                            <label for="referencias">Referencias:</label>
+                            <textarea id="referencias" name="referencias_posts" rows="6" required><?= htmlspecialchars($datos->referencia_posts) ?></textarea>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -186,6 +195,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             document.getElementById("modificarForm").addEventListener("submit", function(e) {
                 const titulo = document.getElementById("titulo").value.trim();
                 const contenido = document.getElementById("contenido").value.trim();
+                const referencias = document.getElementById("referencias").value.trim();
 
                 if (titulo.length < 10) {
                     e.preventDefault(); // Evita que se envíe el formulario
@@ -194,6 +204,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }else if (contenido.length < 20) {
                     e.preventDefault();
                     mostrarAlerta("El contenido debe tener al menos 20 caracteres.");
+                    return;
+                }else if (referencias.length < 10) {
+                    e.preventDefault();
+                    mostrarAlerta("La referencia debe tener al menos 10 caracteres.");
                     return;
                 }else {
                     e.preventDefault(); 
