@@ -162,14 +162,23 @@ $iduser = $row['iduser'];
                             <td><?php echo $mostrar['title']; ?></td>
                             <td><?php echo $mostrar['category']; ?></td>
                             <td>
-                                <?php
-                                $referencia = $mostrar['referencia_posts'] ?? '';
-                                if (filter_var($referencia, FILTER_VALIDATE_URL)) {
-                                    echo '<a class="referencias-links" href="' . htmlspecialchars($referencia) . '" style="color:black;">' . htmlspecialchars($referencia) . '</a>';
+                            <?php
+                                $referencias = explode("\n", trim($mostrar['referencia_posts']));
+                                if (!empty($referencias)) {
+                                    foreach ($referencias as $ref) {
+                                        $ref = trim($ref);
+                                        if (!empty($ref)) {
+                                            if (filter_var($ref, FILTER_VALIDATE_URL)) {
+                                                echo '<a class="referencias-links" href="' . htmlspecialchars($ref) . '" target="_blank" style="color:black;">' . htmlspecialchars($ref) . '</a><br>';
+                                            } else {
+                                                echo htmlspecialchars($ref) . '<br>';
+                                            }
+                                        }
+                                    }
                                 } else {
-                                    echo '—'; // Muestra guion si no hay referencia válida
+                                    echo '—';
                                 }
-                                ?>
+                            ?>
                             </td>
                             <td><?php echo $mostrar['user_creation']; ?></td>
                             <td><?php echo $mostrar['post_date']; ?></td>
