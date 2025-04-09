@@ -138,6 +138,7 @@ $iduser = $row['iduser'];
                         <th>ID</th>
                         <th>Título</th>
                         <th>Categoría</th>
+                        <th>Contenido</th>
                         <th>Referencias</th>
                         <th>Creador</th>
                         <th>Fecha</th>
@@ -161,6 +162,7 @@ $iduser = $row['iduser'];
                             <td><?php echo $mostrar['Id_posts']; ?></td>
                             <td><?php echo $mostrar['title']; ?></td>
                             <td><?php echo $mostrar['category']; ?></td>
+                            <td><?php echo $mostrar['content']; ?></td>
                             <td>
                             <?php
                                 $referencias = explode("\n", trim($mostrar['referencia_posts']));
