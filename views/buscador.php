@@ -1,36 +1,64 @@
 <?php
-include '../config/database.php';
+// Incluir configuración de la base de datos
+require_once __DIR__ . '/../config/database.php';
 
-if ($_POST["data"] == 'buscar' && $_POST["busqueda"] != '') {
+// Verificar si es una solicitud de búsqueda válida
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["data"], $_POST["busqueda"]) && $_POST["data"] === 'buscar' && !empty(trim($_POST["busqueda"]))) {
 
-    $key = explode(" ", $_POST["busqueda"]);
-    $sql = "SELECT * FROM pi.posts WHERE (title LIKE '%" . $_POST["busqueda"] . "%' 
-                OR content LIKE '%" . $_POST["busqueda"] . "%' 
-                OR user_creation LIKE '%" . $_POST["busqueda"] . "%' 
-                OR category LIKE '%" . $_POST["busqueda"] . "%')";
+    $tableName = 'posts';
     
-    // Añadir más filtros con el ciclo for
-    for ($i = 0; $i < count($key); $i++) {
-        if (!empty($key[$i])) {
-            $sql .= " OR title LIKE '%" . $key[$i] . "%' 
-                      OR content LIKE '%" . $key[$i] . "%' 
-                      OR user_creation LIKE '%" . $key[$i] . "%' 
-                      OR category LIKE '%" . $key[$i] . "%'";
+    
+    $searchTerm = trim($_POST["busqueda"]);
+    $keywords = explode(" ", $searchTerm);
+    
+    // Iniciar la consulta SQL
+    $sql = "SELECT * FROM `$tableName` WHERE ";
+    
+    // Columnas donde buscar
+    $searchColumns = ['title', 'content', 'user_creation', 'category'];
+    $conditions = [];
+    $params = [];
+    $types = '';
+    
+    foreach ($keywords as $keyword) {
+        if (!empty(trim($keyword))) {
+            $keyword = "%$keyword%";
+            $orConditions = [];
+            
+            foreach ($searchColumns as $column) {
+                $orConditions[] = "$column LIKE ?";
+                $params[] = $keyword;
+                $types .= 's'; // 's' para string
+            }
+            
+            $conditions[] = "(" . implode(" OR ", $orConditions) . ")";
         }
     }
-
-    $row_sql = mysqli_query($conexion, $sql);
-
-    if ($row_sql && mysqli_num_rows($row_sql) > 0) {
+    
+    // Unir todas las condiciones con OR
+    $sql .= implode(" OR ", $conditions);
+    
+    // Preparar y ejecutar la consulta
+    $stmt = $conexion->prepare($sql);
+    if ($types) {
+        $stmt->bind_param($types, ...$params);
+    }
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    // Mostrar resultados
+    if ($result && $result->num_rows > 0) {
         echo '<table class="col-12 m-0 p-0">
                 <tbody>';
         
-        // Mostrar los resultados de la búsqueda
-        while ($row = mysqli_fetch_assoc($row_sql)) {
-            $imgSrc = isset($row["img"]) ? "img/" . $row["img"] . ".jpg" : "../admin/posts/uploads/preterminada.jpg";
+        while ($row = $result->fetch_assoc()) {
+            $imgSrc = isset($row["img"]) && !empty($row["img"]) ? 
+                      "img/" . htmlspecialchars($row["img"]) . ".jpg" : 
+                      "../admin/posts/uploads/preterminada.jpg";
+            
             echo '<tr>
                     <th style="width: 60px;">
-                        <img src="' . $imgSrc . '" width="50" height="65px">
+                        <img src="' . $imgSrc . '" width="50" height="65px" alt="' . htmlspecialchars($row["title"]) . '">
                     </th>
                     <td style="vertical-align: middle; text-align:left;">
                         <p class="card-text">' . htmlspecialchars($row["title"]) . ' <br> ' . htmlspecialchars($row["content"]) . '€</p>
@@ -40,7 +68,11 @@ if ($_POST["data"] == 'buscar' && $_POST["busqueda"] != '') {
         
         echo '</tbody></table>';
     } else {
-        echo 'No se encontraron resultados para su búsqueda.';
+        echo '<p class="text-muted">No se encontraron resultados para su búsqueda.</p>';
     }
+    
+    $stmt->close();
+} else {
+    echo '<p class="text-muted">Por favor ingrese un término de búsqueda válido.</p>';
 }
 ?>
