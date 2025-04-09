@@ -85,66 +85,61 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
     <div class="cuerpo">
         <?php
             include ('megusta.php');
-            $posts = new Posts($pdo); // instanciar la clase Posts
+            $posts = new Posts($pdo); // Instanciar la clase Posts
 
-            foreach ($postsDB as $post) { 
+            foreach ($postsDB as $post) {
                 // Si no hay imagen, usamos la imagen predeterminada
                 $imageSrc = !empty($post['image']) ? "../admin/posts/" . htmlspecialchars($post['image']) : "../admin/posts/uploads/preterminada.jpg";
 
-                if ($idtypeuser == 1 || $idtypeuser == 2){
-                    echo '<a href="post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
+                // Estructura base del enlace
+                $postLink = 'post.php?id=' . htmlspecialchars($post['Id_posts']);
+                $title = htmlspecialchars(strlen($post['title']) > 70 ? substr($post['title'], 0, 70) . "..." : $post['title']);
+                $userCreation = htmlspecialchars($post['user_creation']);
+                $postDate = date("F d, Y", strtotime($post['post_date']));
+                $content = htmlspecialchars(strlen($post['title']) > 60 ? substr($post['content'], 0, 125) . "..." : substr($post['content'], 0, 180) . "...");
+
+                // Estructura común del post
+                $postHTML = '
+                    <a href="' . $postLink . '">
                         <div class="p1">
                             <div class="cuerpo_post">
                                 <div class="imagen_post">
                                     <img class="imagen1" src="' . $imageSrc . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
                                 </div>
                                 <div class="info_post">
-                                    <h4 class="titulo1">' . htmlspecialchars(strlen($post['title']) > 70 ? substr($post['title'], 0, 70) . "..." : $post['title']) . '</h4>
+                                    <h4 class="titulo1">' . $title . '</h4>
                                     <div class="datos1">
-                                        <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user_creation']) . '</span>
-                                        <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['post_date'])) . '</span>
+                                        <i class="far fa-user"></i> <span>' . $userCreation . '</span>
+                                        <i class="far fa-calendar"></i> <span>' . $postDate . '</span>
                                     </div>
-                                    <p class="texto1">' . htmlspecialchars(strlen($post['title']) > 60 ? substr($post['content'],0,125) . "..." :  substr($post['content'],0,180) . "...")  . '</p>
+                                    <p class="texto1">' . $content . '</p>
                                 </div>
-                            </div>
+                            </div>';
 
-                            <div class="interaccion">
-                                <div class="likes">
-                                    <a class="options" data-vote-type="1" id="post_vote_up_' . htmlspecialchars($post['Id_posts']) . '">
-                                        <i class="fas fa-thumbs-up" data-original-title="Like this post"></i>
-                                    </a>
-                                    <span class="likes_count" id="vote_up_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['vote_up'] ?? 0) . '</span>
-                                    <a class="options" data-vote-type="0" id="post_vote_down_' . htmlspecialchars($post['Id_posts']) . '">
-                                        <i class="fas fa-thumbs-down" data-original-title="Dislike this post"></i>
-                                    </a>
-                                    <span class="likes_count" id="vote_down_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['vote_down'] ?? 0) . '</span>
-                                </div>
+                // Lógica de interacciones según el tipo de usuario
+                if ($idtypeuser == 1 || $idtypeuser == 2) {
+                    $postHTML .= '
+                        <div class="interaccion">
+                            <div class="likes">
+                                <a class="options" data-vote-type="1" id="post_vote_up_' . htmlspecialchars($post['Id_posts']) . '">
+                                    <i class="fas fa-thumbs-up" data-original-title="Like this post"></i>
+                                </a>
+                                <span class="likes_count" id="vote_up_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['vote_up'] ?? 0) . '</span>
+                                <a class="options" data-vote-type="0" id="post_vote_down_' . htmlspecialchars($post['Id_posts']) . '">
+                                    <i class="fas fa-thumbs-down" data-original-title="Dislike this post"></i>
+                                </a>
+                                <span class="likes_count" id="vote_down_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['vote_down'] ?? 0) . '</span>
                             </div>
-                        </div>
-                    </a>';
-
-                }elseif($idtypeuser == 3){
-                    echo '<a href="post.php?id=' . htmlspecialchars($post['Id_posts']) . '">
-                        <div class="p1">
-                            <div class="cuerpo_post">
-                                <div class="imagen_post">
-                                    <img class="imagen1" src="' . $imageSrc . '" alt="imagen de ' . htmlspecialchars($post['title']) . '">
-                                </div>
-                                <div class="info_post">
-                                    <h4 class="titulo1">' . htmlspecialchars(strlen($post['title']) > 70 ? substr($post['title'], 0, 70) . "..." : $post['title']) . '</h4>
-                                    <div class="datos1">
-                                        <i class="far fa-user"></i> <span>' . htmlspecialchars($post['user_creation']) . '</span>
-                                        <i class="far fa-calendar"></i> <span>' . date("F d, Y", strtotime($post['post_date'])) . '</span>
-                                    </div>
-                                    <p class="texto1">' . htmlspecialchars(strlen($post['title']) > 60 ? substr($post['content'],0,125) . "..." :  substr($post['content'],0,180) . "...")  . '</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>';
+                        </div>';
                 }
+
+                $postHTML .= '</div></a>';
+
+                // Imprimir el HTML de la publicación
+                echo $postHTML;
             }
-        
         ?>
+
     </div>
     
     <!-- IMPORTAR EL FOOTER -->

@@ -50,58 +50,81 @@
         <!-- <?php include './layout/header.php'; ?> -->
         <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
 
-        <?php 
-            
-            if($idtypeuser == 1 || $idtypeuser == 2){
-                echo '
+        <?php
+            // Verificar si el tipo de usuario es 1 o 2
+            if ($idtypeuser == 1 || $idtypeuser == 2) {
+                ?>
                 <div class="noticia">
                     <div class="titulo">
-                        <h1>' . htmlspecialchars($post['title']) . '</h1>
+                        <h1><?php echo htmlspecialchars($post['title']); ?></h1>
                         <div class="datos">
-                            <i class="far fa-user"></i>' . htmlspecialchars($post['user_creation']).' |
-                            <i class="far fa-calendar"></i> ' . date("F d, Y", strtotime($post['post_date'])) . '
+                            <i class="far fa-user"></i> <?php echo htmlspecialchars($post['user_creation']); ?> |
+                            <i class="far fa-calendar"></i> <?php echo date("F d, Y", strtotime($post['post_date'])); ?>
                         </div>
                     </div>
 
                     <div class="imagen-noticia">
-                        <img class="img" src="' . htmlspecialchars($imageSrc) .'" alt="Imagen de la noticia">
+                        <img class="img" src="<?php echo htmlspecialchars($imageSrc); ?>" alt="Imagen de la noticia">
                     </div>
                     
                     <div class="info">
                         <div class="texto">
-                            <p class="texto-noticia">' . nl2br(htmlspecialchars($post['content'])) . '</p>
+                            <p class="texto-noticia"><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
                         </div>
                     </div>
                 </div>
                 <div class="caja-comentarios">
                     <div class="titulo-com">Comentarios</div>
                 </div>
-                
-                ';
-            }elseif($idtypeuser==3){
-                echo '
+                <?php
+            } elseif ($idtypeuser == 3) {
+                ?>
                 <div class="noticia">
                     <div class="titulo">
-                        <h1>' . htmlspecialchars($post['title']) . '</h1>
+                        <h1><?php echo htmlspecialchars($post['title']); ?></h1>
                         <div class="datos">
-                            <i class="far fa-user"></i>' . htmlspecialchars($post['user_creation']).' |
-                            <i class="far fa-calendar"></i> ' . date("F d, Y", strtotime($post['post_date'])) . '
+                            <i class="far fa-user"></i> <?php echo htmlspecialchars($post['user_creation']); ?> |
+                            <i class="far fa-calendar"></i> <?php echo date("F d, Y", strtotime($post['post_date'])); ?>
                         </div>
                     </div>
 
                     <div class="imagen-noticia">
-                        <img class="img" src="' . htmlspecialchars($imageSrc) .'" alt="Imagen de la noticia">
+                        <img class="img" src="<?php echo htmlspecialchars($imageSrc); ?>" alt="Imagen de la noticia">
                     </div>
                     
                     <div class="info">
                         <div class="texto">
-                            <p class="texto-noticia">' . nl2br(htmlspecialchars($post['content'])) . '</p>
+                            <p class="texto-noticia"><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
                         </div>
                     </div>
+
+                    <div class="referencias">
+                        <h2 class="titulo-ref">Referencias</h2>
+                        <?php
+                            // Obtener las referencias de la base de datos
+                            $referencias = explode("\n", trim($post['referencia_posts'])); // Cambié $mostrar a $post
+                            if (!empty($referencias)) {
+                                foreach ($referencias as $ref) {
+                                    $ref = trim($ref);  // Eliminar espacios en blanco
+                                    if (!empty($ref)) {
+                                        if (filter_var($ref, FILTER_VALIDATE_URL)) {
+                                            echo '<a class="referencias-noticia" href="' . htmlspecialchars($ref) . '" target="_blank">' . htmlspecialchars($ref) . '</a><br>';
+                                        } else {
+                                            echo htmlspecialchars($ref) . '<br>';
+                                        }
+                                    }
+                                }
+                            } else {
+                                echo '—'; // Si no hay referencias, muestra un guion
+                            }
+                        ?>
+                    </div>
                 </div>
-                ';
+                <div class="caja-comentarios">
+                    <div class="titulo-com">Comentarios</div>
+                </div>
+                <?php
             }
-        
         ?>
 
         
