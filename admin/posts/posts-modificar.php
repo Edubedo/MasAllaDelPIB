@@ -23,9 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $updates[] = "content = '$new_content'";
     }
 
+    // Verificar y actualizar las referencias (cambiado para manejar array)
     if (!empty($_POST['referencias_post'])) {
-        $new_references = $conexion->real_escape_string($_POST['referencias_post']);
-        $updates[] = "referencia_posts = '$new_references'";
+        $referenciasArray = $_POST['referencias_post'];
+        $referenciasFiltradas = array_filter($referenciasArray, function($ref) {
+            return trim($ref) !== '';
+        });
+        $new_references = implode("\n", $referenciasFiltradas);
+        $updates[] = "referencia_posts = '" . $conexion->real_escape_string($new_references) . "'";
     }
 
     // Verificar y actualizar la categoría
@@ -146,7 +151,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="referenciadelpost">
                             <label for="referencias">Referencias:</label>
-                            <textarea id="referencias" name="referencias_posts" rows="6" required><?= htmlspecialchars($datos->referencia_posts) ?></textarea>
+                            <div id="contenedorReferencias">
+                                <!-- Los inputs se agregarán dinámicamente aquí -->
+                            </div>
+                            <button class="boton-agregar-referencia" type="button" onclick="agregarReferencia()">Agregar otra referencia</button>
                         </div>
                     </div>
                 </div>
@@ -183,45 +191,108 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Función para enviar el formulario cuando el usuario acepta
             function aceptarEnvio() {
-                document.getElementById("modificarForm").submit(); // Enviar el formulario
+                // Crear un formulario clonado para enviar
+                const form = document.getElementById("modificarForm");
+                const formData = new FormData(form);
+                
+                // Enviar el formulario manualmente
+                fetch(form.action, {
+                    method: form.method,
+                    body: formData
+                }).then(response => {
+                    if (response.redirected) {
+                        window.location.href = response.url;
+                    }
+                });
             }
 
             // Cerrar el modal de alerta
             function cerrarAlerta() {
                 document.getElementById("modal").style.display = "none";
+                document.getElementById("modal-modificar").style.display = "none";
             }
+
+            // Función para agregar un nuevo campo de referencia
+            function agregarReferencia(referencia = '') {
+                const contenedor = document.getElementById("contenedorReferencias");
+                const divWrapper = document.createElement("div");
+                divWrapper.className = "referencia-input-container";
+                
+                const nuevoInput = document.createElement("input");
+                nuevoInput.type = "text";
+                nuevoInput.name = "referencias_post[]";
+                nuevoInput.placeholder = "Escribe una referencia";
+                nuevoInput.value = referencia;
+                nuevoInput.required = true;
+                nuevoInput.className = "input-referencia";
+                
+                const btnEliminar = document.createElement("button");
+                btnEliminar.type = "button";
+                btnEliminar.className = "btn-eliminar-referencia";
+                btnEliminar.innerHTML = "×";
+                btnEliminar.onclick = function() {
+                    contenedor.removeChild(divWrapper);
+                };
+                
+                divWrapper.appendChild(nuevoInput);
+                divWrapper.appendChild(btnEliminar);
+                contenedor.appendChild(divWrapper);
+            }
+
+            // Al cargar la página, procesamos las referencias existentes
+            document.addEventListener('DOMContentLoaded', function() {
+                // Obtenemos las referencias del campo (convertido a array)
+                const referenciasExistentes = `<?= $datos->referencia_posts ?>`.split('\n');
+                
+                // Agregamos un input por cada referencia existente
+                referenciasExistentes.forEach(ref => {
+                    if (ref.trim() !== '') {
+                        agregarReferencia(ref.trim());
+                    }
+                });
+                
+                // Si no había referencias, agregamos un campo vacío por defecto
+                if (referenciasExistentes.length === 0 || (referenciasExistentes.length === 1 && referenciasExistentes[0].trim() === '')) {
+                    agregarReferencia();
+                }
+            });
 
             // Validación antes de enviar el formulario
             document.getElementById("modificarForm").addEventListener("submit", function(e) {
+                e.preventDefault();
+                
                 const titulo = document.getElementById("titulo").value.trim();
                 const contenido = document.getElementById("contenido").value.trim();
-                const referencias = document.getElementById("referencias").value.trim();
-
+                const inputsReferencias = document.querySelectorAll('input[name="referencias_post[]"]');
+                
+                let mensajeError = '';
+                let referenciasValidas = false;
+                
+                // Validaciones
                 if (titulo.length < 10) {
-                    e.preventDefault(); // Evita que se envíe el formulario
-                    mostrarAlerta("El título debe tener al menos 10 caracteres.");
-                    return;
-                }else if (contenido.length < 20) {
-                    e.preventDefault();
-                    mostrarAlerta("El contenido debe tener al menos 20 caracteres.");
-                    return;
-                }else if (referencias.length < 10) {
-                    e.preventDefault();
-                    mostrarAlerta("La referencia debe tener al menos 10 caracteres.");
-                    return;
-                }else {
-                    e.preventDefault(); 
+                    mensajeError = "El título debe tener al menos 10 caracteres.";
+                } else if (contenido.length < 20) {
+                    mensajeError = "El contenido debe tener al menos 20 caracteres.";
+                } else {
+                    // Validar referencias
+                    inputsReferencias.forEach(input => {
+                        if (input.value.trim().length >= 10) {
+                            referenciasValidas = true;
+                        }
+                    });
+                    
+                    if (!referenciasValidas) {
+                        mensajeError = "Debe haber al menos una referencia válida (mínimo 10 caracteres).";
+                    }
+                }
+                
+                // Mostrar error o confirmación
+                if (mensajeError) {
+                    mostrarAlerta(mensajeError);
+                } else {
                     mostrarAlertaModificar("¿Estás seguro de que deseas modificar la publicación?");
                 }
-
-                // Mostrar el modal de confirmación
-                e.preventDefault(); // Evita el envío inmediato del formulario
-                document.getElementById("modal").style.display = "flex"; // Mostrar el modal
             });
-
-            
-
-            
         </script>
     </body>
 </html>
