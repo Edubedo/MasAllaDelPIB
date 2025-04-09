@@ -5,7 +5,8 @@ include '../../config/database.php';
 if (isset($_POST["crear_post"])) {
     $titulo = $_POST['titulo_posts'];
     $contenido = $_POST['contenido_posts'];
-    $referencias = $_POST['referencias_post'];
+    $referenciasArray = $_POST['referencias_post'];
+    $referencias = implode("\n", $referenciasArray);
     $categoria = $_POST['categoria_posts'];
     $fecha = $_POST['fecha_publicacion_posts'];
     $usuario = $_SESSION['username'];  
@@ -115,7 +116,10 @@ if (isset($_POST["crear_post"])) {
                     </div>
                     <div class="referenciadelpost">
                         <label for="referencias">Referencias:</label>
-                        <textarea id="referencias" name="referencias_posts" rows="6" required></textarea>
+                        <div id="contenedorReferencias">
+                            <input type="text" name="referencias_post[]" placeholder="Escribe una referencia" required>
+                        </div>
+                        <button class="boton-agregar-referencia" type="button" onclick="agregarReferencia()">Agregar otra referencia</button>
                     </div>
                 </div>
             </div>
@@ -177,6 +181,16 @@ if (isset($_POST["crear_post"])) {
                     return;
                 }
             });
+
+            function agregarReferencia() {
+                const contenedor = document.getElementById("contenedorReferencias");
+                const nuevoInput = document.createElement("input");
+                nuevoInput.type = "text";
+                nuevoInput.name = "referencias_post[]";
+                nuevoInput.placeholder = "Escribe una referencia";
+                contenedor.appendChild(nuevoInput);
+            }
+            
         </script>
 
 

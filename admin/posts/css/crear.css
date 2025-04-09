@@ -297,3 +297,8 @@ button:hover {
 .boton-alerta-cancelar:hover {
     background-color: #e53935;
 }
+
+.boton-agregar-referencia {
+    width: 15rem;
+    height: 3rem;
+}
