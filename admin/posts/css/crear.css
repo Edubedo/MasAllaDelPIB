@@ -302,3 +302,44 @@ button:hover {
     width: 15rem;
     height: 3rem;
 }
+
+/* Contenedor de cada referencia */
+.referencia-input-container {
+    margin-bottom: 10px;
+}
+
+/* Grupo que contiene input + botón */
+.referencia-input-group {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre input y botón */
+    width: 100%;
+}
+
+/* Estilo del input de referencia */
+.input-referencia {
+    width: 88%;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    background-color: #f5f5f5;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    margin: 1rem;
+}
+
+/* Estilo del botón eliminar */
+.btn-eliminar-referencia {
+    padding: 0.8rem 1.2rem;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    width: 12%;
+    transition: background-color 0.3s;
+}
+
+.btn-eliminar-referencia:hover {
+    background-color: #cc0000;
+}

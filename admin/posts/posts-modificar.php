@@ -151,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="referenciadelpost">
                             <label for="referencias">Referencias:</label>
-                            <div id="contenedorReferencias">
+                            <div id="contenedorReferencias" data-referencias="<?= htmlspecialchars($datos->referencia_posts) ?>">
                                 <!-- Los inputs se agregarán dinámicamente aquí -->
                             </div>
                             <button class="boton-agregar-referencia" type="button" onclick="agregarReferencia()">Agregar otra referencia</button>
@@ -161,12 +161,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
         </div>
 
-        <div id="modal" class="fondo-alerta" style="display: none;">
-            <div class="alerta">
-                <p id="alert-message"></p>
-                <button class="boton-alerta" onclick="cerrarAlerta()">Aceptar</button>
-            </div>
-        </div>
 
         <!-- Modal de confirmación -->
         <div id="modal-modificar" class="fondo-alerta-modificar" style="display: none;">
@@ -178,121 +172,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         
         
-        <script>
-            function mostrarAlerta(mensaje) {
-                document.getElementById("alert-message").textContent = mensaje;
-                document.getElementById("modal").style.display = "flex";
-            }
-
-            function mostrarAlertaModificar(mensaje) {
-                document.getElementById("alert-message-modificar").textContent = mensaje;
-                document.getElementById("modal-modificar").style.display = "flex";
-            }
-
-            // Función para enviar el formulario cuando el usuario acepta
-            function aceptarEnvio() {
-                // Crear un formulario clonado para enviar
-                const form = document.getElementById("modificarForm");
-                const formData = new FormData(form);
-                
-                // Enviar el formulario manualmente
-                fetch(form.action, {
-                    method: form.method,
-                    body: formData
-                }).then(response => {
-                    if (response.redirected) {
-                        window.location.href = response.url;
-                    }
-                });
-            }
-
-            // Cerrar el modal de alerta
-            function cerrarAlerta() {
-                document.getElementById("modal").style.display = "none";
-                document.getElementById("modal-modificar").style.display = "none";
-            }
-
-            // Función para agregar un nuevo campo de referencia
-            function agregarReferencia(referencia = '') {
-                const contenedor = document.getElementById("contenedorReferencias");
-                const divWrapper = document.createElement("div");
-                divWrapper.className = "referencia-input-container";
-                
-                const nuevoInput = document.createElement("input");
-                nuevoInput.type = "text";
-                nuevoInput.name = "referencias_post[]";
-                nuevoInput.placeholder = "Escribe una referencia";
-                nuevoInput.value = referencia;
-                nuevoInput.required = true;
-                nuevoInput.className = "input-referencia";
-                
-                const btnEliminar = document.createElement("button");
-                btnEliminar.type = "button";
-                btnEliminar.className = "btn-eliminar-referencia";
-                btnEliminar.innerHTML = "×";
-                btnEliminar.onclick = function() {
-                    contenedor.removeChild(divWrapper);
-                };
-                
-                divWrapper.appendChild(nuevoInput);
-                divWrapper.appendChild(btnEliminar);
-                contenedor.appendChild(divWrapper);
-            }
-
-            // Al cargar la página, procesamos las referencias existentes
-            document.addEventListener('DOMContentLoaded', function() {
-                // Obtenemos las referencias del campo (convertido a array)
-                const referenciasExistentes = `<?= $datos->referencia_posts ?>`.split('\n');
-                
-                // Agregamos un input por cada referencia existente
-                referenciasExistentes.forEach(ref => {
-                    if (ref.trim() !== '') {
-                        agregarReferencia(ref.trim());
-                    }
-                });
-                
-                // Si no había referencias, agregamos un campo vacío por defecto
-                if (referenciasExistentes.length === 0 || (referenciasExistentes.length === 1 && referenciasExistentes[0].trim() === '')) {
-                    agregarReferencia();
-                }
-            });
-
-            // Validación antes de enviar el formulario
-            document.getElementById("modificarForm").addEventListener("submit", function(e) {
-                e.preventDefault();
-                
-                const titulo = document.getElementById("titulo").value.trim();
-                const contenido = document.getElementById("contenido").value.trim();
-                const inputsReferencias = document.querySelectorAll('input[name="referencias_post[]"]');
-                
-                let mensajeError = '';
-                let referenciasValidas = false;
-                
-                // Validaciones
-                if (titulo.length < 10) {
-                    mensajeError = "El título debe tener al menos 10 caracteres.";
-                } else if (contenido.length < 20) {
-                    mensajeError = "El contenido debe tener al menos 20 caracteres.";
-                } else {
-                    // Validar referencias
-                    inputsReferencias.forEach(input => {
-                        if (input.value.trim().length >= 10) {
-                            referenciasValidas = true;
-                        }
-                    });
-                    
-                    if (!referenciasValidas) {
-                        mensajeError = "Debe haber al menos una referencia válida (mínimo 10 caracteres).";
-                    }
-                }
-                
-                // Mostrar error o confirmación
-                if (mensajeError) {
-                    mostrarAlerta(mensajeError);
-                } else {
-                    mostrarAlertaModificar("¿Estás seguro de que deseas modificar la publicación?");
-                }
-            });
-        </script>
+        <script src="../../js/post-modificar.js"></script>
     </body>
 </html>
