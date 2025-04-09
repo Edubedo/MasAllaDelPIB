@@ -70,6 +70,27 @@ body {
     font-size: 2rem;
 }
 
+.referencias {
+    width: 100%;
+    height: auto;
+    margin-top: 10rem;
+}
+
+.titulo-ref{
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    margin-top: 3rem;
+    text-align: left;
+}
+
+.referencias-noticia {
+    margin-bottom: 1.5rem;
+    margin-top: 3rem;
+    text-align: left;
+    font-size: 2rem;
+    color: rgb(0, 85, 255);
+}
+
 .datos {
     display: flex;
     justify-content: flex-start;
