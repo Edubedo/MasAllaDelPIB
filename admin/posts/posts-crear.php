@@ -4,8 +4,9 @@ include '../../config/database.php';
 
 if (isset($_POST["crear_post"])) {
     $titulo = $_POST['titulo_posts'];
-    $categoria = $_POST['categoria_posts'];
     $contenido = $_POST['contenido_posts'];
+    $referencias = $_POST['referencias_post'];
+    $categoria = $_POST['categoria_posts'];
     $fecha = $_POST['fecha_publicacion_posts'];
     $usuario = $_SESSION['username'];  
 
@@ -21,14 +22,20 @@ if (isset($_POST["crear_post"])) {
         exit();
     }
 
+    if (strlen($referencias) < 10) {
+        // Mostrar error en el modal de alerta y no redirigir
+        echo "<script>mostrarAlerta('Referencia invalida.');</script>";
+        exit();
+    }
+
     $imagen_name = $_FILES['imagen_posts']['name'];
     $imagen_tmp_name = $_FILES['imagen_posts']['tmp_name'];
     $target_dir = 'uploads/';
     $target_file = $target_dir . basename($imagen_name);
 
     if (move_uploaded_file($imagen_tmp_name, $target_file)) {
-        $query = "INSERT INTO posts (title, content, post_date, category, image, user_creation) 
-                  VALUES ('$titulo', '$contenido', '$fecha', '$categoria', '$target_file', '$usuario')";
+        $query = "INSERT INTO posts (title, content, post_date, category, image, user_creation, referencia_posts) 
+                  VALUES ('$titulo', '$contenido', '$fecha', '$categoria', '$target_file', '$usuario', '$referencias')";
 
         if (mysqli_query($conexion, $query)) {
             // Redirigir a la página de consulta
@@ -107,8 +114,8 @@ if (isset($_POST["crear_post"])) {
                         <input type="file" id="imagen" name="imagen_posts" accept="image/*" required>
                     </div>
                     <div class="referenciadelpost">
-                        <label for="imagen">Referencias:</label>
-                        <textarea id="contenido" name="contenido_posts" rows="6" required></textarea>
+                        <label for="referencias">Referencias:</label>
+                        <textarea id="referencias" name="referencias_posts" rows="6" required></textarea>
                     </div>
                 </div>
             </div>
@@ -150,6 +157,7 @@ if (isset($_POST["crear_post"])) {
             document.getElementById("crearForm").addEventListener("submit", function(e) {
                 const titulo = document.getElementById("titulo").value.trim();
                 const contenido = document.getElementById("contenido").value.trim();
+                const referencias = document.getElementById("referencias").value.trim();
 
                 if (titulo.length < 10) {
                     e.preventDefault(); // Evita que se envíe el formulario
@@ -160,6 +168,12 @@ if (isset($_POST["crear_post"])) {
                 if (contenido.length < 20) {
                     e.preventDefault();
                     mostrarAlerta("El contenido debe tener al menos 20 caracteres.");
+                    return;
+                }
+
+                if (referencias.length < 10) {
+                    e.preventDefault();
+                    mostrarAlerta("La referencia debe tener al menos 10 caracteres.");
                     return;
                 }
             });

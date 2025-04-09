@@ -113,6 +113,7 @@ input:focus, textarea:focus {
 .boton-div {
     justify-content: center;
     display: flex;
+    margin-top: auto;
 }
 
 button {
@@ -129,10 +130,30 @@ button {
     transition: background 0.3s ease, transform 0.2s ease;
 }
 
+
+.btn-editar-publicacion { 
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #0a4b91;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    margin: 1rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-editar-publicacion:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+}
+
+
 button:hover {
     background-color: #0056b3;
     transform: scale(1.02);
 }
+
 
 /*Estilos que son diferentes para el modificar usuario en el admin */
 
@@ -170,19 +191,8 @@ button:hover {
 }
 
 /*Boton regresar en editar publicaciones*/
-.btn-editar-publicacion { 
-    display: inline-block;
-    padding: 1rem 2rem;
-    background-color: #0a4b91;
-    color: white;
-    text-decoration: none;
-    border-radius: 0.5rem;
-    font-weight: bold;
-    margin: 1rem;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
 
-.btn-editar-perfil:hover, .btn-editar-publicacion:hover {
+.btn-editar-perfil:hover {
     background-color: #0056b3;
     transform: scale(1.02);
 }
