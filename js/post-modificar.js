@@ -94,28 +94,44 @@ document.getElementById("modificarForm").addEventListener("submit", function(e) 
     
     let mensajeError = '';
     let referenciasValidas = false;
+    let hayReferenciasVacios = false;
+    let hayReferenciasCortas = false;
     
-    // Validaciones
+    // Validaciones básicas
     if (titulo.length < 10) {
         mensajeError = "El título debe tener al menos 10 caracteres.";
     } else if (contenido.length < 20) {
         mensajeError = "El contenido debe tener al menos 20 caracteres.";
     } else {
-        // Validar referencias
+        // Validación detallada de referencias
         inputsReferencias.forEach(input => {
-            if (input.value.trim().length >= 10) {
+            const valor = input.value.trim();
+            if (valor.length >= 10) {
                 referenciasValidas = true;
+            } else if (valor.length > 0) {
+                hayReferenciasCortas = true;
+            } else {
+                hayReferenciasVacios = true;
             }
         });
         
+        // Mensajes específicos para referencias
         if (!referenciasValidas) {
-            mensajeError = "Debe haber al menos una referencia válida (mínimo 10 caracteres o colocar una).";
+            if (inputsReferencias.length === 0) {
+                mensajeError = "Debes agregar al menos una referencia.";
+            } else if (hayReferenciasCortas) {
+                mensajeError = "Las referencias deben tener al menos 10 caracteres.";
+            } 
         }
     }
     
     // Mostrar error o confirmación
     if (mensajeError) {
         mostrarAlerta(mensajeError);
+        // Enfocar el primer campo de referencia si hay error
+        if (inputsReferencias.length > 0) {
+            inputsReferencias[0].focus();
+        }
     } else {
         mostrarAlertaModificar("¿Estás seguro de que deseas modificar la publicación?");
     }

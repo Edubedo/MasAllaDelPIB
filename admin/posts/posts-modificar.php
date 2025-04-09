@@ -161,6 +161,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
         </div>
 
+        <!-- Modal de ALERTA NO BORRAR -->
+        <div id="modal" class="fondo-alerta" style="display: none;">
+            <div class="alerta">
+                <p id="alert-message"></p>
+                <button class="boton-alerta" onclick="cerrarAlerta()">Aceptar</button>
+            </div>
+        </div>
+        <!-- Modal de ALERTA NO BORRAR -->
 
         <!-- Modal de confirmación -->
         <div id="modal-modificar" class="fondo-alerta-modificar" style="display: none;">
