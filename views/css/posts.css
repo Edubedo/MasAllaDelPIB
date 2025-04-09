@@ -160,7 +160,6 @@
 
 
 .cuerpo {
-    
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -178,8 +177,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
     border-radius: 15px;
-    margin: 0;
-    padding: 0;
+    display: flex;
 }
 
 .p1:hover {
