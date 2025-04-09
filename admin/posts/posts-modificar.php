@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!empty($_FILES['imagen_posts']['name'])) {
         $imagen_nombre = $_FILES['imagen_posts']['name'];
         $imagen_temp = $_FILES['imagen_posts']['tmp_name'];
-        $ruta_destino = "../../uploads/" . $imagen_nombre; // Ruta donde se guardará la imagen
+        $ruta_destino = "uploads/" . $imagen_nombre; // Ruta donde se guardará la imagen
 
         // Mover la imagen al servidor
         if (move_uploaded_file($imagen_temp, $ruta_destino)) {
