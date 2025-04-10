@@ -117,81 +117,15 @@ if (isset($_POST["crear_post"])) {
                     <div class="referenciadelpost">
                         <label for="referencias">Referencias:</label>
                         <div id="contenedorReferencias">
-                            <input type="text" name="referencias_post[]" placeholder="Escribe una referencia" required>
+                            <input class="input-referencia" type="text" name="referencias_post[]" placeholder="Escribe una referencia" required>
                         </div>
                         <button class="boton-agregar-referencia" type="button" onclick="agregarReferencia()">Agregar otra referencia</button>
                     </div>
                 </div>
             </div>
         </form>
-        <script>
-            
-            // Obtener la fecha actual
-            let today = new Date().toISOString().split('T')[0];
-
-            // Asignar la fecha actual como valor mínimo
-            document.getElementById('fecha_publicacion').setAttribute('min', today);
-
-            // Mostrar el modal de alerta cuando no se cumple la validación
-            function mostrarAlerta(mensaje) {
-                const fondo = document.createElement("div");
-                fondo.classList.add("fondo-alerta");
-
-                const alerta = document.createElement("div");
-                alerta.classList.add("alerta");
-
-                const texto = document.createElement("p");
-                texto.textContent = mensaje;
-
-                const boton = document.createElement("button");
-                boton.textContent = "Aceptar";
-                boton.classList.add("boton-alerta");
-
-                boton.onclick = function () {
-                    document.body.removeChild(fondo);
-                };
-
-                alerta.appendChild(texto);
-                alerta.appendChild(boton);
-                fondo.appendChild(alerta);
-                document.body.appendChild(fondo);
-            }
-
-            // Validaciones antes de enviar el formulario
-            document.getElementById("crearForm").addEventListener("submit", function(e) {
-                const titulo = document.getElementById("titulo").value.trim();
-                const contenido = document.getElementById("contenido").value.trim();
-                const referencias = document.getElementById("referencias").value.trim();
-
-                if (titulo.length < 10) {
-                    e.preventDefault(); // Evita que se envíe el formulario
-                    mostrarAlerta("El título debe tener al menos 10 caracteres.");
-                    return;
-                }
-
-                if (contenido.length < 20) {
-                    e.preventDefault();
-                    mostrarAlerta("El contenido debe tener al menos 20 caracteres.");
-                    return;
-                }
-
-                if (referencias.length < 10) {
-                    e.preventDefault();
-                    mostrarAlerta("La referencia debe tener al menos 10 caracteres.");
-                    return;
-                }
-            });
-
-            function agregarReferencia() {
-                const contenedor = document.getElementById("contenedorReferencias");
-                const nuevoInput = document.createElement("input");
-                nuevoInput.type = "text";
-                nuevoInput.name = "referencias_post[]";
-                nuevoInput.placeholder = "Escribe una referencia";
-                contenedor.appendChild(nuevoInput);
-            }
-            
-        </script>
+        
+        <script src="../../js/posts-crear.js"></script>
 
 
     </body>

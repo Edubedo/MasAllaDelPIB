@@ -140,17 +140,7 @@ $iduser = $row['iduser'];
     <script src="../../js/panel_usuarios.js"></script>
 
     
-    <script>
-        function ConfirmDelete(){
-            var respuesta = confirm("¿Estas seguro que deseas eliminar usuario?")
-            if(respuesta == true){
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
-    </script>
+    
 
     <?php include '../../views/layout/footer.php'; ?>
 </body>
