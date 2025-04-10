@@ -37,7 +37,6 @@ $iduser = $row['iduser'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administrador</title>
 
-    <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="css/consulta.css">
     <link rel="stylesheet" href="../../views/css/navbar.css">
     <link rel="stylesheet" href="css/userpop.css">
