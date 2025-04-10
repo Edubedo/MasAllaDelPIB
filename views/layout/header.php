@@ -15,6 +15,8 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
     <title>Blog Website</title>
 
     <script src="js/main.js"></script>
+    <script src="/js/buscar.js"></script>
+
     <!-- CUSTOM STYLESHEET -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../css/navbar.css">
@@ -51,6 +53,13 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
                 }
                 ?>
             </ul>
+
+            <!-- Agregar el buscador aquí -->
+            <div class="search-container">
+                <i class="fas fa-search" id="search-icon" style="font-size: 22px; color:white; cursor:pointer;"></i>
+                <input type="text" id="search-input" placeholder="Buscar..." style="display:none;">
+                <div id="search-results" class="search-results"></div>
+            </div>
 
             <button id="open__nav-btn"><i class="fas fa-bars"></i></button>
             <button id="close__nav-btn"><i class="fas fa-times"></i></button>

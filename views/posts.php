@@ -73,24 +73,10 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
 
         <!-- Encabezado -->
         <div class="encabezado">
-            <h1>Publicaciones</h1>
+            <h1>PUBLICACIONES GENERALES</h1>
         </div>
-        
-      <!-- Buscador General -->
-        <form class="buscador" method="POST" action="posts.php">
-            <i class="fas fa-search" style="font-size: 22px; color:rgb(9, 7, 66);"></i>
-            <input type="text" name="buscar" id="buscar" onkeyup="consulta_buscador ($('#buscar').val());" placeholder="Buscar">
-            <div class="card_busqueda" id="card_busqueda" style="opacity: 0;">
-                <div class="card shadow-sm p-2">
-                    <div class="container m-0 p-0" id="resultados_busqueda"></div>
-                </div>
-            </div>
-        </form>
-
 
         <!-- Cuerpo de las publicaciones -->
-
-
 
         <div class="cuerpo">
             <?php
@@ -103,7 +89,7 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
 
                     // Estructura base del enlace
                     $postLink = 'post.php?id=' . htmlspecialchars($post['Id_posts']);
-                    $title = htmlspecialchars(strlen($post['title']) > 70 ? substr($post['title'], 0, 70) . "..." : $post['title']);
+                    $title = htmlspecialchars(strlen($post['title']) > 70 ? substr($post['title'], 0, 54) . "..." : $post['title']);
                     $userCreation = htmlspecialchars($post['user_creation']);
                     $postDate = date("F d, Y", strtotime($post['post_date']));
                     $content = htmlspecialchars(strlen($post['title']) > 60 ? substr($post['content'], 0, 125) . "..." : substr($post['content'], 0, 180) . "...");
