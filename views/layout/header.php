@@ -16,7 +16,7 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
 
     <script src="js/main.js"></script>
     <!-- CUSTOM STYLESHEET -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,800;1,700&display=swap" rel="stylesheet">
 </head>
@@ -34,30 +34,26 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
             <ul class="nav__items" style="font-size: 1.5rem;">
                 
                 <?php
-
                 if ($idtypeuser == 1) { // Administrador
-                    echo '<li><a class="texto_a" href="/index.php">Inicio</a></li>';
-                    echo '<li><a class="texto_a" href="/admin/posts/posts-consulta.php">Panel de publicaciones</a></li>';
-                    echo '<li><a class="texto_a" href="/admin/posts/panel-usuarios.php">Panel de usuarios</a></li>';
-                }elseif ($idtypeuser == 2) { // Autor
-                    echo '<li><a class="texto_a" href="/index.php">Inicio</a></li>';
-                    echo '<li><a class="texto_a" href="/views/posts.php">Publicaciones</a></li>';
-                    echo '<li><a class="texto_a" href="/views/about.php">Nosotros</a></li>';
-                    echo '<li><a class="texto_a" href="/admin/posts/posts-consulta.php">Panel de control</a></li>';
-
-                }elseif($idtypeuser == 3){ //visitante
-                    echo '<li><a class="texto_a" href="/index.php">Inicio</a></li>';
-                    echo '<li><a class="texto_a" href="/views/posts.php">Publicaciones</a></li>';
-                    echo '<li><a class="texto_a" href="/views/about.php">Nosotros</a></li>';
-                    echo '<li><a class="texto_a" href="/views/signin.php">Iniciar Sesión</a></li>';
+                    echo '<li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i></a></li>';
+                    echo '<li><a class="texto_a" href="/admin/posts/posts-consulta.php"><i class="fas fa-pen"></i></a></li>'; // Cambié el icono de publicaciones
+                    echo '<li><a class="texto_a" href="/admin/posts/panel-usuarios.php"><i class="fas fa-users"></i></a></li>';
+                } elseif ($idtypeuser == 2) { // Autor
+                    echo '<li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i></a></li>';
+                    echo '<li><a class="texto_a" href="/views/posts.php"><i class="fas fa-clipboard-list"></i></a></li>';  // Cambié el icono de publicaciones -->
+                    echo '<li><a class="texto_a" href="/views/about.php"><i class="fas fa-users-cog"></i></a></li>';  // Cambié el icono de Nosotros -->
+                    echo '<li><a class="texto_a" href="/admin/posts/posts-consulta.php"><i class="fas fa-cogs"></i></a></li>';
+                } elseif($idtypeuser == 3) { // Visitante
+                    echo '<li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i></a></li>';
+                    echo '<li><a class="texto_a" href="/views/posts.php"><i class="fas fa-clipboard-list"></i></a></li>';  // Cambié el icono de publicaciones -->
+                    echo '<li><a class="texto_a" href="/views/about.php"><i class="fas fa-users-cog"></i></a></li>';  // Cambié el icono de Nosotros -->
+                    echo '<li><a class="texto_a" href="/views/signin.php"><i class="fas fa-sign-in-alt"></i></a></li>';
                 }
-                
-                
                 ?>
             </ul>
 
-            <button id="open__nav-btn"><i class="uil uil-bars"></i></button>
-            <button id="close__nav-btn"><i class="uil uil-multiply"></i></button>
+            <button id="open__nav-btn"><i class="fas fa-bars"></i></button>
+            <button id="close__nav-btn"><i class="fas fa-times"></i></button>
         </div>
     </nav>
 
