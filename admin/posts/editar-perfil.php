@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <?php if (!empty($datos->foto_perfil)) : ?>
                         <div class="foto-actual">
                             <p>Foto actual:</p>
-                            <img src="../../assets/fotos/<?= $datos->foto_perfil ?>" alt="Foto actual" style="width:100px; height:auto; border-radius:10px;">
+                            <img src="../../views/uploads/<?= $datos->foto_perfil ?>" alt="Foto actual" style="width:100px; height:auto; border-radius:10px;">
                         </div>
                     <?php endif; ?>
 
