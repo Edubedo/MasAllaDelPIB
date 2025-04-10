@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const query = this.value;
 
         if (query.length >= 2) {
-            fetch(`/ajax/buscar-posts.php?q=${encodeURIComponent(query)}`)
+            fetch(`/views/ajax/buscar-posts.php?q=${encodeURIComponent(query)}`)
                 .then(response => response.json())
                 .then(data => {
                     resultsBox.innerHTML = '';
