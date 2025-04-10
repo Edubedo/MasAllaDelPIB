@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(data => {
                     resultsBox.innerHTML = '';
                     if (data.length === 0) {
-                        resultsBox.innerHTML = '<p style="padding:10px;">No se encontraron resultados.</p>';
+                        resultsBox.innerHTML = '<p style="padding:1rem; font-size:1.5rem">No se encontraron resultados.</p>';
                     } else {
                         data.forEach(post => {
                             const link = document.createElement('a');
