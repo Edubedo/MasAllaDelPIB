@@ -47,6 +47,7 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MasAllaDelPIB - Categorías</title>
     <script src="../js/main.js"></script>
+    <script src="../js/buscar.js"></script>
     <link rel="icon" href="../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href='./css/footer.css'>

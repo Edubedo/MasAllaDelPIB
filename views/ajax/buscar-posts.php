@@ -1,6 +1,6 @@
 <?php
 // Incluir configuración de la base de datos
-require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../../config/database.php';
 
 // Encabezado para que el navegador sepa que devolvemos JSON
 header('Content-Type: application/json');
