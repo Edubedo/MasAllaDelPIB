@@ -97,6 +97,13 @@ main {
     color: rgb(5, 66, 116);
 }
 
+.contenedor__Login-register form h3 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: rgb(10, 50, 90);
+}
+
 .contenedor__Login-register form input {
     width: 100%;
     margin-top: 10px;

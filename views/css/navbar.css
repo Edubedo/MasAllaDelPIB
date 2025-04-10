@@ -124,9 +124,12 @@ nav button {
 }
 
 .nav__items {
-	display: flex;
-	align-items: center;
-	gap: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 8rem;
+}
+.nav__items i{
+    font-size: 2rem;
 }
 
 /* Media Query para Tablets y Móviles */
