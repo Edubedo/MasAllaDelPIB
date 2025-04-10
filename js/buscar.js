@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     } else {
                         data.forEach(post => {
                             const link = document.createElement('a');
-                            link.href = `/post.php?id=${post.Id_posts}`;
+                            link.href = `/views/post.php?id=${post.Id_posts}`;
                             link.textContent = post.title;
                             resultsBox.appendChild(link);
                         });

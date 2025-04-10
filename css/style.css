@@ -15,27 +15,6 @@
 	--card-border-radius-5: 5rem;
 }
 
-/* START GENERAL */
-
-* {
-	margin: 0;
-	padding: 0;
-	outline: 0;
-	border: 0;
-	appearance: 0;
-	list-style: none;
-	text-decoration: none;
-	box-sizing: border-box;
-}
-
-body {
-	line-height: 1.6;
-	color: var(--color-gray-200);
-	overflow-x: hidden;
-	background: var(--color-bg);
-	font-size: 1rem;
-}
-
 main {
     top: 100px;
     margin-top: 3rem; /* Añadir margen superior */
