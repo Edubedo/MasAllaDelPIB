@@ -68,17 +68,18 @@
                         <p style="font-size:14px;margin-top:2px;color: red;"><?= $_SESSION['error_message']; ?></p>
                         <?php unset($_SESSION['error_message']); ?>
                     <?php endif; ?>
-                    <a href="../views/olvidaste_tu_contraseña.php"><p style="color: blue; font-size: 14px;">¿Olvidaste tu contraseña?</p></a>
+                    <a href="olvidaste_tu_contrasena.php"><p style="color: blue; font-size: 14px;">¿Olvidaste tu contraseña?</p></a>
                     <button type="submit">Inicia  sesión</button>
                 </form>
 
                 <!-- Formulario de registro -->
-                <form action="registro-usuarios.php" class="formulario__register" method="POST">
+                <form action="registro-usuarios.php" class="formulario__register" method="POST" enctype="multipart/form-data">
                     <h2 class="fa fa-user" style="font-size: 40px; margin-bottom: 10px; text-align: center; display: block;"></h2>
                     <input type="text" name="fullname" placeholder="Nombre Completo" required>
                     <input type="email" name="email" placeholder="Correo Electrónico" required>
                     <input type="text" name="username" placeholder="Usuario" required>
                     <input type="password" name="password" placeholder="Contraseña" required>
+                    <input type="file" name="foto_perfil" accept="image/*" required>
                     <button type="submit">Registrate</button>
                 </form>
             </div>

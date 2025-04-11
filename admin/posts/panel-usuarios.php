@@ -4,7 +4,7 @@ session_start();
 include '../../config/database.php';
 include "usuario-eliminar.php";
 
-// Verifica si hay una session activa y mandamos a llamar el nombre del usuario
+// Verifica si hay una sesión activa y mandamos a llamar el nombre del usuario
 if (isset($_SESSION['username'])) {
 
     $username = $_SESSION['username'];
@@ -22,6 +22,16 @@ $result = mysqli_query($conexion, $sql);
 $row = mysqli_fetch_assoc($result);
 $idtypeuser = $row['id_type_user'];
 $iduser = $row['iduser'];
+//$foto_perfil = $row['foto_perfil']; // Recuperar la imagen del perfil
+
+
+// Verificar si la imagen existe en el servidor
+/*
+if (!empty($foto_perfil) && file_exists('../../views/uploads/' . $foto_perfil)) {
+    $img_src = '../../views/uploads/' . $foto_perfil;
+} else {
+    $img_src = $default_image;
+}*/
 ?>
 
 <!DOCTYPE html>
@@ -32,8 +42,7 @@ $iduser = $row['iduser'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de usuarios</title>
 
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="css/panel-usuarios.css">
+    <link rel="stylesheet" href="css/consulta.css">
     <link rel="stylesheet" href="../../views/css/navbar.css">
     <link rel="stylesheet" href="css/userpop.css">
 
@@ -43,7 +52,6 @@ $iduser = $row['iduser'];
 
     <?php 
     include ('../../views/layout/header.php')
-    
     ?>
 
     <!-- Panel de Administración -->
@@ -56,16 +64,18 @@ $iduser = $row['iduser'];
                 $sql = "SELECT * FROM users WHERE iduser = '$iduser'";
                 ?>
 
-                <img id="logo_admin" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACXUlEQVR4nO2Yz0tVQRTHPykaSZtcPoI27YJAqXWYhNCiNOJB/gkqWhq+doUbzforyh9YO3cFtUhFaJ8+Nbe1KSVeUoH4YuBcuFzm+ubeGZk79T5w4HHfuefO9945Z84MNGnSxBXtQBlYAKrAT7GqXCuLTyG5A+wC9Qb2GRigQLQAswYDT9pTudc7z3IMPrKZIkybuqX1+xp8u8xnWwG7vhK77GDwkd31IWDRoYA5HwK2HQqo+hBQcyigFrqAHz4EbDkUsOlDwLxDAS98CAi+jLYBOyEvZEhXaTP4I+AWnsnTiUY2TQFokdY465ufKUo7HdFvmBNqBb9NQWmTijIntb0mtgG8lP+Uzz/LG+BATP0Oik7gMDbV1O9zBMRDTb48IBCuy7RJClBHMj2uHtIBTMk2Mv6pTWwdOCVxnsgZ0SgwArxuEO9QfIblngWJkXnw6xYL1jWJ051DfD1FlIplzJTFw1QJjXjlYPB1saUsAmxOHx7H4iw7FLCcRYDNZ78Ri3MaWE3x+wNMAiWxilzT+X6QWMYcWQg4n4h1JcWvonluJcW3i4zsWwg4o4m3p/ErafxKGr9v5OC9hYCzhi+kZCjgex4B9ywEXEzEupphCj1K8c1UQhWtFqcQvbE4KvHWjkniimESr2RNYsXlnGdBarPjvYxG3Mwh4lMRFrI4l3JMp74TaCW6sKBDEkxXDnX2MaWZUw3akkEzp07Ch2yauTTUhmNMGr1Gi934MXF6pHVO3lOLNYInzgVgEHgOvJMm7gvwC/gNfJXpl8aERsB9AqIz9C2l4m3Im3r+W/4CaYEHGi2wJakAAAAASUVORK5CYII=" alt="system-administrator-male">
+                <!-- Mostrar imagen de perfil o imagen predeterminada -->
+                <img id="logo_admin" src="<?php echo !empty($foto_perfil) ? $foto_perfil : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACXUlEQVR4nO2Yz0tVQRTHPykaSZtcPoI27YJAqXWYhNCiNOJB/gkqWhq+doUbzforyh9YO3cFtUhFaJ8+Nbe1KSVeUoH4YuBcuFzm+ubeGZk79T5w4HHfuefO9945Z84MNGnSxBXtQBlYAKrAT7GqXCuLTyG5A+wC9Qb2GRigQLQAswYDT9pTudc7z3IMPrKZIkybuqX1+xp8u8xnWwG7vhK77GDwkd31IWDRoYA5HwK2HQqo+hBQcyigFrqAHz4EbDkUsOlDwLxDAS98CAi+jLYBOyEvZEhXaTP4I+AWnsnTiUY2TQFokdY465ufKUo7HdFvmBNqBb9NQWmTijIntb0mtgG8lP+Uzz/LG+BATP0Oik7gMDbV1O9zBMRDTb48IBCuy7RJClBHMj2uHtIBTMk2Mv6pTWwdOCVxnsgZ0SgwArxuEO9QfIblngWJkXnw6xYL1jWJ051DfD1FlIplzJTFw1QJjXjlYPB1saUsAmxOHx7H4iw7FLCcRYDNZ78Ri3MaWE3x+wNMAiWxilzT+X6QWMYcWQg4n4h1JcWvonluJcW3i4zsWwg4o4m3p/ErafxKGr9v5OC9hYCzhi+kZCjgex4B9ywEXEzEupphCj1K8c1UQhWtFqcQvbE4KvHWjkniimESr2RNYsXlnGdBarPjvYxG3Mwh4lMRFrI4l3JMp74TaCW6sKBDEkxXDnX2MaWZUw3akkEzp07Ch2yauTTUhmNMGr1Gi934MXF6pHVO3lOLNYInzgVgEHgOvJMm7gvwC/gNfJXpl8aERsB9AqIz9C2l4m3Im3r+W/4CaYEHGi2wJakAAAAASUVORK5CYII='; ?>" alt="system-administrator-male">
                 <h1><?php echo htmlspecialchars($username); ?></h1>
             </div>
 
             <div id="userPopup">
                 <div class="imagen-pop">
-                    <img id="img_user" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACXUlEQVR4nO2Yz0tVQRTHPykaSZtcPoI27YJAqXWYhNCiNOJB/gkqWhq+doUbzforyh9YO3cFtUhFaJ8+Nbe1KSVeUoH4YuBcuFzm+ubeGZk79T5w4HHfuefO9945Z84MNGnSxBXtQBlYAKrAT7GqXCuLTyG5A+wC9Qb2GRigQLQAswYDT9pTudc7z3IMPrKZIkybuqX1+xp8u8xnWwG7vhK77GDwkd31IWDRoYA5HwK2HQqo+hBQcyigFrqAHz4EbDkUsOlDwLxDAS98CAi+jLYBOyEvZEhXaTP4I+AWnsnTiUY2TQFokdY465ufKUo7HdFvmBNqBb9NQWmTijIntb0mtgG8lP+Uzz/LG+BATP0Oik7gMDbV1O9zBMRDTb48IBCuy7RJClBHMj2uHtIBTMk2Mv6pTWwdOCVxnsgZ0SgwArxuEO9QfIblngWJkXnw6xYL1jWJ051DfD1FlIplzJTFw1QJjXjlYPB1saUsAmxOHx7H4iw7FLCcRYDNZ78Ri3MaWE3x+wNMAiWxilzT+X6QWMYcWQg4n4h1JcWvonluJcW3i4zsWwg4o4m3p/ErafxKGr9v5OC9hYCzhi+kZCjgex4B9ywEXEzEupphCj1K8c1UQhWtFqcQvbE4KvHWjkniimESr2RNYsXlnGdBarPjvYxG3Mwh4lMRFrI4l3JMp74TaCW6sKBDEkxXDnX2MaWZUw3akkEzp07Ch2yauTTUhmNMGr1Gi934MXF6pHVO3lOLNYInzgVgEHgOvJMm7gvwC/gNfJXpl8aERsB9AqIz9C2l4m3Im3r+W/4CaYEHGi2wJakAAAAASUVORK5CYII=" alt="system-administrator-male">
+                    <!-- Mostrar imagen de perfil o imagen predeterminada -->
+                    <img id="img_user" src="<?php echo !empty($foto_perfil) ? $foto_perfil : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACXUlEQVR4nO2Yz0tVQRTHPykaSZtcPoI27YJAqXWYhNCiNOJB/gkqWhq+doUbzforyh9YO3cFtUhFaJ8+Nbe1KSVeUoH4YuBcuFzm+ubeGZk79T5w4HHfuefO9945Z84MNGnSxBXtQBlYAKrAT7GqXCuLTyG5A+wC9Qb2GRigQLQAswYDT9pTudc7z3IMPrKZIkybuqX1+xp8u8xnWwG7vhK77GDwkd31IWDRoYA5HwK2HQqo+hBQcyigFrqAHz4EbDkUsOlDwLxDAS98CAi+jLYBOyEvZEhXaTP4I+AWnsnTiUY2TQFokdY465ufKUo7HdFvmBNqBb9NQWmTijIntb0mtgG8lP+Uzz/LG+BATP0Oik7gMDbV1O9zBMRDTb48IBCuy7RJClBHMj2uHtIBTMk2Mv6pTWwdOCVxnsgZ0SgwArxuEO9QfIblngWJkXnw6xYL1jWJ051DfD1FlIplzJTFw1QJjXjlYPB1saUsAmxOHx7H4iw7FLCcRYDNZ78Ri3MaWE3x+wNMAiWxilzT+X6QWMYcWQg4n4h1JcWvonluJcW3i4zsWwg4o4m3p/ErafxKGr9v5OC9hYCzhi+kZCjgex4B9ywEXEzEupphCj1K8c1UQhWtFqcQvbE4KvHWjkniimESr2RNYsXlnGdBarPjvYxG3Mwh4lMRFrI4l3JMp74TaCW6sKBDEkxXDnX2MaWZUw3akkEzp07Ch2yauTTUhmNMGr1Gi934MXF6pHVO3lOLNYInzgVgEHgOvJMm7gvwC/gNfJXpl8aERsB9AqIz9C2l4m3Im3r+W/4CaYEHGi2wJakAAAAASUVORK5CYII='; ?>" alt="system-administrator-male">
                 </div>
                 <div class="nombre-pop">
-                    <p>!Hola, <span id="username"><?php echo htmlspecialchars($username); ?></span>!</p>
+                    <p>¡Hola, <span id="username"><?php echo htmlspecialchars($username); ?></span>!</p>
                 </div>
                 <div class="info-pop">
                     <div class="nombredeluser">
@@ -82,20 +92,12 @@ $iduser = $row['iduser'];
                         <button>Editar perfil</button>
                     </a>
                     <a href="/config/logout.php" >
-                        <button>Cerrar sesion</button>
+                        <button>Cerrar sesión</button>
                     </a>
                 </div>
             </div>
 
         </header>
-
-
-        <!-- Mostrar mensaje de eliminación si se ha ejecutado -->
-        <div class="_eliminacion">
-            <?php if (isset($mensaje) && $mensaje != '') {
-                echo $mensaje;
-            } ?>
-        </div>
 
         <!-- Tabla de usuarios -->
         <div class="container-inferior">
@@ -110,7 +112,7 @@ $iduser = $row['iduser'];
                 </thead>
                 <tbody>
                     <?php
-                    //Consulta para mostrar datos en la tabla
+                    // Consulta para mostrar datos en la tabla
                     $sql = "SELECT * FROM users";
                     $result = mysqli_query($conexion, $sql);
                     while ($mostrar = mysqli_fetch_array($result)) {
@@ -123,8 +125,7 @@ $iduser = $row['iduser'];
                                 <!-- Botón de modificar usuario -->
                                 <a href="editar-perfil.php?id=<?php echo $mostrar['iduser']; ?>" class="btn editar">Editar</a>
                                 <!-- Botón de eliminar usuario -->
-                                <a href="panel-usuarios.php?id=<?php echo $mostrar['iduser']; ?>" class="btn eliminar" onclick="return ConfirmDelete()">Eliminar</a>
-                                
+                                <a href="panel-usuarios.php?id=<?php echo $mostrar['iduser']; ?>" class="btn eliminar">Eliminar</a>
                             </td>
                         </tr>
                     <?php
@@ -136,21 +137,18 @@ $iduser = $row['iduser'];
 
     </main>
 
+    <!-- Modal de confirmación -->
+    <div id="deleteModal" class="deletemodal">
+        <div class="deletemodal-content">
+            <h3>¿Estás seguro que deseas eliminar este usuario?</h3>
+            <div class="deletemodal-buttons">
+                <button id="confirmDelete">Eliminar</button>
+                <button id="cancelDelete">Cancelar</button>
+            </div>
+        </div>
+    </div>
 
     <script src="../../js/panel_usuarios.js"></script>
-
-    
-    <script>
-        function ConfirmDelete(){
-            var respuesta = confirm("¿Estas seguro que deseas eliminar usuario?")
-            if(respuesta == true){
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
-    </script>
 
     <?php include '../../views/layout/footer.php'; ?>
 </body>

@@ -139,28 +139,7 @@
     color: rgb(0, 0, 0);
 }
 
-.buscador{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 2rem;
-    padding: 0 5rem; /* Espacio a los lados */
-    gap: 1rem; /* Espacio entre el input y el icono */
-}
-
-.buscador input{
-    border: none;
-    border-bottom: 2px solid #2f458d; /* Color azul claro */
-    background-color: rgba(255, 255, 255, 0.365);
-    outline: none;             /* Elimina el borde azul al hacer clic */
-    padding: 0.5rem;
-    font-size: 1.6rem;
-    color: #0f141b;
-}
-
-
 .cuerpo {
-    
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -178,8 +157,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
     border-radius: 15px;
-    margin: 0;
-    padding: 0;
+    display: flex;
 }
 
 .p1:hover {
@@ -190,6 +168,7 @@
 .cuerpo_post{
     display: flex;
     width: 100%;
+    height: 20rem;
 }
 
 .titulo1{

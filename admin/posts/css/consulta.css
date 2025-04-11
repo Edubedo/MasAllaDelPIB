@@ -7,12 +7,17 @@ html {
     box-sizing: inherit;
 }
 
+main {
+    margin-top: 4rem;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     text-align: center;
     background-color: #E0E0E0;
+    line-height: 1.6;
     
 }
 
@@ -167,10 +172,53 @@ button:hover {
 }
 
 .new-post .texto {
+    margin: 1rem 0;
     margin-top: 2.3rem;
     font-size: 2rem;
     color: #262626; 
+
 }
+
+/* Buscador */
+.search__bar {
+	margin-top: 7rem;
+}
+
+.search__bar-container {
+	position: relative;
+	width: 30rem;
+	background: #1e1e66;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	overflow: hidden;
+	padding: 0.6rem 1rem;
+	border-radius: 0.5rem;
+	color: gray;
+}
+
+.search__bar-container > div {
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.search-box input{
+	margin-left: 0.7rem;
+	width: 100%;
+	color: white;
+    padding: 0.8rem 1.4rem;
+	border-radius: 0.5rem;
+	resize: none;
+    background-color:#0056b3;
+}
+
+.search__bar input::placeholder {
+	color: grey;
+}
+
+
 
 /* Botones de nueva publi */	
 #add-post-btn {
@@ -194,6 +242,7 @@ button:hover {
     border-radius: 0.5rem;
     padding: 2rem;
     margin: 1rem;
+    margin-left: auto;
     min-height: 55rem;
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
@@ -355,31 +404,6 @@ th, td {
     box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
 }
 
-/* TEXTO INICIO Y PUBLICACIONES DEL HEADER */
-.nav__items {
-    gap: 9rem;
-    margin-right: 3rem;
-}
-
-.publicaciones {
-    width: 100%; /* Ocupa el 100% del contenedor padre */
-    color: #262626;
-    font-size: 1.5rem;
-    text-align: left;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr auto; /* Alinea las publicaciones en 4 columnas */
-    gap: 1rem; /* Espacio entre las columnas */
-    align-items: start; /* Alinea el contenido al inicio verticalmente */
-}
-
-.grid-item {
-    display: contents; /* Hace que los hijos directos sean parte del grid */
-}
-
-
 
 .title, .category, .user, .date {
     padding: 0.5rem; /* Espaciado interno para mejorar la legibilidad */
@@ -408,7 +432,7 @@ th, td {
 
 
 a {
-    color: #ffffff!important;
+    color: #ffffff;
 }
 
 .referencias-links{

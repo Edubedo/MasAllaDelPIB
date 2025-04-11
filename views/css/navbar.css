@@ -3,6 +3,8 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
 }
 
 /* Estilos Generales de la Barra de Navegación */
@@ -79,6 +81,8 @@ nav .icon-bars .line {
 
 .container {
     padding: 10px;
+    width: 74%;
+	margin-inline: auto;
 }
 
 nav {
@@ -124,10 +128,62 @@ nav button {
 }
 
 .nav__items {
-	display: flex;
-	align-items: center;
-	gap: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 8rem;
 }
+.nav__items i{
+    font-size: 2rem;
+}
+
+/* Estilos para el buscador dentro de la barra */
+.search-container {
+    position: relative;
+}
+
+#search-input {
+    position: absolute;
+    top: 1rem;
+    right: 30px;
+    display: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    z-index: 1000;
+    background-color: white;
+    color: black;
+}
+
+.search-results {
+    position: absolute;
+    top: 5rem;
+    right: 0;
+    width: 35rem;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+    display: none;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.search-results a {
+    display: block;
+    padding: 0.8rem;
+    border-bottom: 1px solid #eee;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: black;
+}
+
+.search-results a:hover {
+    background-color: #f0f0f0;
+}
+
 
 /* Media Query para Tablets y Móviles */
 @media (max-width: 939px) {
