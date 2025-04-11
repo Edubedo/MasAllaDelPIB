@@ -239,13 +239,13 @@ button:hover {
 
 /* Contenedor donde se encuentra la tabla */
 .container-inferior {
-    border-radius: 0.5rem;
+    border-radius: 0.8rem;
     padding: 2rem;
     margin: 1rem;
     margin-left: auto;
     min-height: 55rem;
     background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
     overflow-x: auto; /* Scroll horizontal */
     width: 100%; /* Ocupa todo el ancho */
 }
@@ -254,77 +254,62 @@ button:hover {
     cursor: pointer;
 }
 
-.search-box {
-    position: absolute;
-    margin-left: 29.7%; 
-}
-
 /* Estilos para la tabla */
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    background-color: #ffffff;
     margin-top: 1rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Encabezado de la tabla */
-table th {
-    background-color: #1b1158;
-    color: #fff; /* Letra blanca */
-    padding: 1rem;
-    font-size: 1.2rem;
-    text-align: left;
-}
-
-/* Estilo global para todas las celdas (td) */
-table td {
-    color: #000; 
-    padding: 5px; 
-    text-align: left; 
-    line-height: 1.4;
-    background-color: #f8f8f8;
-    font-size: 1.2rem;
-    border-bottom: 1px solid #ddd; 
-}
-
-/* Estilo para la columna de contenido */
-table td:nth-child(3) {
-    max-height: 100px;
-    overflow-y: auto;  
-    white-space: pre-wrap; 
-    word-wrap: break-word;
-}
-
-    
-
-/* Filas con hover */
-table tr:hover {
-    background-color: #e1f5fe;
-}
-
-/* Filas alternas */
-table tr:nth-child(even) {
-    background-color: #fafafa;
-}
-
-/* Bordes para tabla y celdas */
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-/* Ajuste del texto largo */
-table td, table th {
+table th, table td {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
 
-/* Estilos para las celdas con texto más grande */
-th, td {
-    font-size: 1.1rem; /* Puedes modificar el tamaño aquí */
-    font-weight: normal;
-    padding: 12px 15px;
+/* Para columnas con texto muy largo como título o referencias */
+table td:nth-child(2),
+table td:nth-child(5),
+table td:nth-child(6) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    background-color: #1b1158;
+    color: white;
+    padding: 1.5rem;
+    font-size: 1.4rem;
     text-align: center;
+    z-index: 2;
+}
+
+tbody td {
+    padding: 1.2rem 1.5rem;
+    font-size: 1.3rem;
+    color: #333;
+    background-color: #fcfcfc;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+tbody tr:hover {
+    background-color: #f0f8ff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    transform: scale(1.005);
+    transition: all 0.2s ease-in-out;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
 
 .image-post {
@@ -337,49 +322,35 @@ th, td {
 
 /* Estilo base para los botones */
 .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 5px;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    padding: 0.7rem 1.4rem;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 /* Botón Editar */
 .btn.editar {
     background-color: #0fd246;
     color: white;
-    border: 2px solid #0fd246;
+    border: none;
 }
 
 .btn.editar:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-    transform: translateY(-2px);
+    background-color: #13b442;
+    transform: scale(1.05);
 }
 
 /* Botón Eliminar */
 .btn.eliminar {
     background-color: #dc3545;
     color: white;
-    border: 2px solid #dc3545;
+    border: none;
 }
 
 .btn.eliminar:hover {
     background-color: #c82333;
-    border-color: #c82333;
-    transform: translateY(-2px);
+    transform: scale(1.05);
 }
-
-/* Efecto cuando el botón es presionado */
-.btn:active {
-    transform: translateY(2px);
-}
-
 
 
 /* Contenedor de elecciones (títulos de las publicaciones, categorías, usuario y fecha) */
@@ -463,38 +434,6 @@ td:nth-child(6) {  /* Cuarta columna: "referencias" */
 }
 tr td:nth-child(9) a.btn {
     max-width: auto;
-}
-
-.search-box input::placeholder {
-    color: white; /* Cambia el color del placeholder a blanco */
-    opacity: 1;   /* Asegura que sea completamente opaco */
-}
-
-#btn-editar, #btn-eliminar {
-    
-    margin: 0.5rem;
-    padding: 1rem;
-    cursor: pointer;
-    max-width: 50%;
-}
-
-
-.botones-derecha{
-    justify-self: end;
-    grid-template-columns: minmax(100px, 1fr);
-}
-#btn-editar {
-    background-color: #0082c8;
-    color: white;
-}
-
-#btn-eliminar {
-    background-color: #f44336;
-    color: white;
-}
-
-#btn-editar:hover {
-    background-color: #0061ab;
 }
 
 /* Estilos para el Modal de Eliminar */

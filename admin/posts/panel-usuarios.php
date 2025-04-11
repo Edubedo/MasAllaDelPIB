@@ -22,16 +22,16 @@ $result = mysqli_query($conexion, $sql);
 $row = mysqli_fetch_assoc($result);
 $idtypeuser = $row['id_type_user'];
 $iduser = $row['iduser'];
-//$foto_perfil = $row['foto_perfil']; // Recuperar la imagen del perfil
+$foto_perfil = $row['foto_perfil']; // Recuperar la imagen del perfil
 
 
 // Verificar si la imagen existe en el servidor
-/*
+
 if (!empty($foto_perfil) && file_exists('../../views/uploads/' . $foto_perfil)) {
     $img_src = '../../views/uploads/' . $foto_perfil;
 } else {
     $img_src = $default_image;
-}*/
+}
 ?>
 
 <!DOCTYPE html>
