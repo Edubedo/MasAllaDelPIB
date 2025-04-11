@@ -144,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             echo '<a href="posts-consulta.php?id=' . $iduser . '" class="btn-editar-perfil">Regresar</a>';
                         }
                         ?>
-                        <button type="submit" name="editar-perfil">Modificar perfil</button>
+                        <button type="submit" name="editar-perfil" style="width: 96%;">Modificar perfil</button>
                     </div>
                 </div>
             </form>

@@ -14,14 +14,6 @@ function editarPublicacion(id) {
     }
 }
 
-// Función para eliminar una publicación
-function eliminarPublicacion(id) {
-    if (id && confirm('¿Estás seguro de eliminar esta publicación?')) {
-        // Redirige a la URL de eliminación con el ID de la publicación
-        window.location.href = `posts-eliminar.php?id=${id}`;
-    }
-}
-
 document.getElementById("logo_admin").addEventListener("click", function (event) {
     let popup = document.getElementById("userPopup");
     if (popup.style.display === "block") {
