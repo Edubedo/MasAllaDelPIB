@@ -92,7 +92,7 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
                     $title = htmlspecialchars(strlen($post['title']) > 70 ? substr($post['title'], 0, 54) . "..." : $post['title']);
                     $userCreation = htmlspecialchars($post['user_creation']);
                     $postDate = date("F d, Y", strtotime($post['post_date']));
-                    $content = htmlspecialchars(strlen($post['title']) > 60 ? substr($post['content'], 0, 125) . "..." : substr($post['content'], 0, 180) . "...");
+                    $content = htmlspecialchars(strlen($post['title']) > 60 ? substr($post['content'], 0, 225) . "..." : substr($post['content'], 0, 180) . "...");
 
                     // Estructura común del post
                     $postHTML = '
@@ -115,17 +115,17 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
                     // Lógica de interacciones según el tipo de usuario
                     if ($idtypeuser == 1 || $idtypeuser == 2) {
                         $postHTML .= '
-                            <div class="interaccion">
-                                <div class="likes">
-                                    <a class="options" data-vote-type="1" id="post_vote_up_' . htmlspecialchars($post['Id_posts']) . '">
-                                        <i class="fas fa-thumbs-up" data-original-title="Like this post"></i>
-                                    </a>
-                                    <span class="likes_count" id="vote_up_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['vote_up'] ?? 0) . '</span>
-                                    <a class="options" data-vote-type="0" id="post_vote_down_' . htmlspecialchars($post['Id_posts']) . '">
-                                        <i class="fas fa-thumbs-down" data-original-title="Dislike this post"></i>
-                                    </a>
-                                    <span class="likes_count" id="vote_down_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['vote_down'] ?? 0) . '</span>
-                                </div>
+                                <div class="interaccion">
+                                    <div class="likes">
+                                        <a class="options" data-vote-type="1" id="post_vote_up_' . htmlspecialchars($post['Id_posts']) . '">
+                                            <i class="fas fa-thumbs-up" data-original-title="Like this post"></i>
+                                        </a>
+                                        <span class="likes_count" id="vote_up_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['vote_up'] ?? 0) . '</span>
+                                        <a class="options" data-vote-type="0" id="post_vote_down_' . htmlspecialchars($post['Id_posts']) . '">
+                                            <i class="fas fa-thumbs-down" data-original-title="Dislike this post"></i>
+                                        </a>
+                                        <span class="likes_count" id="vote_down_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['vote_down'] ?? 0) . '</span>
+                                    </div>
                             </div>';
                     }
 

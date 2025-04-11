@@ -22,16 +22,16 @@ $result = mysqli_query($conexion, $sql);
 $row = mysqli_fetch_assoc($result);
 $idtypeuser = $row['id_type_user'];
 $iduser = $row['iduser'];
-$foto_perfil = $row['foto_perfil']; // Recuperar la imagen del perfil
+//$foto_perfil = $row['foto_perfil']; // Recuperar la imagen del perfil
 
 
 // Verificar si la imagen existe en el servidor
-
+/*
 if (!empty($foto_perfil) && file_exists('../../views/uploads/' . $foto_perfil)) {
     $img_src = '../../views/uploads/' . $foto_perfil;
 } else {
     $img_src = $default_image;
-}
+}*/
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +42,7 @@ if (!empty($foto_perfil) && file_exists('../../views/uploads/' . $foto_perfil)) 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de usuarios</title>
 
-    <link rel="stylesheet" href="css/panel-usuarios.css">
+    <link rel="stylesheet" href="css/consulta.css">
     <link rel="stylesheet" href="../../views/css/navbar.css">
     <link rel="stylesheet" href="css/userpop.css">
 
@@ -99,13 +99,6 @@ if (!empty($foto_perfil) && file_exists('../../views/uploads/' . $foto_perfil)) 
 
         </header>
 
-        <!-- Mostrar mensaje de eliminación si se ha ejecutado -->
-        <div class="_eliminacion">
-            <?php if (isset($mensaje) && $mensaje != '') {
-                echo $mensaje;
-            } ?>
-        </div>
-
         <!-- Tabla de usuarios -->
         <div class="container-inferior">
             <table id="postsTable">
@@ -132,7 +125,7 @@ if (!empty($foto_perfil) && file_exists('../../views/uploads/' . $foto_perfil)) 
                                 <!-- Botón de modificar usuario -->
                                 <a href="editar-perfil.php?id=<?php echo $mostrar['iduser']; ?>" class="btn editar">Editar</a>
                                 <!-- Botón de eliminar usuario -->
-                                <a href="panel-usuarios.php?id=<?php echo $mostrar['iduser']; ?>" class="btn eliminar" onclick="return ConfirmDelete()">Eliminar</a>
+                                <a href="panel-usuarios.php?id=<?php echo $mostrar['iduser']; ?>" class="btn eliminar">Eliminar</a>
                             </td>
                         </tr>
                     <?php
@@ -143,6 +136,17 @@ if (!empty($foto_perfil) && file_exists('../../views/uploads/' . $foto_perfil)) 
         </div>
 
     </main>
+
+    <!-- Modal de confirmación -->
+    <div id="deleteModal" class="deletemodal">
+        <div class="deletemodal-content">
+            <h3>¿Estás seguro que deseas eliminar este usuario?</h3>
+            <div class="deletemodal-buttons">
+                <button id="confirmDelete">Eliminar</button>
+                <button id="cancelDelete">Cancelar</button>
+            </div>
+        </div>
+    </div>
 
     <script src="../../js/panel_usuarios.js"></script>
 

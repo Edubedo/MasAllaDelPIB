@@ -81,6 +81,8 @@ nav .icon-bars .line {
 
 .container {
     padding: 10px;
+    width: 74%;
+	margin-inline: auto;
 }
 
 nav {

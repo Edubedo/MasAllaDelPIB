@@ -7,6 +7,10 @@ html {
     box-sizing: inherit;
 }
 
+main {
+    margin-top: 4rem;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -168,9 +172,11 @@ button:hover {
 }
 
 .new-post .texto {
+    margin: 1rem 0;
     margin-top: 2.3rem;
     font-size: 2rem;
     color: #262626; 
+
 }
 
 /* Buscador */
@@ -198,12 +204,14 @@ button:hover {
 	align-items: center;
 }
 
-.search__bar input {
-	background: transparent;
+.search-box input{
 	margin-left: 0.7rem;
-	padding: 0.5rem 0;
 	width: 100%;
 	color: white;
+    padding: 0.8rem 1.4rem;
+	border-radius: 0.5rem;
+	resize: none;
+    background-color:#0056b3;
 }
 
 .search__bar input::placeholder {
@@ -234,6 +242,7 @@ button:hover {
     border-radius: 0.5rem;
     padding: 2rem;
     margin: 1rem;
+    margin-left: auto;
     min-height: 55rem;
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
@@ -394,31 +403,6 @@ th, td {
     font-size: 1.5rem;
     box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
 }
-
-/* TEXTO INICIO Y PUBLICACIONES DEL HEADER */
-.nav__items {
-    gap: 9rem;
-    margin-right: 3rem;
-}
-
-.publicaciones {
-    width: 100%; /* Ocupa el 100% del contenedor padre */
-    color: #262626;
-    font-size: 1.5rem;
-    text-align: left;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr auto; /* Alinea las publicaciones en 4 columnas */
-    gap: 1rem; /* Espacio entre las columnas */
-    align-items: start; /* Alinea el contenido al inicio verticalmente */
-}
-
-.grid-item {
-    display: contents; /* Hace que los hijos directos sean parte del grid */
-}
-
 
 
 .title, .category, .user, .date {
