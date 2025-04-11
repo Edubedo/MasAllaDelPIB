@@ -124,6 +124,8 @@ $iduser = $row['iduser'];
 
                 <!-- Buscador General -->
             <div class="search-box">
+                <i class="fa fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Buscar...">
                 <input type="text" id="searchInput" placeholder="Buscar">
             </div>
 
