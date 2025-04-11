@@ -16,7 +16,8 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
-    background-color: #E0E0E0;
+    background-color: #f0f0f0;
+    background: linear-gradient(to right, #f3f4f6, #e0e0e0);
     line-height: 1.6;
     
 }
@@ -87,25 +88,35 @@ button:hover {
 
 /* Panel de administrador */
 #admin-panel {
-    padding: 2rem;
-    background-color: #E0E0E0;
+    padding: 3rem;
+    border-radius: 1.5rem;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 
 
 /*Contiene el título y el botón de cerrar sesión*/
 .container-header {
+    background-color: #ffffff;
+    padding: 1.5rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    gap: 2.5rem;
     margin-bottom: 2rem;
-    width: 100%;
 }
 
 /* Logo */
 .container-header img {
     width: 50px;
     height: 50px;
+    margin-right: 1rem;
+}
+
+.container-header img:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
 }
 
 /* Nombre del admin */
@@ -127,19 +138,20 @@ button:hover {
 }
 
 /* Contenedor de categorias y nueva publicacion*/
+.container-superior,
+.container-inferior {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    margin-bottom: 2rem;
+}
+
 .container-superior {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    margin-bottom: 2rem;
-    background-color: #FAFAFA;
-    border-radius: 1rem;
-    padding: 1.5rem;
-    background-color: white;
-    padding: 1rem;
-    border-radius: 1rem; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 
@@ -180,42 +192,48 @@ button:hover {
 }
 
 /* Buscador */
-.search__bar {
-	margin-top: 7rem;
+.search-box {
+    display: flex; /* ¡Clave para alinear horizontal! */
+    align-items: center;
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 0.6rem;
+    padding: 0.8rem 1.2rem;
+    width: 100%;
+    max-width: 30rem;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+    gap: 1rem; /* espacio entre ícono e input */
 }
 
-.search__bar-container {
-	position: relative;
-	width: 30rem;
-	background: #1e1e66;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
-	overflow: hidden;
-	padding: 0.6rem 1rem;
-	border-radius: 0.5rem;
-	color: gray;
+.search-box:focus-within {
+    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.3);
+    transition: box-shadow 0.3s ease;
 }
 
-.search__bar-container > div {
-	width: 100%;
-	display: flex;
-	align-items: center;
+.search-box:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.search-box input{
-	margin-left: 0.7rem;
-	width: 100%;
-	color: white;
-    padding: 0.8rem 1.4rem;
-	border-radius: 0.5rem;
-	resize: none;
-    background-color:#0056b3;
+.search-box input {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #333;
+    font-size: 1.5rem;
+    width: 100%;
+    padding-left: 1rem;
 }
 
-.search__bar input::placeholder {
-	color: grey;
+.search-box input::placeholder {
+    color: #999;
+    font-size: 1.4rem;
+}
+
+.search-box i {
+    color: #0056b3;
+    font-size: 1.6rem;
+    flex-shrink: 0; /* evita que se reduzca */
 }
 
 
@@ -239,13 +257,9 @@ button:hover {
 
 /* Contenedor donde se encuentra la tabla */
 .container-inferior {
-    border-radius: 0.8rem;
-    padding: 2rem;
     margin: 1rem;
     margin-left: auto;
     min-height: 55rem;
-    background-color: white;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
     overflow-x: auto; /* Scroll horizontal */
     width: 100%; /* Ocupa todo el ancho */
 }
@@ -284,9 +298,10 @@ table td:nth-child(6) {
 thead th {
     position: sticky;
     top: 0;
-    background-color: #1b1158;
+    background-color: #2c3e50;
     color: white;
     padding: 1.5rem;
+    font-weight: 600;
     font-size: 1.4rem;
     text-align: center;
     z-index: 2;
@@ -295,16 +310,16 @@ thead th {
 tbody td {
     padding: 1.2rem 1.5rem;
     font-size: 1.3rem;
-    color: #333;
+    color: #555;
     background-color: #fcfcfc;
     border-bottom: 1px solid #eee;
     text-align: center;
 }
 
 tbody tr:hover {
-    background-color: #f0f8ff;
+    background-color: #ecf6fd;
+    transform: scale(1.002);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-    transform: scale(1.005);
     transition: all 0.2s ease-in-out;
 }
 
@@ -330,7 +345,7 @@ tbody tr:nth-child(even) {
 
 /* Botón Editar */
 .btn.editar {
-    background-color: #0fd246;
+    background: linear-gradient(to right, #38ef7d, #11998e);
     color: white;
     border: none;
 }
@@ -342,7 +357,7 @@ tbody tr:nth-child(even) {
 
 /* Botón Eliminar */
 .btn.eliminar {
-    background-color: #dc3545;
+    background: linear-gradient(to right, #f85032, #e73827);
     color: white;
     border: none;
 }
