@@ -40,6 +40,7 @@ $iduser = $row['iduser'];
     <link rel="stylesheet" href="css/consulta.css">
     <link rel="stylesheet" href="../../views/css/navbar.css">
     <link rel="stylesheet" href="css/userpop.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 
@@ -126,7 +127,6 @@ $iduser = $row['iduser'];
             <div class="search-box">
                 <i class="fa fa-search"></i>
                 <input type="text" id="searchInput" placeholder="Buscar...">
-                <input type="text" id="searchInput" placeholder="Buscar">
             </div>
 
         </div>
