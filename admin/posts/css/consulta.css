@@ -42,7 +42,7 @@ body {
     transform: translate(-50%, -50%);
     background: white;
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);  
-    z-index: 2;
+    z-index: 10;
     border-radius: .6rem;
     width: 90%; /* Ancho del modal */
     max-width: 850px; /* Ancho máximo para pantallas grandes */
