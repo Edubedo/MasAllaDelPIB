@@ -96,15 +96,15 @@ html, body {
     gap: 1.5rem;
 }
 
-.correos {
+.correos{
     display: flex;
     flex-direction: column;
     text-align: left;
-    color: white !important;
 }
 
 .correos a {
     margin: 0;
+    color: white;
 }
 .correos a:hover {
     color: #f0a500;
