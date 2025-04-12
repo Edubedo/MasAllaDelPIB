@@ -35,13 +35,14 @@ try {
     <!-- Incluyendo la barra de navegación -->
     <?php include 'views/layout/header.php'; ?>
 
+    <div class="container-carousel">
+        <div class="header">
+            <?php include("views/layout/carousel.php"); ?>
+        </div>
+    </div>
+
     <!-- Contenido principal -->
-    <main>
-        <!-- Carrusel de imágenes -->
-        <?php include("views/layout/carousel.php"); ?>
-
-        <div class="div-izquierdo"></div>
-
+    <div class="container-principal">        
         <div class="div-central">
             <!-- Sección de Publicaciones -->
             <div class="encabezado">
@@ -53,9 +54,11 @@ try {
             </div>
         </div>
 
-        <div class="div-derecho"></div>
+        <div class="div-derecho">
+            <p>Aqui iran otras cosas</p>
+        </div>
 
-    </main>
+    </div>
 
     <!-- <div id="cookiesContainer"></div>
     <script src="./js/cookies.js"></script> -->

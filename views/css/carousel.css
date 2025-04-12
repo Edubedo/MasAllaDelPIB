@@ -4,7 +4,7 @@ main, .page-wrapper {
 }
 
 .post-slider{
-    border: 1px solid;
+    border: 1rem solid transparent;
     margin-top: 20px !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
