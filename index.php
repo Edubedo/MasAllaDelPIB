@@ -28,7 +28,6 @@ try {
     <link rel="stylesheet" href="./views/css/navbar.css">
     <link rel="stylesheet" href="./views/css/footer.css">
     <link rel="stylesheet" href="./views/css/index.css">
-    <link rel="stylesheet" href="./views/css/posts.css">
     <link rel="stylesheet" href="./views/css/cookies.css">
 </head>
 
