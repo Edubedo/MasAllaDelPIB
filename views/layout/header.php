@@ -42,12 +42,12 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
                     echo '<li><a class="texto_a" href="/admin/posts/panel-usuarios.php"><i class="fas fa-users"></i></a></li>';
                 } elseif ($idtypeuser == 2) { // Autor
                     echo '<li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i></a></li>';
-                    echo '<li><a class="texto_a" href="/views/posts.php"><i class="fas fa-clipboard-list"></i></a></li>';  // Cambié el icono de publicaciones -->
+                    echo '<li><a class="texto_a" href="/views/publicaciones.php"><i class="fas fa-clipboard-list"></i></a></li>';  // Cambié el icono de publicaciones -->
                     echo '<li><a class="texto_a" href="/views/about.php"><i class="fas fa-users-cog"></i></a></li>';  // Cambié el icono de Nosotros -->
                     echo '<li><a class="texto_a" href="/admin/posts/posts-consulta.php"><i class="fas fa-cogs"></i></a></li>';
                 } elseif($idtypeuser == 3) { // Visitante
                     echo '<li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i></a></li>';
-                    echo '<li><a class="texto_a" href="/views/posts.php"><i class="fas fa-clipboard-list"></i></a></li>';  // Cambié el icono de publicaciones -->
+                    echo '<li><a class="texto_a" href="/views/publicaciones.php"><i class="fas fa-clipboard-list"></i></a></li>';  // Cambié el icono de publicaciones -->
                     echo '<li><a class="texto_a" href="/views/about.php"><i class="fas fa-users-cog"></i></a></li>';  // Cambié el icono de Nosotros -->
                     echo '<li><a class="texto_a" href="/views/signin.php"><i class="fas fa-sign-in-alt"></i></a></li>';
                 }
