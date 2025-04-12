@@ -61,8 +61,12 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
                 <div id="search-results" class="search-results"></div>
             </div>
 
-            <button id="open__nav-btn"><i class="fas fa-bars"></i></button>
-            <button id="close__nav-btn"><i class="fas fa-times"></i></button>
+            <button id="open__nav-btn" style="background-color: transparent; border: none; cursor: pointer;">
+                <i class="fas fa-bars" style="font-size: 24px; color: white;"></i>
+            </button>
+            <button id="close__nav-btn" style="background-color: transparent; border: none; cursor: pointer;">
+                <i class="fas fa-times" style="font-size: 24px; color: white;"></i>
+            </button>
         </div>
     </nav>
 
