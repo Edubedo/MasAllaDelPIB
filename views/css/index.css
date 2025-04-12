@@ -12,127 +12,29 @@
     margin: 0;
     padding: 0;
 }
+
 body{
-    background: linear-gradient(to left, #b7bbfd,#8e94fa) !important;
-    
+    background-color: #c5c7c9;
 }
 
-/* Estilo del contenedor grid */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    margin-top: 100px !important;  /* Aumenta el margen superior */
-    margin-bottom: 50px !important;
-}
-
-/* Estilo general para todos los divs dentro de la grilla */
-.grid div {
-    background-color: #93c9f8;
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px var(--color-sombra);
-    font-size: 20px;
-    padding: 15px;
-}
-
-/* Estilo para el contenedor .item1 */
-.item1 {
-    position: relative;  /* Añadido para control de posición */
-    grid-column: 1 / span 5;
-    background-color: var(--color-fondo);
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px var(--color-sombra);
-    padding: 50px 15px;
-    margin-top: 150px !important;  /* Ajusta el margin-top para bajar la caja */
-}
-
-/* Contenedor interno para control de padding */
-.item1 .wrapper {
-    width: 100%;
-    max-width: 1200px;
-    padding: 15px;
-    box-sizing: border-box;
-}
-
-/* Título centrado en la parte superior */
-.item1 .titulo {
+.encabezado {
+    margin-top: 10rem;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 30px;
-    color: var(--color-primario);
+    color: rgb(0, 0, 0);
 }
 
-/* Contenedor para imagen y párrafo */
-.item1 .contenido {
+.cuerpo {
     display: flex;
-    flex-direction: row;
-    gap: 20px;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: flex-start;
-    text-align: left;
+    gap: 3rem; /* Increased gap for more space */
+    padding: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    flex-direction: row;
+    background-color: transparent;
 }
 
-/* Imagen alineada a la izquierda */
-.item1 .contenido img {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px var(--color-sombra);
-    object-fit: cover;
-}
 
-/* Párrafo a la derecha de la imagen */
-.item1 .contenido p {
-    font-size: 16px;
-    flex: 1;
-    text-align: left;
-    line-height: 1.8;
-    margin: 0;
-    color: #333;
-}
-
-/* Estilos para los otros elementos */
-.item2, .item3, .item4, .item5, .item6, .item7 {
-    background-color: var(--color-fondo);
-    border-radius: 8px;
-    padding: 15px;
-    box-sizing: border-box;
-    box-shadow: 2px 2px 8px var(--color-sombra);
-}
-
-/* Estilo para las imágenes dentro de los items */
-.item2 img, .item3 img, .item4 img, .item5 img, .item6 img, .item7 img {
-    width: 100%;
-    height: auto;
-    max-height: 180px;
-    border-radius: 8px;
-    object-fit: cover;
-    box-shadow: 2px 2px 5px var(--color-sombra);
-}
-.item2 h2, .item3 h2, .item4 h2, .item5 h2, .item6 h2, .item7 h2 {
-    font-size: 20px;
-}
-
-/* Reducir tamaño del texto dentro de los divs */
-.item2 p, .item3 p, .item4 p, .item5 p, .item6 p, .item7 p {
-    font-size: 14px;  /* Reducir el tamaño del texto */
-    line-height: 1.6;  /* Ajustar la altura de línea para legibilidad */
-    color: #333;
-}
-
-/* Estilo responsivo: en pantallas pequeñas */
-@media (max-width: 768px) {
-    .grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .item1 .contenido {
-        flex-direction: column;
-    }
-
-    .item1 .contenido img {
-        max-width: 100%;
-    }
-} 
