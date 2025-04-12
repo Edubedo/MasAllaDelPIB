@@ -15,8 +15,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $resultado = $stmt->get_result();
 
     if ($resultado->num_rows > 0) {
+        $codigo = strval(rand(100000, 999999)); // Código de 6 dígitos
+
+        // Guardar el código en la base de datos
+        $updateStmt = $conn->prepare("UPDATE users SET codigo_verificacion = ? WHERE email = ?");
+        $updateStmt->bind_param("ss", $codigo, $email);
+        $updateStmt->execute();
+        $updateStmt->close();
+
+        // Enviar código por correo
+        $asunto = "Código de recuperación de contraseña";
+        $mensaje = "Tu código de verificación es: $codigo";
+        $cabeceras = "From: no-responder@masalladelpib.com";
+
+        mail($email, $asunto, $mensaje, $cabeceras);
+
         $_SESSION['email_recuperacion'] = $email;
-        header("Location: nueva_contraseña.php");
+        header("Location: verificar_codigo.php");
         exit();
     } else {
         $error = "El correo ingresado no está registrado.";
@@ -25,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
     $conn->close();
 }
+
 ?>
 
 <!DOCTYPE html>
