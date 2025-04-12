@@ -40,11 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $emailSendgrid->addContent("text/html", "<strong>Tu código de verificación es: $codigo</strong>");
         
 
-        // Cargar variables de entorno
-        $dotenv = Dotenv\Dotenv::createImmutable(realpath(__DIR__ . '/../config'));
-        $dotenv->load();
-
+        //llama a la variable de .env 
         $apiKey = $_ENV['APIKEY_SENDGRID'] ?? null;
+        
         // Verificar si la clave API se cargó correctamente
 
         if (!$apiKey) {
