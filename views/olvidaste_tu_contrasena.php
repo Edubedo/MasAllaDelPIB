@@ -1,5 +1,8 @@
 <?php session_start(); 
+require '../vendor/autoload.php'; // Ajusta la ruta si es necesario
 require_once '../config/database.php';
+
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
@@ -28,7 +31,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mensaje = "Tu código de verificación es: $codigo";
         $cabeceras = "From: no-responder@masalladelpib.com";
 
-        mail($email, $asunto, $mensaje, $cabeceras);
+        // Enviar código por correo usando SendGrid
+        $emailSendgrid = new \SendGrid\Mail\Mail();
+        $emailSendgrid->setFrom("masalladelpib1@gmail.com", "MasAllaDelPib");
+        $emailSendgrid->setSubject("Código de recuperación de contraseña");
+        $emailSendgrid->addTo($email);
+        $emailSendgrid->addContent("text/plain", "Tu código de verificación es: $codigo");
+        $emailSendgrid->addContent("text/html", "<strong>Tu código de verificación es: $codigo</strong>");
+        
+
+        //llama a la variable de .env 
+        $apiKey = $_ENV['APIKEY_SENDGRID'] ?? null;
+        
+        // Verificar si la clave API se cargó correctamente
+
+        if (!$apiKey) {
+            die('Error: No se pudo cargar la clave API desde el .env');
+        }
+
+        $sendgrid = new \SendGrid($apiKey);
+        
+        try {
+            $response = $sendgrid->send($emailSendgrid);
+            echo "Correo enviado. Status: " . $response->statusCode(); // <--- prueba
+        } catch (Exception $e) {
+            $error = 'Error al enviar el correo: ' . $e->getMessage();
+            echo $error; // <--- muestra el error
+        }
+
 
         $_SESSION['email_recuperacion'] = $email;
         header("Location: verificar_codigo.php");
