@@ -1,40 +1,120 @@
-/* Definir variables para colores */
-:root {
-    --color-sombra: rgba(0, 0, 0, 0.2);
-    --color-gris: #c5c7c9;
+html, body {
+    height: 100%;
 }
 
-/* Box-sizing global */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
+.fondo-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+body {
+    background-image: url('../uploads/fondoazul2.jpg'); 
+    background-size: cover; 
+    background-position: center;
+    background-attachment: fixed; 
     margin: 0;
-    padding: 0;
+}
+/* Contenedor principal */
+.container-principal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2rem;
+    gap: 0.5rem;
 }
 
-body{
-    background-color: #c5c7c9;
+/* Columna central */
+.div-central {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    width: 75%;
+    border-right: 0.2rem solid #25384c;
 }
 
 .encabezado {
-    margin-top: 10rem;
     font-size: 2rem;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     color: rgb(0, 0, 0);
+    margin-bottom: 2rem;
 }
 
+/* Cuerpo de publicaciones */
 .cuerpo {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 3rem; /* Increased gap for more space */
-    padding: 2rem;
-    font-family: Arial, Helvetica, sans-serif;
-    flex-direction: row;
-    background-color: transparent;
+    gap: 2rem;
+    padding: 1rem;
+    width: 100%;
 }
 
+/* Solo afecta las publicaciones en el index */
+.pagina-index .p1 {
+    width: 80rem
+}
 
+.pagina-index .titulo1 {
+    font-size: 2.4rem;
+}
+
+.pagina-index .datos1 {
+    font-size: 1.5rem;
+}
+.pagina-index .texto1 {
+    font-size: 1.5rem;
+}
+
+.barra {
+    display: flex;
+    width: 100%;
+    height: 3rem;
+    border-bottom: 0.17rem solid #25384c;
+    border-top: 0.17rem solid #25384c;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* Columna lateral */
+.div-derecho {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    gap: 1rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+.populares {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    height: 50rem;
+}
+
+.formulario {
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.div-inferior-derecho {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    height: auto;
+}

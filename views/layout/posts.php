@@ -12,10 +12,12 @@ foreach ($postsDB as $post) {
     $imageSrc = !empty($post['image']) ? "/admin/posts/" . htmlspecialchars($post['image']) : "/admin/posts/uploads/preterminada.jpg";
 
     $postLink = 'post.php?id=' . htmlspecialchars($post['Id_posts']);
-    $title = htmlspecialchars(strlen($post['title']) > 70 ? substr($post['title'], 0, 54) . "..." : $post['title']);
+    $titleLimit = isset($isIndex) && $isIndex ? 80 : 68;
+    $contentLimit = isset($isIndex) && $isIndex ? 350 : 200;
+    $title = htmlspecialchars(strlen($post['title']) > $titleLimit ? substr($post['title'], 0, $titleLimit) . "..." : $post['title']);
+    $content = htmlspecialchars(strlen($post['content']) > $contentLimit ? substr($post['content'], 0, $contentLimit) . "..." : $post['content']);
     $userCreation = htmlspecialchars($post['user_creation']);
     $postDate = date("F d, Y", strtotime($post['post_date']));
-    $content = htmlspecialchars(strlen($post['title']) > 60 ? substr($post['content'], 0, 225) . "..." : substr($post['content'], 0, 180) . "...");
 
     echo '
     <a href="' . $postLink . '">

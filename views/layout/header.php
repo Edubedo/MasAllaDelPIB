@@ -24,6 +24,7 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
 </head>
 
 <body>
+    <div class="fondo-overlay"></div>
 
     <nav>
         <div class="container nav__container">

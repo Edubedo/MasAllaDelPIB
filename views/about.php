@@ -17,6 +17,7 @@ session_start();
 </head>
 
 <body>
+    <div class="fondo-overlay"></div>
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
     <!-- <?php include './layout/header.php'; ?> -->
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->

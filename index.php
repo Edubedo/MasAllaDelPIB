@@ -31,17 +31,19 @@ try {
     <link rel="stylesheet" href="./views/css/cookies.css">
 </head>
 
-<body>
+<body class="pagina-index">
+    <div class="fondo-overlay"></div>
     <!-- Incluyendo la barra de navegación -->
     <?php include 'views/layout/header.php'; ?>
 
+    <div class="container-carousel">
+        <div class="header">
+            <?php include("views/layout/carousel.php"); ?>
+        </div>
+    </div>
+
     <!-- Contenido principal -->
-    <main>
-        <!-- Carrusel de imágenes -->
-        <?php include("views/layout/carousel.php"); ?>
-
-        <div class="div-izquierdo"></div>
-
+    <div class="container-principal">        
         <div class="div-central">
             <!-- Sección de Publicaciones -->
             <div class="encabezado">
@@ -49,13 +51,27 @@ try {
             </div>
 
             <div class="cuerpo">
+                <?php $isIndex = true; ?> <!-- Variable para indicar que estamos en el index -->
                 <?php include ('views/layout/posts.php'); ?>
             </div>
         </div>
 
-        <div class="div-derecho"></div>
+        <div class="div-derecho">
+            <div class="populares">
+                <h3>Lo mas popular</h3>
+            </div>
+            <div class="barra">texto aqui</div>
+            <div class="formulario">
+                <p>Aqui ira la parte del formulario</p>
+            </div>
+            <div class="barra">texto aqui</div>
+            <div class="div-inferior-derecho">
+                <p>Otra cosa aqui</p>
+            </div>
 
-    </main>
+        </div>
+
+    </div>
 
     <!-- <div id="cookiesContainer"></div>
     <script src="./js/cookies.js"></script> -->
