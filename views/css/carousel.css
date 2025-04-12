@@ -1,6 +1,6 @@
-main, .page-wrapper {
-    margin: 0 !important;
+.page-wrapper {
     padding: 0;
+    margin-top: 4rem;
 }
 
 .post-slider{

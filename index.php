@@ -31,7 +31,8 @@ try {
     <link rel="stylesheet" href="./views/css/cookies.css">
 </head>
 
-<body>
+<body class="pagina-index">
+    <div class="fondo-overlay"></div>
     <!-- Incluyendo la barra de navegación -->
     <?php include 'views/layout/header.php'; ?>
 
@@ -50,12 +51,24 @@ try {
             </div>
 
             <div class="cuerpo">
+                <?php $isIndex = true; ?> <!-- Variable para indicar que estamos en el index -->
                 <?php include ('views/layout/posts.php'); ?>
             </div>
         </div>
 
         <div class="div-derecho">
-            <p>Aqui iran otras cosas</p>
+            <div class="populares">
+                <h3>Lo mas popular</h3>
+            </div>
+            <div class="barra">texto aqui</div>
+            <div class="formulario">
+                <p>Aqui ira la parte del formulario</p>
+            </div>
+            <div class="barra">texto aqui</div>
+            <div class="div-inferior-derecho">
+                <p>Otra cosa aqui</p>
+            </div>
+
         </div>
 
     </div>
