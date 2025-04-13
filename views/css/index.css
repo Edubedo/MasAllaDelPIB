@@ -14,12 +14,24 @@ html, body {
 }
 
 body {
-    background-image: url('../uploads/fondoazul2.jpg'); 
+    background-image: url('../uploads/fondo_montaña.jpg'); 
     background-size: cover; 
     background-position: center;
     background-attachment: fixed; 
     margin: 0;
 }
+h1, h3, p {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    
+}
+.cuerpo p {
+    text-shadow: none;
+}
+.footer p, h3{
+    text-shadow: none;;
+}
+
 /* Contenedor principal */
 .container-principal {
     display: flex;

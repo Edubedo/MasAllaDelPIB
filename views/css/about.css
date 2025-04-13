@@ -20,7 +20,7 @@ html {
 }
 
 body {
-    background-image: url('../uploads/fondoazul2.jpg'); 
+    background-image: url('../uploads/fondo_montaña.jpg'); 
     background-size: cover; 
     background-position: center;
     background-attachment: fixed; 
@@ -28,10 +28,13 @@ body {
     padding: 0;
     line-height: 1.6;
 }
+h3, h1 {
+    text-shadow: 2px 2px 4px #000000;
+}
 
 /* Cuadro Superior */
 .cuadrosuperior {
-    background-color: #30418d;
+    background-color: #343d677f;
     width: 100%;
     padding: 3rem 2rem;
     display: flex;
@@ -64,7 +67,7 @@ body {
     font-size: 4rem;
     margin: 0.1rem 0 0;
     font-weight: bold;
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 
@@ -148,7 +151,7 @@ body {
 
 .title h1{
     font-size: 4rem;
-    color: #d1d1d1;
+    color: #ffffff;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 2rem 0;
 }
