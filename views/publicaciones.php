@@ -30,7 +30,6 @@ try {
         <link rel="stylesheet" href="./css/navbar.css">
         <link rel="stylesheet" href='./css/footer.css'>
         <link rel="stylesheet" href='./css/publicaciones.css'>
-        <link rel="stylesheet" href='css/index.css'>
 
         <!-- Font Awesome para iconos -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -38,6 +37,7 @@ try {
     </head>
 
     <body>
+        <div class="fondo-overlay"></div>
         <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
         <!-- <?php include './layout/header.php'; ?> -->
 

@@ -1,3 +1,22 @@
+.fondo-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+body {
+    background-image: url('../uploads/fondo_montaña.jpg'); 
+    background-size: cover; 
+    background-position: center;
+    background-attachment: fixed; 
+    margin: 0;
+}
+
 /* Barra de navegación */
 .nav_public {
     position: fixed;
@@ -221,3 +240,4 @@ li a{
     #toggle:checked ~ .list {
         transform: translateX(0);
     }
+
