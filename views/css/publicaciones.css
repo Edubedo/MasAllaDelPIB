@@ -5,7 +5,7 @@
     left: 0;
     right: 0;
     z-index: 1;
-    background-color: #2f458d !important; /* Color azul claro */
+    background-color: #41669199 !important; /* Color azul claro */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -23,6 +23,7 @@
     align-items: center;
     gap: 2rem;
     width: 100%;
+    
 }
 
 /* Ítems de la lista */
@@ -42,7 +43,7 @@
 
 .nav_public .list li a:hover {
     color: #ffffff !important;
-    background-color: #4653b4; /* Color azul más oscuro al pasar el ratón */
+    background-color: #416691d6; /* Color azul más oscuro al pasar el ratón */
 }
 
 /* Menú hamburguesa (móvil) */
@@ -63,6 +64,11 @@
     border-radius: 3px;
     transition: all 0.3s ease-in-out;
 }
+
+li a{
+    text-shadow: 2px 2px 4px #000000;
+}
+
 
 
 
