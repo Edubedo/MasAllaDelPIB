@@ -1,7 +1,7 @@
 {
     "functions": {
         "index.php": {
-            "runtime": "vercel-php@latest"
+            "runtime": "vercel-php@1.0.0"
         }
     }
 }
