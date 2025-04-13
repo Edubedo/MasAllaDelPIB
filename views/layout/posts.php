@@ -11,14 +11,15 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // visitante por defecto
 foreach ($postsDB as $post) {
     $imageSrc = !empty($post['image']) ? "/admin/posts/" . htmlspecialchars($post['image']) : "/admin/posts/uploads/preterminada.jpg";
 
-    $postLink = 'post.php?id=' . htmlspecialchars($post['Id_posts']);
+    $postLink = '/views/post.php?id=' . htmlspecialchars($post['Id_posts']);
     $titleLimit = isset($isIndex) && $isIndex ? 80 : 68;
     $contentLimit = isset($isIndex) && $isIndex ? 350 : 200;
     $title = htmlspecialchars(strlen($post['title']) > $titleLimit ? substr($post['title'], 0, $titleLimit) . "..." : $post['title']);
     $content = htmlspecialchars(strlen($post['content']) > $contentLimit ? substr($post['content'], 0, $contentLimit) . "..." : $post['content']);
     $userCreation = htmlspecialchars($post['user_creation']);
     $postDate = date("F d, Y", strtotime($post['post_date']));
-
+    $foto_perfil = $post['foto_perfil'] ?? null;
+    $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/uploads/user-default2.jpeg";
     echo '
     <a href="' . $postLink . '">
         <div class="p1">
@@ -29,7 +30,9 @@ foreach ($postsDB as $post) {
                 <div class="info_post">
                     <h4 class="titulo1">' . $title . '</h4>
                     <div class="datos1">
-                        <i class="far fa-user"></i> <span>' . $userCreation . '</span>
+                        <div class="imagen-user">
+                            <img src="' . $ruta . '" alt="Foto de perfil">
+                        </div>
                         <i class="far fa-calendar"></i> <span>' . $postDate . '</span>
                     </div>
                     <p class="texto1">' . $content . '</p>

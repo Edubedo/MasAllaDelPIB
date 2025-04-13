@@ -90,16 +90,15 @@ body {
     font-size: 2rem;
     color: rgb(0, 85, 255);
 }
-
 .datos {
     display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
     justify-content: flex-start;
     margin-top: 1.5rem;
     font-size: 2rem;
     border-top: 0.1rem solid #ddd; /* Línea divisoria */
     padding-top: 10px;
     color: #333;
-
 }
 
 .datos i {
@@ -111,7 +110,34 @@ body {
 }
 
 .datos span {
-    font-size: 2rem; /* Tamanho de la fecha */
+    font-size: 2rem; /* Tamaño de la fecha */
+}
+
+.imagen-user {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem; /* Espaciado a la derecha de la imagen */
+}
+
+.imagen-user img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1rem; /* Espaciado a la derecha de la imagen */
+}
+
+.imagen-user i {
+    margin-left: 0.5rem;
+}
+
+/* Mejora de la disposición de los iconos */
+.datos i.far {
+    font-size: 2rem;
+}
+
+.datos span {
+    font-size: 1.8rem; /* Ajustar tamaño de texto si es necesario */
 }
 
 .caja-comentarios{

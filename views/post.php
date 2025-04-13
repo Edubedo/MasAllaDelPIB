@@ -27,6 +27,9 @@
     // Si no hay valor en $_SESSION['id_type_user'], asignar por defecto "visitante"
     $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
 
+    $foto_perfil = $post['foto_perfil'] ?? null;
+    $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/uploads/user-default2.jpeg";
+
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +61,9 @@
                     <div class="titulo">
                         <h1><?php echo htmlspecialchars($post['title']); ?></h1>
                         <div class="datos">
-                            <i class="far fa-user"></i> <?php echo htmlspecialchars($post['user_creation']); ?> |
+                            <div class="imagen-user">
+                                <img src="<?php echo htmlspecialchars($ruta); ?>" alt="Foto de perfil">
+                            </div>
                             <i class="far fa-calendar"></i> <?php echo date("F d, Y", strtotime($post['post_date'])); ?>
                         </div>
                     </div>
@@ -83,7 +88,9 @@
                     <div class="titulo">
                         <h1><?php echo htmlspecialchars($post['title']); ?></h1>
                         <div class="datos">
-                            <i class="far fa-user"></i> <?php echo htmlspecialchars($post['user_creation']); ?> |
+                            <div class="imagen-user">
+                                <img src="<?php echo htmlspecialchars($ruta); ?>" alt="Foto de perfil">
+                            </div>
                             <i class="far fa-calendar"></i> <?php echo date("F d, Y", strtotime($post['post_date'])); ?>
                         </div>
                     </div>
