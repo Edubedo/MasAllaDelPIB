@@ -1,7 +1,3 @@
 {
-    "functions": {
-        "index.php": {
-            "runtime": "vercel-php@0.6.0"
-        }
-    }
+    "framework": null
 }
