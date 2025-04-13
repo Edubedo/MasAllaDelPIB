@@ -90,15 +90,6 @@ nav .icon-bars .line {
     margin-inline: auto;
 }
 
-nav {
-    background: var(--color-primary);
-    width: 100vw;
-    height: 4.5rem;
-    position: fixed;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
-}
 
 nav button {
     display: none;
@@ -190,6 +181,7 @@ nav button {
     background-color: #f0f0f0;
 }
 
+
 /* Media Query para Tablets y Móviles */
 @media (max-width: 1024px) {
     .nav__items {
@@ -201,7 +193,7 @@ nav button {
         padding: 6rem 0;
         position: absolute;
         right: 0;
-        top: 4.5rem;
+        top: 5rem;
         left: 100;
     }
 

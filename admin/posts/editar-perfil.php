@@ -34,8 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (!empty($_POST['password'])) {
-        $new_password = $_POST['password'];
-        $new_password = password_hash($new_password, PASSWORD_DEFAULT);
+        $new_password = md5($_POST['password']);
         $updates[] = "password = '$new_password'";
     }
 
@@ -123,10 +122,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="email" id="email" name="email" value="<?= $datos->email ?>">
                     </div>
 
+                    <div class="password-div">
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" name="password" placeholder="Nueva contraseña">
+                    </div>
+
                     <!-- Mostrar foto actual -->
                     <?php if (!empty($datos->foto_perfil)) : ?>
                         <div class="foto-actual">
-                            <p>Foto actual:</p>
+                            <label>Foto actual:</label><br>
                             <img src="../../views/uploads/<?= $datos->foto_perfil ?>" alt="Foto actual" style="width:100px; height:auto; border-radius:10px;">
                         </div>
                     <?php endif; ?>
