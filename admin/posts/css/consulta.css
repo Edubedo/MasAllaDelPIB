@@ -126,7 +126,7 @@ button:hover {
     object-fit: cover;
     border-radius: 50%;
     border: 0.1rem solid #2c3e50;
-    ;
+    
 }
 
 .imagen-user:hover img {
@@ -146,6 +146,8 @@ button:hover {
     margin: 0;
     color: #262626; 
     font-weight: 600;
+    flex-grow: 1; /* Hace que el h1 ocupe el espacio disponible */
+    text-align: left; /* Centra el texto dentro del h1 */
 }
 
 /* Botón de cerrar sesión */
