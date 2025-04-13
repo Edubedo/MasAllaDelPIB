@@ -40,19 +40,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // 👇 Lógica para subir imagen
     if (!empty($_FILES['foto']['name'])) {
-        $foto_nombre = basename($_FILES['foto']['name']);
-        $ruta_guardado = '../../assets/fotos/' . $foto_nombre;
+        $foto_nombre = time() . '_' . basename($_FILES['foto']['name']);
+        $ruta_guardado = '../../views/uploads/' . $foto_nombre;
+            
+        $extensiones_validas = ['jpg', 'jpeg', 'png', 'gif'];
+        $extension = strtolower(pathinfo($foto_nombre, PATHINFO_EXTENSION));
 
-        // Verificar que la imagen sea válida
-        if (move_uploaded_file($_FILES['foto']['tmp_name'], $ruta_guardado)) {
-            $updates[] = "foto_perfil = '$foto_nombre'";
-            if ($id == $iduser) {
-                $_SESSION['foto_perfil'] = $foto_nombre;
-            }
-        } else {
-            echo "❌ Error al subir la imagen.";
+        if (in_array($extension, $extensiones_validas)) {
+            if (move_uploaded_file($_FILES['foto']['tmp_name'], $ruta_guardado)) {
+                $updates[] = "foto_perfil = '$foto_nombre'";
+                if ($id == $iduser) {
+                    $_SESSION['foto_perfil'] = $foto_nombre;
+                }
+            } else {
+                echo "❌ Error al subir la imagen.";
+            } 
+        }else {
+            echo "❌ Formato de imagen no permitido.";
         }
-    }
+      
+}
+
+    
 
     if (count($updates) > 0) {
         // Obtener username anterior
