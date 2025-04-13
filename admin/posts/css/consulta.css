@@ -11,15 +11,27 @@ main {
     margin-top: 4rem;
 }
 
+.fondo-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     text-align: center;
-    background-color: #f0f0f0;
-    background: linear-gradient(to right, #f3f4f6, #e0e0e0);
     line-height: 1.6;
-    
+    background-image: url('../../../views/uploads/fondo_montaña.jpg'); 
+    background-size: cover; 
+    background-position: center;
+    background-attachment: fixed; 
 }
 
 /* Capa oscura */
@@ -90,7 +102,6 @@ button:hover {
 #admin-panel {
     padding: 3rem;
     border-radius: 1.5rem;
-    background-color: #f9f9f9;
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
 }
 
@@ -107,16 +118,26 @@ button:hover {
     margin-bottom: 2rem;
 }
 
-/* Logo */
-.container-header img {
-    width: 50px;
-    height: 50px;
+/* imagen del usuario */
+.imagen-user img {
+    width: 8rem; 
+    height: 8rem;
     margin-right: 1rem;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 0.1rem solid #2c3e50;
+    ;
 }
 
-.container-header img:hover {
+.imagen-user:hover img {
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transform: scale(1.1);
     transition: transform 0.2s ease;
+}
+
+.logo_admin{
+    cursor: pointer;
 }
 
 /* Nombre del admin */
@@ -264,10 +285,6 @@ button:hover {
     width: 100%; /* Ocupa todo el ancho */
 }
 
-#logo_admin{
-    cursor: pointer;
-}
-
 /* Estilos para la tabla */
 table {
     width: 100%;
@@ -326,13 +343,6 @@ tbody tr:hover {
 tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
-
-.image-post {
-    width: 100px; 
-    height: auto;
-    cursor: pointer;
-}
-
 
 
 /* Estilo base para los botones */
