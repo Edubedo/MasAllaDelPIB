@@ -16,6 +16,10 @@ body {
     background-attachment: fixed; 
     margin: 0;
 }
+h1{
+    color: white;
+    text-shadow: 2px 2px 4px #000000; 
+}
 
 /* Barra de navegación */
 .nav_public {

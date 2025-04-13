@@ -22,7 +22,7 @@ nav {
     align-items: center;
     justify-content: space-between;
     transition: all 0.3s ease; /* Transición para la barra de navegación */
-    text-shadow: 2px 2px 4px #000000;;
+    text-shadow: 2px 2px 4px #000000;
 }
 
 nav .logo {
