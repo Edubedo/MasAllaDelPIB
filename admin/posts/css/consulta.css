@@ -78,9 +78,11 @@ body {
     margin-top: 8rem;
     text-align: center;
     background: linear-gradient(90deg, #86acb5, #15687f); /* Degradado */
-    -webkit-background-clip: text; /* Aplicar degradado al texto */
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     color: transparent;
 }
+
 
 button {
     padding: 1rem 2rem;
