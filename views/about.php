@@ -18,9 +18,9 @@ session_start();
 
 <body>
     <div class="fondo-overlay"></div>
+
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
-    <!-- <?php include './layout/header.php'; ?> -->
-    <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
+    <?php include './layout/header.php'; ?>
 
     <div class="cuadrosuperior">
         <div class="titulo">
@@ -97,3 +97,4 @@ session_start();
     <!-- IMPORTAR EL FOOTER -->
 
 </body>
+</html>
