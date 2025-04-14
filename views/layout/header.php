@@ -17,7 +17,6 @@ if ($email) {
 // Ruta a la imagen o imagen por defecto
 $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/uploads/user-default2.jpeg";
 ?>
-?>
 
 <!DOCTYPE HTML>
 <html lang="en">
@@ -61,7 +60,7 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
                     echo '<li><a class="texto_a" href="/views/publicaciones.php"><i class="fas fa-clipboard-list"></i></a></li>';  // Cambié el icono de publicaciones -->
                     echo '<li><a class="texto_a" href="/views/about.php"><i class="fas fa-users-cog"></i></a></li>';  // Cambié el icono de Nosotros -->
                     echo '<li style="display: flex; align-items: center; justify-content: center;">';
-                    echo '<a class="texto_a" href="/admin/posts/panel-usuarios.php" style="display: flex; align-items: center; justify-content: center;">';
+                    echo '<a class="texto_a" href="/admin/posts/posts-consulta.php" style="display: flex; align-items: center; justify-content: center;">';
                     echo '<img src="' . $rutaImagen . '" alt="Foto de perfil" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">';
                     echo '</a>';
                     echo '</li>';
