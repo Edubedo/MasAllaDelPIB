@@ -1,5 +1,6 @@
-  // Obtener la fecha actual
-  let today = new Date().toISOString().split('T')[0];
+ // Obtener la fecha actual en formato YYYY-MM-DD y establecerla 
+ const hoy = new Date().toISOString().split('T')[0];
+document.getElementById('fecha_publicacion').value = hoy;
 
   // Asignar la fecha actual como valor mínimo
   document.getElementById('fecha_publicacion').setAttribute('min', today);
