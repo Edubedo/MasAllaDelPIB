@@ -46,6 +46,10 @@ html, body {
     max-width: 1200px;
     flex-wrap: nowrap;
 }
+.footer, .footer-container1, .footer-bottom {
+    width: 100% !important;
+    max-width: 100% !important;
+}
 
 /* Secciones alineadas */
 .logoEmpresa, .contactos, .redes-siguenos {
@@ -156,14 +160,90 @@ html, body {
     font-size: 2rem; /* Aumenta el tamaño del icono de copyright */
     color: white; /* Asegúrate de que el color sea blanco */
 }
+/* ... (código anterior se mantiene igual) ... */
 
-/* Estilos responsivos */
-@media (max-width: 1024px) {
-    .footer-container1 {
-        justify-content: space-between;
-        padding: 2rem;
-    }
+/* === ANIMACIONES MEJORADAS === */
+/* Enlaces de correo */
+.correos a {
+    position: relative;
+    display: inline-block;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform: translateY(0);
 }
+
+.correos a:hover {
+    color: #f0a500;
+    transform: translateY(-2px);
+    text-shadow: 0 2px 4px rgba(240, 165, 0, 0.2);
+}
+
+.correos a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: #f0a500;
+    transition: width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.correos a:hover::after {
+    width: 100%;
+}
+
+/* Iconos redes sociales */
+.redes-sociales i {
+    font-size: 3rem;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: scale(1);
+}
+
+.redes-sociales i:hover {
+    color: #f0a500;
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 2px 4px rgba(240, 165, 0, 0.3));
+}
+
+/* Icono corazón */
+.redes-siguenos i.fas.fa-heart {
+    font-size: 4rem;
+    color: white;
+    transition: all 0.6s ease-in-out;
+}
+
+.redes-siguenos i.fas.fa-heart:hover {
+    color: #ff6b6b;
+    transform: scale(1.1);
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.15); }
+}
+
+/* Footer bottom */
+.footer-bottom {
+    transition: all 0.4s ease;
+}
+
+.footer-bottom:hover {
+    background-color: #333;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Contenedor principal */
+.footer-container1 {
+    transition: all 0.3s ease;
+}
+
+.footer-container1:hover {
+    box-shadow: 0 0 0 1px rgba(240, 165, 0, 0.1) inset;
+}
+
 
 /* Laptops y tablets grandes */
 @media (max-width: 1200px) {
@@ -194,19 +274,6 @@ html, body {
     }
 }
 
-@media (max-width: 480px) {
-    .footer-container1 {
-        padding: 1rem;
-    }
-
-    .contactos {
-        font-size: 1rem;
-    }
-
-    .redes-sociales i {
-        font-size: 2rem;
-    }
-}
 
 /* Móviles grandes */
 @media (max-width: 768px) {
@@ -241,10 +308,19 @@ html, body {
     .footer-container1 {
         padding: 1.5rem;
     }
+    .footer h2 {
+        font-size: 1.9rem !important;
+        margin: 0.5rem 0;
+    }
 
     .logoEmpresa, .contactos, .redes-siguenos {
         gap: 1rem;
         text-align: center;
+    }
+    .logoEmpresa .imagen img {
+        max-width: 8rem; /* Cambiado de 10rem a 8rem */
+        width: auto;
+        height: auto;
     }
 
     .icono-correo {
@@ -260,49 +336,55 @@ html, body {
     }
 }
 
-/* Móviles pequeños */
-@media (max-width: 480px) {
+/* Móviles pequeños - CORRECCIÓN PRINCIPAL */
+@media (max-width: 450px) {
+    .footer, .footer-bottom {
+        min-width: 100vw;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .footer h2 {
+        font-size: 1.2rem !important;
+        margin: 0.5rem 0;
+    }
+    
     .footer-container1 {
-        padding: 1rem;
-        gap: 1rem;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 1rem !important;
+        margin: 0 !important;
     }
-
-    .contactos, .redes-siguenos {
-        font-size: 1.2rem;
+    
+    .logoEmpresa, .contactos, .redes-siguenos {
+        width: 100%;
+        margin: 0;
+        padding: 0.2rem;
+        flex-direction: column;
+        justify-content: center;
     }
-
-    .redes-sociales i {
-        font-size: 1.6rem;
-    }
-
-    .icono-correo {
-        font-size: 2.5rem;
-    }
-
-    .footer-bottom {
-        font-size: 0.9rem;
-    }
-}
-
-/* Pantallas extrapequeñas (menos de 360px) */
-@media (max-width: 360px) {
-    .footer-container1 {
-        padding: 0.8rem;
-    }
-
+    
     .logoEmpresa .imagen img {
-        max-width: 10rem;
+        max-width: 8rem; /* Cambiado de 10rem a 8rem */
+        width: auto;
+        height: auto;
     }
-
+    
     .contactos {
         font-size: 1rem;
     }
-
+    
     .redes-sociales i {
-        font-size: 1.4rem;
+        font-size: 1.9rem;
     }
-
+    
+    .icono-correo {
+        font-size: 2.5rem;
+    }
+    
     .footer-bottom {
-        font-size: 0.8rem;
+        font-size: 0.5rem;
+        padding: 1rem 0;
     }
 }
