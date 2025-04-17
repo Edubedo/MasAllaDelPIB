@@ -81,30 +81,51 @@ foreach ($postsDB as $post) {
     $(document).on('click', '.options', function(e) {
         e.preventDefault();
         const postId = $(this).attr('id').split('_').pop(); // Extraer el ID del post
-        const voteType = $(this).data('vote-type'); // 1 para like, 0 para dislike
         const button = $(this);
+        const countElement = $(`#vote_up_count_${postId}`);
+        let currentCount = parseInt(countElement.text());
 
+        // Cambiar el estado visual inmediatamente
+        if (button.hasClass('liked')) {
+            button.removeClass('liked').addClass('not-liked');
+            countElement.text(currentCount - 1); // Reducir contador visualmente
+        } else {
+            button.removeClass('not-liked').addClass('liked');
+            countElement.text(currentCount + 1); // Incrementar contador visualmente
+        }
+
+        // Enviar la solicitud AJAX al backend
         $.ajax({
             url: '/views/layout/like_handler.php',
             type: 'POST',
             data: {
                 id_post: postId,
-                vote_type: voteType
+                vote_type: 1 // Siempre enviamos 1 para "like"
             },
             success: function(response) {
                 const res = JSON.parse(response);
-                if (res.success) {
-                    // Actualizar el conteo de likes en la UI
-                    const countElement = $(`#vote_up_count_${postId}`);
-                    countElement.text(parseInt(countElement.text()) + 1);
 
-                    // Cambiar el estado del botón a "liked"
-                    button.removeClass('not-liked').addClass('liked');
-                } else {
-                    alert(res.message); // Mostrar mensaje si ya votó
+                if (!res.success) {
+                    // Si hubo un error, revertir el cambio visual
+                    if (res.action === 'unliked') {
+                        button.removeClass('not-liked').addClass('liked');
+                        countElement.text(currentCount + 1); // Revertir contador
+                    } else if (res.action === 'liked') {
+                        button.removeClass('liked').addClass('not-liked');
+                        countElement.text(currentCount - 1); // Revertir contador
+                    }
+                    alert(res.message); // Mostrar mensaje de error
                 }
             },
             error: function() {
+                // Si hubo un error en la solicitud, revertir el cambio visual
+                if (button.hasClass('liked')) {
+                    button.removeClass('liked').addClass('not-liked');
+                    countElement.text(currentCount - 1); // Revertir contador
+                } else {
+                    button.removeClass('not-liked').addClass('liked');
+                    countElement.text(currentCount + 1); // Revertir contador
+                }
                 alert('Error al procesar la solicitud.');
             }
         });
