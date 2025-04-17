@@ -140,26 +140,100 @@ body {
     font-size: 1.8rem; /* Ajustar tamaño de texto si es necesario */
 }
 
-.caja-comentarios{
-    width: 85%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    margin: 10rem auto; 
-    margin-top: 3rem;
-    padding: 5rem;
-    align-items: center;
+.caja-comentarios {
+    margin-top: 30px;
+    padding: 20px;
     background-color: #f9f9f9;
-    border-radius: 1.2rem;
-    box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.1);
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.caja-comentarios textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: none;
+    font-size: 1rem;
 }
 
 .titulo-com {
-    font-size: 4rem;
-    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
     color: #333;
+}
+
+.comentarios-lista {
+    margin-top: 20px;
+}
+
+.comentario {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.comentario img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.comentario-contenido {
+    flex: 1;
+}
+
+.comentario-contenido p {
+    margin: 5px 0;
+}
+
+.comentario-contenido strong {
+    color: #007bff;
+    font-size: 1rem;
+}
+
+.comentario-contenido .fecha {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+form textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: none;
+    font-size: 1rem;
+}
+
+form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+.no-comentarios {
+    text-align: center;
+    color: #666;
+    font-size: 1rem;
 }
 
 @media (max-width: 768px) {
