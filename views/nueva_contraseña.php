@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="icon" href="../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/recordar_contraseña.css">
+    <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/bg-animation.css">
 
@@ -95,11 +95,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Formularios de login y registro -->
             <div class="contenedor__Login-register">
                 <form action="nueva_contraseña.php" method="POST" class="formulario__login">
-                    <h3>Nueva contraseña</h3>
+                    <h2>Nueva contraseña</h2>
                     <p class="fa fa-lock" style="font-size: 20px; margin-right: 10px; color:rgb(55, 72, 155);"></p>
                     <input type="password" name="password" placeholder="Contraseña" required>
 
-                    <h3>Confirma tu contraseña</h3>
+                    <h2>Confirma tu contraseña</h2>
                     <p class="fa fa-lock" style="font-size: 20px; margin-right: 10px; color:rgb(55, 72, 155);"></p>
                     <input type="password" name="confirm_password" placeholder="Confirmar Contraseña" required>
 
