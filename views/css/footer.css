@@ -11,11 +11,9 @@ html {
 }
 
 html, body {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
+    width: 100%;
+    min-width: 100%;
+    overflow-x: hidden; /* Previene cualquier desbordamiento horizontal */
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -337,25 +335,24 @@ html, body {
 }
 
 /* Móviles pequeños - CORRECCIÓN PRINCIPAL */
-@media (max-width: 450px) {
-    .footer, .footer-bottom {
-        min-width: 100vw;
-        width: 100%;
-        margin: 0;
-        padding: 0;
+@media (max-width: 500px) {
+    
+    body, html, .footer, .footer-container1, .footer-bottom {
+        min-width: 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
+    
     
     .footer h2 {
         font-size: 1.2rem !important;
         margin: 0.5rem 0;
     }
     
-    .footer-container1 {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 1rem !important;
-        margin: 0 !important;
-    }
     
     .logoEmpresa, .contactos, .redes-siguenos {
         width: 100%;

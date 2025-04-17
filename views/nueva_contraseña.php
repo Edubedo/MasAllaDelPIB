@@ -95,11 +95,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Formularios de login y registro -->
             <div class="contenedor__Login-register">
                 <form action="nueva_contraseña.php" method="POST" class="formulario__login">
-                    <h3>Nueva contraseña</h3>
+                    <h2>Nueva contraseña</h2>
                     <p class="fa fa-lock" style="font-size: 20px; margin-right: 10px; color:rgb(55, 72, 155);"></p>
                     <input type="password" name="password" placeholder="Contraseña" required>
 
-                    <h3>Confirma tu contraseña</h3>
+                    <h2>Confirma tu contraseña</h2>
                     <p class="fa fa-lock" style="font-size: 20px; margin-right: 10px; color:rgb(55, 72, 155);"></p>
                     <input type="password" name="confirm_password" placeholder="Confirmar Contraseña" required>
 
