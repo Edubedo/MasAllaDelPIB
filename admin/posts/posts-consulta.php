@@ -26,6 +26,8 @@ $result = mysqli_query($conexion, $sql);
 $row = mysqli_fetch_assoc($result);
 $idtypeuser = $row['id_type_user'];
 $iduser = $row['iduser'];
+$foto_perfil = $row['foto_perfil'];
+$ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $foto_perfil : "../../views/uploads/user-default2.jpeg";
 ?>
 
 <!DOCTYPE html>
@@ -37,13 +39,16 @@ $iduser = $row['iduser'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administrador</title>
 
+    <link rel="icon" href="../../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/consulta.css">
     <link rel="stylesheet" href="../../views/css/navbar.css">
     <link rel="stylesheet" href="css/userpop.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 
 <body>
+    <div class="fondo-overlay"></div>
 
     <?php 
         include ('../../views/layout/header.php')
@@ -63,7 +68,11 @@ $iduser = $row['iduser'];
         <!-- Header de la página -->
         <header>
             <div class="container-header">
-                <img id="logo_admin" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACXUlEQVR4nO2Yz0tVQRTHPykaSZtcPoI27YJAqXWYhNCiNOJB/gkqWhq+doUbzforyh9YO3cFtUhFaJ8+Nbe1KSVeUoH4YuBcuFzm+ubeGZk79T5w4HHfuefO9945Z84MNGnSxBXtQBlYAKrAT7GqXCuLTyG5A+wC9Qb2GRigQLQAswYDT9pTudc7z3IMPrKZIkybuqX1+xp8u8xnWwG7vhK77GDwkd31IWDRoYA5HwK2HQqo+hBQcyigFrqAHz4EbDkUsOlDwLxDAS98CAi+jLYBOyEvZEhXaTP4I+AWnsnTiUY2TQFokdY465ufKUo7HdFvmBNqBb9NQWmTijIntb0mtgG8lP+Uzz/LG+BATP0Oik7gMDbV1O9zBMRDTb48IBCuy7RJClBHMj2uHtIBTMk2Mv6pTWwdOCVxnsgZ0SgwArxuEO9QfIblngWJkXnw6xYL1jWJ051DfD1FlIplzJTFw1QJjXjlYPB1saUsAmxOHx7H4iw7FLCcRYDNZ78Ri3MaWE3x+wNMAiWxilzT+X6QWMYcWQg4n4h1JcWvonluJcW3i4zsWwg4o4m3p/ErafxKGr9v5OC9hYCzhi+kZCjgex4B9ywEXEzEupphCj1K8c1UQhWtFqcQvbE4KvHWjkniimESr2RNYsXlnGdBarPjvYxG3Mwh4lMRFrI4l3JMp74TaCW6sKBDEkxXDnX2MaWZUw3akkEzp07Ch2yauTTUhmNMGr1Gi934MXF6pHVO3lOLNYInzgVgEHgOvJMm7gvwC/gNfJXpl8aERsB9AqIz9C2l4m3Im3r+W/4CaYEHGi2wJakAAAAASUVORK5CYII=" alt="system-administrator-male">
+                <div class="imagen-user">
+                    <?php 
+                        echo '<img id="logo_admin" src="' . $ruta . '" alt="Foto de perfil">';
+                    ?>
+                </div>
                 <h1><?php echo htmlspecialchars($username); ?></h1>
                 <div class="new-post">
                     <h2 class="texto" name="crear_posts">Nueva publicación</h2>
@@ -77,7 +86,11 @@ $iduser = $row['iduser'];
 
             <div id="userPopup">
                 <div class="imagen-pop">
-                    <img id="img_user" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACXUlEQVR4nO2Yz0tVQRTHPykaSZtcPoI27YJAqXWYhNCiNOJB/gkqWhq+doUbzforyh9YO3cFtUhFaJ8+Nbe1KSVeUoH4YuBcuFzm+ubeGZk79T5w4HHfuefO9945Z84MNGnSxBXtQBlYAKrAT7GqXCuLTyG5A+wC9Qb2GRigQLQAswYDT9pTudc7z3IMPrKZIkybuqX1+xp8u8xnWwG7vhK77GDwkd31IWDRoYA5HwK2HQqo+hBQcyigFrqAHz4EbDkUsOlDwLxDAS98CAi+jLYBOyEvZEhXaTP4I+AWnsnTiUY2TQFokdY465ufKUo7HdFvmBNqBb9NQWmTijIntb0mtgG8lP+Uzz/LG+BATP0Oik7gMDbV1O9zBMRDTb48IBCuy7RJClBHMj2uHtIBTMk2Mv6pTWwdOCVxnsgZ0SgwArxuEO9QfIblngWJkXnw6xYL1jWJ051DfD1FlIplzJTFw1QJjXjlYPB1saUsAmxOHx7H4iw7FLCcRYDNZ78Ri3MaWE3x+wNMAiWxilzT+X6QWMYcWQg4n4h1JcWvonluJcW3i4zsWwg4o4m3p/ErafxKGr9v5OC9hYCzhi+kZCjgex4B9ywEXEzEupphCj1K8c1UQhWtFqcQvbE4KvHWjkniimESr2RNYsXlnGdBarPjvYxG3Mwh4lMRFrI4l3JMp74TaCW6sKBDEkxXDnX2MaWZUw3akkEzp07Ch2yauTTUhmNMGr1Gi934MXF6pHVO3lOLNYInzgVgEHgOvJMm7gvwC/gNfJXpl8aERsB9AqIz9C2l4m3Im3r+W/4CaYEHGi2wJakAAAAASUVORK5CYII=" alt="system-administrator-male">
+                    <div class="imagen-user">
+                        <?php 
+                            echo '<img id="img_user" src="' . $ruta . '" alt="Foto de perfil">';
+                        ?>
+                    </div>
                 </div>
                 <div class="nombre-pop">
                     <p>!Hola, <span id="username"><?php echo htmlspecialchars($username); ?></span>!</p>
@@ -124,7 +137,8 @@ $iduser = $row['iduser'];
 
                 <!-- Buscador General -->
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Buscar">
+                <i class="fa fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Buscar...">
             </div>
 
         </div>

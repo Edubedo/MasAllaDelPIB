@@ -40,7 +40,6 @@ $pdo = null;
             <div class="page-wrapper">
                 <!-- Post Slider -->
                 <div class="post-slider">
-                    <h1 class="slider-title">Publicaciones populares</h1>
                     <i class="fas fa-chevron-left prev"></i>
                     <i class="fas fa-chevron-right next"></i>
 

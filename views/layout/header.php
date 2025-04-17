@@ -1,7 +1,21 @@
 <?php
+include __DIR__ . '/../../config/database.php';
+
 $idtypeuser = $_SESSION['id_type_user'] ?? null;
 // Si no hay valor en $_SESSION['id_type_user'], asignar por defecto "visitante"
 $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
+$email = $_SESSION['email'] ?? null;
+$foto_perfil = '';
+
+if ($email) {
+    $sql = "SELECT foto_perfil FROM users WHERE email = '$email'";
+    $result = mysqli_query($conexion, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $foto_perfil = $row['foto_perfil'] ?? '';
+}
+
+// Ruta a la imagen o imagen por defecto
+$rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/uploads/user-default2.jpeg";
 ?>
 
 <!DOCTYPE HTML>
@@ -24,6 +38,7 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
 </head>
 
 <body>
+    <div class="fondo-overlay"></div>
 
     <nav>
         <div class="container nav__container">
@@ -42,12 +57,17 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
                     echo '<li><a class="texto_a" href="/admin/posts/panel-usuarios.php"><i class="fas fa-users"></i></a></li>';
                 } elseif ($idtypeuser == 2) { // Autor
                     echo '<li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i></a></li>';
-                    echo '<li><a class="texto_a" href="/views/posts.php"><i class="fas fa-clipboard-list"></i></a></li>';  // Cambié el icono de publicaciones -->
+                    echo '<li><a class="texto_a" href="/views/publicaciones.php"><i class="fas fa-clipboard-list"></i></a></li>';  // Cambié el icono de publicaciones -->
                     echo '<li><a class="texto_a" href="/views/about.php"><i class="fas fa-users-cog"></i></a></li>';  // Cambié el icono de Nosotros -->
-                    echo '<li><a class="texto_a" href="/admin/posts/posts-consulta.php"><i class="fas fa-cogs"></i></a></li>';
+                    echo '<li style="display: flex; align-items: center; justify-content: center;">';
+                    echo '<a class="texto_a" href="/admin/posts/posts-consulta.php" style="display: flex; align-items: center; justify-content: center;">';
+                    echo '<img src="' . $rutaImagen . '" alt="Foto de perfil" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">';
+                    echo '</a>';
+                    echo '</li>';
+
                 } elseif($idtypeuser == 3) { // Visitante
                     echo '<li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i></a></li>';
-                    echo '<li><a class="texto_a" href="/views/posts.php"><i class="fas fa-clipboard-list"></i></a></li>';  // Cambié el icono de publicaciones -->
+                    echo '<li><a class="texto_a" href="/views/publicaciones.php"><i class="fas fa-clipboard-list"></i></a></li>';  // Cambié el icono de publicaciones -->
                     echo '<li><a class="texto_a" href="/views/about.php"><i class="fas fa-users-cog"></i></a></li>';  // Cambié el icono de Nosotros -->
                     echo '<li><a class="texto_a" href="/views/signin.php"><i class="fas fa-sign-in-alt"></i></a></li>';
                 }
@@ -61,8 +81,12 @@ $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
                 <div id="search-results" class="search-results"></div>
             </div>
 
-            <button id="open__nav-btn"><i class="fas fa-bars"></i></button>
-            <button id="close__nav-btn"><i class="fas fa-times"></i></button>
+            <button id="open__nav-btn" style="background-color: transparent; border: none; cursor: pointer;">
+                <i class="fas fa-bars" style="font-size: 24px; color: white;"></i>
+            </button>
+            <button id="close__nav-btn" style="background-color: transparent; border: none; cursor: pointer;">
+                <i class="fas fa-times" style="font-size: 24px; color: white;"></i>
+            </button>
         </div>
     </nav>
 

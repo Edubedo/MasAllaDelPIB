@@ -20,6 +20,8 @@ $id = $_GET['id'];
 $sql_usuario = $conexion->query("SELECT * FROM users WHERE iduser = $id");
 $idtypeuser = $_SESSION['id_type_user'];
 
+$error_password = ""; // 👈 Declarada fuera del POST
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $updates = [];
 
@@ -33,30 +35,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $updates[] = "email = '$new_email'";
     }
 
+    // 👉 Verificar contraseña
     if (!empty($_POST['password'])) {
-        $new_password = $_POST['password'];
-        $new_password = password_hash($new_password, PASSWORD_DEFAULT);
-        $updates[] = "password = '$new_password'";
-    }
+        $password_actual = md5($_POST['password']);
+        $sql_verifica = "SELECT * FROM users WHERE iduser = $id AND password = '$password_actual'";
+        $verifica_resultado = $conexion->query($sql_verifica);
 
-    // 👇 Lógica para subir imagen
-    if (!empty($_FILES['foto']['name'])) {
-        $foto_nombre = basename($_FILES['foto']['name']);
-        $ruta_guardado = '../../assets/fotos/' . $foto_nombre;
-
-        // Verificar que la imagen sea válida
-        if (move_uploaded_file($_FILES['foto']['tmp_name'], $ruta_guardado)) {
-            $updates[] = "foto_perfil = '$foto_nombre'";
-            if ($id == $iduser) {
-                $_SESSION['foto_perfil'] = $foto_nombre;
-            }
+        if ($verifica_resultado->num_rows > 0) {
+            $_SESSION['cambio_pass_autorizado'] = true;
+            $_SESSION['iduser_cambio'] = $id;
+            header("Location: ../../views/nueva_contraseña.php");
+            exit();
         } else {
-            echo "❌ Error al subir la imagen.";
+            $error_password = "❌ La contraseña actual es incorrecta.";
+            
         }
     }
 
-    if (count($updates) > 0) {
-        // Obtener username anterior
+    // 👇 Subir imagen
+    if (!empty($_FILES['foto']['name'])) {
+        $foto_nombre = time() . '_' . basename($_FILES['foto']['name']);
+        $ruta_guardado = '../../views/uploads/' . $foto_nombre;
+        $extensiones_validas = ['jpg', 'jpeg', 'png', 'gif'];
+        $extension = strtolower(pathinfo($foto_nombre, PATHINFO_EXTENSION));
+
+        if (in_array($extension, $extensiones_validas)) {
+            if (move_uploaded_file($_FILES['foto']['tmp_name'], $ruta_guardado)) {
+                $updates[] = "foto_perfil = '$foto_nombre'";
+                if ($id == $iduser) {
+                    $_SESSION['foto_perfil'] = $foto_nombre;
+                }
+            } else {
+                echo "❌ Error al subir la imagen.";
+            }
+        } else {
+            echo "❌ Formato de imagen no permitido.";
+        }
+    }
+
+    // 👇 Ejecutar actualizaciones solo si NO hubo error de contraseña
+    if (empty($error_password) && count($updates) > 0) {
         $sql_old_username = "SELECT username FROM users WHERE iduser = $id";
         $result = $conexion->query($sql_old_username);
         $row = $result->fetch_assoc();
@@ -82,11 +100,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['success_message'] = "✅ Perfil actualizado con éxito";
         header("Location: editar-perfil.php?id=" . $id);
         exit();
-    } else {
+    } elseif (empty($error_password)) {
         echo "⚠️ No se realizó ningún cambio.";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -108,6 +127,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <?= $_SESSION['success_message']; unset($_SESSION['success_message']); ?>
             </div>
         <?php endif; ?>
+        
+        <!-- Mostrar error de contraseña -->
+        <?php if (!empty($error_password)) : ?>
+            <div class="error-message" style="color: red; margin-bottom: 10px;">
+                <?= $error_password ?>
+            </div>
+        <?php endif; ?>
+
 
         <?php while ($datos = $sql_usuario->fetch_object()) { ?>
             <form action="" name="editar_perfil" method="post" enctype="multipart/form-data">
@@ -123,10 +150,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="email" id="email" name="email" value="<?= $datos->email ?>">
                     </div>
 
+                    <div class="password-div">
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" name="password" placeholder="Contraseña Actual">
+                    </div>
+
                     <!-- Mostrar foto actual -->
                     <?php if (!empty($datos->foto_perfil)) : ?>
                         <div class="foto-actual">
-                            <p>Foto actual:</p>
+                            <label>Foto actual:</label><br>
                             <img src="../../views/uploads/<?= $datos->foto_perfil ?>" alt="Foto actual" style="width:100px; height:auto; border-radius:10px;">
                         </div>
                     <?php endif; ?>

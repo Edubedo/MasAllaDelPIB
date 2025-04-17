@@ -21,6 +21,8 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: all 0.3s ease; /* Transición para la barra de navegación */
+    text-shadow: 2px 2px 4px #000000;
 }
 
 nav .logo {
@@ -31,13 +33,17 @@ nav .logo {
     color: aliceblue;
     text-transform: uppercase;
     font-family: 'Times New Roman', Times, serif;
+    gap: 10px;
+    transition: gap 0.3s ease, font-size 0.3s ease; /* Transición para el espacio y tamaño de fuente */
 }
 
 nav .logo img {
     width: 40px;
     margin-right: 10px;
+    transition: width 0.3s ease; /* Transición para el tamaño del logo */
 }
 
+/* Estilos de la lista de navegación */
 nav .list {
     display: flex;
     justify-content: space-between;
@@ -82,18 +88,9 @@ nav .icon-bars .line {
 .container {
     padding: 10px;
     width: 74%;
-	margin-inline: auto;
+    margin-inline: auto;
 }
 
-nav {
-    background: var(--color-primary);
-    width: 100vw;
-    height: 4.5rem;
-    position: fixed;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
-}
 
 nav button {
     display: none;
@@ -132,7 +129,8 @@ nav button {
     align-items: center;
     gap: 8rem;
 }
-.nav__items i{
+
+.nav__items i {
     font-size: 2rem;
 }
 
@@ -186,8 +184,32 @@ nav button {
 
 
 /* Media Query para Tablets y Móviles */
+@media (max-width: 1024px) {
+    .nav__items {
+        display: none; /* Ocultar por defecto */
+        flex-direction: column;
+        background-color: #3f6fa3;
+        width: 50%;
+        height: 100vh; /* Ajustar al 100% de la pantalla en vertical */
+        padding: 6rem 0;
+        position: absolute;
+        right: 0;
+        top: 5rem;
+        left: 100;
+    }
+
+    nav .logo {
+        font-size: 2rem; /* Reducir el tamaño de la fuente */
+        gap: 5px; /* Reducir el espacio entre el logo y el título */
+    }
+
+    nav .logo img {
+        width: 30px; /* Reducir el tamaño del logo */
+    }
+}
+
+/* Media Query para Tablets y Móviles más pequeños */
 @media (max-width: 939px) {
-    /* Hacer que la lista se oculte por defecto y solo se vea cuando se active */
     nav .list {
         position: fixed;
         top: 7rem;
@@ -198,25 +220,22 @@ nav button {
         flex-direction: column;
         justify-content: start;
         align-items: center;
-        gap: 2rem;
+        gap: 1rem;
         transform: translateX(100%);
         transition: transform 0.3s ease;
         padding: 2rem;
         z-index: 100;
     }
 
-    /* Mostrar la lista cuando el toggle está activado */
     #toggle:checked ~ .list {
         transform: translateX(0);
     }
 
-    /* Mostrar el ícono de hamburguesa cuando la pantalla sea pequeña */
     nav .icon-bars {
         display: block;
         cursor: pointer;
     }
 
-    /* Estilo del ícono de hamburguesa */
     nav .icon-bars .line {
         width: 30px;
         height: 4px;
@@ -235,6 +254,11 @@ nav button {
 @media (max-width: 480px) {
     nav .logo {
         font-size: 1.8rem;
+        gap: 3px; /* Reducir el espacio entre el logo y el título */
+    }
+
+    nav .logo img {
+        width: 25px; /* Reducir aún más el tamaño del logo */
     }
 
     nav .texto_a {

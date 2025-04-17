@@ -7,7 +7,14 @@
 body {
     
     min-height: 100vh; /* Asegura que el fondo cubra al menos la altura de la ventana */
-
+    background-image: url('../uploads/fondo_montaña.jpg'); 
+    background-size: cover; 
+    background-position: center;
+    background-attachment: fixed; 
+    margin: 0;
+    z-index: -1;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
 }
 
 
@@ -138,6 +145,12 @@ main {
     display: none;
 }
 
+.contenedor__todo{
+    position: absolute;
+    top: 50%;    
+    left: 50%;   
+    transform: translate(-50%, -50%);
+}
 
 /* Diseño Responsivo */
 @media screen and (max-width: 1850px) {

@@ -84,7 +84,7 @@ if (isset($_POST["crear_post"])) {
 
                     <div class="fecha_div">
                         <label for="fecha_publicacion">Fecha de Publicación:</label>
-                        <input class="fecha" type="date" id="fecha_publicacion" name="fecha_publicacion_posts" required>
+                        <input class="fecha" type="text" id="fecha_publicacion" name="fecha_publicacion_posts" readonly>
                     </div>
 
                     <div class="autor_div">

@@ -7,17 +7,34 @@ html {
 *, *:before, *:after {
     box-sizing: inherit;
 }
+
+.fondo-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
 body {
+    background-image: url('../uploads/fondo_montaña.jpg'); 
+    background-size: cover; 
+    background-position: center;
+    background-attachment: fixed; 
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background: linear-gradient(to left, #9196f4, #7b81f5);
-    color: #333;
+}
+h3, h1 {
+    text-shadow: 2px 2px 4px #000000;
 }
 
 /* Cuadro Superior */
 .cuadrosuperior {
-    background-color: #5d6eba;
+    background-color: #343d677f;
     width: 100%;
     padding: 3rem 2rem;
     display: flex;
@@ -50,7 +67,7 @@ body {
     font-size: 4rem;
     margin: 0.1rem 0 0;
     font-weight: bold;
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 
@@ -64,7 +81,6 @@ body {
     justify-content: center;
     gap: 2rem;
     padding: 2rem;
-    background: #b7bbfd;
 }
 
 .container-nosotros{
@@ -135,7 +151,7 @@ body {
 
 .title h1{
     font-size: 4rem;
-    color: #333;
+    color: #ffffff;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 2rem 0;
 }

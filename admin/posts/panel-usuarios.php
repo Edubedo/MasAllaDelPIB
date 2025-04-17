@@ -22,17 +22,10 @@ $result = mysqli_query($conexion, $sql);
 $row = mysqli_fetch_assoc($result);
 $idtypeuser = $row['id_type_user'];
 $iduser = $row['iduser'];
-//$foto_perfil = $row['foto_perfil']; // Recuperar la imagen del perfil
-
-
-// Verificar si la imagen existe en el servidor
-/*
-if (!empty($foto_perfil) && file_exists('../../views/uploads/' . $foto_perfil)) {
-    $img_src = '../../views/uploads/' . $foto_perfil;
-} else {
-    $img_src = $default_image;
-}*/
+$foto_perfil = $row['foto_perfil'];
+$ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $foto_perfil : "../../views/uploads/user-default2.jpeg";
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -63,16 +56,22 @@ if (!empty($foto_perfil) && file_exists('../../views/uploads/' . $foto_perfil)) 
                 <?php
                 $sql = "SELECT * FROM users WHERE iduser = '$iduser'";
                 ?>
-
                 <!-- Mostrar imagen de perfil o imagen predeterminada -->
-                <img id="logo_admin" src="<?php echo !empty($foto_perfil) ? $foto_perfil : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACXUlEQVR4nO2Yz0tVQRTHPykaSZtcPoI27YJAqXWYhNCiNOJB/gkqWhq+doUbzforyh9YO3cFtUhFaJ8+Nbe1KSVeUoH4YuBcuFzm+ubeGZk79T5w4HHfuefO9945Z84MNGnSxBXtQBlYAKrAT7GqXCuLTyG5A+wC9Qb2GRigQLQAswYDT9pTudc7z3IMPrKZIkybuqX1+xp8u8xnWwG7vhK77GDwkd31IWDRoYA5HwK2HQqo+hBQcyigFrqAHz4EbDkUsOlDwLxDAS98CAi+jLYBOyEvZEhXaTP4I+AWnsnTiUY2TQFokdY465ufKUo7HdFvmBNqBb9NQWmTijIntb0mtgG8lP+Uzz/LG+BATP0Oik7gMDbV1O9zBMRDTb48IBCuy7RJClBHMj2uHtIBTMk2Mv6pTWwdOCVxnsgZ0SgwArxuEO9QfIblngWJkXnw6xYL1jWJ051DfD1FlIplzJTFw1QJjXjlYPB1saUsAmxOHx7H4iw7FLCcRYDNZ78Ri3MaWE3x+wNMAiWxilzT+X6QWMYcWQg4n4h1JcWvonluJcW3i4zsWwg4o4m3p/ErafxKGr9v5OC9hYCzhi+kZCjgex4B9ywEXEzEupphCj1K8c1UQhWtFqcQvbE4KvHWjkniimESr2RNYsXlnGdBarPjvYxG3Mwh4lMRFrI4l3JMp74TaCW6sKBDEkxXDnX2MaWZUw3akkEzp07Ch2yauTTUhmNMGr1Gi934MXF6pHVO3lOLNYInzgVgEHgOvJMm7gvwC/gNfJXpl8aERsB9AqIz9C2l4m3Im3r+W/4CaYEHGi2wJakAAAAASUVORK5CYII='; ?>" alt="system-administrator-male">
+                <div class="imagen-user">
+                    <?php 
+                        echo '<img id="logo_admin" src="' . $ruta . '" alt="Foto de perfil">';
+                    ?>
+                </div>
                 <h1><?php echo htmlspecialchars($username); ?></h1>
             </div>
 
             <div id="userPopup">
                 <div class="imagen-pop">
-                    <!-- Mostrar imagen de perfil o imagen predeterminada -->
-                    <img id="img_user" src="<?php echo !empty($foto_perfil) ? $foto_perfil : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACXUlEQVR4nO2Yz0tVQRTHPykaSZtcPoI27YJAqXWYhNCiNOJB/gkqWhq+doUbzforyh9YO3cFtUhFaJ8+Nbe1KSVeUoH4YuBcuFzm+ubeGZk79T5w4HHfuefO9945Z84MNGnSxBXtQBlYAKrAT7GqXCuLTyG5A+wC9Qb2GRigQLQAswYDT9pTudc7z3IMPrKZIkybuqX1+xp8u8xnWwG7vhK77GDwkd31IWDRoYA5HwK2HQqo+hBQcyigFrqAHz4EbDkUsOlDwLxDAS98CAi+jLYBOyEvZEhXaTP4I+AWnsnTiUY2TQFokdY465ufKUo7HdFvmBNqBb9NQWmTijIntb0mtgG8lP+Uzz/LG+BATP0Oik7gMDbV1O9zBMRDTb48IBCuy7RJClBHMj2uHtIBTMk2Mv6pTWwdOCVxnsgZ0SgwArxuEO9QfIblngWJkXnw6xYL1jWJ051DfD1FlIplzJTFw1QJjXjlYPB1saUsAmxOHx7H4iw7FLCcRYDNZ78Ri3MaWE3x+wNMAiWxilzT+X6QWMYcWQg4n4h1JcWvonluJcW3i4zsWwg4o4m3p/ErafxKGr9v5OC9hYCzhi+kZCjgex4B9ywEXEzEupphCj1K8c1UQhWtFqcQvbE4KvHWjkniimESr2RNYsXlnGdBarPjvYxG3Mwh4lMRFrI4l3JMp74TaCW6sKBDEkxXDnX2MaWZUw3akkEzp07Ch2yauTTUhmNMGr1Gi934MXF6pHVO3lOLNYInzgVgEHgOvJMm7gvwC/gNfJXpl8aERsB9AqIz9C2l4m3Im3r+W/4CaYEHGi2wJakAAAAASUVORK5CYII='; ?>" alt="system-administrator-male">
+                    <div class="imagen-user">
+                        <?php 
+                            echo '<img id="img_user" src="' . $ruta . '" alt="Foto de perfil">';
+                        ?>
+                    </div>
                 </div>
                 <div class="nombre-pop">
                     <p>¡Hola, <span id="username"><?php echo htmlspecialchars($username); ?></span>!</p>
