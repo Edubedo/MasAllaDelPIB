@@ -1,10 +1,7 @@
 <?php
 session_start();
 require_once '../config/database.php';
-if (!isset($_SESSION['cambio_pass_autorizado']) || !$_SESSION['cambio_pass_autorizado']) {
-    header("Location: ../../views/signin.php");
-    exit();
-}
+
 if (!isset($_SESSION['email_recuperacion'])) {
     header("Location: olvidaste_tu_contrasena.php");
     exit();
