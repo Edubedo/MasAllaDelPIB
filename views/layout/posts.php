@@ -1,5 +1,11 @@
 <?php
-require 'config/database.php';
+if (file_exists('config/database.php')) {
+    require 'config/database.php';
+} elseif (file_exists('../config/database.php')) {
+    require '../config/database.php';
+} else {
+    die("Error: No se pudo encontrar el archivo de configuración de la base de datos.");
+}
 
 echo '<link rel="stylesheet" href="/views/css/posts.css">';
 echo '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">';

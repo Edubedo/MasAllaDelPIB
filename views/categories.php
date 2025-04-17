@@ -2,8 +2,21 @@
 session_start();
 require '../config/database.php';
 
-$query = "SELECT Id_posts, title, content, post_date, category, image, user_creation, vote_up, vote_down 
-          FROM posts ";
+$query = "SELECT 
+        p.Id_posts, 
+        p.title, 
+        p.content, 
+        p.post_date, 
+        p.category, 
+        p.image, 
+        p.user_creation, 
+        p.vote_up, 
+        p.vote_down,
+        COUNT(l.id_post) AS total_likes
+        FROM posts p
+        LEFT JOIN likes l ON p.Id_posts = l.id_post
+        GROUP BY p.Id_posts
+        ORDER BY p.post_date DESC  ";
 
 try {
     $stmt = $pdo->prepare($query);
@@ -13,12 +26,12 @@ try {
     die("Error al consultar publicaciones: " . $e->getMessage());
 }
 
-$category = $_GET['category'] ?? null; 
+$category = $_GET['category'] ?? null;
 
 // Filtrar las publicaciones si hay una categoría seleccionada
 if ($category) {
     $postsDB = array_filter($postsDB, function ($postDB) use ($category) {
-        return $postDB['category'] === $category; 
+        return $postDB['category'] === $category;
     });
 }
 
@@ -73,7 +86,7 @@ if ($category) {
         <?php include 'megusta.php'; ?>
         <?php include 'layout/posts.php'; ?>
     </div>
-    
+
     <!-- IMPORTAR EL FOOTER -->
     <?php include './layout/footer.php'; ?>
     <!-- IMPORTAR EL FOOTER -->
