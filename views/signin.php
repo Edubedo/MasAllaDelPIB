@@ -64,10 +64,40 @@
                     <input type="text" name="email" placeholder="Correo Electrónico" required>
                     <p class="fa fa-lock" style="font-size: 20px; margin-right: 10px; color:rgb(55, 72, 155);"></p>
                     <input type="password" name="password" placeholder="Contraseña" required>
-                    <?php if (isset($_SESSION['error_message'])): ?>
-                        <p style="font-size:14px;margin-top:2px;color: red;"><?= $_SESSION['error_message']; ?></p>
-                        <?php unset($_SESSION['error_message']); ?>
+                    <?php if (!empty($_SESSION['error_message'])): ?>
+                        <?php $tiempo = $_SESSION['bloqueo_restante'] ?? 0; ?>
+                        <p id="error-msg" style="font-size:14px;margin-top:2px;color: red;">
+                            <?= $_SESSION['error_message'] ?>
+                            <?php if ($tiempo > 0): ?>
+                                <span id="timer"> (<?= $tiempo ?>s)</span>
+                            <?php endif; ?>
+                        </p>
+
+                        <?php if ($tiempo > 0): ?>
+                        <script>
+                            let time = <?= $tiempo ?>;
+                            const timerSpan = document.getElementById('timer');
+                            const loginBtn = document.querySelector('.formulario__login button[type="submit"]');
+                            if (loginBtn) loginBtn.disabled = true;
+
+                            const interval = setInterval(() => {
+                                time--;
+                                if (time <= 0) {
+                                    clearInterval(interval);
+                                    location.reload();
+                                } else {
+                                    timerSpan.innerText = ` (${time}s)`;
+                                }
+                            }, 1000);
+                        </script>
+                        <?php endif; ?>
+
+                        <?php
+                            unset($_SESSION['error_message']);
+                            unset($_SESSION['bloqueo_restante']);
+                        ?>
                     <?php endif; ?>
+
                     <a href="olvidaste_tu_contrasena.php"><p style="color: blue; font-size: 14px;">¿Olvidaste tu contraseña?</p></a>
                     <button type="submit">Inicia  sesión</button>
                 </form>
