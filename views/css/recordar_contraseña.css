@@ -145,6 +145,12 @@ main {
     display: none;
 }
 
+.contenedor__todo{
+    position: absolute;
+    top: 50%;    
+    left: 50%;   
+    transform: translate(-50%, -50%);
+}
 
 /* Diseño Responsivo */
 @media screen and (max-width: 1850px) {
