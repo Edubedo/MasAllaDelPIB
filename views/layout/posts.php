@@ -21,7 +21,7 @@ if ($idUsuario) {
 }
 
 foreach ($postsDB as $post) {
-    $imageSrc = !empty($post['image']) ? "/admin/posts/" . htmlspecialchars($post['image'])     : "/admin/posts/uploads/preterminada.jpg";
+    $imageSrc = !empty($post['image']) ? "/admin/posts/" . htmlspecialchars($post['image']) : "/admin/posts/uploads/preterminada.jpg";
 
     $postLink = '/views/post.php?id=' . htmlspecialchars($post['Id_posts']);
     $titleLimit = isset($isIndex) && $isIndex ? 80 : 68;
@@ -59,10 +59,10 @@ foreach ($postsDB as $post) {
         echo '
             <div class="interaccion">
                 <div class="likes">
-                    <a class="options ' . ($userLiked ? 'disabled' : '') . '" data-vote-type="1" id="post_vote_up_' . htmlspecialchars($post['Id_posts']) . '">
+                    <a class="options ' . ($userLiked ? 'liked' : 'not-liked') . '" data-vote-type="1" id="post_vote_up_' . htmlspecialchars($post['Id_posts']) . '">
                         <i class="fas fa-thumbs-up"></i>
                     </a>
-                    <span class="likes_count" id="vote_up_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['total_likes'] ?? 0) . '</span>
+                    <span class="likes_count ' . ($userLiked ? 'liked' : 'not-liked') . '" id="vote_up_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['total_likes'] ?? 0) . '</span>
                 </div>
             </div>';
     }
@@ -70,11 +70,13 @@ foreach ($postsDB as $post) {
     echo '</div></a>';
 }
 ?>
+
 <script>
     $(document).on('click', '.options', function(e) {
         e.preventDefault();
         const postId = $(this).attr('id').split('_').pop(); // Extraer el ID del post
         const voteType = $(this).data('vote-type'); // 1 para like, 0 para dislike
+        const button = $(this);
 
         $.ajax({
             url: '/views/layout/like_handler.php',
@@ -86,13 +88,14 @@ foreach ($postsDB as $post) {
             success: function(response) {
                 const res = JSON.parse(response);
                 if (res.success) {
-                    // Actualizar el conteo de likes/dislikes en la UI
-                    const countElement = voteType === 1 ?
-                        $(`#vote_up_count_${postId}`) :
-                        $(`#vote_down_count_${postId}`);
+                    // Actualizar el conteo de likes en la UI
+                    const countElement = $(`#vote_up_count_${postId}`);
                     countElement.text(parseInt(countElement.text()) + 1);
+
+                    // Cambiar el estado del botón a "liked"
+                    button.removeClass('not-liked').addClass('liked');
                 } else {
-                    alert(res.message);
+                    alert(res.message); // Mostrar mensaje si ya votó
                 }
             },
             error: function() {

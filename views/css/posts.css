@@ -128,7 +128,24 @@ a img {
 
 .likes_count {
     font-size: 14px;
-    color: #19324d; /* Color azul fuerte */
     margin-left: 8px; /* Espaciado entre los íconos de like y el contador */
     font-weight: bold;
+}
+
+/* Botón cuando el usuario no ha dado "like" */
+.options.not-liked i {
+    color: #6c757d; /* Gris suave */
+    transition: color 0.3s ease;
+}
+
+/* Botón cuando el usuario ha dado "like" */
+.options.liked i {
+    color: #007bff; /* Azul fuerte */
+    transition: color 0.3s ease;
+}
+
+/* Efecto hover para ambos estados */
+.options:hover i {
+    color: #0056b3; /* Azul más oscuro al hacer hover */
+    cursor: pointer;
 }
