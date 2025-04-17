@@ -50,6 +50,10 @@ if (isset($_POST['submit_comment'])) {
             ':user_creation' => $user_creation,
             ':date_creation' => $date_creation
         ]);
+
+        // Redirigir para evitar reenvío del formulario
+        header("Location: post.php?id=$postId");
+        exit();
     }
 }
 ?>
