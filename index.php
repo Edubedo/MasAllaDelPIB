@@ -2,9 +2,21 @@
 session_start();
 require 'config/database.php';
 
-$query = "SELECT Id_posts, title, content, post_date, category, image, user_creation, vote_up, vote_down 
-          FROM posts 
-          ORDER BY post_date DESC 
+$query = "SELECT 
+        p.Id_posts, 
+        p.title, 
+        p.content, 
+        p.post_date, 
+        p.category, 
+        p.image, 
+        p.user_creation, 
+        p.vote_up, 
+        p.vote_down,
+        COUNT(l.id_post) AS total_likes
+        FROM posts p
+        LEFT JOIN likes l ON p.Id_posts = l.id_post
+        GROUP BY p.Id_posts
+        ORDER BY p.post_date DESC 
           LIMIT 4";
 
 try {
@@ -43,7 +55,7 @@ try {
     </div>
 
     <!-- Contenido principal -->
-    <div class="container-principal">        
+    <div class="container-principal">
         <div class="div-central">
             <!-- Sección de Publicaciones -->
             <div class="encabezado">
@@ -52,7 +64,7 @@ try {
 
             <div class="cuerpo">
                 <?php $isIndex = true; ?> <!-- Variable para indicar que estamos en el index -->
-                <?php include ('views/layout/posts.php'); ?>
+                <?php include('views/layout/posts.php'); ?>
             </div>
         </div>
 
@@ -78,4 +90,5 @@ try {
     <!-- Incluyendo el pie de página -->
     <?php include './views/layout/footer.php'; ?>
 </body>
+
 </html>

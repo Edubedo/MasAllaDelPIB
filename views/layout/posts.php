@@ -1,4 +1,6 @@
 <?php
+require 'config/database.php';
+
 echo '<link rel="stylesheet" href="/views/css/posts.css">';
 echo '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">';
 if (!isset($postsDB)) {
@@ -7,9 +9,19 @@ if (!isset($postsDB)) {
 }
 
 $idtypeuser = $_SESSION['id_type_user'] ?? 3; // visitante por defecto
+$idUsuario = $_SESSION['username'] ?? null; // Usuario actual
+
+// Obtener los likes del usuario actual
+$userLikes = [];
+if ($idUsuario) {
+    $query = "SELECT id_post FROM likes WHERE id_usuario = :id_usuario";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([':id_usuario' => $idUsuario]);
+    $userLikes = $stmt->fetchAll(PDO::FETCH_COLUMN); // Devuelve un array con los IDs de los posts
+}
 
 foreach ($postsDB as $post) {
-    $imageSrc = !empty($post['image']) ? "/admin/posts/" . htmlspecialchars($post['image']) : "/admin/posts/uploads/preterminada.jpg";
+    $imageSrc = !empty($post['image']) ? "/admin/posts/" . htmlspecialchars($post['image'])     : "/admin/posts/uploads/preterminada.jpg";
 
     $postLink = '/views/post.php?id=' . htmlspecialchars($post['Id_posts']);
     $titleLimit = isset($isIndex) && $isIndex ? 80 : 68;
@@ -20,6 +32,10 @@ foreach ($postsDB as $post) {
     $postDate = date("F d, Y", strtotime($post['post_date']));
     $foto_perfil = $post['foto_perfil'] ?? null;
     $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/uploads/user-default2.jpeg";
+
+    // Verificar si el usuario ya dio "like" a este post
+    $userLiked = in_array($post['Id_posts'], $userLikes);
+
     echo '
     <a href="' . $postLink . '">
         <div class="p1">
@@ -43,14 +59,10 @@ foreach ($postsDB as $post) {
         echo '
             <div class="interaccion">
                 <div class="likes">
-                    <a class="options" data-vote-type="1" id="post_vote_up_' . htmlspecialchars($post['Id_posts']) . '">
+                    <a class="options ' . ($userLiked ? 'disabled' : '') . '" data-vote-type="1" id="post_vote_up_' . htmlspecialchars($post['Id_posts']) . '">
                         <i class="fas fa-thumbs-up"></i>
                     </a>
-                    <span class="likes_count" id="vote_up_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['vote_up'] ?? 0) . '</span>
-                    <a class="options" data-vote-type="0" id="post_vote_down_' . htmlspecialchars($post['Id_posts']) . '">
-                        <i class="fas fa-thumbs-down"></i>
-                    </a>
-                    <span class="likes_count" id="vote_down_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['vote_down'] ?? 0) . '</span>
+                    <span class="likes_count" id="vote_up_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['total_likes'] ?? 0) . '</span>
                 </div>
             </div>';
     }
@@ -58,3 +70,34 @@ foreach ($postsDB as $post) {
     echo '</div></a>';
 }
 ?>
+<script>
+    $(document).on('click', '.options', function(e) {
+        e.preventDefault();
+        const postId = $(this).attr('id').split('_').pop(); // Extraer el ID del post
+        const voteType = $(this).data('vote-type'); // 1 para like, 0 para dislike
+
+        $.ajax({
+            url: '/views/layout/like_handler.php',
+            type: 'POST',
+            data: {
+                id_post: postId,
+                vote_type: voteType
+            },
+            success: function(response) {
+                const res = JSON.parse(response);
+                if (res.success) {
+                    // Actualizar el conteo de likes/dislikes en la UI
+                    const countElement = voteType === 1 ?
+                        $(`#vote_up_count_${postId}`) :
+                        $(`#vote_down_count_${postId}`);
+                    countElement.text(parseInt(countElement.text()) + 1);
+                } else {
+                    alert(res.message);
+                }
+            },
+            error: function() {
+                alert('Error al procesar la solicitud.');
+            }
+        });
+    });
+</script>
