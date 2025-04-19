@@ -85,8 +85,8 @@ try {
 
     </div>
 
-    <!-- <div id="cookiesContainer"></div>
-    <script src="./js/cookies.js"></script> -->
+    <div id="cookiesContainer"></div>
+    <script src="./js/cookies.js"></script> 
     <!-- Incluyendo el pie de página -->
     <?php include './views/layout/footer.php'; ?>
 </body>
