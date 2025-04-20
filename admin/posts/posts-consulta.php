@@ -227,6 +227,37 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
     <?php include '../../views/layout/footer.php'; ?>
     
     <script src="../../js/posts-consulta.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const botonContinuar = document.getElementById('botonContinuar');
+        
+        if (botonContinuar) {
+            botonContinuar.addEventListener('click', function() {
+                document.getElementById('overlay').style.display = 'none';
+                document.getElementById('modal').style.display = 'none';
+                
+                // Marcar que el modal ya se mostró usando AJAX
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', '../../config/mark_modal_shown.php', true);
+                xhr.send();
+            });
+        }
+        
+        // Manejar el modal de eliminación
+        const deleteButtons = document.querySelectorAll('.btn.eliminar');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('deleteModal').style.display = 'flex';
+            });
+        });
+        
+        document.getElementById('cancelDelete').addEventListener('click', function() {
+            document.getElementById('deleteModal').style.display = 'none';
+        });
+    });
+    </script>
     
 </body>
 
