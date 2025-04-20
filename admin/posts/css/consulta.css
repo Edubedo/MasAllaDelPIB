@@ -43,7 +43,7 @@ body {
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(2px); /*efecto de desenfoque */
-    z-index: 1;
+    z-index: 1000;
 }
 
 /* Modal */
@@ -53,18 +53,13 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background: white;
-    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);  
-    z-index: 10;
-    border-radius: .6rem;
-    width: 90%; /* Ancho del modal */
-    max-width: 850px; /* Ancho máximo para pantallas grandes */
-    height: auto; /* Altura automática */
-    min-height: 390px; /* Altura mínima */
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
 }
 
 #modal:hover {
@@ -73,9 +68,9 @@ body {
 
 /* Título del modal */
 .titulo-modal {
-    font-size: 4rem;
-    margin-bottom: 2rem;
-    margin-top: 8rem;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #2c3e50;
     text-align: center;
     background: linear-gradient(90deg, #86acb5, #15687f); /* Degradado */
     background-clip: text;
@@ -105,6 +100,8 @@ button:hover {
     padding: 3rem;
     border-radius: 1.5rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    position: relative;
+    z-index: 1;
 }
 
 
@@ -473,31 +470,33 @@ tr td:nth-child(9) a.btn {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+    background: rgba(0, 0, 0, 0.7);
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 1002; /* Mayor que el modal de bienvenida */
 }
 
 .deletemodal-content {
     background: white;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-    width: 300px;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .deletemodal-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: 20px;
 }
 
 .deletemodal-buttons button {
-    padding: 10px 20px;
-    cursor: pointer;
-    border: none;
+    padding: 10px 25px;
+    font-size: 1rem;
     border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
 #confirmDelete {
@@ -505,9 +504,17 @@ tr td:nth-child(9) a.btn {
     color: white;
 }
 
+#confirmDelete:hover {
+    background-color: #c0392b;
+}
+
 #cancelDelete {
-    background-color: #2ecc71;
+    background-color: #95a5a6;
     color: white;
+}
+
+#cancelDelete:hover {
+    background-color: #7f8c8d;
 }
 
 /* Responsive Design */
