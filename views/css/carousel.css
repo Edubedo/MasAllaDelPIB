@@ -25,6 +25,41 @@
     
     
 }
+.post-slider {
+    position: relative; /* Añade esto para que las flechas sean relativas a este contenedor */
+    border: 1rem solid transparent;
+    margin-top: 20px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.post-slider .prev, 
+.post-slider .next {
+    position: fixed; /* Cambia de absolute a fixed para que no se muevan con el scroll */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #27444b;
+    cursor: pointer;
+    z-index: 10; /* Asegúrate de que el z-index sea alto para que estén por encima de otros elementos */
+    background: rgba(255, 255, 255, 0.7); /* Opcional: fondo semitransparente para mejor visibilidad */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.post-slider .prev {
+    left: 20px; /* Ajusta la posición izquierda */
+}
+
+.post-slider .next {
+    right: 20px; /* Ajusta la posición derecha */
+}
 
 .post-slider .post-wrapper .post{
     width: 320px;
