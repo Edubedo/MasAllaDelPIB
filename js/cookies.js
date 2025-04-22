@@ -4,7 +4,7 @@ window.onload = function () {
             .then(response => response.text())
             .then(data => {
                 const container = document.getElementById('cookiesContainer');
-                
+                4
                 if (container) {
                     container.innerHTML = data;
                     container.classList.add('mostrar'); // Mostrar modal con fondo opaco
