@@ -67,6 +67,7 @@ body {
   font-size: 3rem;
   font-weight: 800;
   color: rgb(26, 26, 26);
+  text-shadow: none;
 }
 
 .cookieDescripcion {
@@ -75,15 +76,18 @@ body {
   font-weight: 600;
   color: rgb(99, 99, 99);
   max-width: 90%;
+  text-shadow: none;
 }
 
 .cookieDescripcion a {
   color: rgb(59, 130, 246);
   text-decoration: none;
+  text-shadow: none;
 }
 
 .cookieDescripcion a:hover {
   text-decoration: underline;
+  text-shadow: none;
 }
 
 /* Contenedor de botones */
