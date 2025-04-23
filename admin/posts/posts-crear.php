@@ -124,9 +124,8 @@ if (isset($_POST["crear_post"])) {
                 </div>
             </div>
         </form>
-        
-        <script src="../../js/posts-crear.js"></script>
 
+        <script src="../../js/posts-crear.js"></script>
 
     </body>
 </html>
