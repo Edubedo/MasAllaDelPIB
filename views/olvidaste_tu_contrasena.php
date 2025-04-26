@@ -1,4 +1,4 @@
-<?php session_start(); 
+<?php session_start();
 require '../vendor/autoload.php'; // Ajusta la ruta si es necesario
 require_once '../config/database.php';
 
@@ -38,11 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $emailSendgrid->addTo($email);
         $emailSendgrid->addContent("text/plain", "Tu código de verificación es: $codigo");
         $emailSendgrid->addContent("text/html", "<strong>Tu código de verificación es: $codigo</strong>");
-        
+
 
         //llama a la variable de .env 
         $apiKey = $_ENV['APIKEY_SENDGRID'] ?? null;
-        
+
         // Verificar si la clave API se cargó correctamente
 
         if (!$apiKey) {
@@ -50,15 +50,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $sendgrid = new \SendGrid($apiKey);
-        
+
         try {
             $response = $sendgrid->send($emailSendgrid);
-            echo "Correo enviado. Status: " . $response->statusCode(); // <--- prueba
+            // Puedes registrar el estado en el log en lugar de usar echo
+            error_log("Correo enviado. Status: " . $response->statusCode());
         } catch (Exception $e) {
             $error = 'Error al enviar el correo: ' . $e->getMessage();
-            echo $error; // <--- muestra el error
+            error_log($error); // Registra el error en el log
         }
-
 
         $_SESSION['email_recuperacion'] = $email;
         header("Location: verificar_codigo.php");
