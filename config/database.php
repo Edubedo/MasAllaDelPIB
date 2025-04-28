@@ -1,11 +1,9 @@
 <?php
-// Incluye el archivo de configuración
-// DESACTIVAR PARA PRODUCCION
-// require_once __DIR__ . '/../vendor/autoload.php'; // Usa __DIR__ para rutas absolutas
-// $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
-// $dotenv->load();
-
-// composer require vlucas/phpdotenv
+/* //Configuración de la base de datos
+ require_once __DIR__ . '/../vendor/autoload.php'; // Usa __DIR__ para rutas absolutas
+ $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+ $dotenv->load();
+ //composer require vlucas/phpdotenv*/
 $host = $_ENV['DB_HOST'];
 $user = $_ENV['DB_USER'];
 $password = $_ENV['DB_PASSWORD'];
