@@ -20,13 +20,19 @@ if (!$post) {
     die("Publicación no encontrada.");
 }
 
+
+
 // Definir imagen predeterminada si no hay imagen en la base de datos
 $imageSrc = !empty($post['image']) ? "../admin/posts/" . htmlspecialchars($post['image']) : "../admin/posts/uploads/preterminada.jpg";
 
 $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
 
-$foto_perfil = $post['foto_perfil'] ?? null;
-$ruta = isset($foto_perfil) && !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/uploads/user-default2.jpeg";
+// buscar la foto de perfil de quien creó el post
+$stmt = $pdo->prepare("SELECT foto_perfil FROM users WHERE username = :username");
+$stmt->execute([':username' => $post['user_creation']]);
+$userProfile = $stmt->fetch(PDO::FETCH_ASSOC);
+$foto_perfil = $userProfile['foto_perfil'] ?? null;
+$ruta = !empty($foto_perfil) ? "/views/uploads/" . htmlspecialchars($foto_perfil) : "/views/uploads/user-default2.jpeg";
 
 // Procesar el envío de comentarios
 if (isset($_POST['submit_comment'])) {
@@ -83,6 +89,7 @@ if (isset($_POST['submit_comment'])) {
             <div class="datos">
                 <div class="imagen-user">
                     <img src="<?php echo htmlspecialchars($ruta); ?>" alt="Foto de perfil">
+                    <span><?php echo htmlspecialchars($post['user_creation']); ?></span>
                 </div>
                 <i class="far fa-calendar"></i> <?php echo date("F d, Y", strtotime($post['post_date'])); ?>
             </div>

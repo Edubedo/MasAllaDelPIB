@@ -61,6 +61,8 @@
     right: 20px; /* Ajusta la posición derecha */
 }
 
+/** Estilo para el contenedor de las publicaciones */
+
 .post-slider .post-wrapper .post{
     width: 320px;
     height: 380px;
@@ -71,36 +73,6 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
     cursor: pointer;
-}
-
-.post-slider .post-wrapper .post .post-info{
-    height: 130px;
-    border: 0px solid; /* Esto debería aparecer */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-    font-size: 12px;
-}
-
-.post-info h4 {
-    font-size: 20px;
-    color: #050000;
-    margin: 5px;
-    text-align: center;
-}
-
-.post-info p {
-    font-size: 12px;
-    color: #050000;
-    text-align: center;
-    margin-left: 0.5rem;
-    margin-right: 1rem;
-}
-
-.post-data{
-    font-family:Arial, Helvetica, sans-serif;
 }
 
 .post-slider .post-wrapper .post .slider-image{
@@ -119,6 +91,59 @@
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 5rem;
     
+}
+
+.post-slider .post-wrapper .post .post-info{
+    height: 130px;
+    border: 0px solid; /* Esto debería aparecer */
+    display: flex;
+    flex-direction: column;
+    justify-content: start; 
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 12px;
+    padding: 0.5rem;
+    gap: 0.3rem;
+}
+
+.post-info h4 {
+    font-size: 20px;
+    color: #050000;
+    margin: 0.5rem 0 0.2rem 0; /* arriba derecha abajo izquierda */
+    text-align: center;
+}
+
+.post-info p {
+    font-size: 12px;
+    color: #050000;
+    text-align: center;
+    margin-left: 0.5rem;
+    margin-right: 1rem;
+}
+
+.post-slider .post-wrapper .post .post-data {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+    justify-content: space-between; /* Opcional: separa usuario y fecha */
+}
+
+.post-slider .post-wrapper .post .post-data .imagen-user {
+    display: flex;
+    align-items: center; /* Para alinear la foto y el nombre centrados */
+}
+
+.post-slider .post-wrapper .post .post-data .imagen-user img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 0.3rem; /* Espacio entre foto y nombre */
+}
+
+.post-slider .post-wrapper .post .post-data i {
+    font-size: 12px;
+    color: #333;
+    margin-right: 0.3rem; /* Espacio entre icono y texto */
 }
 
 .post-slider .prev, 
@@ -148,6 +173,11 @@
     display: inline-block;
     background: #ffffff;
     
+}
+
+.post-slider .post-wrapper .post:hover {
+    transform: scale(1.05); /* Aumenta el tamaño al pasar el mouse */
+    box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.3); /* Aumenta la sombra al pasar el mouse */
 }
 
 
