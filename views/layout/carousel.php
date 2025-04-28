@@ -20,11 +20,20 @@ try {
     if (!$posts) {
         die("No se encontraron publicaciones.");
     }
+
+    // Ahora que tenemos los posts, podemos buscar la foto de perfil de cada autor
+    foreach ($posts as &$post) {
+        $stmtUser = $pdo->prepare("SELECT foto_perfil FROM users WHERE username = :username");
+        $stmtUser->execute([':username' => $post['user_creation']]);
+        $userProfile = $stmtUser->fetch(PDO::FETCH_ASSOC);
+        $foto_perfil = $userProfile['foto_perfil'] ?? null;
+        $post['ruta_foto_perfil'] = !empty($foto_perfil) ? "/views/uploads/" . htmlspecialchars($foto_perfil) : "/views/uploads/user-default2.jpeg";
+    }
+    unset($post); // Por buenas prácticas al usar foreach por referencia
 } catch (PDOException $e) {
     die("Error al consultar los posts: " . $e->getMessage());
 }
 
-$pdo = null;
 ?>
 
 <!DOCTYPE html>
@@ -57,8 +66,12 @@ $pdo = null;
                                     <div class="post-info">
                                         <h4><?= htmlspecialchars(strlen($post['title']) > 44 ? substr($post['title'], 0, 46) . "..." : $post['title']); ?></h4>
                                         <div class="post-data">
-                                            <i class="far fa-user"></i> <span><?= htmlspecialchars($post['user_creation']); ?></span>
-                                            <i class="far fa-calendar"></i> <span><?= date("F d, Y", strtotime($post['post_date'])); ?></span>
+                                            <div class="imagen-user">
+                                                <img src="<?= htmlspecialchars($post['ruta_foto_perfil']); ?>" alt="Foto de perfil">
+                                                <span><?= htmlspecialchars($post['user_creation']); ?></span>
+                                            </div>
+                                            <i class="far fa-calendar"></i> 
+                                            <span><?= date("F d, Y", strtotime($post['post_date'])); ?></span>
                                         </div>
                                         <p><?= htmlspecialchars(strlen($post['content']) > 120 ? substr($post['content'],0,120) . "..." :  $post['content']); ?></p>
                                     </div>
