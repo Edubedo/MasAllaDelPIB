@@ -170,6 +170,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
+        if (!empty($_POST['email']) && $id == $iduser) {
+            $_SESSION['email'] = $new_email;
+        }
+        
+        
         $_SESSION['success_message'] = "✅ Perfil actualizado con éxito";
         header("Location: editar-perfil.php?id=" . $id);
         exit();
