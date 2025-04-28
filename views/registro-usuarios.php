@@ -7,6 +7,65 @@ ini_set('display_errors', 1);
 // Incluir la conexión a la base de datos
 include('../config/database.php'); // Asegúrate de que esta ruta sea correcta
 
+//funcion para comprimir la imagen
+function comprimir_imagen($origen, $destino, $max_width, $max_height, $quality = 75) {
+    list($width, $height, $type) = getimagesize($origen);
+
+    // Calculamos las nuevas dimensiones respetando la relación de aspecto
+    $new_width = $width;
+    $new_height = $height;
+
+    if ($width > $max_width || $height > $max_height) {
+        $ratio = $width / $height;
+        if ($width > $height) {
+            $new_width = $max_width;
+            $new_height = $max_width / $ratio;
+        } else {
+            $new_height = $max_height;
+            $new_width = $max_height * $ratio;
+        }
+    }
+
+    // Creamos la imagen de destino a partir de la original
+    switch ($type) {
+        case IMAGETYPE_JPEG:
+            $src = imagecreatefromjpeg($origen);
+            break;
+        case IMAGETYPE_PNG:
+            $src = imagecreatefrompng($origen);
+            break;
+        case IMAGETYPE_GIF:
+            $src = imagecreatefromgif($origen);
+            break;
+        default:
+            return false;
+    }
+
+    // Creamos la nueva imagen con las nuevas dimensiones
+    $dst = imagecreatetruecolor($new_width, $new_height);
+    imagecopyresampled($dst, $src, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+
+    // Guardamos la imagen comprimida
+    switch ($type) {
+        case IMAGETYPE_JPEG:
+            imagejpeg($dst, $destino, $quality);
+            break;
+        case IMAGETYPE_PNG:
+            imagepng($dst, $destino, round($quality / 10)); // La calidad es de 0 a 9
+            break;
+        case IMAGETYPE_GIF:
+            imagegif($dst, $destino);
+            break;
+    }
+
+    // Liberar memoria
+    imagedestroy($src);
+    imagedestroy($dst);
+
+    return true;
+}
+
+
 // Inicializar la variable para la foto de perfil
 $foto_perfil = null;
 
@@ -14,17 +73,28 @@ $foto_perfil = null;
 if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] === UPLOAD_ERR_OK) {
     $uploadDir = 'uploads/'; // Directorio donde se guardarán las imágenes
     $fileName = basename($_FILES['foto_perfil']['name']);
+    $ext = pathinfo($fileName, PATHINFO_EXTENSION); // Obtener la extensión del archivo
+    $fileName = pathinfo($fileName, PATHINFO_FILENAME) . '_comprimida.' . $ext;
     $targetFilePath = $uploadDir . $fileName;
 
-    // Mover el archivo subido al directorio de destino
-    if (move_uploaded_file($_FILES['foto_perfil']['tmp_name'], $targetFilePath)) {
+    // Definir las dimensiones máximas para la imagen (por ejemplo, 300x300 píxeles)
+    $max_width = 300;
+    $max_height = 300;
+
+    // Comprimir la imagen antes de guardarla
+    if (comprimir_imagen($_FILES['foto_perfil']['tmp_name'], $targetFilePath, $max_width, $max_height)) {
         $foto_perfil = $fileName; // Guardar solo el nombre del archivo
     } else {
-        $_SESSION['error_message'] = "Error al subir la imagen.";
+        $_SESSION['error_message'] = "Error al comprimir la imagen.";
         header("Location: signin.php");
         exit();
     }
+} else {
+    $_SESSION['error_message'] = "No se subió ninguna imagen.";
+    header("Location: signin.php");
+    exit();
 }
+
 
 // Verificar si el formulario fue enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
