@@ -343,3 +343,103 @@ button:hover {
 .btn-eliminar-referencia:hover {
     background-color: #cc0000;
 }
+
+/* --- Tu estilo base permanece igual (el que enviaste) --- */
+
+/* --- Media Queries para hacerlo RESPONSIVO --- */
+
+/* Para tablets (pantallas menores o iguales a 768px) */
+@media (max-width: 768px) {
+    .contenedor-general {
+        flex-direction: column;
+        margin: 1rem;
+    }
+
+    .izquierdo, .derecho {
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    .moduser-div {
+        width: 90%;
+        margin: 1rem auto;
+    }
+
+    .botonuser-div {
+        width: 60%;
+    }
+
+    button, .btn-editar-publicacion, .btn-editar-perfil {
+        width: 90%;
+    }
+}
+
+/* Para móviles (pantallas menores o iguales a 480px) */
+@media (max-width: 480px) {
+    .encabezado {
+        height: auto;
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .contenedor-general {
+        flex-direction: column;
+        margin: 0.5rem;
+    }
+
+    .izquierdo, .derecho {
+        width: 100%;
+        margin: 0.5rem 0;
+        padding: 0.5rem;
+    }
+
+    label {
+        font-size: 1rem;
+    }
+
+    input, textarea, select {
+        width: 95%;
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .fecha {
+        width: 90%;
+    }
+
+    span {
+        font-size: 0.9rem;
+    }
+
+    .boton-div {
+        margin-top: 1rem;
+    }
+
+    button, .btn-editar-publicacion, .btn-editar-perfil {
+        width: 95%;
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+
+    .referencia-input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .input-referencia, .btn-eliminar-referencia {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    .botonuser-div {
+        width: 90%;
+    }
+}
