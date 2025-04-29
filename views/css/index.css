@@ -98,15 +98,26 @@ h1, h3, p {
 
 }
 
-/* Columna lateral */
-.div-derecho {
-    display: flex;
-    flex-direction: column;
-    width: 25%;
-    gap: 1rem;
-    margin-left: 3rem;
-    margin-right: 3rem;
+.div-inferior-derecho h4 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px #000000;
+
 }
+
+.post-derecho {
+    background-color: #f5f5f5;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.post-derecho h1, h2, p{
+    color: #000000;
+    text-shadow: none;
+}
+
 
 .populares {
     display: flex;

@@ -1,7 +1,28 @@
 <?php
 session_start();
 require 'config/database.php';
+// Obtener publicaciones del usuario con ID 1
+$queryUsuario = "SELECT 
+    p.Id_posts, 
+    p.title, 
+    p.content, 
+    p.post_date, 
+    p.image 
+    FROM posts p 
+    INNER JOIN users u ON p.user_creation = u.username 
+    WHERE u.id_type_user = 1 
+    ORDER BY p.post_date DESC 
+    LIMIT 3";
+ // puedes ajustar el límite si quieres más o menos
 
+try {
+    $stmtUsuario = $pdo->prepare($queryUsuario);
+    $stmtUsuario->execute();
+    $postsUsuario = $stmtUsuario->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Error al consultar publicaciones del usuario: " . $e->getMessage());
+}
+// Obtener las publicaciones más recientes
 $query = "SELECT 
         p.Id_posts, 
         p.title, 
@@ -68,20 +89,25 @@ try {
             </div>
         </div>
 
-        <div class="div-derecho">
-            <div class="populares">
-                <h3>Lo mas popular</h3>
-            </div>
-            <div class="barra">texto aqui</div>
-            <div class="formulario">
-                <p>Aqui ira la parte del formulario</p>
-            </div>
-            <div class="barra">texto aqui</div>
-            <div class="div-inferior-derecho">
-                <p>Otra cosa aqui</p>
-            </div>
-
+        <div class="div-inferior-derecho">
+            <h4>Publicaciones Del Autor</h4>
+            <?php if (!empty($postsUsuario)): ?>
+                <?php foreach ($postsUsuario as $post): ?>
+                    <div class="post-derecho">
+                        <h5><?php echo htmlspecialchars($post['title']); ?></h5>
+                        <p><?php echo substr(strip_tags($post['content']), 0, 100); ?>...</p>
+                        <small><?php echo date('d/m/Y', strtotime($post['post_date'])); ?></small>
+                        <?php if (!empty($post['image'])): ?>
+                            <img src="assets/uploads/<?php echo htmlspecialchars($post['image']); ?>" alt="Imagen del post" style="width:100%; max-height:100px; object-fit:cover; border-radius:5px; margin-top:5px;">
+                        <?php endif; ?>
+                        <hr>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No hay publicaciones del administrador.</p>
+            <?php endif; ?>
         </div>
+
 
     </div>
 
