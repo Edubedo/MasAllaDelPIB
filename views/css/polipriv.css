@@ -1,51 +1,93 @@
-
-/* Estilos generales */
+/* Estilos base */
 html {
-    font-size: 62.5%;
-  }
-  
-  body {
-    font-size: 16px; /* 1 rem = 10px */
-    background-color: rgb(233, 232, 232);
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-  }  
+  font-size: 62.5%;
+}
 
-/*Estilos de texto*/
+body {
+  font-size: 1.6rem; /* 1rem = 10px */
+  background-color: #f9f9f9;
+  color: #1a1a1a;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
 
+/* Contenedor principal */
+.contenedor {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 2rem 3rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
 .titulo {
-    font-size: 3rem;
-    font-weight: 800;
-    color: rgb(26, 26, 26);
-    text-align: center;
-  }
-  
-.titulo2 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    text-align:center;
-    color: rgb(26, 26, 26);
-  }
-  
-.titulo3 {
-    font-size: 2rem;
-    font-weight: 800;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    text-align: left;
-    color: rgb(26, 26, 26);
-  }
-  
-.parrafo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    text-align: justify;
-    color: rgb(26, 26, 26);
-  }
+  font-size: 3rem;
+  font-weight: 700;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
 
-  .contenedor {
-    margin: 2rem 8rem;
-  }
+.titulo2 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #34495e;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  border-bottom: 2px solid #ecf0f1;
+  padding-bottom: 0.5rem;
+}
+
+.titulo3 {
+  font-size: 1.9rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem;
+  color: #2d3436;
+}
+
+/* Párrafos */
+.parrafo {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+  color: #2d2d2d;
+}
+
+/* Enlaces */
+a {
+  color: #2980b9;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Listas */
+ul.parrafo {
+  list-style: disc inside;
+  padding-left: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Tarjeta superior */
+.card1 {
+  max-width: 100%;
+  padding: 2rem;
+  background-color: #34495e;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 3rem;
+  border-radius: 0 0 1rem 1rem;
+}
+
+.shadow {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
