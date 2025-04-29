@@ -1,11 +1,12 @@
 window.onload = function () {
     // Verificar si el modal ya ha sido mostrado en esta sesión
-    if (!localStorage.getItem('cookiesAccepted')) {
+    if (!sessionStorage.getItem('cookiesShown')) {
         setTimeout(function () {
             fetch('./views/layout/cookies.php')
                 .then(response => response.text())
                 .then(data => {
                     const container = document.getElementById('cookiesContainer');
+
                     if (container) {
                         container.innerHTML = data;
                         container.classList.add('mostrar'); // Mostrar modal con fondo opaco
@@ -21,9 +22,9 @@ window.onload = function () {
                                 
                                 // Restaurar scroll
                                 document.body.style.overflow = 'auto';
-
-                                // Marcar que las cookies han sido aceptadas
-                                localStorage.setItem('cookiesAccepted', 'true');
+                                
+                                // Marcar que el modal ha sido mostrado
+                                sessionStorage.setItem('cookiesShown', 'true');
                             }
                         });
                     } else {
