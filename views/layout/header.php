@@ -33,7 +33,7 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
 
     <!-- CUSTOM STYLESHEET -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/views/css/navbar.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,800;1,700&display=swap" rel="stylesheet">
 </head>
 
