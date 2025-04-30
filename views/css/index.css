@@ -142,3 +142,112 @@ h1, h3, p {
     width: 100%;
     height: auto;
 }
+
+
+/* Evita que el contenido se desborde */
+.post-derecho,
+.cuerpo .p1 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+/* Para imágenes dentro de post-derecho */
+.post-derecho img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Ajuste general del texto */
+.post-derecho p,
+.post-derecho h5,
+.post-derecho small {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 0.3rem 0;
+}
+
+/* Evita que el contenido se desborde */
+.post-derecho,
+.cuerpo .p1 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+/* Para imágenes dentro de post-derecho */
+.post-derecho img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Ajuste general del texto */
+.post-derecho p,
+.post-derecho h5,
+.post-derecho small {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 0.3rem 0;
+}
+/* Mejora en pantallas medianas */
+@media (max-width: 1120px) {
+    .cuerpo .p1,
+    .post-derecho {
+        padding: 0.5rem;
+        font-size: 0.95rem;
+    }
+
+    .pagina-index .titulo1,
+    .pagina-index .datos1,
+    .pagina-index .texto1 {
+        font-size: 1.2rem;
+    }
+
+
+}
+
+/* Mejora en pantallas pequeñas */
+@media (max-width: 680px) {
+    .cuerpo .p1,
+    .post-derecho {
+        padding: 0.5rem;
+        font-size: 0.95rem;
+    }
+
+    .pagina-index .titulo1,
+    .pagina-index .datos1,
+    .pagina-index .texto1 {
+        font-size: 1.1rem;
+    }
+
+    .post-derecho img,
+    .cuerpo img {
+        max-width: 100%;
+        max-height: 180px;
+        object-fit: cover;
+    }
+}
+
+/* Mejora en pantallas muy pequeñas */
+@media (max-width: 650px) {
+    .cuerpo .p1,
+    .post-derecho {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .pagina-index .titulo1,
+    .pagina-index .datos1,
+    .pagina-index .texto1 {
+        font-size: 1rem;
+    }
+
+    .post-derecho img,
+    .cuerpo img {
+        max-width: 100%;
+        max-height: 140px;
+        object-fit: cover;
+    }
+}
