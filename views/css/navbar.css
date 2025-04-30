@@ -188,7 +188,7 @@ nav button {
     .nav__items {
         display: none; /* Ocultar por defecto */
         flex-direction: column;
-        background-color: #3f6fa3;
+        background-color: #183e67ae;
         width: 50%;
         height: 100vh; /* Ajustar al 100% de la pantalla en vertical */
         padding: 6rem 0;
@@ -259,6 +259,25 @@ nav button {
 
     nav .logo img {
         width: 25px; /* Reducir aún más el tamaño del logo */
+    }
+
+    nav .texto_a {
+        font-size: 1.2rem;
+    }
+
+    nav .list {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 438px) {
+    nav .logo {
+        font-size: 1.5rem !important;
+        gap: 3px; /* Reducir el espacio entre el logo y el título */
+    }
+
+    nav .logo img {
+        width: 15px !important; /* Reducir aún más el tamaño del logo */
     }
 
     nav .texto_a {
