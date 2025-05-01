@@ -7,13 +7,15 @@ $queryUsuario = "SELECT
     p.title, 
     p.content, 
     p.post_date, 
-    p.image 
+    p.image,
+    p.user_creation
     FROM posts p 
     INNER JOIN users u ON p.user_creation = u.username 
     WHERE u.id_type_user = 1 
     ORDER BY p.post_date DESC 
     LIMIT 3";
- // puedes ajustar el límite si quieres más o menos
+
+// puedes ajustar el límite si quieres más o menos
 
 try {
     $stmtUsuario = $pdo->prepare($queryUsuario);
@@ -22,6 +24,7 @@ try {
 } catch (PDOException $e) {
     die("Error al consultar publicaciones del usuario: " . $e->getMessage());
 }
+
 // Obtener las publicaciones más recientes
 $query = "SELECT 
         p.Id_posts, 
@@ -47,6 +50,8 @@ try {
 } catch (PDOException $e) {
     die("Error al consultar publicaciones: " . $e->getMessage());
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -90,23 +95,18 @@ try {
         </div>
 
         <div class="div-inferior-derecho">
-            <h4>Publicaciones Del Autor</h4>
+            <h1>Publicaciones Del Autor</h1>
             <?php if (!empty($postsUsuario)): ?>
-                <?php foreach ($postsUsuario as $post): ?>
-                    <div class="post-derecho">
-                        <h5><?php echo htmlspecialchars($post['title']); ?></h5>
-                        <p><?php echo substr(strip_tags($post['content']), 0, 100); ?>...</p>
-                        <small><?php echo date('d/m/Y', strtotime($post['post_date'])); ?></small>
-                        <?php if (!empty($post['image'])): ?>
-                            <img src="assets/uploads/<?php echo htmlspecialchars($post['image']); ?>" alt="Imagen del post" style="width:100%; max-height:100px; object-fit:cover; border-radius:5px; margin-top:5px;">
-                        <?php endif; ?>
-                        <hr>
-                    </div>
-                <?php endforeach; ?>
+                <?php 
+                    $postsDB = $postsUsuario; 
+                    $isIndex = false; // o true, según necesites
+                    include('views/layout/posts.php'); 
+                ?>
             <?php else: ?>
-                <p>No hay publicaciones del administrador.</p>
+                <p>No hay publicaciones del autor.</p>
             <?php endif; ?>
         </div>
+   
 
 
     </div>

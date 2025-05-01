@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    margin: 0;
 }
 
 .fondo-overlay {
@@ -18,19 +19,19 @@ body {
     background-size: cover; 
     background-position: center;
     background-attachment: fixed; 
-    margin: 0;
 }
 
 h1, h3, p {
     color: white;
     text-shadow: 2px 2px 4px #000000;
-    
 }
-.cuerpo p {
+
+.cuerpo p, .div-inferior-derecho p {
     text-shadow: none;
 }
-.footer p, h3{
-    text-shadow: none;;
+
+.footer p, h3 {
+    text-shadow: none;
 }
 
 /* Contenedor principal */
@@ -52,6 +53,18 @@ h1, h3, p {
     border-right: 0.2rem solid #ffffff;
 }
 
+/* Columna derecha */
+.div-inferior-derecho {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 25%;
+    padding: 1rem;
+    height: 100%;
+}
+
+/* Encabezado */
 .encabezado {
     font-size: 2rem;
     font-weight: bold;
@@ -61,8 +74,8 @@ h1, h3, p {
     margin-bottom: 2rem;
 }
 
-/* Cuerpo de publicaciones */
-.cuerpo {
+/* Sección de publicaciones */
+.cuerpo, .div-inferior-derecho {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -71,22 +84,32 @@ h1, h3, p {
     width: 100%;
 }
 
-/* Solo afecta las publicaciones en el index */
-.pagina-index .p1 {
-    width: 80rem
+/* Estilo de publicaciones (común para ambas secciones) */
+.p1 {
+    width: 80rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
-.pagina-index .titulo1 {
+.titulo1 {
     font-size: 2.4rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
 }
 
-.pagina-index .datos1 {
+.datos1 {
     font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #ccc;
 }
-.pagina-index .texto1 {
+
+.texto1 {
     font-size: 1.5rem;
 }
 
+/* Barra decorativa */
 .barra {
     display: flex;
     width: 100%;
@@ -95,30 +118,9 @@ h1, h3, p {
     border-top: 0.17rem solid #ffffff;
     justify-content: center;
     align-items: center;
-
 }
 
-.div-inferior-derecho h4 {
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px #000000;
-
-}
-
-.post-derecho {
-    background-color: #f5f5f5;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-}
-
-.post-derecho h1, h2, p{
-    color: #000000;
-    text-shadow: none;
-}
-
-
+/* Populares */
 .populares {
     display: flex;
     flex-direction: column;
@@ -128,6 +130,7 @@ h1, h3, p {
     height: 50rem;
 }
 
+/* Formulario */
 .formulario {
     height: 20rem;
     display: flex;
@@ -135,94 +138,64 @@ h1, h3, p {
     text-align: center;
 }
 
-.div-inferior-derecho {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    width: 100%;
-    height: auto;
-}
-
-
-/* Evita que el contenido se desborde */
-.post-derecho,
+/* Evita desbordamiento */
+.post-inferior-derecho,
 .cuerpo .p1 {
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;
 }
 
-/* Para imágenes dentro de post-derecho */
-.post-derecho img {
+/* Imágenes dentro de publicaciones */
+.post-inferior-derecho img,
+.cuerpo img {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
 /* Ajuste general del texto */
-.post-derecho p,
-.post-derecho h5,
-.post-derecho small {
+.post-inferior-derecho p,
+.post-inferior-derecho h5,
+.post-inferior-derecho small,
+.p1 p, .p1 h5, .p1 small {
     font-size: 1rem;
     line-height: 1.4;
     margin: 0.3rem 0;
 }
 
-/* Evita que el contenido se desborde */
-.post-derecho,
-.cuerpo .p1 {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: normal;
-}
-
-/* Para imágenes dentro de post-derecho */
-.post-derecho img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Ajuste general del texto */
-.post-derecho p,
-.post-derecho h5,
-.post-derecho small {
-    font-size: 1rem;
-    line-height: 1.4;
-    margin: 0.3rem 0;
-}
-/* Mejora en pantallas medianas */
+/* Responsive: pantallas medianas */
 @media (max-width: 1120px) {
+    
     .cuerpo .p1,
-    .post-derecho {
+    .div-inferior-derecho .p1 {
         padding: 0.5rem;
         font-size: 0.95rem;
     }
 
-    .pagina-index .titulo1,
-    .pagina-index .datos1,
-    .pagina-index .texto1 {
+    .titulo1,
+    .datos1,
+    .texto1 {
         font-size: 1.2rem;
     }
-
-
 }
 
-/* Mejora en pantallas pequeñas */
+
+/* Responsive: pantallas pequeñas */
 @media (max-width: 680px) {
     .cuerpo .p1,
-    .post-derecho {
+    .div-inferior-derecho .p1 {
         padding: 0.5rem;
         font-size: 0.95rem;
     }
 
-    .pagina-index .titulo1,
-    .pagina-index .datos1,
-    .pagina-index .texto1 {
+    .titulo1,
+    .datos1,
+    .texto1 {
         font-size: 1.1rem;
     }
 
-    .post-derecho img,
+    .post-inferior-derecho img,
     .cuerpo img {
         max-width: 100%;
         max-height: 180px;
@@ -230,21 +203,21 @@ h1, h3, p {
     }
 }
 
-/* Mejora en pantallas muy pequeñas */
+/* Responsive: pantallas muy pequeñas */
 @media (max-width: 650px) {
     .cuerpo .p1,
-    .post-derecho {
+    .div-inferior-derecho .p1 {
         padding: 0.5rem;
         font-size: 0.9rem;
     }
 
-    .pagina-index .titulo1,
-    .pagina-index .datos1,
-    .pagina-index .texto1 {
+    .titulo1,
+    .datos1,
+    .texto1 {
         font-size: 1rem;
     }
 
-    .post-derecho img,
+    .post-inferior-derecho img,
     .cuerpo img {
         max-width: 100%;
         max-height: 140px;
