@@ -37,8 +37,8 @@ foreach ($postsDB as $post) {
     $imageSrc = !empty($post['image']) ? "/admin/posts/" . htmlspecialchars($post['image']) : "/admin/posts/uploads/preterminada.jpg";
 
     $postLink = '/views/post.php?id=' . htmlspecialchars($post['Id_posts']);
-    $titleLimit = isset($isIndex) && $isIndex ? 80 : 68;
-    $contentLimit = isset($isIndex) && $isIndex ? 350 : 220;
+    $titleLimit = isset($isIndex) && $isIndex ? 50 : 40;
+    $contentLimit = isset($isIndex) && $isIndex ? 160 : 80;
     $title = htmlspecialchars(strlen($post['title']) > $titleLimit ? substr($post['title'], 0, $titleLimit) . "..." : $post['title']);
     $content = htmlspecialchars(strlen($post['content']) > $contentLimit ? substr($post['content'], 0, $contentLimit) . "..." : $post['content']);
     $userCreation = htmlspecialchars($post['user_creation']);
