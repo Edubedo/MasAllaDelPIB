@@ -3,58 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pliticas de privacidad</title>
-    <link rel="stylesheet" href="../../views/css/polipriv.css">
+    <title>Política de Privacidad</title>
+    <style>
+        /* CSS interno */
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1.6rem;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #2d2d2d;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 3rem;
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-top: 3rem;
+        }
+
+        p {
+            font-size: 1.5rem;
+            text-align: justify;
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ddd;
+            color: #666;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                margin: 2rem;
+                padding: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <?php include(__DIR__ . '/header.php'); ?>
-    <div class="card1 shadow">
-        <h1 class="titulo">Políticas de Cookies</h1>
-    </div>
-    
-    <div class="contenedor">
-        <h1 class="titulo">Aviso de Privacidad de Cookies - Blog "Más Allá Del PIB"</h1>
 
-        <h2 class="titulo2">Fecha de última actualización: [Inserta la fecha actual o de la última revisión]</h2>
-        <p class="parrafo">Este Aviso de Privacidad de Cookies describe cómo "Más Allá Del PIB" (en adelante, "el Blog" o "nosotros") utiliza cookies y tecnologías similares en nuestro sitio web [Inserta aquí la dirección de tu blog, ej: www.masalladelpib.com].</p>
-        <p class="parrafo">Al visitar y utilizar nuestro Blog, aceptas el uso de cookies de acuerdo con este aviso. Si no estás de acuerdo con nuestro uso de cookies de esta manera, debes ajustar la configuración de tu navegador o abstenerte de usar el Blog.</p>
+<div class="container">
+    <h1>Política de Privacidad</h1>
 
-        <h2 class="titulo">¿Qué son las Cookies?</h2>
-        <p class="parrafo">Las cookies son pequeños archivos de texto que se almacenan en tu navegador (como Chrome, Firefox, Safari, etc.) cuando visitas un sitio web. Estos archivos contienen información que el sitio web puede leer en visitas posteriores. Las cookies son fundamentales para el funcionamiento de Internet, proporcionando numerosas ventajas en la prestación de servicios interactivos.</p>
+    <p>Última actualización: 29 de abril de 2025</p>
 
-        <h2 class="titulo2">¿Para qué utilizamos las Cookies en "Más Allá Del PIB"?</h2>
-        <p class="parrafo">Utilizamos cookies por diversas razones, principalmente para mejorar tu experiencia de navegación y entender cómo se utiliza nuestro contenido relacionado con el crecimiento económico, emprendimiento, negocios y el mundo laboral. Los principales tipos de cookies que podríamos utilizar son:</p>
-        <p class="parrafo">Cookies Técnicas o Necesarias: Son esenciales para que el Blog funcione correctamente. Permiten la navegación por el sitio web y el uso de sus diferentes opciones o servicios, como identificar la sesión, acceder a partes de acceso restringido, recordar elementos, utilizar elementos de seguridad durante la navegación, etc. Sin estas cookies, el Blog no puede funcionar adecuadamente.</p>
-        <p class="parrafo">Cookies de Análisis o Rendimiento: Recogen información sobre cómo los visitantes usan nuestro Blog (ej. qué páginas sobre la ODS 8 visitan más a menudo, si reciben mensajes de error en ciertas secciones). Esta información es agregada y generalmente anónima. Nos ayuda a comprender el tráfico del sitio, identificar tendencias, mejorar el funcionamiento del Blog y optimizar nuestro contenido para hacerlo más relevante para nuestros lectores interesados en "Más Allá Del PIB". Utilizamos servicios de análisis de terceros (como Google Analytics) que pueden establecer sus propias cookies.</p>
-        <p class="parrafo">Cookies de Funcionalidad: Permiten al Blog recordar las elecciones que haces (ej. si has aceptado la política de cookies previamente, o preferencias de visualización) para ofrecerte una experiencia más personalizada y mejorada.</p>
-        <p class="parrafo">(Opcional - Incluir solo si usas publicidad): Cookies de Publicidad: Se utilizan para mostrar anuncios relevantes para ti en función de tus intereses. Estas cookies pueden rastrear tu actividad de navegación en otros sitios web. (Si no usas publicidad, omite esta sección).</p>
+    <p>En "Más Allá del PIB", nos tomamos muy en serio la privacidad de nuestros usuarios. Esta Política de Privacidad describe cómo recopilamos, utilizamos y protegemos la información que nos proporcionas al utilizar nuestro sitio web.</p>
 
-        <h2 class="titulo2">Cookies Propias y de Terceros</h2>
-        <p class="parrafo">Cookies Propias: Son aquellas que se envían a tu equipo terminal desde un equipo o dominio gestionado por nosotros y desde el que se presta el servicio solicitado por el usuario (es decir, establecidas directamente por nuestro Blog).</p>
-        <p class="parrafo">Cookies de Terceros: Son aquellas que se envían a tu equipo terminal desde un equipo o dominio que no es gestionado por nosotros, sino por otra entidad que trata los datos obtenidos a través de las cookies (ej. cookies de Google Analytics, botones de redes sociales si los hubiera).</p>
+    <h2>1. Información que recopilamos</h2>
+    <p>Podemos recopilar información personal como nombre, correo electrónico y cualquier otra información que voluntariamente nos proporciones a través de formularios de contacto, comentarios o suscripciones.</p>
 
-        <h2 class="titulo2">Gestión de Cookies: Cómo Controlar y Eliminar Cookies</h2>
-        <p class="parrafo">Tienes derecho a aceptar, rechazar o eliminar las cookies. Puedes hacerlo modificando la configuración de tu navegador en cualquier momento. La forma de gestionar las cookies varía según el navegador. Puedes encontrar instrucciones en los enlaces de ayuda de cada navegador:</p>
-        <p class="parrafo">Google Chrome:</p><a href="">[Enlace de ayuda de Chrome]</a>
-        <p class="parrafo">Mozilla Firefox:</p><a href="">[Enlace de ayuda de Firefox]</a>
-        <p class="parrafo"> Apple Safari:</p><a href="">[Enlace de ayuda de Safari]</a>
-        <p class="parrafo">Microsoft Edge:</p><a href="">[Enlace de ayuda de Edge]</a>
-        <p class="parrafo">Opera:</p><a href="">[Enlace de ayuda de Opera]</a>
-        <p class="parrafo">Ten en cuenta que deshabilitar ciertas cookies (especialmente las técnicas/necesarias) puede afectar la funcionalidad del Blog y limitar tu experiencia, pudiendo impedir que accedas a ciertas partes o que la navegación sea menos fluida.</p>
-        <p class="parrafo">Si utilizas servicios de terceros como Google Analytics, a menudo también tienen sus propias opciones de exclusión (opt-out). Por ejemplo, para Google Analytics, puedes descargar un complemento para tu navegador: [Complemento de inhabilitación para navegadores de Google Analytics].</p>
+    <h2>2. Uso de la información</h2>
+    <p>La información recopilada será utilizada para:</p>
+    <ul>
+        <li>Responder a tus consultas.</li>
+        <li>Enviar boletines informativos si estás suscrito.</li>
+        <li>Mejorar el contenido y la experiencia del sitio.</li>
+    </ul>
 
-        <h2 class="titulo2">Actualizaciones de Nuestro Aviso de Cookies</h2>
-        <p class="parrafo">Este Aviso de Privacidad de Cookies puede ser actualizado periódicamente para reflejar cambios en nuestras prácticas de cookies, los servicios que utilizamos o por razones legales. Te recomendamos revisar este aviso cada vez que visites nuestro Blog para estar informado sobre cómo utilizamos las cookies. La fecha de la última actualización se indica al principio del aviso.</p>
-        <h2 class="titulo2">Contacto</h2>
+    <h2>3. Cookies</h2>
+    <p>Utilizamos cookies para mejorar tu experiencia de navegación. </p>
 
-        <p class="parrafo">Si tienes alguna pregunta sobre nuestro uso de cookies o este aviso, puedes contactarnos a través de <a href="">[Inserta aquí tu dirección de correo electrónico de contacto] </a> o visitando nuestra página de contacto <a href="">[Inserta aquí el enlace a tu página de contacto, si tienes una]</a>.</p>
-        <h2 class="titulo2">Más Información sobre tu Privacidad</h2>
+    <h2>4. Protección de datos</h2>
+    <p>Implementamos medidas de seguridad para proteger tu información. No vendemos ni compartimos tus datos con terceros, salvo en cumplimiento de una obligación legal.</p>
 
-        <p class="parrafo">Para obtener más detalles sobre cómo recopilamos, usamos y protegemos tus datos personales, por favor, consulta nuestra Política de Privacidad completa en <a href="">[Inserta aquí el enlace a tu Política de Privacidad completa]</a>. Este Aviso de Cookies forma parte de nuestra Política de Privacidad general.</p>
+    <h2>5. Tus derechos</h2>
+    <p>Como usuario, tienes derecho a acceder, modificar o eliminar tu información personal. Para ejercer estos derechos, puedes escribirnos a: 
+        <a href="https://mail.google.com/mail/?view=cm&to=masalladelpib1@gmail.com" target="_blank">masalladelpib1@gmail.com</a>
+</p>
 
+    <h2>6. Cambios en la política</h2>
+    <p>Nos reservamos el derecho de modificar esta política en cualquier momento. Te recomendamos revisarla periódicamente.</p>
 
-    </div>
-    <?php include(__DIR__ . '/footer.php'); ?>
+    <footer>
+        © 2025 Más Allá del PIB — Todos los derechos reservados.
+    </footer>
+</div>
+
 </body>
 </html>
-      

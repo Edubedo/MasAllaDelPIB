@@ -5,7 +5,7 @@
 //$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 //$dotenv->load();
 
-// composer require vlucas/phpdotenv
+ //composer require vlucas/phpdotenv
 $host = $_ENV['DB_HOST'];
 $user = $_ENV['DB_USER'];
 $password = $_ENV['DB_PASSWORD'];

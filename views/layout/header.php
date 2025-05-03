@@ -28,12 +28,12 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Website</title>
 
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
     <script src="/js/buscar.js"></script>
 
     <!-- CUSTOM STYLESHEET -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="/views/css/navbar.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,800;1,700&display=swap" rel="stylesheet">
 </head>
 
@@ -44,7 +44,7 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
         <div class="container nav__container">
             <a href="<?= "/" ?>index.php" class="nav__logo">
                 <span class="nav__logo-name">
-                    <img src="../../assets/img/logo.png" alt="imagen logo empresa" width="50" height="40">
+                    <img src="/assets/img/logo.png" alt="imagen logo empresa" width="50" height="40">
                     <h2 style="color:white;">Mas Allá Del PIB</h2>
                 </span>
             </a>

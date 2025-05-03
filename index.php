@@ -1,7 +1,31 @@
 <?php
 session_start();
 require 'config/database.php';
+// Obtener publicaciones del usuario con ID 1
+$queryUsuario = "SELECT 
+    p.Id_posts, 
+    p.title, 
+    p.content, 
+    p.post_date, 
+    p.image,
+    p.user_creation
+    FROM posts p 
+    INNER JOIN users u ON p.user_creation = u.username 
+    WHERE u.id_type_user = 1 
+    ORDER BY p.post_date DESC 
+    LIMIT 3";
 
+// puedes ajustar el límite si quieres más o menos
+
+try {
+    $stmtUsuario = $pdo->prepare($queryUsuario);
+    $stmtUsuario->execute();
+    $postsUsuario = $stmtUsuario->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Error al consultar publicaciones del usuario: " . $e->getMessage());
+}
+
+// Obtener las publicaciones más recientes
 $query = "SELECT 
         p.Id_posts, 
         p.title, 
@@ -26,6 +50,8 @@ try {
 } catch (PDOException $e) {
     die("Error al consultar publicaciones: " . $e->getMessage());
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -68,20 +94,20 @@ try {
             </div>
         </div>
 
-        <div class="div-derecho">
-            <div class="populares">
-                <h3>Lo mas popular</h3>
-            </div>
-            <div class="barra">texto aqui</div>
-            <div class="formulario">
-                <p>Aqui ira la parte del formulario</p>
-            </div>
-            <div class="barra">texto aqui</div>
-            <div class="div-inferior-derecho">
-                <p>Otra cosa aqui</p>
-            </div>
-
+        <div class="div-inferior-derecho">
+            <h1>Publicaciones Del Autor</h1>
+            <?php if (!empty($postsUsuario)): ?>
+                <?php 
+                    $postsDB = $postsUsuario; 
+                    $isIndex = false; // o true, según necesites
+                    include('views/layout/posts.php'); 
+                ?>
+            <?php else: ?>
+                <p>No hay publicaciones del autor.</p>
+            <?php endif; ?>
         </div>
+   
+
 
     </div>
 

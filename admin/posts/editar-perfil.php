@@ -170,6 +170,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
+        if (!empty($_POST['email']) && $id == $iduser) {
+            $_SESSION['email'] = $new_email;
+        }
+        
+        
         $_SESSION['success_message'] = "✅ Perfil actualizado con éxito";
         header("Location: editar-perfil.php?id=" . $id);
         exit();
@@ -186,6 +191,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar perfil</title>
+
+    <link rel="icon" href="../../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/crear.css">
 </head>
 <body>
