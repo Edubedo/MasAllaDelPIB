@@ -82,7 +82,7 @@ try {
 
     <!-- Contenido principal -->
     <div class="container-principal">
-        <div class="div-central">
+        <div class="div-izquierdo">
             <!-- Sección de Publicaciones -->
             <div class="encabezado">
                 <h1>Mas Recientes</h1>
@@ -94,17 +94,24 @@ try {
             </div>
         </div>
 
-        <div class="div-inferior-derecho">
-            <h1>Publicaciones Del Autor</h1>
-            <?php if (!empty($postsUsuario)): ?>
-                <?php 
-                    $postsDB = $postsUsuario; 
-                    $isIndex = false; // o true, según necesites
-                    include('views/layout/posts.php'); 
-                ?>
-            <?php else: ?>
-                <p>No hay publicaciones del autor.</p>
-            <?php endif; ?>
+        <div class="div-derecho">
+            <div class="barra">
+                <h4>Publicaciones Del Autor</h4>
+            </div>
+
+            <div class="posts-admin">
+                <?php if (!empty($postsUsuario)): ?>
+                        <?php 
+                            $postsDB = $postsUsuario; 
+                            $isIndex = false; // o true, según necesites
+                            include('views/layout/posts-admin.php'); 
+                        ?>
+                    <?php else: ?>
+                        <p>No hay publicaciones del autor.</p>
+                    <?php endif; ?>
+            </div>
+
+            <div class="barra"></div>
         </div>
    
 
