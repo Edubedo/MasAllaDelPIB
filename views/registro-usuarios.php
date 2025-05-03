@@ -1,14 +1,15 @@
 <?php
 session_start();
-// Mostrar errores en pantalla
+// Desactivar la visualización de errores en producción
+ini_set('display_errors', 0);
 error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 // Incluir la conexión a la base de datos
 include('../config/database.php'); // Asegúrate de que esta ruta sea correcta
 
 //funcion para comprimir la imagen
-function comprimir_imagen($origen, $destino, $max_width, $max_height, $quality = 75) {
+function comprimir_imagen($origen, $destino, $max_width, $max_height, $quality = 75)
+{
     list($width, $height, $type) = getimagesize($origen);
 
     // Calculamos las nuevas dimensiones respetando la relación de aspecto
@@ -42,6 +43,8 @@ function comprimir_imagen($origen, $destino, $max_width, $max_height, $quality =
     }
 
     // Creamos la nueva imagen con las nuevas dimensiones
+    $new_width = (int)$new_width; // Convertir a entero
+    $new_height = (int)$new_height; // Convertir a entero
     $dst = imagecreatetruecolor($new_width, $new_height);
     imagecopyresampled($dst, $src, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
 
@@ -144,4 +147,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
-?>
