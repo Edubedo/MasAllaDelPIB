@@ -3,6 +3,12 @@ html, body {
     margin: 0;
 }
 
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .fondo-overlay {
     position: fixed;
     top: 0;
@@ -37,6 +43,11 @@ h1, h3, p {
     justify-content: space-between;
     padding: 2rem;
     gap: 0.5rem;
+}
+
+.container-carrusel {
+    width: 100%;
+    min-height: 20rem;
 }
 
 /* Columna izquierda (recientes) */
