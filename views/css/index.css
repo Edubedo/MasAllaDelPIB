@@ -98,6 +98,7 @@ h1, h3, p {
     justify-content: center;
     align-items: center;
     color: #ffffff;
+    margin-top: 2rem;
 }
 
 /* Posts del admin */
@@ -111,6 +112,11 @@ h1, h3, p {
 
 .pagina-index .posts-admin .p1 {
     width: 100%;
+    height: auto;
+}
+
+.pagina-index .posts-admin .cuerpo_post {
+    height: 17rem;
 }
 
 /* Responsive: pantallas medianas */
@@ -130,6 +136,44 @@ h1, h3, p {
 
 
 /* Responsive: pantallas pequeñas */
+@media (max-width: 920px) {
+    .container-principal {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .div-izquierdo,
+    .div-derecho {
+        width: 100%;
+        border-right: none;
+        margin-top: 1rem;
+    }
+
+    .div-derecho {
+        margin-top: 2rem;
+    }
+
+    .pagina-index .p1 {
+        width: 100%;
+    }
+
+    .pagina-index .titulo1 {
+        font-size: 1.5rem;
+    }
+
+    .pagina-index .datos1,
+    .pagina-index .texto1 {
+        font-size: 1.1rem;
+    }
+
+    .pagina-index .posts-admin .cuerpo_post {
+        height: 12rem;
+    }
+}
+
+
+/* Responsive: pantallas mas pequeñas */
 @media (max-width: 680px) {
     .cuerpo {
         padding: 0.5rem;
@@ -141,6 +185,11 @@ h1, h3, p {
     .pagina-index .texto1 {
         font-size: 1.1rem;
     }
+
+    .pagina-index .posts-admin .cuerpo_post {
+        height: 10rem;
+    }
+
 }
 
 /* Responsive: pantallas muy pequeñas */
@@ -155,5 +204,14 @@ h1, h3, p {
     .pagina-index .texto1 {
         font-size: 1rem;
     }
+    
 
+    .pagina-index .posts-admin .p1 {
+        height: 18rem;
+    }
+
+    .pagina-index .posts-admin .cuerpo_post {
+        height: 10rem;
+    }
 }
+
