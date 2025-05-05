@@ -49,30 +49,33 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
                 </span>
             </a>
             <ul class="nav__items" style="font-size: 1.5rem;">
-                
                 <?php
                 if ($idtypeuser == 1) { // Administrador
-                    echo '<li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i></a></li>';
-                    echo '<li><a class="texto_a" href="/admin/posts/posts-consulta.php"><i class="fas fa-pen"></i></a></li>'; // Cambié el icono de publicaciones
-                    echo '<li><a class="texto_a" href="/admin/posts/panel-usuarios.php"><i class="fas fa-users"></i></a></li>';
+                    echo '
+                    <li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i><span class="hover-text">Inicio</span></a></li>
+                    <li><a class="texto_a" href="/admin/posts/posts-consulta.php"><i class="fas fa-pen"></i><span class="hover-text">Publicaciones</span></a></li>
+                    <li><a class="texto_a" href="/admin/posts/panel-usuarios.php"><i class="fas fa-users"></i><span class="hover-text">Usuarios</span></a></li>';
                 } elseif ($idtypeuser == 2) { // Autor
-                    echo '<li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i></a></li>';
-                    echo '<li><a class="texto_a" href="/views/publicaciones.php"><i class="fas fa-clipboard-list"></i></a></li>';  // Cambié el icono de publicaciones -->
-                    echo '<li><a class="texto_a" href="/views/about.php"><i class="fas fa-users-cog"></i></a></li>';  // Cambié el icono de Nosotros -->
-                    echo '<li style="display: flex; align-items: center; justify-content: center;">';
-                    echo '<a class="texto_a" href="/admin/posts/posts-consulta.php" style="display: flex; align-items: center; justify-content: center;">';
-                    echo '<img src="' . $rutaImagen . '" alt="Foto de perfil" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">';
-                    echo '</a>';
-                    echo '</li>';
-
-                } elseif($idtypeuser == 3) { // Visitante
-                    echo '<li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i></a></li>';
-                    echo '<li><a class="texto_a" href="/views/publicaciones.php"><i class="fas fa-clipboard-list"></i></a></li>';  // Cambié el icono de publicaciones -->
-                    echo '<li><a class="texto_a" href="/views/about.php"><i class="fas fa-users-cog"></i></a></li>';  // Cambié el icono de Nosotros -->
-                    echo '<li><a class="texto_a" href="/views/signin.php"><i class="fas fa-sign-in-alt"></i></a></li>';
+                    echo '
+                    <li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i><span class="hover-text">Inicio</span></a></li>
+                    <li><a class="texto_a" href="/views/publicaciones.php"><i class="fas fa-clipboard-list"></i><span class="hover-text">Posts</span></a></li>
+                    <li><a class="texto_a" href="/views/about.php"><i class="fas fa-users-cog"></i><span class="hover-text">Nosotros</span></a></li>
+                    <li style="display: flex; align-items: center; justify-content: center;">
+                        <a class="texto_a" href="/admin/posts/posts-consulta.php" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                            <img src="' . $rutaImagen . '" alt="Foto de perfil" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
+                            <span class="hover-text">Perfil</span>
+                        </a>
+                    </li>';
+                } elseif ($idtypeuser == 3) { // Visitante
+                    echo '
+                    <li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i><span class="hover-text">Inicio</span></a></li>
+                    <li><a class="texto_a" href="/views/publicaciones.php"><i class="fas fa-clipboard-list"></i><span class="hover-text">Posts</span></a></li>
+                    <li><a class="texto_a" href="/views/about.php"><i class="fas fa-users-cog"></i><span class="hover-text">Nosotros</span></a></li>
+                    <li><a class="texto_a" href="/views/signin.php"><i class="fas fa-sign-in-alt"></i><span class="hover-text">Iniciar Sesión</span></a></li>';
                 }
                 ?>
             </ul>
+
 
             <!-- Agregar el buscador aquí -->
             <div class="search-container">
