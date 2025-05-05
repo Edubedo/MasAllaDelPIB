@@ -127,7 +127,10 @@ if (isset($_POST['submit_comment'])) {
                 foreach ($comments as $comment):
             ?>
                     <div class="comentario">
-                        <img src="/views/uploads/user-default2.jpeg" alt="Foto de perfil">
+                        <div class="imagen-user">
+                            <img src="<?php echo htmlspecialchars($ruta); ?>" alt="Foto de perfil">
+                        </div>
+
                         <div class="comentario-contenido">
                             <p><strong><?php echo htmlspecialchars($comment['user_creation']); ?></strong></p>
                             <p><?php echo nl2br(htmlspecialchars($comment['content'])); ?></p>
