@@ -206,11 +206,11 @@ li a{
         align-items: center;
         justify-content: center;
         position: fixed;
-        top: 7rem;
+        top: 5rem;
         right: 0;
         width: 50%;
         height: calc(100vh - 7rem);
-        background-color: #242526;
+        background-color: #242526d8;
         gap: 2rem;
         transform: translateX(100%);
         transition: transform 0.3s ease-in-out;
