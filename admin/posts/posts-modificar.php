@@ -219,7 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <label for="imagen">Imagen:</label>
                             <input type="file" id="imagen" name="imagen_posts" accept="image/*">
                             <label for="imagen_actual">Imagen actual:</label>
-                            <img src="<?= htmlspecialchars($datos->image) ?>" alt="Imagen actual" width="150">
+                            <img class="imagenActual" src="<?= htmlspecialchars($datos->image) ?>" alt="Imagen actual" width="150">
                         </div>
                         <div class="referenciadelpost">
                             <label for="referencias">Referencias:</label>

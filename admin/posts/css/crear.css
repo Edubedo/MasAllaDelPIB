@@ -348,6 +348,10 @@ button:hover {
     background-color: #cc0000;
 }
 
+
+.imagenActual{
+    padding-left: 1rem;
+}
 /* --- Tu estilo base permanece igual (el que enviaste) --- */
 
 /* --- Media Queries para hacerlo RESPONSIVO --- */
