@@ -17,10 +17,10 @@ nav {
     font-family: 'Times New Roman', Times, serif;
     padding: 0 2%;
     height: 5rem;
+    justify-content: flex-start;
     background-color: #25384c !important;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     transition: all 0.3s ease; /* Transición para la barra de navegación */
     text-shadow: 2px 2px 4px #000000;
 }
@@ -35,6 +35,7 @@ nav .logo {
     font-family: 'Times New Roman', Times, serif;
     gap: 8px;
     transition: gap 0.3s ease, font-size 0.3s ease; /* Transición para el espacio y tamaño de fuente */
+    margin-right: auto;
 }
 
 nav .logo img {
@@ -58,7 +59,7 @@ nav .list li {
 .nav__items {
     display: flex;
     align-items: center;
-    gap: 2rem; /* menos espacio entre íconos */
+    gap: 3rem; /* menos espacio entre íconos */
 }
 
 /* Contenedor para ícono y texto */
