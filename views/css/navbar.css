@@ -164,7 +164,7 @@ nav button {
 
 .nav__logo-name img {
     width: 5rem;
-    margin-right: 1rem;
+    margin-right: 3rem;
 }
 
 .nav__logo-name h2 {
@@ -187,6 +187,12 @@ nav button {
 .nav__items i {
     font-size: 2rem;
 }
+.nav__icon-group {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem; /* Aumenta este valor si quieres más separación */
+}
+
 
 /* Estilos para el buscador dentro de la barra */
 .search-container {
@@ -302,11 +308,20 @@ nav button {
     nav .logo {
         width: auto;
     }
+    .nav__icon-group {
+        gap: 2rem; /* Más espacio solo en pantallas pequeñas */
+    }
 }
+@media (max-width: 466px) {
+    .nav__logo-name h2 {
+        font-size: 1.12rem; /* Ajusta este valor según lo pequeño que lo quieras */
+    }
+}
+
 
 /* Estilos para móviles más pequeños */
 @media (max-width: 480px) {
-    nav .logo {
+    nav .logo  {
         font-size: 1.8rem;
         gap: 3px; /* Reducir el espacio entre el logo y el título */
     }
