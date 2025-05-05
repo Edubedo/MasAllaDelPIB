@@ -85,7 +85,13 @@ h1, h3, p {
     text-shadow: none;
 }
 
-
+/* Evita que el contenido se desborde */
+.pagina-index .post-derecho,
+.cuerpo .p1 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
 
 /* Columna derecha (admin) */
 .div-derecho {
@@ -96,7 +102,6 @@ h1, h3, p {
     width: 35%;
     padding: 1rem;
     height: 100%;
-    margin-top: 15rem;
 }
 
 /* Barra decorativa */
@@ -109,7 +114,6 @@ h1, h3, p {
     justify-content: center;
     align-items: center;
     color: #ffffff;
-    margin-top: 2rem;
 }
 
 /* Posts del admin */
@@ -119,6 +123,14 @@ h1, h3, p {
     flex-direction: column;
     text-align: center;
     gap: 0.5rem;
+}
+
+/* Evita que el contenido se desborde */
+.pagina-index .posts-admin .post-derecho,
+.cuerpo .p1 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
 }
 
 .pagina-index .posts-admin .p1 {
