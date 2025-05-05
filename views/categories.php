@@ -51,31 +51,30 @@ if ($category) {
     <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href='./css/footer.css'>
     <link rel="stylesheet" href='./css/publicaciones.css'>
-    <link rel="stylesheet" href='css/index.css'>
 
     <!-- Font Awesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
-<body>
+<body class="pagina-publicaciones">
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
     <!-- <?php include './layout/header.php'; ?> -->
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
 
     <nav class="nav_public">
-        <ul class="list">
-            <li><a href="./publicaciones.php">Todas las categorias</a></li>
-            <li><a href="./categories.php?category=crecimiento-economico">Crecimiento Economico</a></li>
-            <li><a href="./categories.php?category=emprendimiento-negocios">Emprendimiento y Negocios</a></li>
-            <li><a href="./categories.php?category=mundo-laboral">Mundo Laboral</a></li>
-        </ul>
         <input type="checkbox" id="toggle" style="display: none;">
-        <label for="toggle" class="icon-bar">
-            <span class="line"></span>
-            <span class="line"></span>
-            <span class="line"></span>
-        </label>
+            <label class="icon-bars" for="toggle">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </label>
+            <ul class="list">
+                <li><a href="./publicaciones.php">Todas las categorias</a></li>
+                <li><a href="./categories.php?category=crecimiento-economico">Crecimiento Economico</a></li>
+                <li><a href="./categories.php?category=emprendimiento-negocios">Emprendimiento y Negocios</a></li>
+                <li><a href="./categories.php?category=mundo-laboral">Mundo Laboral</a></li>
+            </ul>
     </nav>
 
     <div class="encabezado">
