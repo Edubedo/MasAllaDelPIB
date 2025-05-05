@@ -58,15 +58,15 @@ h1{
     color: #fffdfd; /* Color oscuro para los enlaces */
     text-decoration: none;
     padding: 0.8rem 1.5rem;
-    font-size: 1.2rem;
+    font-size: 2rem;
     font-weight: bold;
     transition: color 0.3s ease;
     border-radius: 5px;
 }
 
 .nav_public .list li a:hover {
-    color: #ffffff !important;
-    background-color: #416691d6; /* Color azul más oscuro al pasar el ratón */
+    color: #fffb00 !important;
+    
 }
 
 /* Menú hamburguesa (móvil) */
@@ -209,7 +209,7 @@ li a{
         top: 5rem;
         right: 0;
         width: 50%;
-        height: calc(100vh - 7rem);
+        height: calc(100vh);
         background-color: #242526d8;
         gap: 2rem;
         transform: translateX(100%);
