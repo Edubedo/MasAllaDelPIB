@@ -20,8 +20,6 @@ if (!$post) {
     die("Publicación no encontrada.");
 }
 
-
-
 // Definir imagen predeterminada si no hay imagen en la base de datos
 $imageSrc = !empty($post['image']) ? "../admin/posts/" . htmlspecialchars($post['image']) : "../admin/posts/uploads/preterminada.jpg";
 
@@ -32,7 +30,8 @@ $stmt = $pdo->prepare("SELECT foto_perfil FROM users WHERE username = :username"
 $stmt->execute([':username' => $post['user_creation']]);
 $userProfile = $stmt->fetch(PDO::FETCH_ASSOC);
 $foto_perfil = $userProfile['foto_perfil'] ?? null;
-$ruta = !empty($foto_perfil) ? "/views/uploads/" . htmlspecialchars($foto_perfil) : "/views/uploads/user-default2.jpeg";
+
+$imageProfile = !empty($foto_perfil) ? "/views/uploads/" . htmlspecialchars($foto_perfil) : "/views/uploads/user-default2.jpeg";
 
 // Procesar el envío de comentarios
 if (isset($_POST['submit_comment'])) {
@@ -88,7 +87,7 @@ if (isset($_POST['submit_comment'])) {
             <h1><?php echo htmlspecialchars($post['title']); ?></h1>
             <div class="datos">
                 <div class="imagen-user">
-                    <img src="<?php echo htmlspecialchars($ruta); ?>" alt="Foto de perfil">
+                    <img src="<?php echo htmlspecialchars($imageProfile); ?>" alt="Foto de perfil">
                     <span><?php echo htmlspecialchars($post['user_creation']); ?></span>
                 </div>
                 <i class="far fa-calendar"></i> <?php echo date("F d, Y", strtotime($post['post_date'])); ?>
@@ -125,12 +124,18 @@ if (isset($_POST['submit_comment'])) {
 
             if ($comments):
                 foreach ($comments as $comment):
+                    // Obtener foto de perfil del usuario que comentó
+                    $stmtUser = $pdo->prepare("SELECT foto_perfil FROM users WHERE username = :username");
+                    $stmtUser->execute([':username' => $comment['user_creation']]);
+                    $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
+                    $fotoPerfilComentario = $user['foto_perfil'] ?? null;
+                    $commentImage = !empty($fotoPerfilComentario) ? "/views/uploads/" . htmlspecialchars($fotoPerfilComentario) : "/views/uploads/user-default2.jpeg";
             ?>
                     <div class="comentario">
                         <div class="imagen-user">
-                            <img src="<?php echo htmlspecialchars($ruta); ?>" alt="Foto de perfil">
+                            <img src="<?php echo htmlspecialchars($commentImage); ?>" alt="Foto de perfil">
                         </div>
-
+                                  
                         <div class="comentario-contenido">
                             <p><strong><?php echo htmlspecialchars($comment['user_creation']); ?></strong></p>
                             <p><?php echo nl2br(htmlspecialchars($comment['content'])); ?></p>
