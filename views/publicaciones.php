@@ -48,7 +48,7 @@ try {
 
 </head>
 
-<body>
+<body class="pagina-publicaciones">
     <div class="fondo-overlay"></div>
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
     <!-- <?php include './layout/header.php'; ?> -->
