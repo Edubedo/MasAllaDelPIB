@@ -17,10 +17,10 @@ nav {
     font-family: 'Times New Roman', Times, serif;
     padding: 0 2%;
     height: 5rem;
+    justify-content: flex-start;
     background-color: #25384c !important;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     transition: all 0.3s ease; /* Transición para la barra de navegación */
     text-shadow: 2px 2px 4px #000000;
 }
@@ -33,8 +33,9 @@ nav .logo {
     color: aliceblue;
     text-transform: uppercase;
     font-family: 'Times New Roman', Times, serif;
-    gap: 10px;
+    gap: 8px;
     transition: gap 0.3s ease, font-size 0.3s ease; /* Transición para el espacio y tamaño de fuente */
+    margin-right: auto;
 }
 
 nav .logo img {
@@ -55,16 +56,69 @@ nav .list li {
     list-style: none;
 }
 
-.texto_a {
-    color: aliceblue;
-    text-decoration: none;
-    padding: 1rem 1rem;
-    font-size: 1.8rem;
+.nav__items {
+    display: flex;
+    align-items: center;
+    gap: 3rem; /* menos espacio entre íconos */
 }
 
-.texto_a:hover {
-    color: rgb(255, 184, 61) !important;
+/* Contenedor para ícono y texto */
+.texto_a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* centrado vertical */
+    color: aliceblue;
+    text-decoration: none;
+    height: 4rem; /* Altura fija para asegurar centrado */
+    width: 4rem;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden; /* evita desbordes cuando aparece el texto */
 }
+
+/* Ícono */
+.texto_a i {
+    transition: transform 0.3s ease;
+    display: block;
+    z-index: 1;
+}
+
+/* Texto debajo del ícono */
+.texto_a .hover-text {
+    font-size: 1.16rem;
+    color: white;
+    margin-top: 0.3rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    position: absolute;
+    bottom: -1.2rem;
+    white-space: nowrap;
+}
+
+/* Hover - ícono sube, texto aparece */
+.texto_a:hover i {
+    transform: translateY(-10px);
+}
+/* Hover: la imagen sube */
+.texto_a:hover img {
+    transform: translateY(-10px);
+}
+
+.texto_a:hover .hover-text {
+    opacity: 1;
+    transform: translateY(0);
+    color: rgb(255, 184, 61);
+    bottom: 0;
+}
+.texto_a:hover i {
+    transform: translateY(-10px);
+    color: rgb(255, 184, 61);
+}
+
 
 /* Ícono de Hamburguesa */
 #toggle {
@@ -110,7 +164,7 @@ nav button {
 
 .nav__logo-name img {
     width: 5rem;
-    margin-right: 1rem;
+    margin-right: 3rem;
 }
 
 .nav__logo-name h2 {
@@ -127,12 +181,18 @@ nav button {
 .nav__items {
     display: flex;
     align-items: center;
-    gap: 8rem;
+    gap: 5rem;
 }
 
 .nav__items i {
     font-size: 2rem;
 }
+.nav__icon-group {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem; /* Aumenta este valor si quieres más separación */
+}
+
 
 /* Estilos para el buscador dentro de la barra */
 .search-container {
@@ -188,7 +248,7 @@ nav button {
     .nav__items {
         display: none; /* Ocultar por defecto */
         flex-direction: column;
-        background-color: #3f6fa3;
+        background-color: #183e67ae;
         width: 50%;
         height: 100vh; /* Ajustar al 100% de la pantalla en vertical */
         padding: 6rem 0;
@@ -248,17 +308,45 @@ nav button {
     nav .logo {
         width: auto;
     }
+    .nav__icon-group {
+        gap: 2rem; /* Más espacio solo en pantallas pequeñas */
+    }
 }
+@media (max-width: 466px) {
+    .nav__logo-name h2 {
+        font-size: 1.12rem; /* Ajusta este valor según lo pequeño que lo quieras */
+    }
+}
+
 
 /* Estilos para móviles más pequeños */
 @media (max-width: 480px) {
-    nav .logo {
+    nav .logo  {
         font-size: 1.8rem;
         gap: 3px; /* Reducir el espacio entre el logo y el título */
     }
 
     nav .logo img {
         width: 25px; /* Reducir aún más el tamaño del logo */
+    }
+
+    nav .texto_a {
+        font-size: 1.2rem;
+    }
+
+    nav .list {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 438px) {
+    nav .logo {
+        font-size: 1.5rem !important;
+        gap: 3px; /* Reducir el espacio entre el logo y el título */
+    }
+
+    nav .logo img {
+        width: 15px !important; /* Reducir aún más el tamaño del logo */
     }
 
     nav .texto_a {

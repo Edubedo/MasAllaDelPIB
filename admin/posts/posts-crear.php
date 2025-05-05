@@ -2,6 +2,70 @@
 session_start();
 include '../../config/database.php';
 
+//funcion para comprimir imagen
+function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 1200, $calidad = 90) {
+    $info = getimagesize($rutaOriginal);
+    if (!$info) return false;
+
+    $tipo = $info['mime'];
+    $ancho = $info[0];
+    $alto = $info[1];
+
+    if ($ancho <= 0 || $alto <= 0) return false;
+
+    // Procesar dependiendo del tipo de imagen
+    switch ($tipo) {
+        case 'image/jpeg':
+            $imagen = imagecreatefromjpeg($rutaOriginal);
+            break;
+        case 'image/png':
+            $imagen = imagecreatefrompng($rutaOriginal);
+            imagealphablending($imagen, false);
+            imagesavealpha($imagen, true);
+            break;
+        case 'image/webp':
+            $imagen = imagecreatefromwebp($rutaOriginal);
+            imagealphablending($imagen, false);
+            imagesavealpha($imagen, true);
+            break;
+        default:
+            return false;
+    }
+
+    // Redimensionar si es necesario
+    if ($ancho > $maxAncho) {
+        $nuevoAncho = $maxAncho;
+        $nuevoAlto = max(1, (int)(($maxAncho / $ancho) * $alto));
+        $nuevaImagen = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+        if ($tipo == 'image/png' || $tipo == 'image/webp') {
+            imagealphablending($nuevaImagen, false);
+            imagesavealpha($nuevaImagen, true);
+        }
+
+        imagecopyresampled($nuevaImagen, $imagen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+    } else {
+        $nuevaImagen = $imagen;
+    }
+
+    // Guardar imagen comprimida
+    switch ($tipo) {
+        case 'image/jpeg':
+            imagejpeg($nuevaImagen, $rutaDestino, $calidad);
+            break;
+        case 'image/png':
+            imagepng($nuevaImagen, $rutaDestino, 0);
+            break;
+        case 'image/webp':
+            imagewebp($nuevaImagen, $rutaDestino, $calidad);
+            break;
+    }
+
+    imagedestroy($imagen);
+    imagedestroy($nuevaImagen);
+    return true;
+}
+
 if (isset($_POST["crear_post"])) {
     $titulo = $_POST['titulo_posts'];
     $contenido = $_POST['contenido_posts'];
@@ -12,43 +76,52 @@ if (isset($_POST["crear_post"])) {
     $usuario = $_SESSION['username'];  
 
     if (strlen($titulo) < 10) {
-        // Mostrar error en el modal de alerta y no redirigir
         echo "<script>mostrarAlerta('Título inválido. Debe tener al menos 10 caracteres.');</script>";
         exit();
     }
 
     if (strlen($contenido) < 20) {
-        // Mostrar error en el modal de alerta y no redirigir
         echo "<script>mostrarAlerta('Contenido inválido. Debe tener al menos 20 caracteres.');</script>";
         exit();
     }
 
     if (strlen($referencias) < 10) {
-        // Mostrar error en el modal de alerta y no redirigir
-        echo "<script>mostrarAlerta('Referencia invalida.');</script>";
+        echo "<script>mostrarAlerta('Referencia inválida.');</script>";
         exit();
     }
 
     $imagen_name = $_FILES['imagen_posts']['name'];
     $imagen_tmp_name = $_FILES['imagen_posts']['tmp_name'];
     $target_dir = 'uploads/';
-    $target_file = $target_dir . basename($imagen_name);
 
-    if (move_uploaded_file($imagen_tmp_name, $target_file)) {
+    // Mover el archivo a una ruta temporal antes de manipularlo
+    $ruta_temp = $target_dir . "temp_" . basename($imagen_name);
+    if (!move_uploaded_file($imagen_tmp_name, $ruta_temp)) {
+        echo "<p style='color:red;'>Error al mover la imagen subida.</p>";
+        exit();
+    }
+
+    $ruta_final = $target_dir . "comprimida_" . basename($imagen_name);
+
+    if (comprimirImagen($ruta_temp, $ruta_final, 1200, 90)) {
+        unlink($ruta_temp); // Limpieza del temporal
+
         $query = "INSERT INTO posts (title, content, post_date, category, image, user_creation, referencia_posts) 
-                  VALUES ('$titulo', '$contenido', '$fecha', '$categoria', '$target_file', '$usuario', '$referencias')";
+                  VALUES ('$titulo', '$contenido', '$fecha', '$categoria', '$ruta_final', '$usuario', '$referencias')";
 
         if (mysqli_query($conexion, $query)) {
-            // Redirigir a la página de consulta
             header("Location: posts-consulta.php");
             exit();
         } else {
             echo "<p style='color:red;'>Error al crear la publicación.</p>";
         }
     } else {
-        echo "<p style='color:red'>Error al subir la imagen.</p>";
+        echo "<p style='color:red;'>Error al comprimir la imagen.</p>";
+        unlink($ruta_temp);
+        exit();
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -57,6 +130,8 @@ if (isset($_POST["crear_post"])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Crear publicación</title>
+
+        <link rel="icon" href="../../assets/img/logo.png" type="image/x-icon">
         <link rel="stylesheet" href="css/crear.css">
     </head>
     
@@ -124,9 +199,8 @@ if (isset($_POST["crear_post"])) {
                 </div>
             </div>
         </form>
-        
-        <script src="../../js/posts-crear.js"></script>
 
+        <script src="../../js/posts-crear.js"></script>
 
     </body>
 </html>

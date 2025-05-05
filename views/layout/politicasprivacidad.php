@@ -3,120 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pliticas de privacidad</title>
-    <link rel="stylesheet" href="../../views/css/polipriv.css">
+    <title>Política de Privacidad</title>
+    <style>
+        /* CSS interno */
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1.6rem;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #2d2d2d;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 3rem;
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-top: 3rem;
+        }
+
+        p {
+            font-size: 1.5rem;
+            text-align: justify;
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ddd;
+            color: #666;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                margin: 2rem;
+                padding: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="card1 shadow">
-        <h1 class="titulo">Políticas de Cookies</h1>
-    </div>
-    
-    <div class="card2 shadow">
-        <h2 class="titulo2">¿Qué son las cookies?</h2>
-        <p class="parrafo">Las cookies son pequeños archivos de texto que se almacenan en su dispositivo cuando visita un sitio web. Su finalidad es reconocer su dispositivo, guardar sus preferencias y ofrecer una navegación más eficiente.</p>
 
-        <h2 class="titulo2">¿Qué tipos de cookies utilizamos?</h2>
-        <h3 class="titulo3">Cookies necesarias:</h3>
-        <p class="parrafo">Son esenciales para el funcionamiento del sitio web y no pueden desactivarse en nuestros sistemas. Suelen configurarse solo en respuesta a acciones realizadas por usted, como establecer sus preferencias de privacidad, iniciar sesión o completar formularios.</p>
-        <h3 class="titulo3">Cookies de rendimiento:</h3>
-        <p class="parrafo">Nos permiten contar las visitas y fuentes de tráfico para poder medir y mejorar el rendimiento de nuestro sitio. Toda la información que recogen estas cookies es anónima.</p>
-        <h3 class="titulo3">Cookies de funcionalidad:</h3>
-        <p class="parrafo">Permiten que el sitio web proporcione una funcionalidad y personalización mejoradas. Por ejemplo, recordar sus preferencias (idioma, región, etc.).</p>
-        <h3 class="titulo3">Cookies de análisis:</h3>
-        <p class="parrafo">Nos ayudan a entender cómo interactúan los usuarios con nuestro sitio web, recopilando información de manera anónima.</p>
-        <h3 class="titulo3">Cookies de publicidad y marketing:</h3>
-        <p class="parrafo">Se utilizan para mostrar anuncios que sean relevantes para usted. También pueden limitar la cantidad de veces que ve un anuncio y ayudarnos a medir la efectividad de nuestras campañas publicitarias.</p>
+<div class="container">
+    <h1>Política de Privacidad</h1>
 
-        <h2 class="titulo2">¿Cómo puede controlar las cookies?</h2>
-        <p class="parrafo">Puede configurar su navegador para que bloquee o le alerte sobre estas cookies, pero algunas partes del sitio no funcionarán correctamente. También puede gestionar sus preferencias de cookies en cualquier momento.</p>
+    <p>Última actualización: 29 de abril de 2025</p>
 
-        <h2 class="titulo2">Cambios en la política de cookies</h2>
-        <p class="parrafo">Nos reservamos el derecho de modificar esta Política de Cookies en cualquier momento. Cualquier cambio será publicado en esta misma página.</p>
+    <p>En "Más Allá del PIB", nos tomamos muy en serio la privacidad de nuestros usuarios. Esta Política de Privacidad describe cómo recopilamos, utilizamos y protegemos la información que nos proporcionas al utilizar nuestro sitio web.</p>
 
-        <h2 class="titulo2">Contacto</h2>
-        <p class="parrafo">Si tiene alguna duda sobre esta política, puede ponerse en contacto con nosotros a través del correo electrónico: masalladelpib@gmail.com</p>
+    <h2>1. Información que recopilamos</h2>
+    <p>Podemos recopilar información personal como nombre, correo electrónico y cualquier otra información que voluntariamente nos proporciones a través de formularios de contacto, comentarios o suscripciones.</p>
 
-        <button>
-            <span class="box">
-                Regresar
-            </span>
-        </button>
-    </div>
+    <h2>2. Uso de la información</h2>
+    <p>La información recopilada será utilizada para:</p>
+    <ul>
+        <li>Responder a tus consultas.</li>
+        <li>Enviar boletines informativos si estás suscrito.</li>
+        <li>Mejorar el contenido y la experiencia del sitio.</li>
+    </ul>
 
-    <!-- Cubo random --> 
-    <div class="my-loader">
-        <div class="rubiks-cube">
-            <div class="face front">
-                <div style="background: #ff3d00;" class="cube"></div>
-                <div style="background: #ffeb3b;" class="cube"></div>
-                <div style="background: #4caf50;" class="cube"></div>
-                <div style="background: #2196f3;" class="cube"></div>
-                <div style="background: #ffffff;" class="cube"></div>
-                <div style="background: #ffeb3b;" class="cube"></div>
-                <div style="background: #4caf50;" class="cube"></div>
-                <div style="background: #2196f3;" class="cube"></div>
-                <div style="background: #ff3d00;" class="cube"></div>
-            </div>
+    <h2>3. Cookies</h2>
+    <p>Utilizamos cookies para mejorar tu experiencia de navegación. </p>
 
-            <div class="face back">
-                <div style="background: #4caf50;" class="cube"></div>
-                <div style="background: #ff3d00;" class="cube"></div>
-                <div style="background: #ffeb3b;" class="cube"></div>
-                <div style="background: #2196f3;" class="cube"></div>
-                <div style="background: #ffffff;" class="cube"></div>
-                <div style="background: #ff3d00;" class="cube"></div>
-                <div style="background: #ffeb3b;" class="cube"></div>
-                <div style="background: #4caf50;" class="cube"></div>
-                <div style="background: #2196f3;" class="cube"></div>
-            </div>
-            <div class="face left">
-                <div style="background: #ffeb3b;" class="cube"></div>
-                <div style="background: #4caf50;" class="cube"></div>
-                <div style="background: #2196f3;" class="cube"></div>
-                <div style="background: #ff3d00;" class="cube"></div>
-                <div style="background: #ffffff;" class="cube"></div>
-                <div style="background: #4caf50;" class="cube"></div>
-                <div style="background: #2196f3;" class="cube"></div>
-                <div style="background: #ffeb3b;" class="cube"></div>
-                <div style="background: #ff3d00;" class="cube"></div>
-            </div>
-            <div class="face right">
-                <div style="background: #4caf50;" class="cube"></div>
-                <div style="background: #ff3d00;" class="cube"></div>
-                <div style="background: #ffeb3b;" class="cube"></div>
-                <div style="background: #2196f3;" class="cube"></div>
-                <div style="background: #ffffff;" class="cube"></div>
-                <div style="background: #ff3d00;" class="cube"></div>
-                <div style="background: #ffeb3b;" class="cube"></div>
-                <div style="background: #4caf50;" class="cube"></div>
-                <div style="background: #2196f3;" class="cube"></div>
-            </div>
-            <div class="face top">
-                <div style="background: #2196f3;" class="cube"></div>
-                <div style="background: #ffeb3b;" class="cube"></div>
-                <div style="background: #ff3d00;" class="cube"></div>
-                <div style="background: #4caf50;" class="cube"></div>
-                <div style="background: #ffffff;" class="cube"></div>
-                <div style="background: #ffeb3b;" class="cube"></div>
-                <div style="background: #ff3d00;" class="cube"></div>
-                <div style="background: #4caf50;" class="cube"></div>
-                <div style="background: #2196f3;" class="cube"></div>
-            </div>
-            <div class="face bottom">
-                <div style="background: #ffffff;" class="cube"></div>
-                <div style="background: #4caf50;" class="cube"></div>
-                <div style="background: #2196f3;" class="cube"></div>
-                <div style="background: #ff3d00;" class="cube"></div>
-                <div style="background: #ffeb3b;" class="cube"></div>
-                <div style="background: #4caf50;" class="cube"></div>
-                <div style="background: #2196f3;" class="cube"></div>
-                <div style="background: #ffffff;" class="cube"></div>
-                <div style="background: #ff3d00;" class="cube"></div>
-            </div>
-    </div>
+    <h2>4. Protección de datos</h2>
+    <p>Implementamos medidas de seguridad para proteger tu información. No vendemos ni compartimos tus datos con terceros, salvo en cumplimiento de una obligación legal.</p>
+
+    <h2>5. Tus derechos</h2>
+    <p>Como usuario, tienes derecho a acceder, modificar o eliminar tu información personal. Para ejercer estos derechos, puedes escribirnos a: 
+        <a href="https://mail.google.com/mail/?view=cm&to=masalladelpib1@gmail.com" target="_blank">masalladelpib1@gmail.com</a>
+</p>
+
+    <h2>6. Cambios en la política</h2>
+    <p>Nos reservamos el derecho de modificar esta política en cualquier momento. Te recomendamos revisarla periódicamente.</p>
+
+    <footer>
+        © 2025 Más Allá del PIB — Todos los derechos reservados.
+    </footer>
 </div>
-
 
 </body>
 </html>
-      

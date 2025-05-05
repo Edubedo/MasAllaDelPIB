@@ -1,5 +1,12 @@
 html, body {
     height: 100%;
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .fondo-overlay {
@@ -14,26 +21,22 @@ html, body {
 }
 
 body {
-    background-image: url('../uploads/fondo_montaña.jpg'); 
+    background-image: url('../../assets/img/fondo_montaña.jpg'); 
     background-size: cover; 
     background-position: center;
     background-attachment: fixed; 
-    margin: 0;
 }
 
 h1, h3, p {
     color: white;
     text-shadow: 2px 2px 4px #000000;
-    
-}
-.cuerpo p {
-    text-shadow: none;
-}
-.footer p, h3{
-    text-shadow: none;;
 }
 
-/* Contenedor principal */
+.footer p, h3 {
+    text-shadow: none;
+}
+
+/* Contenedor principal (todo lo que esta debajo del carrusel) */
 .container-principal {
     display: flex;
     flex-direction: row;
@@ -42,16 +45,22 @@ h1, h3, p {
     gap: 0.5rem;
 }
 
-/* Columna central */
-.div-central {
+.container-carrusel {
+    width: 100%;
+    min-height: 20rem;
+}
+
+/* Columna izquierda (recientes) */
+.div-izquierdo {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 1rem;
-    width: 75%;
+    width: 65%;
     border-right: 0.2rem solid #ffffff;
 }
 
+/* Encabezado de la columa izquierda (recientes) */
 .encabezado {
     font-size: 2rem;
     font-weight: bold;
@@ -61,32 +70,41 @@ h1, h3, p {
     margin-bottom: 2rem;
 }
 
-/* Cuerpo de publicaciones */
-.cuerpo {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    padding: 1rem;
-    width: 100%;
-}
-
-/* Solo afecta las publicaciones en el index */
+/* Estilo de publicaciones solo para el index en recientes */
 .pagina-index .p1 {
-    width: 80rem
+    width: 60rem
 }
-
 .pagina-index .titulo1 {
-    font-size: 2.4rem;
+    font-size: 2rem;
 }
-
 .pagina-index .datos1 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 .pagina-index .texto1 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    text-shadow: none;
 }
 
+/* Evita que el contenido se desborde */
+.pagina-index .post-derecho,
+.cuerpo .p1 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+/* Columna derecha (admin) */
+.div-derecho {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 35%;
+    padding: 1rem;
+    height: 100%;
+}
+
+/* Barra decorativa */
 .barra {
     display: flex;
     width: 100%;
@@ -95,39 +113,128 @@ h1, h3, p {
     border-top: 0.17rem solid #ffffff;
     justify-content: center;
     align-items: center;
-
+    color: #ffffff;
 }
 
-/* Columna lateral */
-.div-derecho {
-    display: flex;
-    flex-direction: column;
-    width: 25%;
-    gap: 1rem;
-    margin-left: 3rem;
-    margin-right: 3rem;
-}
-
-.populares {
+/* Posts del admin */
+.posts-admin {
+    height: auto;
     display: flex;
     flex-direction: column;
     text-align: center;
-    align-items: center;
-    width: 100%;
-    height: 50rem;
+    gap: 0.5rem;
 }
 
-.formulario {
-    height: 20rem;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+/* Evita que el contenido se desborde */
+.pagina-index .posts-admin .post-derecho,
+.cuerpo .p1 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
 }
 
-.div-inferior-derecho {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+.pagina-index .posts-admin .p1 {
     width: 100%;
     height: auto;
 }
+
+.pagina-index .posts-admin .cuerpo_post {
+    height: 17rem;
+}
+
+/* Responsive: pantallas medianas */
+@media (max-width: 1120px) {
+    
+    .cuerpo {
+        padding: 0.5rem;
+        font-size: 0.95rem;
+    }
+
+    .pagina-index .titulo1,
+    .pagina-index .datos1,
+    .pagina-index .texto1 {
+        font-size: 1.2rem;
+    }
+}
+
+
+/* Responsive: pantallas pequeñas */
+@media (max-width: 920px) {
+    .container-principal {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .div-izquierdo,
+    .div-derecho {
+        width: 100%;
+        border-right: none;
+        margin-top: 1rem;
+    }
+
+    .div-derecho {
+        margin-top: 2rem;
+    }
+
+    .pagina-index .p1 {
+        width: 100%;
+    }
+
+    .pagina-index .titulo1 {
+        font-size: 1.5rem;
+    }
+
+    .pagina-index .datos1,
+    .pagina-index .texto1 {
+        font-size: 1.1rem;
+    }
+
+    .pagina-index .posts-admin .cuerpo_post {
+        height: 12rem;
+    }
+}
+
+
+/* Responsive: pantallas mas pequeñas */
+@media (max-width: 680px) {
+    .cuerpo {
+        padding: 0.5rem;
+        font-size: 0.95rem;
+    }
+
+    .pagina-index .titulo1,
+    .pagina-index .datos1,
+    .pagina-index .texto1 {
+        font-size: 1.1rem;
+    }
+
+    .pagina-index .posts-admin .cuerpo_post {
+        height: 10rem;
+    }
+
+}
+
+/* Responsive: pantallas muy pequeñas */
+@media (max-width: 650px) {
+    .cuerpo {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .pagina-index .titulo1,
+    .pagina-index .datos1,
+    .pagina-index .texto1 {
+        font-size: 1rem;
+    }
+    
+
+    .pagina-index .posts-admin .p1 {
+        height: 18rem;
+    }
+
+    .pagina-index .posts-admin .cuerpo_post {
+        height: 10rem;
+    }
+}
+

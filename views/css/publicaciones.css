@@ -10,7 +10,7 @@
 }
 
 body {
-    background-image: url('../uploads/fondo_montaña.jpg'); 
+    background-image: url('../../assets/img/fondo_montaña.jpg'); 
     background-size: cover; 
     background-position: center;
     background-attachment: fixed; 
@@ -58,15 +58,15 @@ h1{
     color: #fffdfd; /* Color oscuro para los enlaces */
     text-decoration: none;
     padding: 0.8rem 1.5rem;
-    font-size: 1.2rem;
+    font-size: 2rem;
     font-weight: bold;
     transition: color 0.3s ease;
     border-radius: 5px;
 }
 
 .nav_public .list li a:hover {
-    color: #ffffff !important;
-    background-color: #416691d6; /* Color azul más oscuro al pasar el ratón */
+    color: #fffb00 !important;
+    
 }
 
 /* Menú hamburguesa (móvil) */
@@ -206,11 +206,11 @@ li a{
         align-items: center;
         justify-content: center;
         position: fixed;
-        top: 7rem;
+        top: 5rem;
         right: 0;
         width: 50%;
-        height: calc(100vh - 7rem);
-        background-color: #242526;
+        height: calc(100vh);
+        background-color: #242526d8;
         gap: 2rem;
         transform: translateX(100%);
         transition: transform 0.3s ease-in-out;
@@ -226,7 +226,6 @@ li a{
         transform: translateX(0);
         display: flex;
     }
-}
 
 
     .nav_public .list li {
@@ -245,3 +244,49 @@ li a{
         transform: translateX(0);
     }
 
+}
+
+/* Responsive: pantallas pequeñas */
+@media (max-width: 680px) {
+    .encabezado {
+        font-size: 1.5rem;
+    }
+
+    .pagina-publicaciones .p1 {
+        width: 35rem;
+    }
+
+    .pagina-publicaciones .titulo1 {
+        font-size: 1.5rem;
+    }
+    
+    .pagina-publicaciones .datos1{
+        font-size: 1rem;
+    }
+    .pagina-publicaciones .texto1 {
+        font-size: 1.3rem;
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .pagina-publicaciones .p1 {
+        width: 35rem;
+        height: auto;
+    }
+
+
+    .pagina-publicaciones .titulo1 {
+        font-size: 1.5rem;
+    }
+    
+    .pagina-publicaciones .datos1{
+        font-size: 1rem;
+    }
+    .pagina-publicaciones .texto1 {
+        font-size: 1.2rem;
+    }
+
+    
+}

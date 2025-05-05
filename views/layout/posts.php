@@ -27,18 +27,23 @@ if ($idUsuario) {
 }
 
 foreach ($postsDB as $post) {
+    // buscar la foto de perfil de quien creó el post
+    $stmt = $pdo->prepare("SELECT foto_perfil FROM users WHERE username = :username");
+    $stmt->execute([':username' => $post['user_creation']]);
+    $userProfile = $stmt->fetch(PDO::FETCH_ASSOC);
+    $foto_perfil = $userProfile['foto_perfil'] ?? null;
+    $ruta = !empty($foto_perfil) ? "/views/uploads/" . htmlspecialchars($foto_perfil) : "/views/uploads/user-default2.jpeg";
+
     $imageSrc = !empty($post['image']) ? "/admin/posts/" . htmlspecialchars($post['image']) : "/admin/posts/uploads/preterminada.jpg";
 
     $postLink = '/views/post.php?id=' . htmlspecialchars($post['Id_posts']);
-    $titleLimit = isset($isIndex) && $isIndex ? 80 : 68;
-    $contentLimit = isset($isIndex) && $isIndex ? 350 : 200;
+    $titleLimit = isset($isIndex) && $isIndex ? 50 : 40;
+    $contentLimit = isset($isIndex) && $isIndex ? 160 : 80;
     $title = htmlspecialchars(strlen($post['title']) > $titleLimit ? substr($post['title'], 0, $titleLimit) . "..." : $post['title']);
     $content = htmlspecialchars(strlen($post['content']) > $contentLimit ? substr($post['content'], 0, $contentLimit) . "..." : $post['content']);
     $userCreation = htmlspecialchars($post['user_creation']);
     $postDate = date("F d, Y", strtotime($post['post_date']));
-    $foto_perfil = $post['foto_perfil'] ?? null;
-    $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/uploads/user-default2.jpeg";
-
+    
     // Verificar si el usuario ya dio "like" a este post
     $userLiked = in_array($post['Id_posts'], $userLikes);
 
@@ -54,6 +59,7 @@ foreach ($postsDB as $post) {
                     <div class="datos1">
                         <div class="imagen-user">
                             <img src="' . $ruta . '" alt="Foto de perfil">
+                            <span>' . $userCreation . '</span>
                         </div>
                         <i class="far fa-calendar"></i> <span>' . $postDate . '</span>
                     </div>

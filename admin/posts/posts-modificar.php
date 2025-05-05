@@ -2,11 +2,76 @@
 session_start();
 include('../../config/database.php');
 
+
 $id = $_GET['id']; // Obtener el ID de la publicación
 
 // Obtener los datos de la publicación actual
 $sql = $conexion->query("SELECT * FROM posts WHERE Id_posts = $id");
 $datos = $sql->fetch_object();
+
+//funcion para comprimir imagen
+function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 1200, $calidad = 90) {
+    $info = getimagesize($rutaOriginal);
+    if (!$info) return false;
+
+    $tipo = $info['mime'];
+    $ancho = $info[0];
+    $alto = $info[1];
+
+    if ($ancho <= 0 || $alto <= 0) return false;
+
+    // Procesar dependiendo del tipo de imagen
+    switch ($tipo) {
+        case 'image/jpeg':
+            $imagen = imagecreatefromjpeg($rutaOriginal);
+            break;
+        case 'image/png':
+            $imagen = imagecreatefrompng($rutaOriginal);
+            imagealphablending($imagen, false);
+            imagesavealpha($imagen, true);
+            break;
+        case 'image/webp':
+            $imagen = imagecreatefromwebp($rutaOriginal);
+            imagealphablending($imagen, false);
+            imagesavealpha($imagen, true);
+            break;
+        default:
+            return false;
+    }
+
+    // Redimensionar si es necesario
+    if ($ancho > $maxAncho) {
+        $nuevoAncho = $maxAncho;
+        $nuevoAlto = max(1, (int)(($maxAncho / $ancho) * $alto));
+        $nuevaImagen = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+        if ($tipo == 'image/png' || $tipo == 'image/webp') {
+            imagealphablending($nuevaImagen, false);
+            imagesavealpha($nuevaImagen, true);
+        }
+
+        imagecopyresampled($nuevaImagen, $imagen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+    } else {
+        $nuevaImagen = $imagen;
+    }
+
+    // Guardar imagen comprimida
+    switch ($tipo) {
+        case 'image/jpeg':
+            imagejpeg($nuevaImagen, $rutaDestino, $calidad);
+            break;
+        case 'image/png':
+            imagepng($nuevaImagen, $rutaDestino, 0);
+            break;
+        case 'image/webp':
+            imagewebp($nuevaImagen, $rutaDestino, $calidad);
+            break;
+    }
+
+    imagedestroy($imagen);
+    imagedestroy($nuevaImagen);
+    return true;
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $updates = [];
@@ -49,11 +114,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!empty($_FILES['imagen_posts']['name'])) {
         $imagen_nombre = $_FILES['imagen_posts']['name'];
         $imagen_temp = $_FILES['imagen_posts']['tmp_name'];
-        $ruta_destino = "uploads/" . $imagen_nombre; // Ruta donde se guardará la imagen
+        $ruta_final = "uploads/comprimida_" . basename($imagen_nombre);
+        
+        // Comprimir y guardar la imagen
+        if (comprimirImagen($imagen_temp, $ruta_final, 1200, 95)) {
+            // Opcional: eliminar imagen anterior si existe y es diferente
+            if (!empty($datos->image) && file_exists($datos->image) && $datos->image !== $ruta_final) {
+                unlink($datos->image);
+            }
 
-        // Mover la imagen al servidor
-        if (move_uploaded_file($imagen_temp, $ruta_destino)) {
-            $updates[] = "image = '$ruta_destino'";
+            $updates[] = "image = '$ruta_final'";
+        } else {
+            echo "<p style='color:red'>Error al comprimir la imagen.</p>";
         }
     }
 
@@ -147,7 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <label for="imagen">Imagen:</label>
                             <input type="file" id="imagen" name="imagen_posts" accept="image/*">
                             <label for="imagen_actual">Imagen actual:</label>
-                            <img src="<?= htmlspecialchars($datos->image) ?>" alt="Imagen actual" width="150">
+                            <img class="imagenActual" src="<?= htmlspecialchars($datos->image) ?>" alt="Imagen actual" width="150">
                         </div>
                         <div class="referenciadelpost">
                             <label for="referencias">Referencias:</label>
