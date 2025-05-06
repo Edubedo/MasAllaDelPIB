@@ -133,6 +133,24 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
                         }
                     ?>
                 </select>
+                <?php
+                    if ($idtypeuser == 1) {
+                        echo '<select class="categories" id="userFilter">';
+                        echo '<option value="" disabled selected hidden>Usuarios</option>';
+                        echo '<option value="">Todos los usuarios</option>';
+
+                        // Obtener usuarios desde la base de datos
+                        $sql = "SELECT DISTINCT user_creation FROM posts"; 
+                        $result = mysqli_query($conexion, $sql);
+                        
+                        while ($row = mysqli_fetch_array($result)) {
+                            $user = ucwords(str_replace('-', ' ', $row['user_creation']));
+                            echo "<option value='" . $row['user_creation'] . "'>$user</option>";
+                        }
+                        echo '</select>';
+                    }
+                ?>
+
             </div>
 
                 <!-- Buscador General -->
