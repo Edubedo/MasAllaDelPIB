@@ -49,6 +49,22 @@ document.getElementById('categoryFilter').addEventListener('change', function() 
         }
     });
 });
+// Función para filtrar por usuario
+document.getElementById('userFilter').addEventListener('change', function() {
+    let selectedUser = this.value;
+    let rows = document.querySelectorAll('.postRow');
+
+    rows.forEach(function(row) {
+        let userCell = row.cells[5].innerText.toLowerCase(); // Índice 5 es la columna de "Creador"
+
+        if (selectedUser === '' || userCell.includes(selectedUser.toLowerCase())) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+
 
 
 // Función para el buscador general que filtra por cualquier palabra en cualquier columna
