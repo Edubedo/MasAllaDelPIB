@@ -78,18 +78,21 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
 
 
             <!-- Agregar el buscador aquí -->
-            <div class="search-container">
-                <i class="fas fa-search" id="search-icon" style="font-size: 22px; color:white; cursor:pointer;"></i>
-                <input type="text" id="search-input" placeholder="Buscar..." style="display:none;">
-                <div id="search-results" class="search-results"></div>
+            <div class="nav__icon-group">
+                <div class="search-container">
+                    <i class="fas fa-search" id="search-icon" style="font-size: 22px; color:white; cursor:pointer;"></i>
+                    <input type="text" id="search-input" placeholder="Buscar..." style="display:none;">
+                    <div id="search-results" class="search-results"></div>
+                </div>
+                        
+                <button id="open__nav-btn" style="background-color: transparent; border: none; cursor: pointer;">
+                    <i class="fas fa-bars" style="font-size: 24px; color: white;"></i>
+                </button>
+                <button id="close__nav-btn" style="background-color: transparent; border: none; cursor: pointer;">
+                    <i class="fas fa-times" style="font-size: 24px; color: white;"></i>
+                </button>
             </div>
 
-            <button id="open__nav-btn" style="background-color: transparent; border: none; cursor: pointer;">
-                <i class="fas fa-bars" style="font-size: 24px; color: white;"></i>
-            </button>
-            <button id="close__nav-btn" style="background-color: transparent; border: none; cursor: pointer;">
-                <i class="fas fa-times" style="font-size: 24px; color: white;"></i>
-            </button>
         </div>
     </nav>
 
