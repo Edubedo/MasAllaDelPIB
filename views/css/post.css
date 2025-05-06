@@ -63,6 +63,12 @@ body {
     text-align: justify;
 }
 
+.titulo {
+    width: 100%;
+    justify-content: start;
+    align-content: start;
+}
+
 .texto-noticia {
     margin-bottom: 1.5rem;
     margin-top: 3rem;
