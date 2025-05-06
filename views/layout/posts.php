@@ -43,7 +43,7 @@ foreach ($postsDB as $post) {
     $content = htmlspecialchars(strlen($post['content']) > $contentLimit ? substr($post['content'], 0, $contentLimit) . "..." : $post['content']);
     $userCreation = htmlspecialchars($post['user_creation']);
     $postDate = date("F d, Y", strtotime($post['post_date']));
-    
+
     // Verificar si el usuario ya dio "like" a este post
     $userLiked = in_array($post['Id_posts'], $userLikes);
 

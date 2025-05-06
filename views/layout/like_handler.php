@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+    // Procesar el "like" o "unlike"
     try {
         // Verificar si el usuario ya votó
         $query = "SELECT * FROM likes WHERE id_post = :id_post AND id_usuario = :id_usuario";

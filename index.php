@@ -101,27 +101,83 @@ try {
 
             <div class="posts-admin">
                 <?php if (!empty($postsUsuario)): ?>
-                        <?php 
-                            $postsDB = $postsUsuario; 
-                            $isIndex = false; // o true, según necesites
-                            include('views/layout/posts-admin.php'); 
-                        ?>
-                    <?php else: ?>
-                        <p>No hay publicaciones del autor.</p>
-                    <?php endif; ?>
+                    <?php
+                    $postsDB = $postsUsuario;
+                    $isIndex = false; // o true, según necesites
+                    include('views/layout/posts-admin.php');
+                    ?>
+                <?php else: ?>
+                    <p>No hay publicaciones del autor.</p>
+                <?php endif; ?>
             </div>
 
             <div class="barra"></div>
         </div>
-   
+
 
 
     </div>
 
     <div id="cookiesContainer"></div>
-    <script src="./js/cookies.js"></script> 
+    <script src="./js/cookies.js"></script>
     <!-- Incluyendo el pie de página -->
     <?php include './views/layout/footer.php'; ?>
 </body>
 
 </html>
+
+
+<script>
+    $(document).on('click', '.options', function(e) {
+        e.preventDefault();
+        const postId = $(this).attr('id').split('_').pop(); // Extraer el ID del post
+        const button = $(this);
+        const countElement = $(`#vote_up_count_${postId}`);
+        let currentCount = parseInt(countElement.text());
+
+        // Cambiar el estado visual inmediatamente
+        if (button.hasClass('liked')) {
+            button.removeClass('liked').addClass('not-liked');
+            countElement.text(currentCount - 1); // Reducir contador visualmente
+        } else {
+            button.removeClass('not-liked').addClass('liked');
+            countElement.text(currentCount + 1); // Incrementar contador visualmente
+        }
+
+        // Enviar la solicitud AJAX al backend
+        $.ajax({
+            url: '/views/layout/like_handler.php',
+            type: 'POST',
+            data: {
+                id_post: postId,
+                vote_type: 1 // Siempre enviamos 1 para "like"
+            },
+            success: function(response) {
+                const res = JSON.parse(response);
+
+                if (!res.success) {
+                    // Si hubo un error, revertir el cambio visual
+                    if (res.action === 'unliked') {
+                        button.removeClass('not-liked').addClass('liked');
+                        countElement.text(currentCount + 1); // Revertir contador
+                    } else if (res.action === 'liked') {
+                        button.removeClass('liked').addClass('not-liked');
+                        countElement.text(currentCount - 1); // Revertir contador
+                    }
+                    alert(res.message); // Mostrar mensaje de error
+                }
+            },
+            error: function() {
+                // Si hubo un error en la solicitud, revertir el cambio visual
+                if (button.hasClass('liked')) {
+                    button.removeClass('liked').addClass('not-liked');
+                    countElement.text(currentCount - 1); // Revertir contador
+                } else {
+                    button.removeClass('not-liked').addClass('liked');
+                    countElement.text(currentCount + 1); // Revertir contador
+                }
+                alert('Error al procesar la solicitud.');
+            }
+        });
+    });
+</script>
