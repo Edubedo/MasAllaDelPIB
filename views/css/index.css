@@ -117,20 +117,22 @@ h1, h3, p {
 }
 
 /* Posts del admin */
-.posts-admin {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    gap: 0.5rem;
-}
-
 /* Evita que el contenido se desborde */
 .pagina-index .posts-admin .post-derecho,
 .cuerpo .p1 {
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;
+}
+
+.posts-admin {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 1rem;
 }
 
 .pagina-index .posts-admin .p1 {
