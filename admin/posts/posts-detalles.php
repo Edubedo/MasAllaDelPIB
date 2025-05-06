@@ -38,7 +38,7 @@
                 
                         <option value="" disabled selected hidden><?php echo ucwords(str_replace('-', ' ', $post['category'])); ?></option><!-- Placeholder -->
                         <option value="">Crecimiento económico</option>
-                        <option value="">Emprendimiento Negocios</option>
+                        <option value="">Emprendimiento Y Negocios</option>
                         <option value="">Sostenibilidad</option>
                         <option value="">Infraestructura</option>
                         <option value="">Educación</option>

@@ -17,7 +17,7 @@
      <p class="cookieDescripcion">Este sitio web utiliza cookies para mejorar su experiencia de navegación, personalizar el contenido que le ofrecemos y analizar el tráfico. Al continuar navegando, acepta su uso. <br><a href="./views/layout/politicasprivacidad.php">Lea las políticas de cookies</a>.</p>
      <div class="butonContenedor">
        <button class="aceptarBoton">Aceptar</button>
-     <button class="rachazarBoton">Rechazar</button>
+     
      </div>
 </div>
 </body>

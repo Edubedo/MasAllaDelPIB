@@ -40,7 +40,7 @@ nav .logo {
 
 nav .logo img {
     width: 40px;
-    margin-right: 10px;
+    margin-right: 20px;
     transition: width 0.3s ease; /* Transición para el tamaño del logo */
 }
 

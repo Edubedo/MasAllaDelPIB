@@ -152,7 +152,7 @@ if (isset($_POST["crear_post"])) {
                         <select name="categoria_posts" id="categoria" required>
                             <option value="" disabled selected hidden>Categorías</option>
                             <option value="crecimiento-economico">Crecimiento Económico</option>
-                            <option value="emprendimiento-negocios">Emprendimiento Negocios</option>
+                            <option value="emprendimiento-negocios">Emprendimiento  Y Negocios</option>
                             <option value="mundo-laboral">Mundo laboral</option>
                         </select>
                     </div>
