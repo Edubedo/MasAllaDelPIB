@@ -103,6 +103,26 @@ if (isset($_POST['submit_comment'])) {
                 <p class="texto-noticia"><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
             </div>
         </div>
+
+        <div class="">
+            <div class="texto">
+                <div class="texto-noticia">
+                    <h3>Referencia</h3>
+                    <?php
+                    if (!empty($post['referencia_posts'])) {
+                        $referencia = htmlspecialchars($post['referencia_posts']);
+                        // Asegurarse de que la URL tenga un esquema (http o https)
+                        if (!preg_match('/^https?:\/\//', $referencia)) {
+                            $referencia = 'http://' . $referencia;
+                        }
+                        echo "<a href='$referencia' target='_blank'>$referencia</a>";
+                    } else {
+                        echo "No hay referencia disponible.";
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="caja-comentarios">
@@ -135,7 +155,7 @@ if (isset($_POST['submit_comment'])) {
                         <div class="imagen-user">
                             <img src="<?php echo htmlspecialchars($commentImage); ?>" alt="Foto de perfil">
                         </div>
-                                  
+
                         <div class="comentario-contenido">
                             <p><strong><?php echo htmlspecialchars($comment['user_creation']); ?></strong></p>
                             <p><?php echo nl2br(htmlspecialchars($comment['content'])); ?></p>
