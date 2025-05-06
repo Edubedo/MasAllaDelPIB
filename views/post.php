@@ -39,6 +39,7 @@ if (isset($_POST['submit_comment'])) {
         die("Debes iniciar sesión para comentar.");
     }
 
+    date_default_timezone_set('America/Mexico_City');
     $content = trim($_POST['content']);
     $user_creation = $_SESSION['username'];
     $date_creation = date('Y-m-d H:i:s');
