@@ -109,7 +109,14 @@
                     <input type="email" name="email" placeholder="Correo Electrónico" required>
                     <input type="text" name="username" placeholder="Usuario" required>
                     <input type="password" name="password" placeholder="Contraseña" required>
-                    <input type="file" name="foto_perfil" accept="image/*" required>
+                    <!-- Reemplaza el input actual por este código -->
+                    <div class="custom-file-input">
+                        <label for="foto-perfil-input">
+                            <i class="fas fa-camera" style="margin-right: 5px;"></i>
+                            <span id="file-name">Selecciona foto de perfil</span>
+                        </label>
+                        <input type="file" id="foto-perfil-input" name="foto_perfil" accept="image/*" required>
+                    </div>
                     <button type="submit">Registrate</button>
                 </form>
             </div>
