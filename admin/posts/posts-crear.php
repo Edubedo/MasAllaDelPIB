@@ -75,6 +75,21 @@ if (isset($_POST["crear_post"])) {
     $fecha = $_POST['fecha_publicacion_posts'];
     $usuario = $_SESSION['username'];  
 
+    if (strlen($titulo) < 10) {
+        echo "<script>mostrarAlerta('Título inválido. Debe tener al menos 10 caracteres.');</script>";
+        exit();
+    }
+
+    if (strlen($contenido) < 20) {
+        echo "<script>mostrarAlerta('Contenido inválido. Debe tener al menos 20 caracteres.');</script>";
+        exit();
+    }
+
+    if (strlen($referencias) < 10) {
+        echo "<script>mostrarAlerta('Referencia inválida.');</script>";
+        exit();
+    }
+
     $imagen_name = $_FILES['imagen_posts']['name'];
     $imagen_tmp_name = $_FILES['imagen_posts']['tmp_name'];
     $target_dir = 'uploads/';
@@ -184,15 +199,6 @@ if (isset($_POST["crear_post"])) {
                 </div>
             </div>
         </form>
-
-        <!-- Modal de ALERTA NO BORRAR -->
-        <div id="modal" class="fondo-alerta" style="display: none;">
-            <div class="alerta">
-                <p id="alert-message"></p>
-                <button class="boton-alerta" onclick="cerrarAlerta()">Aceptar</button>
-            </div>
-        </div>
-        <!-- Modal de ALERTA NO BORRAR -->
 
         <script src="../../js/posts-crear.js"></script>
 
