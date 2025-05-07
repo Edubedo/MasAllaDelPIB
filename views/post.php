@@ -80,7 +80,7 @@ if (isset($_POST['submit_comment'])) {
 
 <body>
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
-     <?php include './layout/header.php'; ?> 
+    <?php include './layout/header.php'; ?>
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
 
     <div class="noticia">
@@ -109,7 +109,7 @@ if (isset($_POST['submit_comment'])) {
             </div>
         </div>
 
-        <div class="">
+        <div class="referencias">
             <div class="texto">
                 <div class="texto-noticia">
                     <h3>Referencias</h3>
@@ -123,7 +123,7 @@ if (isset($_POST['submit_comment'])) {
                                 if (!preg_match('/^https?:\/\//', $referencia)) {
                                     $referencia = 'http://' . $referencia;
                                 }
-                                echo "<a href='$referencia' target='_blank'>$referencia</a><br>";
+                                echo "<a href='$referencia' target='_blank' style='display: block; text-align: left;'>$referencia</a>";
                             }
                         }
                     } else {

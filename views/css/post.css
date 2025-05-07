@@ -31,6 +31,23 @@ body {
     line-height: 1.6;
 }
 
+.referencias {
+    .noticia {
+        display: flex;
+        flex-direction: column;
+        width: 85%;
+        margin: 10rem auto; 
+        margin-bottom: 0;
+        padding: 5rem;
+        align-items: start;
+        background-color: #f9f9f9;
+        border-radius: 1.2rem;
+        box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.1);
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+    }
+}
+
 .titulo h1 {
     font-size: 2rem;
     
