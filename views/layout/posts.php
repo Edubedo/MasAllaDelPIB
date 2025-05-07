@@ -32,9 +32,11 @@ foreach ($postsDB as $post) {
     $stmt->execute([':username' => $post['user_creation']]);
     $userProfile = $stmt->fetch(PDO::FETCH_ASSOC);
     $foto_perfil = $userProfile['foto_perfil'] ?? null;
-    $ruta = !empty($foto_perfil) ? "/views/uploads/" . htmlspecialchars($foto_perfil) : "/views/uploads/user-default2.jpeg";
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $ruta = !empty($foto_perfil) ? $protocol . $host . "/views/uploads/" . htmlspecialchars($foto_perfil) : $protocol . $host . "/views/uploads/user-default2.jpeg";
 
-    $imageSrc = !empty($post['image']) ? "/admin/posts/" . htmlspecialchars($post['image']) : "/admin/posts/uploads/preterminada.jpg";
+    $imageSrc = !empty($post['image']) ? $protocol . $host . "/admin/posts/" . htmlspecialchars($post['image']) : $protocol . $host . "/admin/posts/uploads/preterminada.jpg";
 
     $postLink = '/views/post.php?id=' . htmlspecialchars($post['Id_posts']);
     $titleLimit = isset($isIndex) && $isIndex ? 50 : 40;
