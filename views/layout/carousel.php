@@ -27,7 +27,9 @@ try {
         $stmtUser->execute([':username' => $post['user_creation']]);
         $userProfile = $stmtUser->fetch(PDO::FETCH_ASSOC);
         $foto_perfil = $userProfile['foto_perfil'] ?? null;
-        $post['ruta_foto_perfil'] = !empty($foto_perfil) ? $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/views/uploads/" . htmlspecialchars($foto_perfil) : $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/views/uploads/user-default2.jpeg";
+        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+        $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+        $post['ruta_foto_perfil'] = !empty($foto_perfil) ? $protocol . $host . "/views/uploads/" . htmlspecialchars($foto_perfil) : $protocol . $host . "/views/uploads/user-default2.jpeg";
     }
     unset($post); // Por buenas prácticas al usar foreach por referencia
 } catch (PDOException $e) {
@@ -58,7 +60,9 @@ try {
                     <!-- El foreach aqui porque trabajamos con array y es mas dinamico -->
                     <?php foreach ($posts as $post):
                         // Si no hay imagen, usamos la imagen predeterminada
-                        $imageSrc = !empty($post['image']) ? $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/admin/posts/" . htmlspecialchars($post['image']) : $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/admin/posts/uploads/preterminada.jpg";
+                        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+                        $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+                        $imageSrc = !empty($post['image']) ? $protocol . $host . "/admin/posts/" . htmlspecialchars($post['image']) : $protocol . $host . "/admin/posts/uploads/preterminada.jpg";
                     ?>
                         <a href="/views/post.php?id=<?= htmlspecialchars($post['Id_posts']); ?>">
                             <div class="post">
