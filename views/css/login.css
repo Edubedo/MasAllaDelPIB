@@ -145,16 +145,17 @@ main {
     width: 100%;
     margin-bottom: 15px;
     border: 2px dashed #ccc;
-    padding: 10px;
+    padding: 15px;
     border-radius: 5px;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    background-color: #f8f9fa;
 }
 
 .custom-file-input:hover {
     border-color: #3a7bd5;
-    background-color: #f5f9ff;
+    background-color: #f0f7ff;
 }
 
 .custom-file-input label {
@@ -164,6 +165,7 @@ main {
     cursor: pointer;
     color: #555;
     font-size: 14px;
+    flex-direction: column;
 }
 
 #foto-perfil-input {
@@ -174,6 +176,27 @@ main {
     width: 100%;
     height: 100%;
     cursor: pointer;
+}
+
+/* Estilo para cuando se selecciona un archivo */
+.custom-file-input.has-file {
+    border-color: #28a745;
+    background-color: #e8f5e9;
+}
+
+#file-name {
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+#preview-container {
+    margin-top: 15px;
+    text-align: center;
+}
+
+#preview-image {
+    border: 3px solid #bdbdbd;
+    object-fit: cover;
 }
 
 .formulario__login {
