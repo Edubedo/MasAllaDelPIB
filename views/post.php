@@ -85,10 +85,10 @@ if (isset($_POST['submit_comment'])) {
     <div class="noticia">
         <div class="titulo">
             <button onclick="window.history.back()" class="btn-regresar">
-                ←   Regresar
+                ← Regresar
             </button>
             <h1><?php echo htmlspecialchars($post['title']); ?></h1>
-            
+
             <div class="datos">
                 <div class="imagen-user">
                     <img src="<?php echo htmlspecialchars($imageProfile); ?>" alt="Foto de perfil">
@@ -111,15 +111,20 @@ if (isset($_POST['submit_comment'])) {
         <div class="">
             <div class="texto">
                 <div class="texto-noticia">
-                    <h3>Referencia</h3>
+                    <h3>Referencias</h3>
                     <?php
                     if (!empty($post['referencia_posts'])) {
-                        $referencia = htmlspecialchars($post['referencia_posts']);
-                        // Asegurarse de que la URL tenga un esquema (http o https)
-                        if (!preg_match('/^https?:\/\//', $referencia)) {
-                            $referencia = 'http://' . $referencia;
+                        $referencias = explode('==', $post['referencia_posts']);
+                        foreach ($referencias as $referencia) {
+                            $referencia = trim($referencia);
+                            if (!empty($referencia)) {
+                                // Asegurarse de que la URL tenga un esquema (http o https)
+                                if (!preg_match('/^https?:\/\//', $referencia)) {
+                                    $referencia = 'http://' . $referencia;
+                                }
+                                echo "<a href='$referencia' target='_blank'>$referencia</a><br>";
+                            }
                         }
-                        echo "<a href='$referencia' target='_blank'>$referencia</a>";
                     } else {
                         echo "No hay referencia disponible.";
                     }
