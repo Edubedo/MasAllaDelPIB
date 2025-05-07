@@ -219,8 +219,8 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
                                 <!-- Botón de modificar post -->
                                 <a href="posts-modificar.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn editar">Editar</a>
                                 <!-- Botón de eliminar publicación -->
-                                <a href="posts-consulta.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn eliminar">Eliminar</a>
-                            </td>
+                                <a href="posts-consulta.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn eliminar" data-id="<?php echo $mostrar['Id_posts']; ?>">Eliminar</a>
+                                </td>
                         </tr>
                     <?php
                     }
@@ -247,35 +247,43 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
     <script src="../../js/posts-consulta.js"></script>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const botonContinuar = document.getElementById('botonContinuar');
-        
-        if (botonContinuar) {
-            botonContinuar.addEventListener('click', function() {
-                document.getElementById('overlay').style.display = 'none';
-                document.getElementById('modal').style.display = 'none';
-                
-                // Marcar que el modal ya se mostró usando AJAX
-                const xhr = new XMLHttpRequest();
-                xhr.open('GET', '../../config/mark_modal_shown.php', true);
-                xhr.send();
-            });
-        }
-        
-        // Manejar el modal de eliminación
-        const deleteButtons = document.querySelectorAll('.btn.eliminar');
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.getElementById('deleteModal').style.display = 'flex';
-            });
+document.addEventListener('DOMContentLoaded', function() {
+    const botonContinuar = document.getElementById('botonContinuar');
+    if (botonContinuar) {
+        botonContinuar.addEventListener('click', function() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('modal').style.display = 'none';
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', '../../config/mark_modal_shown.php', true);
+            xhr.send();
         });
-        
-        document.getElementById('cancelDelete').addEventListener('click', function() {
-            document.getElementById('deleteModal').style.display = 'none';
+    }
+
+    // Manejar modal de eliminación con funcionalidad real
+    const deleteButtons = document.querySelectorAll('.btn.eliminar');
+    let postIdToDelete = null;
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            postIdToDelete = this.getAttribute('data-id');
+            document.getElementById('deleteModal').style.display = 'flex';
         });
     });
-    </script>
+
+    document.getElementById('cancelDelete').addEventListener('click', function() {
+        document.getElementById('deleteModal').style.display = 'none';
+        postIdToDelete = null;
+    });
+
+    document.getElementById('confirmDelete').addEventListener('click', function() {
+        if (postIdToDelete) {
+            window.location.href = `posts-consulta.php?id=${postIdToDelete}`;
+        }
+    });
+});
+</script>
+
     
 </body>
 
