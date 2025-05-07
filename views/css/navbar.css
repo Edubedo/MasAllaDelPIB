@@ -40,7 +40,7 @@ nav .logo {
 
 nav .logo img {
     width: 40px;
-    margin-right: 10px;
+    margin-right: 20px;
     transition: width 0.3s ease; /* Transición para el tamaño del logo */
 }
 
@@ -190,7 +190,7 @@ nav button {
 .nav__icon-group {
     display: flex;
     align-items: center;
-    gap: 1.2rem; /* Aumenta este valor si quieres más separación */
+    gap: 1rem; /* Aumenta este valor si quieres más separación */
 }
 
 
@@ -309,14 +309,10 @@ nav button {
         width: auto;
     }
     .nav__icon-group {
-        gap: 2rem; /* Más espacio solo en pantallas pequeñas */
+        gap: 0.2rem; /* Más espacio solo en pantallas pequeñas */
     }
 }
-@media (max-width: 466px) {
-    .nav__logo-name h2 {
-        font-size: 1.12rem; /* Ajusta este valor según lo pequeño que lo quieras */
-    }
-}
+
 
 
 /* Estilos para móviles más pequeños */
@@ -337,6 +333,18 @@ nav button {
     nav .list {
         padding: 1.5rem;
     }
+    .nav__logo-name{
+        gap: 0.5rem;
+    }
+}
+@media (max-width: 476px) {
+    .nav__logo-name h2 {
+        font-size: 1.8rem; /* Ajusta este valor según lo pequeño que lo quieras */
+    }
+    .nav__logo-name{
+        gap: 0.5rem;
+    }
+   
 }
 
 @media (max-width: 438px) {
@@ -349,6 +357,10 @@ nav button {
         width: 15px !important; /* Reducir aún más el tamaño del logo */
     }
 
+    nav .nav__logo-name h2 {
+        font-size: 1.1rem; /* Ajusta este valor según lo pequeño que lo quieras */
+    }
+
     nav .texto_a {
         font-size: 1.2rem;
     }
@@ -356,4 +368,18 @@ nav button {
     nav .list {
         padding: 1.5rem;
     }
+    .nav__logo-name{
+        gap: 0.1px;
+    }
 }
+
+@media (max-width: 390px) {
+    .nav__logo-name {
+        gap: 1rem;
+    }
+
+    .nav__logo-name img {
+        margin-right: 0;
+    }
+}
+

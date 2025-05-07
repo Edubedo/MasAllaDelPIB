@@ -31,6 +31,23 @@ body {
     line-height: 1.6;
 }
 
+.referencias {
+    .noticia {
+        display: flex;
+        flex-direction: column;
+        width: 85%;
+        margin: 10rem auto; 
+        margin-bottom: 0;
+        padding: 5rem;
+        align-items: start;
+        background-color: #f9f9f9;
+        border-radius: 1.2rem;
+        box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.1);
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+    }
+}
+
 .titulo h1 {
     font-size: 2rem;
     
@@ -61,6 +78,12 @@ body {
     font-size: 1rem;
     margin-bottom: 2rem;
     text-align: justify;
+}
+
+.titulo {
+    width: 100%;
+    justify-content: start;
+    align-content: start;
 }
 
 .texto-noticia {
@@ -234,6 +257,24 @@ form button:hover {
     text-align: center;
     color: #666;
     font-size: 1rem;
+}
+
+.btn-regresar{
+    padding: 0.7rem 1.4rem;
+    font-size: 1.6rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+    background-color: #1d47bad8;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 1.5rem;    
+}
+
+.btn-regresar:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
 }
 
 @media (max-width: 768px) {

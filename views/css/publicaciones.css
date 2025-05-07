@@ -65,7 +65,7 @@ h1{
 }
 
 .nav_public .list li a:hover {
-    color: #fffb00 !important;
+    color: rgb(255, 184, 61);
     
 }
 
@@ -91,9 +91,6 @@ h1{
 li a{
     text-shadow: 2px 2px 4px #000000;
 }
-
-
-
 
 /* Estilos para la versión móvil */
 @media (max-width: 768px) {
@@ -191,6 +188,7 @@ li a{
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
+    margin: 0;
 }
 
 .categoria:hover {
@@ -278,14 +276,16 @@ li a{
 
 
     .pagina-publicaciones .titulo1 {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
     
     .pagina-publicaciones .datos1{
         font-size: 1rem;
+        margin-left: 0;
+        text-align: start;
     }
     .pagina-publicaciones .texto1 {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     
