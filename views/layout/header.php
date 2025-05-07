@@ -71,7 +71,7 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
                     <li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i><span class="hover-text">Inicio</span></a></li>
                     <li><a class="texto_a" href="/views/publicaciones.php"><i class="fas fa-clipboard-list"></i><span class="hover-text">Posts</span></a></li>
                     <li><a class="texto_a" href="/views/about.php"><i class="fas fa-users-cog"></i><span class="hover-text">Nosotros</span></a></li>
-                    <li><a class="texto_a" href="/views/signin.php"><i class="fas fa-sign-in-alt"></i><span class="hover-text">Iniciar Sesión</span></a></li>';
+                    <li><a class="texto_a" href="/views/signin.php"><i class="fas fa-sign-in-alt"></i><span class="hover-text">Ingresar</span></a></li>';
                 }
                 ?>
             </ul>

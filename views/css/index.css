@@ -144,6 +144,18 @@ h1, h3, p {
     height: 17rem;
 }
 
+.pagina-index .posts-admin .titulo1 {
+    width: 100%;
+    justify-content: center;
+}
+
+.pagina-index .posts-admin .texto1{
+    width: 94%;
+    text-align: center;
+    justify-content: center;
+    margin: 1 rem;
+}
+
 /* Responsive: pantallas medianas */
 @media (max-width: 1120px) {
     
