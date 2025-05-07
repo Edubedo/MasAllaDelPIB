@@ -237,7 +237,7 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
         <div class="deletemodal-content">
             <h3>¿Estás seguro que deseas eliminar esta publicación?</h3>
             <div class="deletemodal-buttons">
-                <button id="confirmDelete">Eliminar</button>
+                <button href="posts-consulta.php?id=<?php echo $mostrar['Id_posts']; ?>" id="confirmDelete" >Eliminar</button>
                 <button id="cancelDelete">Cancelar</button>
             </div>
         </div>
