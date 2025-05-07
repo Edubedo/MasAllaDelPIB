@@ -80,7 +80,7 @@ if (isset($_POST['submit_comment'])) {
 
 <body>
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
-    <!-- <?php include './layout/header.php'; ?> -->
+     <?php include './layout/header.php'; ?> 
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
 
     <div class="noticia">
