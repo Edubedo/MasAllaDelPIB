@@ -53,7 +53,7 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
                 if ($idtypeuser == 1) { // Administrador
                     echo '
                     <li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i><span class="hover-text">Inicio</span></a></li>
-                    <li><a class="texto_a" href="/admin/posts/posts-consulta.php"><i class="fas fa-pen"></i><span class="hover-text">Publicaciones</span></a></li>
+                    <li><a class="texto_a" href="/admin/posts/posts-consulta.php"><i class="fas fa-pen"></i><span class="hover-text">Posts</span></a></li>
                     <li><a class="texto_a" href="/admin/posts/panel-usuarios.php"><i class="fas fa-users"></i><span class="hover-text">Usuarios</span></a></li>';
                 } elseif ($idtypeuser == 2) { // Autor
                     echo '
@@ -78,17 +78,23 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
 
 
             <!-- Agregar el buscador aquí -->
-            <div class="nav__icon-group">
-                <div class="search-container">
-                    <i class="fas fa-search" id="search-icon" style="font-size: 22px; color:white; cursor:pointer;"></i>
-                    <input type="text" id="search-input" placeholder="Buscar..." style="display:none;">
-                    <div id="search-results" class="search-results"></div>
-                </div>
-                        
-                <button id="open__nav-btn" style="background-color: transparent; border: none; cursor: pointer;">
+            <div class="nav__icon-group" style="display: flex; align-items: center; justify-content: flex-end; min-width: 100px;">
+                <?php 
+                $current_page = basename($_SERVER['PHP_SELF']);
+                $hidden_pages = ['posts-consulta.php', 'about.php'];
+                if (!in_array($current_page, $hidden_pages)):
+                ?>
+                    <div class="search-container">
+                        <i class="fas fa-search" id="search-icon" style="font-size: 22px; color:white; cursor:pointer;"></i>
+                        <input type="text" id="search-input" placeholder="Buscar..." style="display:none;">
+                        <div id="search-results" class="search-results"></div>
+                    </div>
+                <?php endif; ?>
+                
+                <button id="open__nav-btn" style="background-color: transparent; border: none; cursor: pointer; margin-left: 15px;">
                     <i class="fas fa-bars" style="font-size: 24px; color: white;"></i>
                 </button>
-                <button id="close__nav-btn" style="background-color: transparent; border: none; cursor: pointer;">
+                <button id="close__nav-btn" style="background-color: transparent; border: none; cursor: pointer; margin-left: 15px; display: none;">
                     <i class="fas fa-times" style="font-size: 24px; color: white;"></i>
                 </button>
             </div>

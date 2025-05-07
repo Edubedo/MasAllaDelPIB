@@ -3,50 +3,38 @@ const hoy = new Date().toISOString().split('T')[0];
 document.getElementById('fecha_publicacion').value = hoy;
 
 // Asignar la fecha actual como valor mínimo
-document.getElementById('fecha_publicacion').setAttribute('min', today);
+document.getElementById('fecha_publicacion').setAttribute('min', hoy);
 
 // Mostrar el modal de alerta cuando no se cumple la validación
 function mostrarAlerta(mensaje) {
-    const fondo = document.createElement("div");
-    fondo.classList.add("fondo-alerta");
+    document.getElementById("alert-message").textContent = mensaje;
+    document.getElementById("modal").style.display = "flex";
+}
 
-    const alerta = document.createElement("div");
-    alerta.classList.add("alerta");
-
-    const texto = document.createElement("p");
-    texto.textContent = mensaje;
-
-    const boton = document.createElement("button");
-    boton.textContent = "Aceptar";
-    boton.classList.add("boton-alerta");
-
-    boton.onclick = function () {
-        document.body.removeChild(fondo);
-    };
-
-    alerta.appendChild(texto);
-    alerta.appendChild(boton);
-    fondo.appendChild(alerta);
-    document.body.appendChild(fondo);
+// Cerrar el modal de alerta
+function cerrarAlerta() {
+    document.getElementById("modal").style.display = "none";
 }
 
 // Validaciones antes de enviar el formulario
 document.getElementById("crearForm").addEventListener("submit", function (e) {
+    e.preventDefault(); // Evita el envío del formulario por defecto
     const titulo = document.getElementById("titulo").value.trim();
     const contenido = document.getElementById("contenido").value.trim();
     const inputsReferencias = document.querySelectorAll('input[name="referencias_post[]"]');
 
-    // Validar título
-    if (titulo.length < 10) {
-        e.preventDefault(); // Evita que se envíe el formulario
-        mostrarAlerta("El título debe tener al menos 10 caracteres.");
-        return;
-    }
+    let mensajeError = '';
 
-    // Validar contenido
+    // Validaciones básicas
+    if (titulo.length < 10) {
+        mensajeError = "El título debe tener al menos 10 caracteres.";
+        mostrarAlerta(mensajeError);
+        return;
+    } 
+    
     if (contenido.length < 20) {
-        e.preventDefault();
-        mostrarAlerta("El contenido debe tener al menos 20 caracteres.");
+        mensajeError = "El contenido debe tener al menos 20 caracteres.";
+        mostrarAlerta(mensajeError);
         return;
     }
 
@@ -66,14 +54,17 @@ document.getElementById("crearForm").addEventListener("submit", function (e) {
     });
 
     if (!referenciasValidas || !todasReferenciasValidas) {
-        e.preventDefault();
         if (inputsReferencias.length === 0) {
-            mostrarAlerta("Debes agregar al menos una referencia.");
+            mensajeError = "Debes agregar al menos una referencia.";
         } else {
-            mostrarAlerta("Todas las referencias deben tener al menos 10 caracteres.");
+            mensajeError = "Todas las referencias deben tener al menos 10 caracteres.";
         }
+        mostrarAlerta(mensajeError);
         return;
     }
+    
+    // Si todo está bien, enviar el formulario
+    this.submit();
 });
 
 function agregarReferencia() {
@@ -113,7 +104,6 @@ function agregarReferencia() {
     contenedor.appendChild(divWrapper);
 }
 
-
 document.getElementById('imagen').addEventListener('change', function (event) {
     const input = event.target;
     const preview = document.getElementById('preview-imagen');
@@ -130,4 +120,3 @@ document.getElementById('imagen').addEventListener('change', function (event) {
         preview.style.display = 'none';
     }
 });
-  

@@ -8,7 +8,34 @@ var formulario_login = document.querySelector(".formulario__login");
 var formulario_register = document.querySelector(".formulario__register");
 var caja__tracera_login = document.querySelector(".caja__tracera-login");
 var caja__tracera_register = document.querySelector(".caja__tracera-register");
+document.getElementById('foto-perfil-input').addEventListener('change', function(e) {
+    const fileInput = this;
+    const fileNameSpan = document.getElementById('file-name');
+    const previewContainer = document.getElementById('preview-container');
+    const previewImage = document.getElementById('preview-image');
+    const customInput = fileInput.parentElement;
 
+    if (fileInput.files && fileInput.files[0]) {
+        // Mostrar nombre del archivo
+        fileNameSpan.textContent = fileInput.files[0].name;
+        
+        // Mostrar vista previa de la imagen
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            previewImage.src = e.target.result;
+            previewContainer.style.display = 'block';
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+        
+        // Cambiar estilo para indicar que hay archivo seleccionado
+        customInput.classList.add('has-file');
+    } else {
+        // Restablecer si no hay archivo
+        fileNameSpan.textContent = 'Selecciona foto de perfil';
+        previewContainer.style.display = 'none';
+        customInput.classList.remove('has-file');
+    }
+});
 function anchoPagina() {
     if (window.innerWidth > 850) {
         caja__tracera_login.style.display = "block";

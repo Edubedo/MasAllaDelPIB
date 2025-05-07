@@ -84,12 +84,11 @@ if (isset($_POST["crear_post"])) {
         echo "<script>mostrarAlerta('Contenido inválido. Debe tener al menos 20 caracteres.');</script>";
         exit();
     }
-    
+
     if (strlen($referencias) < 10) {
-        echo "<script>mostrarAlerta('Referencia inválida. Debe tener al menos 10 caracteres.');</script>";
+        echo "<script>mostrarAlerta('Referencia inválida.');</script>";
         exit();
     }
-    
 
     $imagen_name = $_FILES['imagen_posts']['name'];
     $imagen_tmp_name = $_FILES['imagen_posts']['tmp_name'];
@@ -200,7 +199,6 @@ if (isset($_POST["crear_post"])) {
                 </div>
             </div>
         </form>
-        
 
         <script src="../../js/posts-crear.js"></script>
 

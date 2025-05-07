@@ -309,7 +309,7 @@ nav button {
         width: auto;
     }
     .nav__icon-group {
-        gap: 0.2rem; /* Más espacio solo en pantallas pequeñas */
+        gap: 3.5rem; /* Más espacio solo en pantallas pequeñas */
     }
 }
 

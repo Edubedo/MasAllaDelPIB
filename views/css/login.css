@@ -137,6 +137,67 @@ main {
     outline: none;
     border-radius: 5px; /* Bordes redondeados en botón */
 }
+/* Estilo para el input de archivo personalizado */
+.custom-file-input {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 15px;
+    border: 2px dashed #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.custom-file-input:hover {
+    border-color: #3a7bd5;
+    background-color: #f0f7ff;
+}
+
+.custom-file-input label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #555;
+    font-size: 14px;
+    flex-direction: column;
+}
+
+#foto-perfil-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* Estilo para cuando se selecciona un archivo */
+.custom-file-input.has-file {
+    border-color: #28a745;
+    background-color: #e8f5e9;
+}
+
+#file-name {
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+#preview-container {
+    margin-top: 15px;
+    text-align: center;
+}
+
+#preview-image {
+    border: 3px solid #bdbdbd;
+    object-fit: cover;
+}
 
 .formulario__login {
     opacity: 1;

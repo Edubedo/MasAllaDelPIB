@@ -199,94 +199,60 @@ li a{
 
 @media (max-width: 1030px) {
     .nav_public .list {
-        display: flex; /* Asegura que la lista se muestre */
+        display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start; /* Cambiado de center a flex-start */
         position: fixed;
         top: 5rem;
         right: 0;
-        width: 50%;
-        height: calc(100vh);
-        background-color: #242526d8;
+        width: 70%; /* Ancho más grande para mejor usabilidad */
+        height: calc(100vh - 5rem);
+        background-color: #242526; /* Menos transparencia para mejor legibilidad */
         gap: 2rem;
         transform: translateX(100%);
         transition: transform 0.3s ease-in-out;
+        padding: 2rem 0;
+        overflow-y: auto; /* Scroll si hay muchos elementos */
     }
-
-    .nav_public .list li a {
-        color: white !important; /* Hace el texto visible */
-        font-size: 1.5rem;
-    }
-
-    /* Cuando el menú está activo */
-    #toggle:checked ~ .list {
-        transform: translateX(0);
-        display: flex;
-    }
-
 
     .nav_public .list li {
-        width: 100%;
+        width: 90%;
         text-align: center;
+        transition: all 0.3s ease;
     }
 
     .nav_public .list li a {
         display: block;
         width: 100%;
-        padding: 1.5rem 0;
-        font-size: 2rem;
+        padding: 1.5rem;
+        font-size: 1.8rem;
+        color: white !important;
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.05);
+        margin: 0.5rem 0;
     }
 
+    /* Efecto hover para móviles */
+    .nav_public .list li:hover {
+        transform: translateX(-5px);
+    }
+
+    .nav_public .list li a:hover {
+        background-color: rgba(84, 152, 255, 0.2);
+        color: rgb(254, 254, 254) !important;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Efecto al hacer clic/tocar */
+    .nav_public .list li a:active {
+        background-color: rgba(67, 67, 65, 0.3);
+        transform: scale(0.98);
+    }
+
+    /* Cuando el menú está activo */
     #toggle:checked ~ .list {
         transform: translateX(0);
     }
-
-}
-
-/* Responsive: pantallas pequeñas */
-@media (max-width: 680px) {
-    .encabezado {
-        font-size: 1.5rem;
-    }
-
-    .pagina-publicaciones .p1 {
-        width: 35rem;
-    }
-
-    .pagina-publicaciones .titulo1 {
-        font-size: 1.5rem;
-    }
-    
-    .pagina-publicaciones .datos1{
-        font-size: 1rem;
-    }
-    .pagina-publicaciones .texto1 {
-        font-size: 1.3rem;
-    }
-
-}
-
-@media (max-width: 650px) {
-
-    .pagina-publicaciones .p1 {
-        width: 35rem;
-        height: auto;
-    }
-
-
-    .pagina-publicaciones .titulo1 {
-        font-size: 1.2rem;
-    }
-    
-    .pagina-publicaciones .datos1{
-        font-size: 1rem;
-        margin-left: 0;
-        text-align: start;
-    }
-    .pagina-publicaciones .texto1 {
-        font-size: 1rem;
-    }
-
-    
 }
