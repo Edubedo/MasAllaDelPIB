@@ -11,12 +11,22 @@ if ($isLocal) {
     $dotenv->load();
 }
 
-// Configuración de la base de datos
-$host = $_ENV['DB_HOST'] ?? 'valor_por_defecto_produccion';
-$user = $_ENV['DB_USER'] ?? 'valor_por_defecto_produccion';
-$password = $_ENV['DB_PASSWORD'] ?? 'valor_por_defecto_produccion';
-$dbname = $_ENV['DB_NAME'] ?? 'valor_por_defecto_produccion';
-$port = $_ENV['DB_PORT'] ?? 'valor_por_defecto_produccion';
+// Leer el tipo de base de datos
+$dbtype = $_ENV['DB_TYPE'] ?? 'dev';
+
+if ($dbtype === 'prod') {
+    $host = $_ENV['DB_HOST_PROD'] ?? 'valor_por_defecto_produccion';
+    $user = $_ENV['DB_USER_PROD'] ?? 'valor_por_defecto_produccion';
+    $password = $_ENV['DB_PASSWORD_PROD'] ?? 'valor_por_defecto_produccion';
+    $dbname = $_ENV['DB_NAME_PROD'] ?? 'valor_por_defecto_produccion';
+    $port = $_ENV['DB_PORT_PROD'] ?? '3306';
+} else {
+    $host = $_ENV['DB_HOST_DEV'] ?? 'valor_por_defecto_dev';
+    $user = $_ENV['DB_USER_DEV'] ?? 'valor_por_defecto_dev';
+    $password = $_ENV['DB_PASSWORD_DEV'] ?? 'valor_por_defecto_dev';
+    $dbname = $_ENV['DB_NAME_DEV'] ?? 'valor_por_defecto_dev';
+    $port = $_ENV['DB_PORT_DEV'] ?? '3306';
+}
 
 try {
     // Conexión con la base de datos usando PDO para poder mostrar las publicaciones en el inicio
