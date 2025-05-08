@@ -4,6 +4,7 @@ session_start();
 include '../../config/database.php';
 include "posts-eliminar.php";
 
+
 // Verifica si hay una session activa y mandamos a llamar el nombre del usuario
 if (isset($_SESSION['username'])) {
 

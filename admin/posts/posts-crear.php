@@ -3,18 +3,18 @@ session_start();
 include '../../config/database.php';
 
 //funcion para comprimir imagen
-function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 1200, $calidad = 90) {
+function comprimirYConvertirImagen($rutaOriginal, $rutaDestinoSinExtension, $maxAncho = 1200, $calidad = 90, $formatoDestino = 'webp') {
     $info = getimagesize($rutaOriginal);
     if (!$info) return false;
 
-    $tipo = $info['mime'];
+    $mime = $info['mime'];
     $ancho = $info[0];
     $alto = $info[1];
 
     if ($ancho <= 0 || $alto <= 0) return false;
 
-    // Procesar dependiendo del tipo de imagen
-    switch ($tipo) {
+    // Cargar imagen según su formato original
+    switch ($mime) {
         case 'image/jpeg':
             $imagen = imagecreatefromjpeg($rutaOriginal);
             break;
@@ -28,6 +28,12 @@ function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 1200, $calidad
             imagealphablending($imagen, false);
             imagesavealpha($imagen, true);
             break;
+        case 'image/avif':
+            if (!function_exists('imagecreatefromavif')) return false;
+            $imagen = imagecreatefromavif($rutaOriginal);
+            imagealphablending($imagen, false);
+            imagesavealpha($imagen, true);
+            break;
         default:
             return false;
     }
@@ -38,7 +44,7 @@ function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 1200, $calidad
         $nuevoAlto = max(1, (int)(($maxAncho / $ancho) * $alto));
         $nuevaImagen = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
-        if ($tipo == 'image/png' || $tipo == 'image/webp') {
+        if ($formatoDestino === 'png' || $formatoDestino === 'webp' || $formatoDestino === 'avif') {
             imagealphablending($nuevaImagen, false);
             imagesavealpha($nuevaImagen, true);
         }
@@ -48,23 +54,28 @@ function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 1200, $calidad
         $nuevaImagen = $imagen;
     }
 
-    // Guardar imagen comprimida
-    switch ($tipo) {
-        case 'image/jpeg':
-            imagejpeg($nuevaImagen, $rutaDestino, $calidad);
+    // Ruta con nueva extensión
+    $rutaFinal = $rutaDestinoSinExtension . '.' . $formatoDestino;
+
+    // Guardar según formato destino
+    switch ($formatoDestino) {
+        case 'webp':
+            imagewebp($nuevaImagen, $rutaFinal, $calidad);
             break;
-        case 'image/png':
-            imagepng($nuevaImagen, $rutaDestino, 0);
+        case 'avif':
+            if (!function_exists('imageavif')) return false;
+            imageavif($nuevaImagen, $rutaFinal, $calidad);
             break;
-        case 'image/webp':
-            imagewebp($nuevaImagen, $rutaDestino, $calidad);
-            break;
+        default:
+            return false;
     }
 
     imagedestroy($imagen);
     imagedestroy($nuevaImagen);
-    return true;
+
+    return $rutaFinal;
 }
+
 
 if (isset($_POST["crear_post"])) {
     $titulo = $_POST['titulo_posts'];
@@ -140,8 +151,8 @@ if (isset($_POST["crear_post"])) {
             <h1>Crear nueva publicación</h1>
         </div>
         
-        <form id="crearForm" action="#" name="crear_posts" method="post" enctype="multipart/form-data">
-            <div class="contenedor-general">
+        <form id="crearForm" action="" method="post" enctype="multipart/form-data">
+        <div class="contenedor-general">
 
                 <div class="izquierdo">
 
