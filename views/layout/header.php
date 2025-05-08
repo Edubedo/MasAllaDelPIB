@@ -79,7 +79,7 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
 
             <!-- Agregar el buscador aquí -->
             <div class="nav__icon-group" style="display: flex; align-items: center; justify-content: flex-end; min-width: 100px;">
-                <?php 
+                <?php
                 $current_page = basename($_SERVER['PHP_SELF']);
                 $hidden_pages = ['posts-consulta.php', 'about.php'];
                 if (!in_array($current_page, $hidden_pages)):
@@ -90,7 +90,7 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
                         <div id="search-results" class="search-results"></div>
                     </div>
                 <?php endif; ?>
-                
+
                 <button id="open__nav-btn" style="background-color: transparent; border: none; cursor: pointer; margin-left: 15px;">
                     <i class="fas fa-bars" style="font-size: 24px; color: white;"></i>
                 </button>
