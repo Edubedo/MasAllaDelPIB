@@ -18,7 +18,7 @@ if (time() < $_SESSION['bloqueado_hasta']) {
 
 if (isset($_POST["email"]) && isset($_POST["password"])) {
     $email = $_POST["email"];
-    $password = md5($_POST["password"]);
+    $password = $_POST["password"]; // No hashear aquí todavía
 } else {
     $_SESSION['error_message'] = "Correo o contraseña no enviados correctamente.";
     header('Location: ../views/signin.php');
@@ -27,11 +27,22 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 
 $sql = "SELECT * FROM users WHERE email = :email";
 $stmt = $pdo->prepare($sql);
-$stmt->execute([ ':email' => $email ]);
+$stmt->execute([':email' => $email]);
 
 if ($stmt->rowCount() > 0) {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($password === $user['password']) {
+    
+    // Verificación mejorada que soporta ambos métodos (transición)
+    if (password_verify($password, $user['password']) || 
+        (strlen($user['password']) === 32 && md5($password) === $user['password'])) {
+        
+        // Si el hash es MD5 (32 chars), actualizar a password_hash
+        if (strlen($user['password']) === 32) {
+            $newHash = password_hash($password, PASSWORD_BCRYPT);
+            $update = $pdo->prepare("UPDATE users SET password = :password WHERE email = :email");
+            $update->execute([':password' => $newHash, ':email' => $email]);
+        }
+        
         $_SESSION['intentos'] = 0;
         $_SESSION['bloqueado_hasta'] = 0;
         $_SESSION["email"] = $email;
