@@ -74,6 +74,11 @@ try {
     <!-- Incluyendo la barra de navegación -->
     <?php include 'views/layout/header.php'; ?>
 
+    <div class="encabezadoPrincipal">
+        <h1>Bienvenidos a Nuestro Blog</h1>
+        <p>Descubre artículos, consejos y recursos para mantenerte siempre informado.</p>
+    </div>
+
     <div class="container-carousel">
         <div class="header">
             <?php include("views/layout/carousel.php"); ?>
