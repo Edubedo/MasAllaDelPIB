@@ -86,3 +86,63 @@ function register() {
         caja__tracera_login.style.opacity = "1";
     }
 }
+
+
+// validaciones de la contraseña
+
+function validarFortalezaPassword() {
+    const password = this.value; 
+    const indicators = {
+        length: document.getElementById('length'),
+        uppercase: document.getElementById('uppercase'),
+        number: document.getElementById('number'),
+        special: document.getElementById('special')
+    };
+
+    // Objeto con las validaciones
+    const validaciones = {
+        length: password.length >= 8,
+        uppercase: /[A-Z]/.test(password),
+        number: /[0-9]/.test(password),
+        special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
+    };
+
+    // Aplicar estilos
+    for (const [key, element] of Object.entries(indicators)) {
+        if (element) { // Verificamos que el elemento exista
+            element.style.color = validaciones[key] ? 'green' : 'red';
+            element.innerHTML = (validaciones[key] ? '✓' : '✗') + 
+                               element.textContent.substring(1);
+        }
+    }
+}
+
+function validarPassword() {
+    const password = document.getElementById('password').value;
+    const confirm_password = document.getElementById('confirm_password').value;
+    
+    // Verificar que las contraseñas coincidan
+    if (password !== confirm_password) {
+        alert('Las contraseñas no coinciden');
+        return false;
+    }
+    
+    // Verificar fortaleza de la contraseña
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
+    if (!regex.test(password)) {
+        alert('La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial');
+        return false;
+    }
+    
+    return true;
+}
+
+// Inicialización segura
+document.addEventListener('DOMContentLoaded', function() {
+    const passwordField = document.getElementById('password');
+    if (passwordField) {
+        passwordField.addEventListener('input', validarFortalezaPassword);
+        // Validar al cargar por si hay algún valor precargado
+        validarFortalezaPassword.call(passwordField); 
+    }
+});
