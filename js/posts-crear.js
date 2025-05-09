@@ -3,7 +3,7 @@ const hoy = new Date().toISOString().split('T')[0];
 document.getElementById('fecha_publicacion').value = hoy;
 
 // Asignar la fecha actual como valor mínimo
-document.getElementById('fecha_publicacion').setAttribute('min', today);
+document.getElementById('fecha_publicacion').setAttribute('min', hoy);
 
 // Mostrar el modal de alerta cuando no se cumple la validación
 function mostrarAlerta(mensaje) {
