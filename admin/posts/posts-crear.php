@@ -3,7 +3,7 @@ session_start();
 include '../../config/database.php';
 
 //funcion para comprimir imagen
-function comprimirYConvertirImagen($rutaOriginal, $rutaDestinoSinExtension, $maxAncho = 1200, $calidad = 90, $formatoDestino = 'webp')
+function comprimirImagen($rutaOriginal, $rutaDestinoSinExtension, $maxAncho = 1200, $calidad = 90, $formatoDestino = 'webp')
 {
     $info = getimagesize($rutaOriginal);
     if (!$info) return false;
