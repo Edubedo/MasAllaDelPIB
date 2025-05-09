@@ -1,0 +1,85 @@
+.nav__profile {
+    position: relative;
+    margin-left: 20px;
+}
+
+.profile-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.user-popup {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 250px;
+    z-index: 1000;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+}
+
+.popup-content {
+    padding: 15px;
+}
+
+.imagen-pop {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.imagen-pop img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.nombre-pop {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.info-pop {
+    margin-bottom: 20px;
+}
+
+.nombredeluser, .emaildeluser {
+    margin-bottom: 10px;
+}
+
+.nombredeluser p, .emaildeluser p {
+    margin: 5px 0;
+}
+
+.botones-pop {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.botones-pop a {
+    text-decoration: none;
+    width: 100%;
+}
+
+.botones-pop button {
+    width: 100%;
+    padding: 10px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botones-pop button:hover {
+    background-color: #222;
+} 

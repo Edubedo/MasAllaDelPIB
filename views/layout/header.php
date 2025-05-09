@@ -34,6 +34,7 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
     <!-- CUSTOM STYLESHEET -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/views/css/navbar.css">
+    <link rel="stylesheet" href="/admin/posts/css/userpop.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,800;1,700&display=swap" rel="stylesheet">
 </head>
 
@@ -55,7 +56,7 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
                     <li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i><span class="hover-text">Inicio</span></a></li>
                     <li><a class="texto_a" href="/admin/posts/posts-consulta.php"><i class="fas fa-pen"></i><span class="hover-text">Posts</span></a></li>
                     <li><a class="texto_a" href="/admin/posts/panel-usuarios.php"><i class="fas fa-users"></i><span class="hover-text">Usuarios</span></a></li>
-                    <li><a class="texto_a" href="/views/logout.php"><i class="fas fa-sign-out-alt"></i><span class="hover-text">Cerrar Sesión</span></a></li>';
+                    <li><a class="texto_a" id="settings-icon"><i class="fas fa-cog"></i><span class="hover-text">Ajustes</span></a></li>';
                 } elseif ($idtypeuser == 2) { // Autor
                     echo '
                     <li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i><span class="hover-text">Inicio</span></a></li>
@@ -67,8 +68,7 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
                             <span class="hover-text">Perfil</span>
                         </a>
                     </li>
-                    <li><a class="texto_a" href="/config/logout.php"><i class="fas fa-sign-out-alt"></i><span class="hover-text">Cerrar</span></a></li>
-                    ';
+                    <li><a class="texto_a" id="settings-icon"><i class="fas fa-cog"></i><span class="hover-text">Ajustes</span></a></li>';
                 } elseif ($idtypeuser == 3) { // Visitante
                     echo '
                     <li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i><span class="hover-text">Inicio</span></a></li>
@@ -79,6 +79,38 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
                 ?>
             </ul>
 
+            <?php if ($idtypeuser == 1 || $idtypeuser == 2): ?>
+            <div id="userPopup">
+                <div class="imagen-pop">
+                    <div class="imagen-user">
+                        <?php 
+                            echo '<img id="img_user" src="' . $ruta . '" alt="Foto de perfil">';
+                        ?>
+                    </div>
+                </div>
+                <div class="nombre-pop">
+                    <p>!Hola, <span id="username"><?php echo htmlspecialchars($username); ?></span>!</p>
+                </div>
+                <div class="info-pop">
+                    <div class="nombredeluser">
+                        <p><strong>Nombre de usuario</strong></p>
+                        <p><span id="username"><?php echo htmlspecialchars($username); ?></span></p>
+                    </div>
+                    <div class="emaildeluser">
+                        <p><strong>Email</strong></p>
+                        <p><span id="email"><?php echo htmlspecialchars($email); ?></span></p>
+                    </div>
+                </div>
+                <div class="botones-pop">
+                    <a href="/admin/posts/editar-perfil.php?id=<?php echo $iduser; ?>">
+                        <button type="button">Editar perfil</button>
+                    </a>
+                    <a href="/config/logout.php">
+                        <button type="button">Cerrar sesión</button>
+                    </a>
+                </div>
+            </div>
+            <?php endif; ?>
 
             <!-- Agregar el buscador aquí -->
             <div class="nav__icon-group" style="display: flex; align-items: center; justify-content: flex-end; min-width: 100px;">
@@ -105,6 +137,9 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
         </div>
     </nav>
 
+    <script src="/js/main.js"></script>
+    <script src="/js/buscar.js"></script>
+    <script src="/views/js/profile.js"></script>
 </body>
 
 </html>
