@@ -30,8 +30,8 @@ document.getElementById("crearForm").addEventListener("submit", function (e) {
         mensajeError = "El título debe tener al menos 10 caracteres.";
         mostrarAlerta(mensajeError);
         return;
-    } 
-    
+    }
+
     if (contenido.length < 20) {
         mensajeError = "El contenido debe tener al menos 20 caracteres.";
         mostrarAlerta(mensajeError);
@@ -62,7 +62,7 @@ document.getElementById("crearForm").addEventListener("submit", function (e) {
         mostrarAlerta(mensajeError);
         return;
     }
-    
+
     // Si todo está bien, enviar el formulario
     this.submit();
 });
@@ -107,16 +107,17 @@ function agregarReferencia() {
 document.getElementById('imagen').addEventListener('change', function (event) {
     const input = event.target;
     const preview = document.getElementById('preview-imagen');
+    const previewContainer = document.querySelector('.preview-container');
 
     if (input.files && input.files[0]) {
         const reader = new FileReader();
         reader.onload = function (e) {
             preview.src = e.target.result;
-            preview.style.display = 'block';
+            previewContainer.style.display = 'block';
         };
         reader.readAsDataURL(input.files[0]);
     } else {
         preview.src = '';
-        preview.style.display = 'none';
+        previewContainer.style.display = 'none';
     }
 });

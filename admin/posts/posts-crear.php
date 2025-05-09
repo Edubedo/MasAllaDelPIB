@@ -3,7 +3,8 @@ session_start();
 include '../../config/database.php';
 
 //funcion para comprimir imagen
-function comprimirYConvertirImagen($rutaOriginal, $rutaDestinoSinExtension, $maxAncho = 1200, $calidad = 90, $formatoDestino = 'webp') {
+function comprimirYConvertirImagen($rutaOriginal, $rutaDestinoSinExtension, $maxAncho = 1200, $calidad = 90, $formatoDestino = 'webp')
+{
     $info = getimagesize($rutaOriginal);
     if (!$info) return false;
 
@@ -84,7 +85,7 @@ if (isset($_POST["crear_post"])) {
     $referencias = implode("\n", $referenciasArray);
     $categoria = $_POST['categoria_posts'];
     $fecha = $_POST['fecha_publicacion_posts'];
-    $usuario = $_SESSION['username'];  
+    $usuario = $_SESSION['username'];
 
     if (strlen($titulo) < 10) {
         echo "<script>mostrarAlerta('Título inválido. Debe tener al menos 10 caracteres.');</script>";
@@ -137,81 +138,96 @@ if (isset($_POST["crear_post"])) {
 
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Crear publicación</title>
 
-        <link rel="icon" href="../../assets/img/logo.png" type="image/x-icon">
-        <link rel="stylesheet" href="css/crear.css">
-    </head>
-    
-    <body>
-        <div class="encabezado">
-            <h1>Crear nueva publicación</h1>
-        </div>
-        
-        <form id="crearForm" action="" method="post" enctype="multipart/form-data">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear publicación</title>
+
+    <link rel="icon" href="../../assets/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/crear.css">
+</head>
+
+<body>
+    <div class="encabezado">
+        <h1>Crear nueva publicación</h1>
+    </div>
+
+    <form id="crearForm" action="" method="post" enctype="multipart/form-data">
         <div class="contenedor-general">
 
-                <div class="izquierdo">
+            <div class="izquierdo">
 
-                    <h2>Configuracion</h2>
+                <h2>Configuracion</h2>
 
-                    <div class="categoria_div">
-                        <label for="categoria">Categoría:</label>
-                        <select name="categoria_posts" id="categoria" required>
-                            <option value="" disabled selected hidden>Categorías</option>
-                            <option value="crecimiento-economico">Crecimiento Económico</option>
-                            <option value="emprendimiento-negocios">Emprendimiento  Y Negocios</option>
-                            <option value="mundo-laboral">Mundo laboral</option>
-                        </select>
-                    </div>
-
-                    <div class="fecha_div">
-                        <label for="fecha_publicacion">Fecha de Publicación:</label>
-                        <input class="fecha" type="text" id="fecha_publicacion" name="fecha_publicacion_posts" readonly>
-                    </div>
-
-                    <div class="autor_div">
-                        <?php if(isset($_SESSION['username'])): ?>
-                            <label for="usuario">Usuario:</label>
-                            <span class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
-                        <?php endif; ?>
-                    </div>
-
-                    <div class="boton-div">
-                        <a href="posts-consulta.php" class="btn-editar-publicacion">Regresar</a>
-                        <button type="submit" name="crear_post">Guardar Publicación</button>
-                    </div>
-                    
+                <div class="categoria_div">
+                    <label for="categoria">Categoría:</label>
+                    <select name="categoria_posts" id="categoria" required>
+                        <option value="" disabled selected hidden>Categorías</option>
+                        <option value="crecimiento-economico">Crecimiento Económico</option>
+                        <option value="emprendimiento-negocios">Emprendimiento Y Negocios</option>
+                        <option value="mundo-laboral">Mundo laboral</option>
+                    </select>
                 </div>
 
-                <div class="derecho">
-                    <div class="titulodelposts">
-                        <label for="titulo">Título del post:</label>
-                        <input type="text" id="titulo" name="titulo_posts" required>
+                <div class="fecha_div">
+                    <label for="fecha_publicacion">Fecha de Publicación:</label>
+                    <input class="fecha" type="text" id="fecha_publicacion" name="fecha_publicacion_posts" readonly>
+                </div>
+
+                <div class="autor_div">
+                    <?php if (isset($_SESSION['username'])): ?>
+                        <label for="usuario">Usuario:</label>
+                        <span class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                    <?php endif; ?>
+                </div>
+
+                <div class="boton-div">
+                    <a href="posts-consulta.php" class="btn-editar-publicacion">Regresar</a>
+                    <button type="submit" name="crear_post">Guardar Publicación</button>
+                </div>
+
+            </div>
+
+            <div class="derecho">
+                <div class="titulodelposts">
+                    <label for="titulo">Título del post:</label>
+                    <input type="text" id="titulo" name="titulo_posts" required>
+                </div>
+                <div class="contenidodelposts">
+                    <label for="contenido">Contenido:</label>
+                    <textarea id="contenido" name="contenido_posts" rows="6" required></textarea>
+                </div>
+                <div class="imagendelpost">
+                    <label for="imagen">Imagen:</label>
+                    <input type="file" id="imagen" name="imagen_posts" accept="image/*" required>
+                </div>
+                <div class="referenciadelpost">
+                    <label for="referencias">Referencias:</label>
+                    <div id="contenedorReferencias">
+                        <input class="input-referencia" type="text" name="referencias_post[]" placeholder="Escribe una referencia" required>
                     </div>
-                    <div class="contenidodelposts">
-                        <label for="contenido">Contenido:</label>
-                        <textarea id="contenido" name="contenido_posts" rows="6" required></textarea>
-                    </div>
-                    <div class="imagendelpost">
-                        <label for="imagen">Imagen:</label>
-                        <input type="file" id="imagen" name="imagen_posts" accept="image/*" required>
-                    </div>
-                    <div class="referenciadelpost">
-                        <label for="referencias">Referencias:</label>
-                        <div id="contenedorReferencias">
-                            <input class="input-referencia" type="text" name="referencias_post[]" placeholder="Escribe una referencia" required>
-                        </div>
-                        <button class="boton-agregar-referencia" type="button" onclick="agregarReferencia()">Agregar otra referencia</button>
-                    </div>
+                    <button class="boton-agregar-referencia" type="button" onclick="agregarReferencia()">Agregar otra referencia</button>
                 </div>
             </div>
-        </form>
+        </div>
+    </form>
 
-        <script src="../../js/posts-crear.js"></script>
+    <!-- Modal de alerta -->
+    <div id="modal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000;">
+        <div class="modal-contenido" style="background: white; padding: 20px; border-radius: 5px; max-width: 400px; text-align: center;">
+            <p id="alert-message">Mensaje de alerta</p>
+            <button onclick="cerrarAlerta()" style="padding: 8px 15px; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Aceptar</button>
+        </div>
+    </div>
 
-    </body>
+    <!-- Previsualización de imagen -->
+    <div class="preview-container" style="display: none; margin-top: 10px; text-align: center;">
+        <img id="preview-imagen" style="max-width: 100%; max-height: 200px;">
+    </div>
+
+    <script src="../../js/posts-crear.js"></script>
+
+</body>
+
 </html>
