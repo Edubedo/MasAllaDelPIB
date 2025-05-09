@@ -36,6 +36,54 @@ h1, h3, p {
     text-shadow: none;
 }
 
+.encabezadoPrincipal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    margin-top: 5rem; 
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), #25384c);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    border-top: 2px solid #ffffff20;
+    border-bottom: 2px solid #ffffff20;
+    padding: 2rem;
+    text-align: center;
+    backdrop-filter: blur(3px);
+    animation: fadeInDown 1s ease-out;
+}
+
+.encabezadoPrincipal h1 {
+    font-size: 5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 80%;
+    line-height: 1.5;
+}
+
+.encabezadoPrincipal p {
+    font-size: 3rem;
+    color: #e0e0e0;
+    margin-top: 1rem;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    max-width: 80%;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Contenedor principal (todo lo que esta debajo del carrusel) */
 .container-principal {
     display: flex;
@@ -43,11 +91,7 @@ h1, h3, p {
     justify-content: space-between;
     padding: 2rem;
     gap: 0.5rem;
-}
-
-.container-carrusel {
-    width: 100%;
-    min-height: 20rem;
+    margin-top: 1rem;
 }
 
 /* Columna izquierda (recientes) */
