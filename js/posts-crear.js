@@ -3,38 +3,50 @@ const hoy = new Date().toISOString().split('T')[0];
 document.getElementById('fecha_publicacion').value = hoy;
 
 // Asignar la fecha actual como valor mínimo
-document.getElementById('fecha_publicacion').setAttribute('min', hoy);
+document.getElementById('fecha_publicacion').setAttribute('min', today);
 
 // Mostrar el modal de alerta cuando no se cumple la validación
 function mostrarAlerta(mensaje) {
-    document.getElementById("alert-message").textContent = mensaje;
-    document.getElementById("modal").style.display = "flex";
-}
+    const fondo = document.createElement("div");
+    fondo.classList.add("fondo-alerta");
 
-// Cerrar el modal de alerta
-function cerrarAlerta() {
-    document.getElementById("modal").style.display = "none";
+    const alerta = document.createElement("div");
+    alerta.classList.add("alerta");
+
+    const texto = document.createElement("p");
+    texto.textContent = mensaje;
+
+    const boton = document.createElement("button");
+    boton.textContent = "Aceptar";
+    boton.classList.add("boton-alerta");
+
+    boton.onclick = function () {
+        document.body.removeChild(fondo);
+    };
+
+    alerta.appendChild(texto);
+    alerta.appendChild(boton);
+    fondo.appendChild(alerta);
+    document.body.appendChild(fondo);
 }
 
 // Validaciones antes de enviar el formulario
 document.getElementById("crearForm").addEventListener("submit", function (e) {
-    e.preventDefault(); // Evita el envío del formulario por defecto
     const titulo = document.getElementById("titulo").value.trim();
     const contenido = document.getElementById("contenido").value.trim();
     const inputsReferencias = document.querySelectorAll('input[name="referencias_post[]"]');
 
-    let mensajeError = '';
-
-    // Validaciones básicas
+    // Validar título
     if (titulo.length < 10) {
-        mensajeError = "El título debe tener al menos 10 caracteres.";
-        mostrarAlerta(mensajeError);
+        e.preventDefault(); // Evita que se envíe el formulario
+        mostrarAlerta("El título debe tener al menos 10 caracteres.");
         return;
     }
 
+    // Validar contenido
     if (contenido.length < 20) {
-        mensajeError = "El contenido debe tener al menos 20 caracteres.";
-        mostrarAlerta(mensajeError);
+        e.preventDefault();
+        mostrarAlerta("El contenido debe tener al menos 20 caracteres.");
         return;
     }
 
@@ -54,17 +66,14 @@ document.getElementById("crearForm").addEventListener("submit", function (e) {
     });
 
     if (!referenciasValidas || !todasReferenciasValidas) {
+        e.preventDefault();
         if (inputsReferencias.length === 0) {
-            mensajeError = "Debes agregar al menos una referencia.";
+            mostrarAlerta("Debes agregar al menos una referencia.");
         } else {
-            mensajeError = "Todas las referencias deben tener al menos 10 caracteres.";
+            mostrarAlerta("Todas las referencias deben tener al menos 10 caracteres.");
         }
-        mostrarAlerta(mensajeError);
         return;
     }
-
-    // Si todo está bien, enviar el formulario
-    this.submit();
 });
 
 function agregarReferencia() {
@@ -104,20 +113,20 @@ function agregarReferencia() {
     contenedor.appendChild(divWrapper);
 }
 
+
 document.getElementById('imagen').addEventListener('change', function (event) {
     const input = event.target;
     const preview = document.getElementById('preview-imagen');
-    const previewContainer = document.querySelector('.preview-container');
 
     if (input.files && input.files[0]) {
         const reader = new FileReader();
         reader.onload = function (e) {
             preview.src = e.target.result;
-            previewContainer.style.display = 'block';
+            preview.style.display = 'block';
         };
         reader.readAsDataURL(input.files[0]);
     } else {
         preview.src = '';
-        previewContainer.style.display = 'none';
+        preview.style.display = 'none';
     }
 });
