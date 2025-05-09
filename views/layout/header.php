@@ -54,7 +54,8 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
                     echo '
                     <li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i><span class="hover-text">Inicio</span></a></li>
                     <li><a class="texto_a" href="/admin/posts/posts-consulta.php"><i class="fas fa-pen"></i><span class="hover-text">Posts</span></a></li>
-                    <li><a class="texto_a" href="/admin/posts/panel-usuarios.php"><i class="fas fa-users"></i><span class="hover-text">Usuarios</span></a></li>';
+                    <li><a class="texto_a" href="/admin/posts/panel-usuarios.php"><i class="fas fa-users"></i><span class="hover-text">Usuarios</span></a></li>
+                    <li><a class="texto_a" href="/views/logout.php"><i class="fas fa-sign-out-alt"></i><span class="hover-text">Cerrar Sesión</span></a></li>';
                 } elseif ($idtypeuser == 2) { // Autor
                     echo '
                     <li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i><span class="hover-text">Inicio</span></a></li>
@@ -65,7 +66,9 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
                             <img src="' . $rutaImagen . '" alt="Foto de perfil" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
                             <span class="hover-text">Perfil</span>
                         </a>
-                    </li>';
+                    </li>
+                    <li><a class="texto_a" href="/config/logout.php"><i class="fas fa-sign-out-alt"></i><span class="hover-text">Cerrar</span></a></li>
+                    ';
                 } elseif ($idtypeuser == 3) { // Visitante
                     echo '
                     <li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i><span class="hover-text">Inicio</span></a></li>
@@ -81,7 +84,7 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
             <div class="nav__icon-group" style="display: flex; align-items: center; justify-content: flex-end; min-width: 100px;">
                 <?php
                 $current_page = basename($_SERVER['PHP_SELF']);
-                $hidden_pages = ['posts-consulta.php', 'about.php'];
+                $hidden_pages = ['posts-consulta.php', 'about.php', 'signin.php'];
                 if (!in_array($current_page, $hidden_pages)):
                 ?>
                     <div class="search-container">
