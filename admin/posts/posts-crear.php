@@ -2,20 +2,27 @@
 session_start();
 include '../../config/database.php';
 
-//funcion para comprimir imagen
-function comprimirImagen($rutaOriginal, $rutaDestinoSinExtension, $maxAncho = 1200, $calidad = 90, $formatoDestino = 'webp')
-{
+// Verificar si GD está habilitado
+function isGDExtensionAvailable() {
+    return extension_loaded('gd');
+}
+
+function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 1200, $calidad = 90) {
+    // Si GD no está disponible, no hacemos nada
+    if (!isGDExtensionAvailable()) {
+        return false;
+    }
+
     $info = getimagesize($rutaOriginal);
     if (!$info) return false;
 
-    $mime = $info['mime'];
+    $tipo = $info['mime'];
     $ancho = $info[0];
     $alto = $info[1];
 
     if ($ancho <= 0 || $alto <= 0) return false;
 
-    // Cargar imagen según su formato original
-    switch ($mime) {
+    switch ($tipo) {
         case 'image/jpeg':
             $imagen = imagecreatefromjpeg($rutaOriginal);
             break;
@@ -29,24 +36,16 @@ function comprimirImagen($rutaOriginal, $rutaDestinoSinExtension, $maxAncho = 12
             imagealphablending($imagen, false);
             imagesavealpha($imagen, true);
             break;
-        case 'image/avif':
-            if (!function_exists('imagecreatefromavif')) return false;
-            $imagen = imagecreatefromavif($rutaOriginal);
-            imagealphablending($imagen, false);
-            imagesavealpha($imagen, true);
-            break;
         default:
             return false;
     }
 
-    // Redimensionar si es necesario
     if ($ancho > $maxAncho) {
         $nuevoAncho = $maxAncho;
         $nuevoAlto = max(1, (int)(($maxAncho / $ancho) * $alto));
         $nuevaImagen = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
-        if ($formatoDestino === 'png' || $formatoDestino === 'webp' || $formatoDestino === 'avif') {
-            imagealphablending($nuevaImagen, false);
+        if ($tipo == 'image/png' || $tipo == 'image/webp') {
             imagesavealpha($nuevaImagen, true);
         }
 
@@ -55,34 +54,28 @@ function comprimirImagen($rutaOriginal, $rutaDestinoSinExtension, $maxAncho = 12
         $nuevaImagen = $imagen;
     }
 
-    // Ruta con nueva extensión
-    $rutaFinal = $rutaDestinoSinExtension . '.' . $formatoDestino;
-
-    // Guardar según formato destino
-    switch ($formatoDestino) {
-        case 'webp':
-            imagewebp($nuevaImagen, $rutaFinal, $calidad);
+    switch ($tipo) {
+        case 'image/jpeg':
+            imagejpeg($nuevaImagen, $rutaDestino, $calidad);
             break;
-        case 'avif':
-            if (!function_exists('imageavif')) return false;
-            imageavif($nuevaImagen, $rutaFinal, $calidad);
+        case 'image/png':
+            imagepng($nuevaImagen, $rutaDestino, 0);
             break;
-        default:
-            return false;
+        case 'image/webp':
+            imagewebp($nuevaImagen, $rutaDestino, $calidad);
+            break;
     }
 
     imagedestroy($imagen);
     imagedestroy($nuevaImagen);
-
-    return $rutaFinal;
+    return true;
 }
 
-
 if (isset($_POST["crear_post"])) {
-    $titulo = $_POST['titulo_posts'];
-    $contenido = $_POST['contenido_posts'];
+    $titulo = trim($_POST['titulo_posts']);
+    $contenido = trim($_POST['contenido_posts']);
     $referenciasArray = $_POST['referencias_post'];
-    $referencias = implode("\n", $referenciasArray);
+    $referencias = implode("\n", array_map('trim', $referenciasArray));
     $categoria = $_POST['categoria_posts'];
     $fecha = $_POST['fecha_publicacion_posts'];
     $usuario = $_SESSION['username'];
@@ -106,7 +99,6 @@ if (isset($_POST["crear_post"])) {
     $imagen_tmp_name = $_FILES['imagen_posts']['tmp_name'];
     $target_dir = 'uploads/';
 
-    // Mover el archivo a una ruta temporal antes de manipularlo
     $ruta_temp = $target_dir . "temp_" . basename($imagen_name);
     if (!move_uploaded_file($imagen_tmp_name, $ruta_temp)) {
         echo "<p style='color:red;'>Error al mover la imagen subida.</p>";
@@ -115,51 +107,55 @@ if (isset($_POST["crear_post"])) {
 
     $ruta_final = $target_dir . "comprimida_" . basename($imagen_name);
 
-    if (comprimirImagen($ruta_temp, $ruta_final, 1200, 90)) {
-        unlink($ruta_temp); // Limpieza del temporal
-
-        $query = "INSERT INTO posts (title, content, post_date, category, image, user_creation, referencia_posts) 
-                  VALUES ('$titulo', '$contenido', '$fecha', '$categoria', '$ruta_final', '$usuario', '$referencias')";
-
-        if (mysqli_query($conexion, $query)) {
-            header("Location: posts-consulta.php");
-            exit();
+    // Si GD está habilitado, comprime la imagen. Si no, simplemente mueve la imagen
+    if (isGDExtensionAvailable()) {
+        if (comprimirImagen($ruta_temp, $ruta_final, 1200, 90)) {
+            unlink($ruta_temp);
         } else {
-            echo "<p style='color:red;'>Error al crear la publicación.</p>";
+            echo "<p style='color:red;'>Error al comprimir la imagen.</p>";
+            unlink($ruta_temp);
+            exit();
         }
     } else {
-        echo "<p style='color:red;'>Error al comprimir la imagen.</p>";
-        unlink($ruta_temp);
+        // Si GD no está disponible, solo mover la imagen sin comprimir
+        if (!rename($ruta_temp, $ruta_final)) {
+            echo "<p style='color:red;'>Error al mover la imagen.</p>";
+            exit();
+        }
+    }
+
+    $query = "INSERT INTO posts (title, content, post_date, category, image, user_creation, referencia_posts) 
+              VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conexion->prepare($query);
+    $stmt->bind_param("sssssss", $titulo, $contenido, $fecha, $categoria, $ruta_final, $usuario, $referencias);
+
+    if ($stmt->execute()) {
+        header("Location: posts-consulta.php");
         exit();
+    } else {
+        echo "<p style='color:red;'>Error al crear la publicación.</p>";
     }
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear publicación</title>
-
     <link rel="icon" href="../../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/crear.css">
 </head>
-
 <body>
     <div class="encabezado">
         <h1>Crear nueva publicación</h1>
     </div>
-
     <form id="crearForm" action="" method="post" enctype="multipart/form-data">
         <div class="contenedor-general">
-
             <div class="izquierdo">
-
-                <h2>Configuracion</h2>
-
+                <h2>Configuración</h2>
                 <div class="categoria_div">
                     <label for="categoria">Categoría:</label>
                     <select name="categoria_posts" id="categoria" required>
@@ -169,26 +165,21 @@ if (isset($_POST["crear_post"])) {
                         <option value="mundo-laboral">Mundo laboral</option>
                     </select>
                 </div>
-
                 <div class="fecha_div">
                     <label for="fecha_publicacion">Fecha de Publicación:</label>
                     <input class="fecha" type="text" id="fecha_publicacion" name="fecha_publicacion_posts" readonly>
                 </div>
-
                 <div class="autor_div">
                     <?php if (isset($_SESSION['username'])): ?>
                         <label for="usuario">Usuario:</label>
                         <span class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
                     <?php endif; ?>
                 </div>
-
                 <div class="boton-div">
                     <a href="posts-consulta.php" class="btn-editar-publicacion">Regresar</a>
                     <button type="submit" name="crear_post">Guardar Publicación</button>
                 </div>
-
             </div>
-
             <div class="derecho">
                 <div class="titulodelposts">
                     <label for="titulo">Título del post:</label>
@@ -214,20 +205,20 @@ if (isset($_POST["crear_post"])) {
     </form>
 
     <!-- Modal de alerta -->
-    <div id="modal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000;">
-        <div class="modal-contenido" style="background: white; padding: 20px; border-radius: 5px; max-width: 400px; text-align: center;">
+    <div id="modal" class="modal" style="display: none;">
+        <div class="modal-contenido">
             <p id="alert-message">Mensaje de alerta</p>
-            <button onclick="cerrarAlerta()" style="padding: 8px 15px; background: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Aceptar</button>
+            <button onclick="cerrarAlerta()">Aceptar</button>
         </div>
     </div>
 
-    <!-- Previsualización de imagen -->
-    <div class="preview-container" style="display: none; margin-top: 10px; text-align: center;">
+    <!-- Vista previa de imagen -->
+    <div class="preview-container" style="display: none;">
         <img id="preview-imagen" style="max-width: 100%; max-height: 200px;">
     </div>
 
+    <!-- JS para validaciones y referencias -->
     <script src="../../js/posts-crear.js"></script>
-
 </body>
-
 </html>
+ <!-- #region -->
