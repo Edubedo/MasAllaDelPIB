@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../config/database.php';
+require_once '../config/database.php'; // Asegúrate que esta ruta es correcta
 
 if (!isset($_SESSION['email_recuperacion'])) {
     header("Location: olvidaste_tu_contrasena.php");
@@ -17,17 +17,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    // Usando md5 para el hash (aunque no recomendado para contraseñas)
-    $passwordHash = md5($password);
-
-    // Conectar a base de datos
-    $conn = new mysqli($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASSWORD'], $_ENV['DB_NAME'], $_ENV['DB_PORT']);
-
-    if ($conn->connect_error) {
-        die("Error de conexión: " . $conn->connect_error);
+    if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/', $password)) {
+        $_SESSION['mensaje_error'] = "La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial";
+        header("Location: nueva_contraseña.php");
+        exit();
     }
 
-    $stmt = $conn->prepare("UPDATE users SET password = ? WHERE email = ?");
+    // Usar password_hash (recomendado) - Elimina la línea de md5()
+    $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+
+    
+    global $conexion; // Accede a la conexión ya establecida
+    
+    $stmt = $conexion->prepare("UPDATE users SET password = ? WHERE email = ?");
     $stmt->bind_param("ss", $passwordHash, $_SESSION['email_recuperacion']);
 
     if ($stmt->execute()) {
@@ -36,13 +38,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: signin.php");
         exit();
     } else {
-        $_SESSION['mensaje_error'] = "Error al actualizar la contraseña.";
+        $_SESSION['mensaje_error'] = "Error al actualizar la contraseña: " . $conexion->error;
         header("Location: nueva_contraseña.php");
         exit();
     }
 
     $stmt->close();
-    $conn->close();
 
 }
 ?>
@@ -94,14 +95,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
            
             <!-- Formularios de login y registro -->
             <div class="contenedor__Login-register">
-                <form action="nueva_contraseña.php" method="POST" class="formulario__login">
+                <form action="nueva_contraseña.php" method="POST" class="formulario__login" onsubmit="return validarPassword()">
                     <h2>Nueva contraseña</h2>
                     <p class="fa fa-lock" style="font-size: 20px; margin-right: 10px; color:rgb(55, 72, 155);"></p>
-                    <input type="password" name="password" placeholder="Contraseña" required>
+                    <input type="password" name="password" id="password" placeholder="Contraseña" required oninput="validarFortalezaPassword()">
+                    <div id="password-strength">
+                        <p style="font-weight: bold;" id="length">✓ Al menos 8 caracteres</p>
+                        <p style="font-weight: bold;" id="uppercase">✓ Al menos una mayúscula</p>
+                        <p style="font-weight: bold;" id="number">✓ Al menos un número</p>
+                        <p style="font-weight: bold;" id="special">✓ Al menos un carácter especial</p>
+                    </div>
 
                     <h2>Confirma tu contraseña</h2>
                     <p class="fa fa-lock" style="font-size: 20px; margin-right: 10px; color:rgb(55, 72, 155);"></p>
-                    <input type="password" name="confirm_password" placeholder="Confirmar Contraseña" required>
+                    <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirmar Contraseña" required>
 
                     <?php if (isset($_SESSION['mensaje_error'])): ?>
                         <p style="color: red;"><?php echo $_SESSION['mensaje_error']; unset($_SESSION['mensaje_error']); ?></p>
@@ -115,6 +122,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </main>
     <script src="../js/login.js"></script>
+    <script src="../js/nueva_contraseña.js"></script>
+    
 
     <!-- IMPORTAR EL FOOTER -->
     <?php include './layout/footer.php'; ?>

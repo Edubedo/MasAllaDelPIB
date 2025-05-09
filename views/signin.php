@@ -103,12 +103,19 @@
                 </form>
 
                 <!-- Formulario de registro -->
-                <form action="registro-usuarios.php" class="formulario__register" method="POST" enctype="multipart/form-data">
+                <form action="registro-usuarios.php" class="formulario__register" method="POST" enctype="multipart/form-data" onsubmit="return validarPassword()">
                     <h2 class="fa fa-user" style="font-size: 40px; margin-bottom: 10px; text-align: center; display: block;"></h2>
                     <input type="text" name="fullname" placeholder="Nombre Completo" required>
                     <input type="email" name="email" placeholder="Correo Electrónico" required>
                     <input type="text" name="username" placeholder="Usuario" required>
-                    <input type="password" name="password" placeholder="Contraseña" required>
+                    <input type="password" name="password" id="password" placeholder="Contraseña" required oninput="validarFortalezaPassword()">
+                    <div id="password-strength">
+                        <p style="font-weight: bold;" id="length">✓ Al menos 8 caracteres</p>
+                        <p style="font-weight: bold;" id="uppercase">✓ Al menos una mayúscula</p>
+                        <p style="font-weight: bold;" id="number">✓ Al menos un número</p>
+                        <p style="font-weight: bold;" id="special">✓ Al menos un carácter especial</p>
+                    </div>
+                    <input type="password" id="confirm_password" placeholder="Confirmar Contraseña" required>
                     <!-- Reemplaza el input de archivo actual por este código -->
                     <div class="custom-file-input">
                         <label for="foto-perfil-input">

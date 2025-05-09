@@ -7,6 +7,17 @@ error_reporting(E_ALL);
 // Incluir la conexión a la base de datos
 include('../config/database.php'); // Asegúrate de que esta ruta sea correcta
 
+
+// Validar contraseña
+$password = $_POST['password'];
+$regex = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/';
+
+if (!preg_match($regex, $password)) {
+    $_SESSION['error_message'] = 'La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial';
+    header('Location: login.php'); 
+    exit();
+}
+
 //funcion para comprimir la imagen
 function comprimir_imagen($origen, $destino, $max_width, $max_height, $quality = 75)
 {
