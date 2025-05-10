@@ -6,13 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
         settingsIcon.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            popup.style.display = popup.style.display === 'none' ? 'block' : 'none';
+            // Alternar la clase 'visible'
+            popup.classList.toggle('visible');
         });
 
         document.addEventListener('click', (e) => {
             if (!popup.contains(e.target) && e.target !== settingsIcon && !settingsIcon.contains(e.target)) {
-                popup.style.display = 'none';
+                popup.classList.remove('visible');
             }
         });
     }
-}); 
+});

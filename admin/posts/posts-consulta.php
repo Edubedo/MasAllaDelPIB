@@ -43,7 +43,6 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
     <link rel="icon" href="../../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/consulta.css">
     <link rel="stylesheet" href="../../views/css/navbar.css">
-    <link rel="stylesheet" href="css/userpop.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
@@ -85,36 +84,7 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
                 </div>
             </div>
 
-            <div id="userPopup">
-                <div class="imagen-pop">
-                    <div class="imagen-user">
-                        <?php 
-                            echo '<img id="img_user" src="' . $ruta . '" alt="Foto de perfil">';
-                        ?>
-                    </div>
-                </div>
-                <div class="nombre-pop">
-                    <p>!Hola, <span id="username"><?php echo htmlspecialchars($username); ?></span>!</p>
-                </div>
-                <div class="info-pop">
-                    <div class="nombredeluser">
-                        <p><strong>Nombre de usuario</strong></p>
-                        <p><span id="username"><?php echo htmlspecialchars($username); ?></span></p>
-                    </div>
-                    <div class="emaildeluser">
-                        <p><strong>Email</strong></p>
-                        <p><span id="email"><?php echo htmlspecialchars($email); ?></span></p>
-                    </div>
-                </div>
-                <div class="botones-pop">
-                    <a href="editar-perfil.php?id=<?php echo $iduser; ?>">
-                        <button>Editar perfil</button>
-                    </a>
-                    <a href="/config/logout.php" >
-                        <button>Cerrar sesion</button>
-                    </a>
-                </div>
-            </div>
+            
         </header>
 
         
