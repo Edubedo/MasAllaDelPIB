@@ -6,8 +6,12 @@ include '../../config/database.php';
 function isGDExtensionAvailable() {
     return extension_loaded('gd');
 }
-function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad = 85) {
-    if (!extension_loaded('gd')) return false;
+
+function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 1200, $calidad = 90) {
+    // Si GD no está disponible, no hacemos nada
+    if (!isGDExtensionAvailable()) {
+        return false;
+    }
 
     $info = getimagesize($rutaOriginal);
     if (!$info) return false;
@@ -36,7 +40,6 @@ function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad 
             return false;
     }
 
-    // Redimensionar si es necesario
     if ($ancho > $maxAncho) {
         $nuevoAncho = $maxAncho;
         $nuevoAlto = max(1, (int)(($maxAncho / $ancho) * $alto));
@@ -44,7 +47,6 @@ function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad 
 
         if ($tipo == 'image/png' || $tipo == 'image/webp') {
             imagesavealpha($nuevaImagen, true);
-            imagealphablending($nuevaImagen, false);
         }
 
         imagecopyresampled($nuevaImagen, $imagen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
@@ -52,17 +54,15 @@ function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad 
         $nuevaImagen = $imagen;
     }
 
-    // Guardar imagen según tipo
     switch ($tipo) {
         case 'image/jpeg':
-            imagejpeg($nuevaImagen, $rutaDestino, $calidad); // calidad 0-100
+            imagejpeg($nuevaImagen, $rutaDestino, $calidad);
             break;
         case 'image/png':
-            $compresionPNG = 7; // 0 (sin compresión) a 9 (máxima compresión)
-            imagepng($nuevaImagen, $rutaDestino, $compresionPNG);
+            imagepng($nuevaImagen, $rutaDestino, 0);
             break;
         case 'image/webp':
-            imagewebp($nuevaImagen, $rutaDestino, $calidad); // calidad 0-100
+            imagewebp($nuevaImagen, $rutaDestino, $calidad);
             break;
     }
 
@@ -70,7 +70,6 @@ function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad 
     imagedestroy($nuevaImagen);
     return true;
 }
-
 
 if (isset($_POST["crear_post"])) {
     $titulo = trim($_POST['titulo_posts']);
@@ -138,6 +137,8 @@ if (isset($_POST["crear_post"])) {
     }
 }
 ?>
+
+
 
 
 <!DOCTYPE html>
