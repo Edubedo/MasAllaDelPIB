@@ -3,14 +3,26 @@ include __DIR__ . '/../../config/database.php';
 
 $idtypeuser = $_SESSION['id_type_user'] ?? null;
 // Si no hay valor en $_SESSION['id_type_user'], asignar por defecto "visitante"
-$idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
 $email = $_SESSION['email'] ?? null;
 $foto_perfil = '';
 
+
+// Verifica si hay una session activa y mandamos a llamar el nombre del usuario
+if (isset($_SESSION['username'])) {
+
+    $username = $_SESSION['username'];
+    $email = $_SESSION['email'];
+} else {
+    // Si no hay usuario logueado lo va a redirigir al login
+    header("Location: ../../views/signin.php");
+    exit();
+}
+$iduser = null;
 if ($email) {
-    $sql = "SELECT foto_perfil FROM users WHERE email = '$email'";
+    $sql = "SELECT iduser,foto_perfil FROM users WHERE email = '$email'";
     $result = mysqli_query($conexion, $sql);
     $row = mysqli_fetch_assoc($result);
+    $iduser = $row['iduser'];  // Obtienes el id del usuario
     $foto_perfil = $row['foto_perfil'] ?? '';
 }
 
@@ -84,7 +96,7 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
                 <div class="imagen-pop">
                     <div class="imagen-user">
                         <?php 
-                            echo '<img id="img_user" src="' . $ruta . '" alt="Foto de perfil">';
+                            echo '<img id="img_user" src="' . $rutaImagen . '" alt="Foto de perfil">';
                         ?>
                     </div>
                 </div>

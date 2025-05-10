@@ -1,45 +1,25 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const icon = document.getElementById('search-icon');
-    const input = document.getElementById('search-input');
-    const resultsBox = document.getElementById('search-results');
+document.addEventListener('DOMContentLoaded', function() {
+    const searchIcon = document.getElementById('search-icon');
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
 
-    icon.addEventListener('click', () => {
-        input.style.display = input.style.display === 'none' ? 'block' : 'none';
-        input.focus();
-        resultsBox.style.display = 'none';
+    searchIcon.addEventListener('click', function() {
+        console.log('Icono de búsqueda clickeado');
+        // Alterna la clase 'show' para manejar la visibilidad
+        searchInput.classList.toggle('show');
+        searchResults.style.display = 'none'; // Oculta los resultados de búsqueda
     });
 
-    input.addEventListener('input', function () {
-        const query = this.value;
-
-        if (query.length >= 2) {
-            fetch(`/views/ajax/buscar-posts.php?q=${encodeURIComponent(query)}`)
-                .then(response => response.json())
-                .then(data => {
-                    resultsBox.innerHTML = '';
-                    if (data.length === 0) {
-                        resultsBox.innerHTML = '<p style="padding:1rem; font-size:1.5rem">No se encontraron resultados.</p>';
-                    } else {
-                        data.forEach(post => {
-                            const link = document.createElement('a');
-                            link.href = `/views/post.php?id=${post.Id_posts}`;
-                            link.textContent = post.title;
-                            resultsBox.appendChild(link);
-                        });
-                    }
-                    resultsBox.style.display = 'block';
-                });
-        } else {
-            resultsBox.innerHTML = '';
-            resultsBox.style.display = 'none';
-        }
+    searchInput.addEventListener('input', function() {
+        searchResults.style.display = 'block'; // Mostrar los resultados
+        searchResults.innerHTML = '<p>Resultados...</p>'; // Puedes llenar los resultados dinámicamente
     });
 
-    // Ocultar resultados si se hace clic fuera
-    document.addEventListener('click', function (e) {
-        if (!document.querySelector('.search-container').contains(e.target)) {
-            resultsBox.style.display = 'none';
-            input.style.display = 'none';
+    // Cerrar la búsqueda si el usuario hace clic fuera del área de búsqueda
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.search-container')) {
+            searchInput.classList.remove('show');  // Oculta el input al hacer clic fuera
+            searchResults.style.display = 'none';
         }
     });
 });
