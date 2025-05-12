@@ -3,6 +3,7 @@ include __DIR__ . '/../../config/database.php';
 
 $idtypeuser = $_SESSION['id_type_user'] ?? null;
 // Si no hay valor en $_SESSION['id_type_user'], asignar por defecto "visitante"
+$idtypeuser = $_SESSION['id_type_user'] ?? 3;
 $email = $_SESSION['email'] ?? null;
 $foto_perfil = '';
 
