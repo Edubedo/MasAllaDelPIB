@@ -13,11 +13,8 @@ if (isset($_SESSION['username'])) {
 
     $username = $_SESSION['username'];
     $email = $_SESSION['email'];
-} else {
-    // Si no hay usuario logueado lo va a redirigir al login
-    header("Location: ../../views/signin.php");
-    exit();
-}
+} 
+
 $iduser = null;
 if ($email) {
     $sql = "SELECT iduser,foto_perfil FROM users WHERE email = '$email'";
