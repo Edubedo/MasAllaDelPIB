@@ -206,19 +206,59 @@ nav button {
 }
 
 #search-input {
-    display: none;  /* Oculto por defecto */
-    width: 150px;  /* Ajusta el tamaño si es necesario */
-    padding: 5px;
-    margin-left: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    border: none; /* <- esto elimina el borde blanco fantasma */
+    background-color: transparent; /* por si el blanco genera contraste */
 }
 
 #search-input.show {
-    display: inline-block;  /* Muestra el input */
+    visibility: visible;
+    opacity: 1;
+    width: 15rem;
+    padding: 0.5rem;
+    margin-left: 1rem;
+    border: 0.1rem solid #ccc;
+    pointer-events: auto;
+    background-color: white;
+    color: black;
+    position: static;
 }
 
+/* Estilos para los resultados de búsqueda */
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    border: 0.1rem solid #ccc;
+    width: 20rem;
+    max-height: 20.5rem;
+    overflow-y: auto;
+    z-index: 999;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 0.4rem;
+}
+
+.search-results a {
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.4rem;
+    transition: background-color 0.2s ease;
+}
+
+.search-results a:hover {
+    background-color: #f0f0f0;
+    color: #000;
+}
 
 
 
