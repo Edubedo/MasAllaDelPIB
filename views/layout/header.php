@@ -36,9 +36,6 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Website</title>
 
-    <script src="/js/main.js"></script>
-    <script src="/js/buscar.js"></script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/views/css/navbar.css">
     <link rel="stylesheet" href="/admin/posts/css/userpop.css">
@@ -125,7 +122,7 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
                 ?>
                     <div class="search-container">
                         <i class="fas fa-search" id="search-icon" style="font-size: 22px; color:white; cursor:pointer;"></i>
-                        <input type="text" id="search-input" placeholder="Buscar..." style="display:none;">
+                        <input type="text" id="search-input" placeholder="Buscar...">
                         <div id="search-results" class="search-results"></div>
                     </div>
                 <?php endif; ?>
@@ -143,6 +140,5 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
 
     <script src="/js/main.js"></script>
     <script src="/js/buscar.js"></script>
-    <script src="/views/js/profile.js"></script>
 </body>
 </html>
