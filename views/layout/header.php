@@ -1,29 +1,30 @@
 <?php
+// Iniciar sesión si aún no se ha hecho
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 include __DIR__ . '/../../config/database.php';
 
-$idtypeuser = $_SESSION['id_type_user'] ?? null;
-// Si no hay valor en $_SESSION['id_type_user'], asignar por defecto "visitante"
+// Asignar tipo de usuario y email desde la sesión
 $idtypeuser = $_SESSION['id_type_user'] ?? 3;
 $email = $_SESSION['email'] ?? null;
 $foto_perfil = '';
+$username = $_SESSION['username'] ?? null;
 
-
-// Verifica si hay una session activa y mandamos a llamar el nombre del usuario
-if (isset($_SESSION['username'])) {
-
-    $username = $_SESSION['username'];
-    $email = $_SESSION['email'];
-} else {
-    // Si no hay usuario logueado lo va a redirigir al login
-    header("Location: ../../views/signin.php");
+// Verifica si hay una sesión activa, si no redirige al login
+if (!$username) {
+    header("Location: /views/signin.php");
     exit();
 }
+
+// Obtener ID del usuario y foto de perfil si hay email
 $iduser = null;
 if ($email) {
-    $sql = "SELECT iduser,foto_perfil FROM users WHERE email = '$email'";
+    $sql = "SELECT iduser, foto_perfil FROM users WHERE email = '$email'";
     $result = mysqli_query($conexion, $sql);
     $row = mysqli_fetch_assoc($result);
-    $iduser = $row['iduser'];  // Obtienes el id del usuario
+    $iduser = $row['iduser'];
     $foto_perfil = $row['foto_perfil'] ?? '';
 }
 
@@ -32,8 +33,7 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
 ?>
 
 <!DOCTYPE HTML>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="public, max-age=86400">
@@ -44,7 +44,6 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
     <script src="/js/main.js"></script>
     <script src="/js/buscar.js"></script>
 
-    <!-- CUSTOM STYLESHEET -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/views/css/navbar.css">
     <link rel="stylesheet" href="/admin/posts/css/userpop.css">
@@ -53,41 +52,41 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
 
 <body>
     <div class="fondo-overlay"></div>
-
     <nav>
         <div class="container nav__container">
-            <a href="<?= "/" ?>index.php" class="nav__logo">
+            <a href="/index.php" class="nav__logo">
                 <span class="nav__logo-name">
                     <img src="/assets/img/logo.png" alt="imagen logo empresa" width="50" height="40">
                     <h2 style="color:white;">Mas Allá Del PIB</h2>
                 </span>
             </a>
+
             <ul class="nav__items" style="font-size: 1.5rem;">
                 <?php
-                if ($idtypeuser == 1) { // Administrador
+                if ($idtypeuser == 1) {
                     echo '
-                    <li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i><span class="hover-text">Inicio</span></a></li>
-                    <li><a class="texto_a" href="/admin/posts/posts-consulta.php"><i class="fas fa-pen"></i><span class="hover-text">Posts</span></a></li>
-                    <li><a class="texto_a" href="/admin/posts/panel-usuarios.php"><i class="fas fa-users"></i><span class="hover-text">Usuarios</span></a></li>
-                    <li><a class="texto_a" id="settings-icon"><i class="fas fa-cog"></i><span class="hover-text">Ajustes</span></a></li>';
-                } elseif ($idtypeuser == 2) { // Autor
+                        <li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i><span class="hover-text">Inicio</span></a></li>
+                        <li><a class="texto_a" href="/admin/posts/posts-consulta.php"><i class="fas fa-pen"></i><span class="hover-text">Posts</span></a></li>
+                        <li><a class="texto_a" href="/admin/posts/panel-usuarios.php"><i class="fas fa-users"></i><span class="hover-text">Usuarios</span></a></li>
+                        <li><a class="texto_a" id="settings-icon"><i class="fas fa-cog"></i><span class="hover-text">Ajustes</span></a></li>';
+                } elseif ($idtypeuser == 2) {
                     echo '
-                    <li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i><span class="hover-text">Inicio</span></a></li>
-                    <li><a class="texto_a" href="/views/publicaciones.php"><i class="fas fa-clipboard-list"></i><span class="hover-text">Posts</span></a></li>
-                    <li><a class="texto_a" href="/views/about.php"><i class="fas fa-users-cog"></i><span class="hover-text">Nosotros</span></a></li>
-                    <li style="display: flex; align-items: center; justify-content: center;">
-                        <a class="texto_a" href="/admin/posts/posts-consulta.php" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-                            <img src="' . $rutaImagen . '" alt="Foto de perfil" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
-                            <span class="hover-text">Perfil</span>
-                        </a>
-                    </li>
-                    <li><a class="texto_a" id="settings-icon"><i class="fas fa-cog"></i><span class="hover-text">Ajustes</span></a></li>';
-                } elseif ($idtypeuser == 3) { // Visitante
+                        <li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i><span class="hover-text">Inicio</span></a></li>
+                        <li><a class="texto_a" href="/views/publicaciones.php"><i class="fas fa-clipboard-list"></i><span class="hover-text">Posts</span></a></li>
+                        <li><a class="texto_a" href="/views/about.php"><i class="fas fa-users-cog"></i><span class="hover-text">Nosotros</span></a></li>
+                        <li style="display: flex; align-items: center; justify-content: center;">
+                            <a class="texto_a" href="/admin/posts/posts-consulta.php" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                                <img src="' . $rutaImagen . '" alt="Foto de perfil" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
+                                <span class="hover-text">Perfil</span>
+                            </a>
+                        </li>
+                        <li><a class="texto_a" id="settings-icon"><i class="fas fa-cog"></i><span class="hover-text">Ajustes</span></a></li>';
+                } elseif ($idtypeuser == 3) {
                     echo '
-                    <li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i><span class="hover-text">Inicio</span></a></li>
-                    <li><a class="texto_a" href="/views/publicaciones.php"><i class="fas fa-clipboard-list"></i><span class="hover-text">Posts</span></a></li>
-                    <li><a class="texto_a" href="/views/about.php"><i class="fas fa-users-cog"></i><span class="hover-text">Nosotros</span></a></li>
-                    <li><a class="texto_a" href="/views/signin.php"><i class="fas fa-sign-in-alt"></i><span class="hover-text">Ingresar</span></a></li>';
+                        <li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i><span class="hover-text">Inicio</span></a></li>
+                        <li><a class="texto_a" href="/views/publicaciones.php"><i class="fas fa-clipboard-list"></i><span class="hover-text">Posts</span></a></li>
+                        <li><a class="texto_a" href="/views/about.php"><i class="fas fa-users-cog"></i><span class="hover-text">Nosotros</span></a></li>
+                        <li><a class="texto_a" href="/views/signin.php"><i class="fas fa-sign-in-alt"></i><span class="hover-text">Ingresar</span></a></li>';
                 }
                 ?>
             </ul>
@@ -96,26 +95,24 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
             <div id="userPopup">
                 <div class="imagen-pop">
                     <div class="imagen-user">
-                        <?php 
-                            echo '<img id="img_user" src="' . $rutaImagen . '" alt="Foto de perfil">';
-                        ?>
+                        <img id="img_user" src="<?= $rutaImagen ?>" alt="Foto de perfil">
                     </div>
                 </div>
                 <div class="nombre-pop">
-                    <p>!Hola, <span id="username"><?php echo htmlspecialchars($username); ?></span>!</p>
+                    <p>¡Hola, <span id="username"><?= htmlspecialchars($username) ?></span>!</p>
                 </div>
                 <div class="info-pop">
                     <div class="nombredeluser">
                         <p><strong>Nombre de usuario</strong></p>
-                        <p><span id="username"><?php echo htmlspecialchars($username); ?></span></p>
+                        <p><span><?= htmlspecialchars($username) ?></span></p>
                     </div>
                     <div class="emaildeluser">
                         <p><strong>Email</strong></p>
-                        <p><span id="email"><?php echo htmlspecialchars($email); ?></span></p>
+                        <p><span><?= htmlspecialchars($email) ?></span></p>
                     </div>
                 </div>
                 <div class="botones-pop">
-                    <a href="/admin/posts/editar-perfil.php?id=<?php echo $iduser; ?>">
+                    <a href="/admin/posts/editar-perfil.php?id=<?= $iduser ?>">
                         <button type="button">Editar perfil</button>
                     </a>
                     <a href="/config/logout.php">
@@ -125,7 +122,6 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
             </div>
             <?php endif; ?>
 
-            <!-- Agregar el buscador aquí -->
             <div class="nav__icon-group" style="display: flex; align-items: center; justify-content: flex-end; min-width: 100px;">
                 <?php
                 $current_page = basename($_SERVER['PHP_SELF']);
@@ -154,5 +150,4 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
     <script src="/js/buscar.js"></script>
     <script src="/views/js/profile.js"></script>
 </body>
-
 </html>
