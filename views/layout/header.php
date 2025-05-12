@@ -12,11 +12,6 @@ $email = $_SESSION['email'] ?? null;
 $foto_perfil = '';
 $username = $_SESSION['username'] ?? null;
 
-// Verifica si hay una sesión activa, si no redirige al login
-if (!$username) {
-    header("Location: /views/signin.php");
-    exit();
-}
 
 // Obtener ID del usuario y foto de perfil si hay email
 $iduser = null;
