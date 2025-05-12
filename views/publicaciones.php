@@ -51,7 +51,7 @@ try {
 <body class="pagina-publicaciones">
     <div class="fondo-overlay"></div>
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
-    <!-- <?php include './layout/header.php'; ?> -->
+    <?php include './layout/header.php'; ?>
 
     <nav class="nav_public">
         <input type="checkbox" id="toggle" style="display: none;">
