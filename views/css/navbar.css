@@ -216,7 +216,7 @@ nav button {
 }
 
 #search-input.show {
-    display: block;  /* Muestra el input */
+    display: inline-block;  /* Muestra el input */
 }
 
 
