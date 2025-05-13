@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $updates[] = "email = '$new_email'";
     }
 
-    // 👉 Verificar contraseña
+    // Verificar contraseña
     if (!empty($_POST['password'])) {
         $password_actual = md5($_POST['password']);
         $sql_verifica = "SELECT * FROM users WHERE iduser = $id AND password = '$password_actual'";
@@ -126,12 +126,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location: ../../views/nueva_contraseña.php");
             exit();
         } else {
-            $error_password = "❌ La contraseña actual es incorrecta.";
-            
+            $_SESSION['error_message'] = "❌ La contraseña actual es incorrecta.";
+            header("Location: editar-perfil.php?id=$id");
+            exit();
         }
     }
 
-    // 👇 Subir imagen
+    // Subir y comprimir imagen
     if (!empty($_FILES['foto']['name'])) {
         $foto_nombre = time() . '_' . pathinfo($_FILES['foto']['name'], PATHINFO_FILENAME) . '.webp';
         $ruta_guardado = '../../views/uploads/' . $foto_nombre;
@@ -140,62 +141,58 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $extension = strtolower(pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION));
 
         if (in_array($extension, $extensiones_validas)) {
-            // Obtener la foto actual para eliminarla
             $sql_foto_actual = "SELECT foto_perfil FROM users WHERE iduser = $id";
             $result_foto = $conexion->query($sql_foto_actual);
             $foto_actual = $result_foto->fetch_assoc()['foto_perfil'];
 
-            // Eliminar la foto anterior si existe
             if (!empty($foto_actual)) {
                 $ruta_foto_anterior = '../../views/uploads/' . $foto_actual;
                 if (file_exists($ruta_foto_anterior)) {
-                    unlink($ruta_foto_anterior); // Elimina el archivo
+                    unlink($ruta_foto_anterior);
                 }
             }
 
-            // Comprimir la imagen antes de moverla
             if (comprimir_imagen($_FILES['foto']['tmp_name'], $ruta_guardado, 300, 85)) {
-                $foto_nombre_comprimida = basename($ruta_guardado); // Usamos solo el nombre de la imagen comprimida
-                $updates[] = "foto_perfil = '$foto_nombre_comprimida'";
-
-                // Actualizar la sesión del usuario actual
+                $updates[] = "foto_perfil = '$foto_nombre'";
                 if ($id == $iduser) {
-                    $_SESSION['foto_perfil'] = $foto_nombre_comprimida;
+                    $_SESSION['foto_perfil'] = $foto_nombre;
                 }
             } else {
-                echo "❌ Error al subir la imagen.";
+                $_SESSION['error_message'] = "❌ Error al subir la imagen.";
+                header("Location: editar-perfil.php?id=$id");
+                exit();
             }
         } else {
-            echo "❌ Formato de imagen no permitido.";
+            $_SESSION['error_message'] = "❌ Formato de imagen no permitido.";
+            header("Location: editar-perfil.php?id=$id");
+            exit();
         }
     }
 
     if (!empty($updates)) {
-        $sql_update = "UPDATE users SET " . implode(', ', $updates) . " WHERE iduser = $id";
-        if ($conexion->query($sql_update)) {
-            echo "✅ Perfil actualizado correctamente.";
-        } else {
-            echo "❌ Error al actualizar el perfil: " . $conexion->error;
+        // Obtener el nombre anterior si se va a cambiar el username
+        if (!empty($_POST['username'])) {
+            $sql_old_username = "SELECT username FROM users WHERE iduser = $id";
+            $result = $conexion->query($sql_old_username);
+            $row = $result->fetch_assoc();
+            $old_username = $row['username'];
         }
-    }
-
-    // 👇 Ejecutar actualizaciones solo si NO hubo error de contraseña
-    if (empty($error_password) && count($updates) > 0) {
-        $sql_old_username = "SELECT username FROM users WHERE iduser = $id";
-        $result = $conexion->query($sql_old_username);
-        $row = $result->fetch_assoc();
-        $old_username = $row['username'];
 
         $sql_update = "UPDATE users SET " . implode(", ", $updates) . " WHERE iduser = $id";
 
         if (!$conexion->query($sql_update)) {
-            die("❌ Error al actualizar usuario: " . $conexion->error);
+            $_SESSION['error_message'] = "❌ Error al actualizar usuario: " . $conexion->error;
+            header("Location: editar-perfil.php?id=$id");
+            exit();
         }
 
-        if (!empty($_POST['username'])) {
+        // Actualizar posts si cambió el nombre de usuario
+        if (!empty($_POST['username']) && isset($old_username)) {
             $sql_update_posts = "UPDATE posts SET user_creation = '$new_username' WHERE user_creation = '$old_username'";
             if (!$conexion->query($sql_update_posts)) {
-                die("❌ Error en la actualización de posts: " . mysqli_error($conexion));
+                $_SESSION['error_message'] = "❌ Error en la actualización de posts: " . mysqli_error($conexion);
+                header("Location: editar-perfil.php?id=$id");
+                exit();
             }
 
             if ($id == $iduser) {
@@ -206,12 +203,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!empty($_POST['email']) && $id == $iduser) {
             $_SESSION['email'] = $new_email;
         }
-        
+
         $_SESSION['success_message'] = "✅ Perfil actualizado con éxito";
-        header("Location: editar-perfil.php?id=" . $id);
+        header("Location: editar-perfil.php?id=$id");
         exit();
-    } elseif (empty($error_password)) {
-        echo "⚠️ No se realizó ningún cambio.";
+    } else {
+        $_SESSION['error_message'] = "⚠️ No se realizó ningún cambio.";
+        header("Location: editar-perfil.php?id=$id");
+        exit();
     }
 }
 ?>
