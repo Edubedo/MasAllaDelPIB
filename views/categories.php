@@ -60,7 +60,7 @@ if ($category) {
 
 <body class="pagina-publicaciones">
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
-    <!-- <?php include './layout/header.php'; ?> -->
+    <?php include './layout/header.php'; ?>
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
 
     <nav class="nav_public">

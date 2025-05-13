@@ -29,6 +29,7 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
 
 <!DOCTYPE HTML>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="public, max-age=86400">
@@ -84,34 +85,34 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
             </ul>
 
             <?php if ($idtypeuser == 1 || $idtypeuser == 2): ?>
-            <div id="userPopup">
-                <div class="imagen-pop">
-                    <div class="imagen-user">
-                        <img id="img_user" src="<?= $rutaImagen ?>" alt="Foto de perfil">
+                <div id="userPopup">
+                    <div class="imagen-pop">
+                        <div class="imagen-user">
+                            <img id="img_user" src="<?= $rutaImagen ?>" alt="Foto de perfil">
+                        </div>
+                    </div>
+                    <div class="nombre-pop">
+                        <p>¡Hola, <span id="username"><?= htmlspecialchars($username) ?></span>!</p>
+                    </div>
+                    <div class="info-pop">
+                        <div class="nombredeluser">
+                            <p><strong>Nombre de usuario</strong></p>
+                            <p><span><?= htmlspecialchars($username) ?></span></p>
+                        </div>
+                        <div class="emaildeluser">
+                            <p><strong>Email</strong></p>
+                            <p><span><?= htmlspecialchars($email) ?></span></p>
+                        </div>
+                    </div>
+                    <div class="botones-pop">
+                        <a href="/admin/posts/editar-perfil.php?id=<?= $iduser ?>">
+                            <button type="button">Editar perfil</button>
+                        </a>
+                        <a href="/config/logout.php">
+                            <button type="button">Cerrar sesión</button>
+                        </a>
                     </div>
                 </div>
-                <div class="nombre-pop">
-                    <p>¡Hola, <span id="username"><?= htmlspecialchars($username) ?></span>!</p>
-                </div>
-                <div class="info-pop">
-                    <div class="nombredeluser">
-                        <p><strong>Nombre de usuario</strong></p>
-                        <p><span><?= htmlspecialchars($username) ?></span></p>
-                    </div>
-                    <div class="emaildeluser">
-                        <p><strong>Email</strong></p>
-                        <p><span><?= htmlspecialchars($email) ?></span></p>
-                    </div>
-                </div>
-                <div class="botones-pop">
-                    <a href="/admin/posts/editar-perfil.php?id=<?= $iduser ?>">
-                        <button type="button">Editar perfil</button>
-                    </a>
-                    <a href="/config/logout.php">
-                        <button type="button">Cerrar sesión</button>
-                    </a>
-                </div>
-            </div>
             <?php endif; ?>
 
             <div class="nav__icon-group" style="display: flex; align-items: center; justify-content: flex-end; min-width: 100px;">
@@ -142,4 +143,5 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
     <script src="/js/buscar.js"></script>
     <script src="/js/profile.js"></script>
 </body>
+
 </html>

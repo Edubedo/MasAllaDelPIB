@@ -136,7 +136,12 @@ if (isset($_POST['submit_comment'])) {
     </div>
 
     <div class="caja-comentarios">
-        <div class="titulo-com">Comentarios</div>
+        <?php
+        $stmt = $pdo->prepare("SELECT * FROM comments_posts WHERE id_pubicacion = :id_pubicacion ORDER BY date_creation DESC");
+        $stmt->execute([':id_pubicacion' => $postId]);
+        $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>
+        <div class="titulo-com">Comentarios <span class="numero-comentarios">(<?php echo count($comments); ?>)</span></div>
         <?php if (isset($_SESSION['username'])): ?>
             <form method="POST" action="">
                 <textarea name="content" placeholder="Escribe tu comentario aquí..." required></textarea>
@@ -148,9 +153,7 @@ if (isset($_POST['submit_comment'])) {
 
         <div class="comentarios-lista">
             <?php
-            $stmt = $pdo->prepare("SELECT * FROM comments_posts WHERE id_pubicacion = :id_pubicacion ORDER BY date_creation DESC");
-            $stmt->execute([':id_pubicacion' => $postId]);
-            $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
             if ($comments):
                 foreach ($comments as $comment):
