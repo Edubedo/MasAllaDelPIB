@@ -242,7 +242,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         <!-- Mostrar error de contraseña -->
         <?php if (!empty($error_password)) : ?>
-            <div class="error-message" style="color: red; margin-bottom: 10px;">
+            <div class="error-message">
                 <?= $error_password ?>
             </div>
         <?php endif; ?>
@@ -271,7 +271,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <?php if (!empty($datos->foto_perfil)) : ?>
                         <div class="foto-actual">
                             <label>Foto actual:</label><br>
-                            <img src="../../views/uploads/<?= $datos->foto_perfil ?>" alt="Foto actual" style="width:100px; height:auto; border-radius:10px;">
+                            <img src="../../views/uploads/<?= $datos->foto_perfil ?>" alt="Foto actual" style="width:100px; height:auto; border-radius:10px; margin-left:1rem;">
                         </div>
                     <?php endif; ?>
 

@@ -202,12 +202,23 @@ button:hover {
 }
 
 .success-message {
-    background-color: #28a745;
-    color: white;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    font-weight: bold;
+    color: #28a745; 
+    background-color: #d4edda;
+    border: 0.2rem solid #c3e6cb; 
+    padding: 1rem; 
+    margin-bottom: 2rem; 
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.error-message {
+    color: #dc3545;
+    background-color: #f8d7da; 
+    border: 0.2rem solid #f5c6cb; 
+    padding: 1rem; 
+    margin-bottom: 2rem; 
+    font-size: 1.5rem;
+    text-align: center;
 }
 
 /* Estilo para el mensaje de error si pone solo un caracter en titulo o contenido*/
