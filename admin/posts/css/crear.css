@@ -363,6 +363,24 @@ button:hover {
 .imagenActual{
     padding-left: 1rem;
 }
+.cambiarContrasena {
+        color: #007BFF;
+        text-decoration: underline;
+        cursor: pointer;
+        margin: 0;
+        margin-left: 1.8rem;
+        transition: color 0.3s ease;
+    }
+
+    .cambiarContrasena:hover {
+        color: #0056b3;
+        text-decoration: none;
+    }
+
+    .cambiarContrasena-div a {
+        text-decoration: none;
+    }
+
 /* --- Tu estilo base permanece igual (el que enviaste) --- */
 
 /* --- Media Queries para hacerlo RESPONSIVO --- */
@@ -391,6 +409,8 @@ button:hover {
     button, .btn-editar-publicacion, .btn-editar-perfil {
         width: 90%;
     }
+
+
 }
 
 /* Para móviles (pantallas menores o iguales a 480px) */
