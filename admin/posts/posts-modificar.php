@@ -10,66 +10,81 @@ $sql = $conexion->query("SELECT * FROM posts WHERE Id_posts = $id");
 $datos = $sql->fetch_object();
 
 //funcion para comprimir imagen
-function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 1200, $calidad = 90) {
+function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad = 85) {
+    if (!extension_loaded('gd')) {
+        error_log("La extensión GD no está habilitada.");
+        return false;
+    }
+
     $info = getimagesize($rutaOriginal);
-    if (!$info) return false;
+    if (!$info) {
+        error_log("No se pudo obtener información de la imagen: $rutaOriginal");
+        return false;
+    }
 
     $tipo = $info['mime'];
     $ancho = $info[0];
     $alto = $info[1];
 
-    if ($ancho <= 0 || $alto <= 0) return false;
+    if ($ancho <= 0 || $alto <= 0) {
+        error_log("Dimensiones inválidas para la imagen: $rutaOriginal");
+        return false;
+    }
 
     // Procesar dependiendo del tipo de imagen
     switch ($tipo) {
         case 'image/jpeg':
-            $imagen = imagecreatefromjpeg($rutaOriginal);
+        case 'image/jpg':
+            $imagen = @imagecreatefromjpeg($rutaOriginal);
             break;
         case 'image/png':
-            $imagen = imagecreatefrompng($rutaOriginal);
-            imagealphablending($imagen, false);
-            imagesavealpha($imagen, true);
+            $imagen = @imagecreatefrompng($rutaOriginal);
             break;
         case 'image/webp':
-            $imagen = imagecreatefromwebp($rutaOriginal);
-            imagealphablending($imagen, false);
-            imagesavealpha($imagen, true);
+            $imagen = @imagecreatefromwebp($rutaOriginal);
             break;
         default:
+            error_log("Formato de imagen no soportado: $tipo");
             return false;
     }
 
+    if (!$imagen) {
+        error_log("No se pudo crear la imagen desde el archivo: $rutaOriginal");
+        return false;
+    }
+
     // Redimensionar si es necesario
+    $nuevaImagen = $imagen;
     if ($ancho > $maxAncho) {
         $nuevoAncho = $maxAncho;
         $nuevoAlto = max(1, (int)(($maxAncho / $ancho) * $alto));
         $nuevaImagen = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
+        // Mantener transparencia para PNG y WebP
         if ($tipo == 'image/png' || $tipo == 'image/webp') {
             imagealphablending($nuevaImagen, false);
             imagesavealpha($nuevaImagen, true);
         }
 
         imagecopyresampled($nuevaImagen, $imagen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-    } else {
-        $nuevaImagen = $imagen;
-    }
+        imagedestroy($imagen); // Liberar la imagen original
 
-    // Guardar imagen comprimida
-    switch ($tipo) {
-        case 'image/jpeg':
-            imagejpeg($nuevaImagen, $rutaDestino, $calidad);
-            break;
-        case 'image/png':
-            imagepng($nuevaImagen, $rutaDestino, 0);
-            break;
-        case 'image/webp':
-            imagewebp($nuevaImagen, $rutaDestino, $calidad);
-            break;
-    }
+    } 
 
-    imagedestroy($imagen);
+    // Asegurarse de que el archivo de destino tenga la extensión .webp
+    $rutaDestino = preg_replace('/\.[a-zA-Z]+$/', '.webp', $rutaDestino);
+
+    // Guardar la imagen en formato WebP
+    $resultado = imagewebp($nuevaImagen, $rutaDestino, $calidad); // calidad 0-100
+
+    // Liberar recursos
     imagedestroy($nuevaImagen);
+
+    if (!$resultado) {
+        error_log("No se pudo guardar la imagen comprimida en: $rutaDestino");
+        return false;
+    }
+
     return true;
 }
 
@@ -114,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!empty($_FILES['imagen_posts']['name'])) {
         $imagen_nombre = $_FILES['imagen_posts']['name'];
         $imagen_temp = $_FILES['imagen_posts']['tmp_name'];
-        $ruta_final = "uploads/comprimida_" . basename($imagen_nombre);
+        $ruta_final = "uploads/" . pathinfo($imagen_nombre, PATHINFO_FILENAME) . ".webp";
         
         // Comprimir y guardar la imagen
         if (comprimirImagen($imagen_temp, $ruta_final, 1200, 95)) {

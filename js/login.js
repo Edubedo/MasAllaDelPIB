@@ -146,3 +146,31 @@ document.addEventListener('DOMContentLoaded', function() {
         validarFortalezaPassword.call(passwordField); 
     }
 });
+
+// Mostrar y ocultar contraseña del formulario de login
+const passwordInput = document.getElementById('passwordLogin');
+const togglePasswordText = document.getElementById('toggle-password');
+
+togglePasswordText.addEventListener('click', function () {
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        togglePasswordText.textContent = 'Ocultar contraseña';
+    } else {
+        passwordInput.type = 'password';
+        togglePasswordText.textContent = 'Mostrar contraseña';
+    }
+});
+
+// Mostrar y ocultar contraseña del formulario de registro
+const passwordInputRegistrar = document.getElementById('passwordRegistrarse');
+const togglePasswordTextRegistrar = document.getElementById('toggle-passwordRegistrar');
+
+togglePasswordTextRegistrar.addEventListener('click', function () {
+    if (passwordInputRegistrar.type === 'password') {
+        passwordInputRegistrar.type = 'text';
+        togglePasswordTextRegistrar.textContent = 'Ocultar contraseña';
+    } else {
+        passwordInputRegistrar.type = 'password';
+        togglePasswordTextRegistrar.textContent = 'Mostrar contraseña';
+    }
+});

@@ -208,6 +208,13 @@ main {
     display: none;
 }
 
+/* Estilo para el botón de mostrar/ocultar contraseña */
+#toggle-password, #toggle-passwordRegistrar {
+    cursor: pointer;
+    color: #173692;
+    font-weight: bold;
+    font-size: 12px;
+}
 
 /* Diseño Responsivo */
 @media screen and (max-width: 850px) {

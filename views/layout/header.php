@@ -118,7 +118,8 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
             <div class="nav__icon-group" style="display: flex; align-items: center; justify-content: flex-end; min-width: 100px;">
                 <?php
                 $current_page = basename($_SERVER['PHP_SELF']);
-                $hidden_pages = ['posts-consulta.php', 'about.php', 'signin.php'];
+                $hidden_pages = ['posts-consulta.php', 'about.php', 'signin.php', 'nueva-publicacion.php', 'editar-publicacion.php', 
+                'panel-usuarios.php', 'editar-perfil.php', 'posts-consulta.php', 'olvidaste_tu_contrasena.php', 'verificar_codigo.php', 'cambiar_contrasena.php'];
                 if (!in_array($current_page, $hidden_pages)):
                 ?>
                     <div class="search-container">
