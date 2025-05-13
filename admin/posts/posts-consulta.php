@@ -111,12 +111,12 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
                         echo '<option value="">Todos los usuarios</option>';
 
                         // Obtener usuarios desde la base de datos
-                        $sql = "SELECT DISTINCT user_creation FROM posts"; 
+                        $sql = "SELECT DISTINCT username FROM users"; 
                         $result = mysqli_query($conexion, $sql);
                         
                         while ($row = mysqli_fetch_array($result)) {
-                            $user = ucwords(str_replace('-', ' ', $row['user_creation']));
-                            echo "<option value='" . $row['user_creation'] . "'>$user</option>";
+                            $user = ucwords(str_replace('-', ' ', $row['username']));
+                            echo "<option value='" . $row['username'] . "'>$user</option>";
                         }
                         echo '</select>';
                     }
