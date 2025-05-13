@@ -1,7 +1,7 @@
 /* Estilos base del modal */
 #userPopup {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 6rem;
     right: 30%;
     left: 45%;
@@ -18,6 +18,7 @@
     z-index: 1000;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
+    text-shadow: none !important;
 }
 
 #userPopup.visible {
@@ -135,62 +136,59 @@ nav .nav-button {
 }
 
 /* Contenedor de botones */
-.botones-pop {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 2rem;
-    width: 100%;
-}
-
-/* Botones del modal únicamente */
+/* Botones del modal mejorados */
 .botones-pop button {
     width: 100%;
-    height: 5.2rem;
+    height: 5rem;
+    padding: 1rem 2rem;
     border: none;
     border-radius: 1rem;
     font-size: 1.6rem;
     font-weight: 600;
-    padding: 1rem 2rem;
-    background: linear-gradient(to right, #a1c4fd, #c2e9fb);
-    color: #1b1b1b;
+    color: #fff;
     cursor: pointer;
-    transition: background 0.4s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: #4495ec8b;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
     position: relative;
     overflow: hidden;
+    z-index: 1;
 }
 
-/* Hover del botón del modal */
-.botones-pop button:hover {
-    background: linear-gradient(to right, #89f7fe, #66a6ff);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Active del botón del modal */
-.botones-pop button:active {
-    transform: translateY(0);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Efecto de iluminación */
-.botones-pop button::after {
-    content: "";
+.botones-pop button::before {
+    content: '';
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: skewX(-20deg);
-    transition: left 0.5s ease;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(127, 16, 16, 0.247) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s, transform 0.4s;
+    transform: scale(0);
     z-index: 0;
 }
 
-.botones-pop button:hover::after {
-    left: 100%;
+.botones-pop button:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.botones-pop button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #4391e9 0%, #c385fd 100%);
+}
+
+.botones-pop button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Asegurar que el texto quede por encima del efecto */
+.botones-pop button span {
+    position: relative;
+    z-index: 1;
 }
 
 /* Asegurar visibilidad del texto */

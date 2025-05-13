@@ -140,5 +140,6 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
 
     <script src="/js/main.js"></script>
     <script src="/js/buscar.js"></script>
+    <script src="/js/profile.js"></script>
 </body>
 </html>
