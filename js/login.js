@@ -146,3 +146,17 @@ document.addEventListener('DOMContentLoaded', function() {
         validarFortalezaPassword.call(passwordField); 
     }
 });
+
+// mostrar y ocultar contraseña
+const passwordInput = document.getElementById('password');
+    const togglePasswordText = document.getElementById('toggle-password');
+
+    togglePasswordText.addEventListener('click', function () {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            togglePasswordText.textContent = 'Ocultar contraseña';
+        } else {
+            passwordInput.type = 'password';
+            togglePasswordText.textContent = 'Mostrar contraseña';
+        }
+    });
