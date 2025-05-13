@@ -217,42 +217,43 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
     
     <script src="../../js/posts-consulta.js"></script>
 
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const botonContinuar = document.getElementById('botonContinuar');
-    if (botonContinuar) {
-        botonContinuar.addEventListener('click', function() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('modal').style.display = 'none';
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', '../../config/mark_modal_shown.php', true);
-            xhr.send();
-        });
-    }
-
-    // Manejar modal de eliminación con funcionalidad real
-    const deleteButtons = document.querySelectorAll('.btn.eliminar');
-    let postIdToDelete = null;
-
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            postIdToDelete = this.getAttribute('data-id');
-            document.getElementById('deleteModal').style.display = 'flex';
-        });
-    });
-
-    document.getElementById('cancelDelete').addEventListener('click', function() {
-        document.getElementById('deleteModal').style.display = 'none';
-        postIdToDelete = null;
-    });
-
-    document.getElementById('confirmDelete').addEventListener('click', function() {
-        if (postIdToDelete) {
-            window.location.href = `posts-consulta.php?id=${postIdToDelete}`;
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const botonContinuar = document.getElementById('botonContinuar');
+        if (botonContinuar) {
+            botonContinuar.addEventListener('click', function() {
+                document.getElementById('overlay').style.display = 'none';
+                document.getElementById('modal').style.display = 'none';
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', '../../config/mark_modal_shown.php', true);
+                xhr.send();
+            });
         }
+
+        // Manejar modal de eliminación con funcionalidad real
+        const deleteButtons = document.querySelectorAll('.btn.eliminar');
+        let postIdToDelete = null;
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                postIdToDelete = this.getAttribute('data-id');
+                document.getElementById('deleteModal').style.display = 'flex';
+            });
+        });
+
+        document.getElementById('cancelDelete').addEventListener('click', function() {
+            document.getElementById('deleteModal').style.display = 'none';
+            postIdToDelete = null;
+        });
+
+        document.getElementById('confirmDelete').addEventListener('click', function() {
+            if (postIdToDelete) {
+                window.location.href = `posts-consulta.php?id=${postIdToDelete}`;
+            }
+        });
     });
-});
+
 </script>
 
     
