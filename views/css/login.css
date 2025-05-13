@@ -209,7 +209,7 @@ main {
 }
 
 /* Estilo para el botón de mostrar/ocultar contraseña */
-#toggle-password {
+#toggle-password, #toggle-passwordRegistrar {
     cursor: pointer;
     color: #173692;
     font-weight: bold;

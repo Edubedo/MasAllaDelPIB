@@ -63,7 +63,7 @@
                     <p class="fa fa-envelope" style="font-size: 20px; margin-right: 5px; color:rgb(55, 72, 155);"></p>
                     <input type="text" name="email" placeholder="Correo Electrónico" required>
                     <p class="fa fa-lock" style="font-size: 20px; margin-right: 10px; color:rgb(55, 72, 155);"></p>
-                    <input type="password" name="password" id="password" placeholder="Contraseña" required>
+                    <input type="password" name="password" id="passwordLogin" placeholder="Contraseña" required>
                     <p id="toggle-password">Mostrar contraseña</p>
                     <?php if (!empty($_SESSION['error_message'])): ?>
                         <?php $tiempo = $_SESSION['bloqueo_restante'] ?? 0; ?>
@@ -109,8 +109,8 @@
                     <input type="text" name="fullname" placeholder="Nombre Completo" required>
                     <input type="email" name="email" placeholder="Correo Electrónico" required>
                     <input type="text" name="username" placeholder="Usuario" required>
-                    <input type="password" name="password" id="password" placeholder="Contraseña" required oninput="validarFortalezaPassword()">
-                    <p id="toggle-password">Mostrar contraseña</p>
+                    <input type="password" name="password" id="passwordRegistrarse" placeholder="Contraseña" required oninput="validarFortalezaPassword()">
+                    <p id="toggle-passwordRegistrar">Mostrar contraseña</p>
                     <div id="password-strength">
                         <p style="font-weight: bold;" id="length">✓ Al menos 8 caracteres</p>
                         <p style="font-weight: bold;" id="uppercase">✓ Al menos una mayúscula</p>
