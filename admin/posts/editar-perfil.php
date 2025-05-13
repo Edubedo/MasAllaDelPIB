@@ -23,59 +23,80 @@ $idtypeuser = $_SESSION['id_type_user'];
 $error_password = ""; // 👈 Declarada fuera del POST
 
 // Función para comprimir imágen
-function comprimir_imagen($origen, $destino, $max_width, $max_height, $quality = 75) {
-    list($width, $height, $type) = getimagesize($origen);
-
-    // Calculamos las nuevas dimensiones respetando la relación de aspecto
-    $new_width = $width;
-    $new_height = $height;
-
-    if ($width > $max_width || $height > $max_height) {
-        $ratio = $width / $height;
-        if ($width > $height) {
-            $new_width = $max_width;
-            $new_height = $max_width / $ratio;
-        } else {
-            $new_height = $max_height;
-            $new_width = $max_height * $ratio;
-        }
+function comprimir_imagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad = 85) {
+    if (!extension_loaded('gd')) {
+        error_log("La extensión GD no está habilitada.");
+        return false;
     }
 
-    // Creamos la imagen de destino a partir de la original
-    switch ($type) {
-        case IMAGETYPE_JPEG:
-            $src = imagecreatefromjpeg($origen);
+    $info = getimagesize($rutaOriginal);
+    if (!$info) {
+        error_log("No se pudo obtener información de la imagen: $rutaOriginal");
+        return false;
+    }
+
+    $tipo = $info['mime'];
+    $ancho = $info[0];
+    $alto = $info[1];
+
+    if ($ancho <= 0 || $alto <= 0) {
+        error_log("Dimensiones inválidas para la imagen: $rutaOriginal");
+        return false;
+    }
+
+    // Procesar dependiendo del tipo de imagen
+    switch ($tipo) {
+        case 'image/jpeg':
+        case 'image/jpg':
+            $imagen = @imagecreatefromjpeg($rutaOriginal);
             break;
-        case IMAGETYPE_PNG:
-            $src = imagecreatefrompng($origen);
+        case 'image/png':
+            $imagen = @imagecreatefrompng($rutaOriginal);
             break;
-        case IMAGETYPE_GIF:
-            $src = imagecreatefromgif($origen);
+        case 'image/webp':
+            $imagen = @imagecreatefromwebp($rutaOriginal);
             break;
         default:
+            error_log("Formato de imagen no soportado: $tipo");
             return false;
     }
 
-    // Creamos la nueva imagen con las nuevas dimensiones
-    $dst = imagecreatetruecolor($new_width, $new_height);
-    imagecopyresampled($dst, $src, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
-
-    // Guardamos la imagen comprimida
-    switch ($type) {
-        case IMAGETYPE_JPEG:
-            imagejpeg($dst, $destino, $quality);
-            break;
-        case IMAGETYPE_PNG:
-            imagepng($dst, $destino, round($quality / 10)); // La calidad es de 0 a 9
-            break;
-        case IMAGETYPE_GIF:
-            imagegif($dst, $destino);
-            break;
+    if (!$imagen) {
+        error_log("No se pudo crear la imagen desde el archivo: $rutaOriginal");
+        return false;
     }
 
-    // Liberar memoria
-    imagedestroy($src);
-    imagedestroy($dst);
+    // Redimensionar si es necesario
+    $nuevaImagen = $imagen;
+    if ($ancho > $maxAncho) {
+        $nuevoAncho = $maxAncho;
+        $nuevoAlto = max(1, (int)(($maxAncho / $ancho) * $alto));
+        $nuevaImagen = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+        // Mantener transparencia para PNG y WebP
+        if ($tipo == 'image/png' || $tipo == 'image/webp') {
+            imagealphablending($nuevaImagen, false);
+            imagesavealpha($nuevaImagen, true);
+        }
+
+        imagecopyresampled($nuevaImagen, $imagen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+        imagedestroy($imagen); // Liberar la imagen original
+
+    } 
+
+    // Asegurarse de que el archivo de destino tenga la extensión .webp
+    $rutaDestino = preg_replace('/\.[a-zA-Z]+$/', '.webp', $rutaDestino);
+
+    // Guardar la imagen en formato WebP
+    $resultado = imagewebp($nuevaImagen, $rutaDestino, $calidad); // calidad 0-100
+
+    // Liberar recursos
+    imagedestroy($nuevaImagen);
+
+    if (!$resultado) {
+        error_log("No se pudo guardar la imagen comprimida en: $rutaDestino");
+        return false;
+    }
 
     return true;
 }
@@ -112,17 +133,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // 👇 Subir imagen
     if (!empty($_FILES['foto']['name'])) {
-        $foto_nombre = time() . '_' . basename($_FILES['foto']['name']);
+        $foto_nombre = time() . '_' . pathinfo($_FILES['foto']['name'], PATHINFO_FILENAME) . '.webp';
         $ruta_guardado = '../../views/uploads/' . $foto_nombre;
+
         $extensiones_validas = ['jpg', 'jpeg', 'png', 'gif'];
-        $extension = strtolower(pathinfo($foto_nombre, PATHINFO_EXTENSION));
+        $extension = strtolower(pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION));
 
         if (in_array($extension, $extensiones_validas)) {
-            // Primero, obtener la foto actual para eliminarla
+            // Obtener la foto actual para eliminarla
             $sql_foto_actual = "SELECT foto_perfil FROM users WHERE iduser = $id";
             $result_foto = $conexion->query($sql_foto_actual);
             $foto_actual = $result_foto->fetch_assoc()['foto_perfil'];
-            
+
             // Eliminar la foto anterior si existe
             if (!empty($foto_actual)) {
                 $ruta_foto_anterior = '../../views/uploads/' . $foto_actual;
@@ -130,11 +152,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     unlink($ruta_foto_anterior); // Elimina el archivo
                 }
             }
+
             // Comprimir la imagen antes de moverla
-            $ruta_comprimida = '../../views/uploads/' . time() . '_comprimida.' . $extension;
-            if (comprimir_imagen($_FILES['foto']['tmp_name'], $ruta_comprimida, 300, 300)) {
-                $foto_nombre_comprimida = basename($ruta_comprimida); // Usamos solo el nombre de la imagen comprimida
+            if (comprimir_imagen($_FILES['foto']['tmp_name'], $ruta_guardado, 300, 85)) {
+                $foto_nombre_comprimida = basename($ruta_guardado); // Usamos solo el nombre de la imagen comprimida
                 $updates[] = "foto_perfil = '$foto_nombre_comprimida'";
+
+                // Actualizar la sesión del usuario actual
                 if ($id == $iduser) {
                     $_SESSION['foto_perfil'] = $foto_nombre_comprimida;
                 }
@@ -143,6 +167,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         } else {
             echo "❌ Formato de imagen no permitido.";
+        }
+    }
+
+    if (!empty($updates)) {
+        $sql_update = "UPDATE users SET " . implode(', ', $updates) . " WHERE iduser = $id";
+        if ($conexion->query($sql_update)) {
+            echo "✅ Perfil actualizado correctamente.";
+        } else {
+            echo "❌ Error al actualizar el perfil: " . $conexion->error;
         }
     }
 
@@ -173,7 +206,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!empty($_POST['email']) && $id == $iduser) {
             $_SESSION['email'] = $new_email;
         }
-        
         
         $_SESSION['success_message'] = "✅ Perfil actualizado con éxito";
         header("Location: editar-perfil.php?id=" . $id);
