@@ -14,7 +14,7 @@ $regex = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/';
 
 if (!preg_match($regex, $password)) {
     $_SESSION['error_message'] = 'La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial';
-    header('Location: login.php'); 
+    header('Location: signin.php'); 
     exit();
 }
 
