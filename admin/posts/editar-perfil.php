@@ -261,11 +261,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="email" id="email" name="email" value="<?= $datos->email ?>">
                     </div>
 
-                    <div class="password-div">
-                        <label for="password">Contraseña:</label>
-                        <input type="password" id="password" name="password" placeholder="Contraseña Actual">
-                    </div>
-
+                    
                     <!-- Mostrar foto actual -->
                     <?php if (!empty($datos->foto_perfil)) : ?>
                         <div class="foto-actual">
@@ -277,6 +273,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="foto-div">
                         <label for="foto">Foto de perfil:</label>
                         <input type="file" id="foto" name="foto">
+                    </div>
+
+                    <div class="cambiarContrasena-div">
+                        <label for="email">Contraseña:</label>
+                        <a href="../../views/olvidaste_tu_contrasena.php"><p class="cambiarContrasena">Cambiar contraseña</p></a>
                     </div>
 
                     <div class="botones-div">
