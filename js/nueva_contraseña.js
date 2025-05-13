@@ -68,3 +68,18 @@ function validarPassword() {
     
     return true;
 }
+
+
+// Mostrar y ocultar contraseña del formulario de login
+const passwordInputNueva = document.getElementById('password');
+const togglePasswordTextNuevaNueva = document.getElementById('toggle-passwordNueva');
+
+togglePasswordTextNuevaNueva.addEventListener('click', function () {
+    if (passwordInputNueva.type === 'password') {
+        passwordInputNueva.type = 'text';
+        togglePasswordTextNueva.textContent = 'Ocultar contraseña';
+    } else {
+        passwordInputNueva.type = 'password';
+        togglePasswordTextNuevaNueva.textContent = 'Mostrar contraseña';
+    }
+});
