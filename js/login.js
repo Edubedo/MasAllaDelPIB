@@ -118,7 +118,7 @@ function validarFortalezaPassword() {
 }
 
 function validarPassword() {
-    const password = document.getElementById('password').value;
+    const password = document.getElementById('passwordRegistrarse').value;
     const confirm_password = document.getElementById('confirm_password').value;
     
     // Verificar que las contraseñas coincidan
@@ -139,7 +139,7 @@ function validarPassword() {
 
 // Inicialización segura
 document.addEventListener('DOMContentLoaded', function() {
-    const passwordField = document.getElementById('password');
+    const passwordField = document.getElementById('passwordRegistrarse');
     if (passwordField) {
         passwordField.addEventListener('input', validarFortalezaPassword);
         // Validar al cargar por si hay algún valor precargado
