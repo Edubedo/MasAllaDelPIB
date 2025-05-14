@@ -8,12 +8,25 @@
         p.content, 
         p.post_date, 
         p.image,
-        p.user_creation
+        p.user_creation,
+        p.vote_up, 
+        p.vote_down,
+        COUNT(l.id_post) AS total_likes
         FROM posts p 
         INNER JOIN users u ON p.user_creation = u.username 
+        LEFT JOIN likes l ON p.Id_posts = l.id_post
         WHERE u.id_type_user = 1 
-        ORDER BY p.post_date DESC 
-        LIMIT 3";
+        GROUP BY 
+        p.Id_posts, 
+        p.title, 
+        p.content, 
+        p.post_date, 
+        p.image,
+        p.user_creation,
+        p.vote_up, 
+        p.vote_down
+    ORDER BY p.post_date DESC 
+    LIMIT 3";
 
     // puedes ajustar el límite si quieres más o menos
 
