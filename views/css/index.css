@@ -129,14 +129,6 @@ h1, h3 {
     text-shadow: none;
 }
 
-/* Evita que el contenido se desborde */
-.pagina-index .post-derecho,
-.cuerpo .p1 {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: normal;
-}
-
 /* Columna derecha (admin) */
 .div-derecho {
     display: flex;
