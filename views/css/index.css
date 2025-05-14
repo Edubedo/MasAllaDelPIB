@@ -27,13 +27,13 @@ body {
     background-attachment: fixed; 
 }
 
-h1, h3, p {
+h1, h3 {
     color: white;
     text-shadow: 2px 2px 4px #000000;
 }
 
 .footer p, h3 {
-    text-shadow: none;
+    text-shadow: none !important;
 }
 
 .encabezadoPrincipal {

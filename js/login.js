@@ -1,105 +1,100 @@
-document.getElementById("btn__Iniciar-Sesión").addEventListener("click", iniciarSecion);
-document.getElementById("btn__registrarse").addEventListener("click", register);
-window.addEventListener("resize", anchoPagina);
+let modoActual = "login"; // Puede ser "login" o "registro"
 
-// Declaración de variables
-var contenedor__Login_register = document.querySelector(".contenedor__Login-register");
-var formulario_login = document.querySelector(".formulario__login");
-var formulario_register = document.querySelector(".formulario__register");
-var caja__tracera_login = document.querySelector(".caja__tracera-login");
-var caja__tracera_register = document.querySelector(".caja__tracera-register");
-document.getElementById('foto-perfil-input').addEventListener('change', function(e) {
+document.getElementById("btn__Iniciar-Sesión").addEventListener("click", () => {
+    modoActual = "login";
+    iniciarSecion();
+});
+document.getElementById("btn__registrarse").addEventListener("click", () => {
+    modoActual = "registro";
+    register();
+});
+window.addEventListener("resize", ajustarFormularioSegunAncho);
+
+const contenedor__Login_register = document.querySelector(".contenedor__Login-register");
+const formulario_login = document.querySelector(".formulario__login");
+const formulario_register = document.querySelector(".formulario__register");
+const caja__tracera_login = document.querySelector(".caja__tracera-login");
+const caja__tracera_register = document.querySelector(".caja__tracera-register");
+
+// Vista previa de imagen de perfil
+document.getElementById('foto-perfil-input').addEventListener('change', function () {
     const fileInput = this;
     const fileNameSpan = document.getElementById('file-name');
     const previewContainer = document.getElementById('preview-container');
     const previewImage = document.getElementById('preview-image');
-    const customInput = fileInput.parentElement;
 
     if (fileInput.files && fileInput.files[0]) {
-        // Mostrar nombre del archivo
         fileNameSpan.textContent = fileInput.files[0].name;
-        
-        // Mostrar vista previa de la imagen
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             previewImage.src = e.target.result;
             previewContainer.style.display = 'block';
         };
         reader.readAsDataURL(fileInput.files[0]);
-        
-        // Cambiar estilo para indicar que hay archivo seleccionado
-        customInput.classList.add('has-file');
     } else {
-        // Restablecer si no hay archivo
         fileNameSpan.textContent = 'Selecciona foto de perfil';
         previewContainer.style.display = 'none';
-        customInput.classList.remove('has-file');
     }
 });
-function anchoPagina() {
+
+function ajustarFormularioSegunAncho() {
     if (window.innerWidth > 850) {
         caja__tracera_login.style.display = "block";
         caja__tracera_register.style.display = "block";
-        formulario_login.style.display = "block";  // Aseguramos que el login se muestre correctamente
-        formulario_register.style.display = "none"; // Aseguramos que el registro se oculte
+        if (modoActual === "login") {
+            iniciarSecion();
+        } else {
+            register();
+        }
     } else {
         caja__tracera_register.style.display = "block";
         caja__tracera_register.style.opacity = "1";
         caja__tracera_login.style.display = "none";
-        formulario_login.style.display = "block"; // Aseguramos que se muestre el formulario de login
-        formulario_register.style.display = "none"; // Ocultamos el formulario de registro
         contenedor__Login_register.style.left = "0px";
+        if (modoActual === "login") {
+            formulario_login.style.display = "block";
+            formulario_register.style.display = "none";
+        } else {
+            formulario_login.style.display = "none";
+            formulario_register.style.display = "block";
+        }
     }
 }
 
-anchoPagina();
-
 function iniciarSecion() {
+    formulario_register.style.display = "none";
+    formulario_login.style.display = "block";
+
     if (window.innerWidth > 850) {
-        formulario_register.style.display = "none";
         contenedor__Login_register.style.left = "10px";
-        formulario_login.style.display = "block";  // Usamos display para mostrar el formulario
         caja__tracera_register.style.opacity = "1";
         caja__tracera_login.style.opacity = "0";
     } else {
-        formulario_register.style.display = "none";
         contenedor__Login_register.style.left = "0px";
-        formulario_login.style.display = "block";  // Aseguramos que se muestre el formulario
         caja__tracera_register.style.display = "block";
         caja__tracera_login.style.display = "none";
     }
 }
 
 function register() {
+    formulario_login.style.display = "none";
+    formulario_register.style.display = "block";
+
     if (window.innerWidth > 850) {
-        formulario_register.style.display = "block";
         contenedor__Login_register.style.left = "410px";
-        formulario_login.style.display = "none";  // Ocultamos el formulario de login
         caja__tracera_register.style.opacity = "0";
         caja__tracera_login.style.opacity = "1";
     } else {
-        formulario_register.style.display = "block";
         contenedor__Login_register.style.left = "0px";
-        formulario_login.style.display = "none";  // Ocultamos el formulario de login
         caja__tracera_register.style.display = "none";
         caja__tracera_login.style.display = "block";
         caja__tracera_login.style.opacity = "1";
     }
 }
 
-
-// validaciones de la contraseña
-
+// Validación de fortaleza de contraseña
 function validarFortalezaPassword() {
-    const password = this.value; 
-    const indicators = {
-        length: document.getElementById('length'),
-        uppercase: document.getElementById('uppercase'),
-        number: document.getElementById('number'),
-        special: document.getElementById('special')
-    };
-
-    // Objeto con las validaciones
+    const password = this.value;
     const validaciones = {
         length: password.length >= 8,
         uppercase: /[A-Z]/.test(password),
@@ -107,70 +102,65 @@ function validarFortalezaPassword() {
         special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
     };
 
-    // Aplicar estilos
-    for (const [key, element] of Object.entries(indicators)) {
-        if (element) { // Verificamos que el elemento exista
+    const indicators = {
+        length: document.getElementById('length'),
+        uppercase: document.getElementById('uppercase'),
+        number: document.getElementById('number'),
+        special: document.getElementById('special')
+    };
+
+    for (const key in indicators) {
+        const element = indicators[key];
+        if (element) {
             element.style.color = validaciones[key] ? 'green' : 'red';
-            element.innerHTML = (validaciones[key] ? '✓' : '✗') + 
-                               element.textContent.substring(1);
+            element.innerHTML = (validaciones[key] ? '✓' : '✗') + element.textContent.substring(1);
         }
     }
 }
 
 function validarPassword() {
     const password = document.getElementById('passwordRegistrarse').value;
-    const confirm_password = document.getElementById('confirm_password').value;
-    
-    // Verificar que las contraseñas coincidan
-    if (password !== confirm_password) {
+    const confirmPassword = document.getElementById('confirm_password').value;
+
+    if (password !== confirmPassword) {
         alert('Las contraseñas no coinciden');
         return false;
     }
-    
-    // Verificar fortaleza de la contraseña
+
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
     if (!regex.test(password)) {
-        alert('La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial');
+        alert('La contraseña debe cumplir con los requisitos de seguridad.');
         return false;
     }
-    
+
     return true;
 }
 
+// Mostrar/Ocultar contraseñas
+function togglePassword(inputId, toggleId) {
+    const input = document.getElementById(inputId);
+    const toggle = document.getElementById(toggleId);
+
+    toggle.addEventListener('click', () => {
+        if (input.type === 'password') {
+            input.type = 'text';
+            toggle.textContent = 'Ocultar contraseña';
+        } else {
+            input.type = 'password';
+            toggle.textContent = 'Mostrar contraseña';
+        }
+    });
+}
+
 // Inicialización segura
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
+    ajustarFormularioSegunAncho(); // Mostrar formulario correcto al cargar
     const passwordField = document.getElementById('passwordRegistrarse');
     if (passwordField) {
         passwordField.addEventListener('input', validarFortalezaPassword);
-        // Validar al cargar por si hay algún valor precargado
-        validarFortalezaPassword.call(passwordField); 
+        validarFortalezaPassword.call(passwordField);
     }
-});
 
-// Mostrar y ocultar contraseña del formulario de login
-const passwordInput = document.getElementById('passwordLogin');
-const togglePasswordText = document.getElementById('toggle-password');
-
-togglePasswordText.addEventListener('click', function () {
-    if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        togglePasswordText.textContent = 'Ocultar contraseña';
-    } else {
-        passwordInput.type = 'password';
-        togglePasswordText.textContent = 'Mostrar contraseña';
-    }
-});
-
-// Mostrar y ocultar contraseña del formulario de registro
-const passwordInputRegistrar = document.getElementById('passwordRegistrarse');
-const togglePasswordTextRegistrar = document.getElementById('toggle-passwordRegistrar');
-
-togglePasswordTextRegistrar.addEventListener('click', function () {
-    if (passwordInputRegistrar.type === 'password') {
-        passwordInputRegistrar.type = 'text';
-        togglePasswordTextRegistrar.textContent = 'Ocultar contraseña';
-    } else {
-        passwordInputRegistrar.type = 'password';
-        togglePasswordTextRegistrar.textContent = 'Mostrar contraseña';
-    }
+    togglePassword('passwordLogin', 'toggle-password');
+    togglePassword('passwordRegistrarse', 'toggle-passwordRegistrar');
 });
