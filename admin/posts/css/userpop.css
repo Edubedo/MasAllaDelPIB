@@ -136,6 +136,12 @@ nav .nav-button {
 }
 
 /* Contenedor de botones */
+.botones-pop {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem !important;
+}
+
 /* Botones del modal mejorados */
 .botones-pop button {
     width: 100%;
