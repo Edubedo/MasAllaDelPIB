@@ -271,7 +271,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <?php endif; ?>
 
                     <div class="foto-div">
-                        <label for="foto">Foto de perfil:</label>
+                        <label for="foto">Nueva Foto de perfil:</label>
                         <input type="file" id="foto" name="foto">
                     </div>
 
