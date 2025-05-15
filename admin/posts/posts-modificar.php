@@ -177,9 +177,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <div class="container">
-        <div class="encabezado">
-            <h1>Modificar publicación</h1>
-        </div>
 
         <head>
             <meta charset="UTF-8">
@@ -205,8 +202,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <?php endif; ?>
 
                 <form id="modificarForm" action="" name="modificar_post" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="id" value="<?= htmlspecialchars($id) ?>">
-                    <input type="hidden" name="usuario_posts" value="<?= htmlspecialchars($_SESSION['username']) ?>">
+                    <input type="hidden" name="id" value="<?= htmlspecialchars($id ?? '') ?>">
+                    <input type="hidden" name="usuario_posts" value="<?= htmlspecialchars($_SESSION['username'] ?? '') ?>">
 
                     <div class="contenedor-general">
                         <div class="izquierdo">
@@ -224,13 +221,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                             <div class="fecha_div">
                                 <label for="fecha_publicacion">Fecha de Publicación:</label>
-                                <input class="fecha" type="date" id="fecha_publicacion" name="fecha_publicacion_posts" value="<?= $datos->post_date ?>" required>
+                                <input class="fecha" type="date" id="fecha_publicacion" name="fecha_publicacion_posts" value="<?= htmlspecialchars($datos->post_date ?? '') ?>" required>
                             </div>
 
                             <div class="autor_div">
                                 <?php if (isset($_SESSION['username'])): ?>
                                     <label for="usuario">Usuario:</label>
-                                    <span class="username"><?= htmlspecialchars($_SESSION['username']) ?></span>
+                                    <span class="username"><?= htmlspecialchars($_SESSION['username'] ?? '') ?></span>
                                 <?php endif; ?>
                             </div>
 
@@ -243,21 +240,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="derecho">
                             <div class="titulodelposts">
                                 <label for="titulo">Título del post:</label>
-                                <input type="text" id="titulo" name="titulo_posts" value="<?= htmlspecialchars($datos->title) ?>" required>
+                                <input type="text" id="titulo" name="titulo_posts" value="<?= htmlspecialchars($datos->title ?? '') ?>" required>
                             </div>
                             <div class="contenidodelposts">
                                 <label for="contenido">Contenido:</label>
-                                <textarea id="contenido" name="contenido_posts" rows="6" required><?= htmlspecialchars($datos->content) ?></textarea>
+                                <textarea id="contenido" name="contenido_posts" rows="6" required><?= htmlspecialchars($datos->content ?? '') ?></textarea>
                             </div>
                             <div class="imagendelpost">
                                 <label for="imagen">Imagen:</label>
                                 <input type="file" id="imagen" name="imagen_posts" accept="image/*">
                                 <label for="imagen_actual">Imagen actual:</label>
-                                <img class="imagenActual" src="<?= htmlspecialchars($datos->image) ?>" alt="Imagen actual" width="150">
+                                <img class="imagenActual" src="<?= htmlspecialchars($datos->image ?? '') ?>" alt="Imagen actual" width="150">
                             </div>
                             <div class="referenciadelpost">
                                 <label for="referencias">Referencias:</label>
-                                <div id="contenedorReferencias" data-referencias="<?= htmlspecialchars($datos->referencia_posts) ?>">
+                                <div id="contenedorReferencias" data-referencias="<?= htmlspecialchars($datos->referencia_posts ?? '') ?>">
                                     <!-- Los inputs se agregarán dinámicamente aquí -->
                                 </div>
                                 <button class="boton-agregar-referencia" type="button" onclick="agregarReferencia()">Agregar otra referencia</button>
