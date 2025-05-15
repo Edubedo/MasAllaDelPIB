@@ -257,6 +257,10 @@ button:hover {
     background-color: #0056b3;
 }
 
+.botones-div{
+    display: flex;
+    justify-content: center;
+}
 
 
 /* Estilo para el mensaje de confirmacion de la modificacion*/
