@@ -147,7 +147,7 @@ if (isset($_POST['submit_comment'])) {
         $stmt->execute([':id_pubicacion' => $postId]);
         $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
-        <div class="titulo-com">Comentarios <span class="numero-comentarios">(<?php echo count($comments); ?>)</span></div>
+        <div class="titulo-com">Comentarios <span id="contador-comentarios" class="numero-comentarios">(<?php echo count($comments); ?>)</span></div>
         <?php if (isset($_SESSION['username'])): ?>
             <form method="POST" action="">
                 <textarea name="content" placeholder="Escribe tu comentario aquí..." required></textarea>
@@ -173,13 +173,18 @@ if (isset($_POST['submit_comment'])) {
                     $fotoPerfilComentario = $user['foto_perfil'] ?? null;
                     $commentImage = !empty($fotoPerfilComentario) ? "/views/uploads/" . htmlspecialchars($fotoPerfilComentario) : "/views/uploads/user-default2.jpeg";
             ?>
-                    <div class="comentario">
+                    <div class="comentario" id="comentario-<?php echo $comment['id_comments']; ?>">
                         <div class="imagen-user">
                             <img src="<?php echo htmlspecialchars($commentImage); ?>" alt="Foto de perfil">
                         </div>
 
                         <div class="comentario-contenido">
-                            <p><strong><?php echo htmlspecialchars($comment['user_creation']); ?></strong></p>
+                            <div class="comentario-header">
+                                <p><strong><?php echo htmlspecialchars($comment['user_creation']); ?></strong></p>
+                                <?php if (isset($_SESSION['username']) && ($_SESSION['username'] === $comment['user_creation'] || $_SESSION['id_type_user'] == 1)): ?>
+                                    <button class="eliminarComentario" data-id="<?php echo $comment['id_comments']; ?>">Eliminar</button>
+                                <?php endif; ?>
+                            </div>
                             <p><?php echo nl2br(htmlspecialchars($comment['content'])); ?></p>
                             <p class="fecha"><?php echo date("F d, Y H:i", strtotime($comment['date_creation'])); ?></p>
                         </div>
