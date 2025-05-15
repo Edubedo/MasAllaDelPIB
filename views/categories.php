@@ -82,7 +82,7 @@ if ($category) {
         <h1><?php echo strtoupper(str_replace('-', ' ', $category)); ?></h1>
     </div>
 
-    <div class="cuerpo">
+    <div class="cuerpo container-principal">
         <?php include 'megusta.php'; ?>
         <?php include 'layout/posts.php'; ?>
     </div>

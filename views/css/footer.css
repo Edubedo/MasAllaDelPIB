@@ -15,6 +15,14 @@ html, body {
     min-width: 100%;
     overflow-x: hidden; /* Previene cualquier desbordamiento horizontal */
     font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-principal {
+    flex: 1;
 }
 
 /* Footer principal */
@@ -384,4 +392,10 @@ html, body {
         font-size: 0.5rem;
         padding: 1rem 0;
     }
+}
+
+footer {
+    background-color: #f1f1f1; /* Example background color */
+    padding: 10px;
+    text-align: center;
 }
