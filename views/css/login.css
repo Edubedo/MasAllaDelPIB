@@ -36,7 +36,7 @@ main {
     max-width: 800px;
     margin: auto;
     position: relative;
-    margin-top: 5rem;
+    margin-top: 15rem;
     margin-bottom: 10rem;
 }
 
@@ -100,7 +100,7 @@ main {
 
 .contenedor__Login-register form {
     width: 100%;
-    padding: 60px 20px;
+    padding: 40px 20px;
     background: #fff;
     position: absolute;
     border-radius: 20px;
@@ -221,7 +221,9 @@ main {
     main {
         margin-top: 50px;
     }
-    
+    .contenedor__todo{
+        margin-top: 5rem !important;
+    }
     .caja__tracera {
         max-width: 350px;
         height: 300px;

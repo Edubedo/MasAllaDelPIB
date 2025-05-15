@@ -182,9 +182,22 @@ body {
 }
 
 .titulo-com {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
     margin-bottom: 20px;
+    color: #333;
+}
+
+.invitacion-registrarse {
+    display: flex; 
+    align-items: center;
+    gap: 1rem; 
+    margin-top: 2rem; 
+    font-size: 1.5rem;
+}
+
+.invitacion-registrarse p {
+    margin: 0; 
     color: #333;
 }
 

@@ -255,4 +255,12 @@ li a{
     #toggle:checked ~ .list {
         transform: translateX(0);
     }
+
+    .pagina-publicaciones .p1{
+        width: 100%;;
+    }
+
+    .pagina-publicaciones .p1 .titulo1{
+        font-size: 1.3rem;
+    }
 }

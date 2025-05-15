@@ -14,7 +14,9 @@ $query = "SELECT
         p.vote_down,
         COUNT(l.id_post) AS total_likes
         FROM posts p
+        INNER JOIN users u ON p.user_creation = u.username
         LEFT JOIN likes l ON p.Id_posts = l.id_post
+        WHERE u.id_type_user = 2
         GROUP BY p.Id_posts
         ORDER BY p.post_date DESC  ";
 

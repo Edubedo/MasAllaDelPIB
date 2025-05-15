@@ -154,7 +154,10 @@ if (isset($_POST['submit_comment'])) {
                 <button type="submit" name="submit_comment">Enviar</button>
             </form>
         <?php else: ?>
-            <p>Debes iniciar sesión para comentar.</p>
+            <div class="invitacion-registrarse">
+                <p>Para comentar en nuestras publicaciones registrate </p>
+                <a href="/views/signin.php" class="btn-iniciar-sesion">Aquí</a>
+            </div>
         <?php endif; ?>
 
         <div class="comentarios-lista">

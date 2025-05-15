@@ -9,7 +9,7 @@
     width: 100%;
     max-width: 32rem;
     height: auto;
-    background: linear-gradient(to bottom right, #e0eafc, #cfdef3);
+    background: linear-gradient(to bottom right, #b3caf4, #a3c8fc);
     padding: 1.5rem 1rem;
     border: 0.1rem solid #ccc;
     border-radius: 1.2rem;
@@ -70,6 +70,7 @@
 .info-pop {
     width: 90%;
     margin: 0 auto;
+    margin-bottom: 1px !important;
     padding: 1.5rem;
     background-color: rgba(255, 255, 255, 0.67);
     border-radius: 1rem;
@@ -136,6 +137,12 @@ nav .nav-button {
 }
 
 /* Contenedor de botones */
+.botones-pop {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1px !important;
+}
+
 /* Botones del modal mejorados */
 .botones-pop button {
     width: 100%;
@@ -162,7 +169,7 @@ nav .nav-button {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle at center, rgba(127, 16, 16, 0.247) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(127, 16, 16, 0) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.4s, transform 0.4s;
     transform: scale(0);
@@ -177,7 +184,7 @@ nav .nav-button {
 .botones-pop button:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #4391e9 0%, #c385fd 100%);
+    background: linear-gradient(135deg, #88bdf9 0%, #85a5fd 100%);
 }
 
 .botones-pop button:active {

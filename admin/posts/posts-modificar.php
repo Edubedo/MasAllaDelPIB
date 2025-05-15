@@ -166,6 +166,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 
 <html lang="es">
+<<<<<<< HEAD
+=======
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="/assets/img/logo.png" type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Modificar publicacion</title>
+        <link rel="stylesheet" href="css/crear.css">
+    </head>
+    <body> 
+        <div class="container">
+            <div class="encabezado">
+                <h1>Modificar publicación</h1>
+            </div>
+>>>>>>> 22ff6e84cf9d8eafb715da2bfaf05dfae865dea9
 
 <head>
     <meta charset="UTF-8">
