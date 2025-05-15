@@ -21,7 +21,13 @@ if (!$post) {
 }
 
 // Definir imagen predeterminada si no hay imagen en la base de datos
-$imageSrc = !empty($post['image']) ? "../admin/posts/" . htmlspecialchars($post['image']) : "../admin/posts/uploads/preterminada.jpg";
+if (!empty($post['image'])) {
+    // Si la imagen ya está como ruta relativa completa (desde el admin)
+    $imageSrc = "../admin/posts/" . htmlspecialchars($post['image']);
+} else {
+    // Imagen predeterminada
+    $imageSrc = "../admin/posts/uploads/preterminada.jpg";
+}
 
 $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
 

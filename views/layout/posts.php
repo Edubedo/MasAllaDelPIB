@@ -36,7 +36,11 @@ foreach ($postsDB as $post) {
     $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
     $ruta = !empty($foto_perfil) ? $protocol . $host . "/views/uploads/" . htmlspecialchars($foto_perfil) : $protocol . $host . "/views/uploads/user-default2.jpeg";
 
-    $imageSrc = !empty($post['image']) ? $protocol . $host . "/admin/posts/" . htmlspecialchars($post['image']) : $protocol . $host . "/admin/posts/uploads/preterminada.jpg";
+    if (!empty($post['image'])) {
+        $imageSrc = $protocol . $host . "/admin/posts/" . htmlspecialchars($post['image']);
+    } else {
+        $imageSrc = $protocol . $host . "/admin/posts/uploads/preterminada.jpg";
+    }
 
     $postLink = '/views/post.php?id=' . htmlspecialchars($post['Id_posts']);
     $titleLimit = isset($isIndex) && $isIndex ? 50 : 40;

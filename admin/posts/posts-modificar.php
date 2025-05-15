@@ -10,7 +10,8 @@ $sql = $conexion->query("SELECT * FROM posts WHERE Id_posts = $id");
 $datos = $sql->fetch_object();
 
 //funcion para comprimir imagen
-function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad = 85) {
+function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad = 85)
+{
     if (!extension_loaded('gd')) {
         error_log("La extensión GD no está habilitada.");
         return false;
@@ -69,7 +70,7 @@ function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad 
         imagecopyresampled($nuevaImagen, $imagen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
         imagedestroy($imagen); // Liberar la imagen original
 
-    } 
+    }
 
     // Asegurarse de que el archivo de destino tenga la extensión .webp
     $rutaDestino = preg_replace('/\.[a-zA-Z]+$/', '.webp', $rutaDestino);
@@ -106,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Verificar y actualizar las referencias (cambiado para manejar array)
     if (!empty($_POST['referencias_post'])) {
         $referenciasArray = $_POST['referencias_post'];
-        $referenciasFiltradas = array_filter($referenciasArray, function($ref) {
+        $referenciasFiltradas = array_filter($referenciasArray, function ($ref) {
             return trim($ref) !== '';
         });
         $new_references = implode("\n", $referenciasFiltradas);
@@ -129,16 +130,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!empty($_FILES['imagen_posts']['name'])) {
         $imagen_nombre = $_FILES['imagen_posts']['name'];
         $imagen_temp = $_FILES['imagen_posts']['tmp_name'];
-        $ruta_final = "uploads/" . pathinfo($imagen_nombre, PATHINFO_FILENAME) . ".webp";
-        
+        $filename = pathinfo($imagen_nombre, PATHINFO_FILENAME) . ".webp";
+        $ruta_final = "uploads/" . $filename;
+        $db_path = "uploads/" . $filename;
+
         // Comprimir y guardar la imagen
         if (comprimirImagen($imagen_temp, $ruta_final, 1200, 95)) {
             // Opcional: eliminar imagen anterior si existe y es diferente
-            if (!empty($datos->image) && file_exists($datos->image) && $datos->image !== $ruta_final) {
+            if (!empty($datos->image) && file_exists($datos->image) && $datos->image !== $db_path) {
                 unlink($datos->image);
             }
 
-            $updates[] = "image = '$ruta_final'";
+            $updates[] = "image = '$db_path'";
         } else {
             echo "<p style='color:red'>Error al comprimir la imagen.</p>";
         }
@@ -163,19 +166,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Modificar publicacion</title>
-        <link rel="stylesheet" href="css/crear.css">
-    </head>
-    <body> 
-        <div class="container">
-            <div class="encabezado">
-                <h1>Modificar publicación</h1>
-            </div>
 
-            <!-- Mostrar el mensaje de éxito si está disponible -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar publicacion</title>
+    <link rel="stylesheet" href="css/crear.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="encabezado">
+            <h1>Modificar publicación</h1>
+        </div>
+
+        <!-- Mostrar el mensaje de éxito si está disponible -->
         <?php if (isset($_SESSION['success_message'])): ?>
             <div class="success-message">
                 <?php
@@ -185,88 +190,89 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         <?php endif; ?>
 
-            <form id="modificarForm" action="" name="modificar_post" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="id" value="<?= htmlspecialchars($id) ?>">
-                <input type="hidden" name="usuario_posts" value="<?= htmlspecialchars($_SESSION['username']) ?>">
+        <form id="modificarForm" action="" name="modificar_post" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?= htmlspecialchars($id) ?>">
+            <input type="hidden" name="usuario_posts" value="<?= htmlspecialchars($_SESSION['username']) ?>">
 
-                <div class="contenedor-general">
-                    <div class="izquierdo">
-                        <h2>Configuración</h2>
+            <div class="contenedor-general">
+                <div class="izquierdo">
+                    <h2>Configuración</h2>
 
-                        <div class="categoria_div">
-                            <label for="categoria">Categoría:</label>
-                            <select name="categoria_posts" id="categoria" required>
-                                <option value="" disabled hidden>Categorías</option>
-                                <option value="crecimiento-economico" <?= $datos->category == 'crecimiento-economico' ? 'selected' : '' ?>>Crecimiento Económico</option>
-                                <option value="emprendimiento-negocios" <?= $datos->category == 'emprendimiento-negocios' ? 'selected' : '' ?>>Emprendimiento Y Negocios</option>
-                                <option value="mundo-laboral" <?= $datos->category == 'mundo-laboral' ? 'selected' : '' ?>>Mundo Laboral</option>
-                            </select>
-                        </div>
-
-                        <div class="fecha_div">
-                            <label for="fecha_publicacion">Fecha de Publicación:</label>
-                            <input class="fecha" type="date" id="fecha_publicacion" name="fecha_publicacion_posts" value="<?= $datos->post_date ?>" required>
-                        </div>
-
-                        <div class="autor_div">
-                            <?php if(isset($_SESSION['username'])): ?>
-                                <label for="usuario">Usuario:</label>
-                                <span class="username"><?= htmlspecialchars($_SESSION['username']) ?></span>
-                            <?php endif; ?>
-                        </div>
-
-                        <div class="boton-div">
-                            <a href="posts-consulta.php" class="btn-editar-publicacion">Regresar</a>
-                            <button type="submit" name="modificar_post">Modificar Publicación</button>
-                        </div>
+                    <div class="categoria_div">
+                        <label for="categoria">Categoría:</label>
+                        <select name="categoria_posts" id="categoria" required>
+                            <option value="" disabled hidden>Categorías</option>
+                            <option value="crecimiento-economico" <?= $datos->category == 'crecimiento-economico' ? 'selected' : '' ?>>Crecimiento Económico</option>
+                            <option value="emprendimiento-negocios" <?= $datos->category == 'emprendimiento-negocios' ? 'selected' : '' ?>>Emprendimiento Y Negocios</option>
+                            <option value="mundo-laboral" <?= $datos->category == 'mundo-laboral' ? 'selected' : '' ?>>Mundo Laboral</option>
+                        </select>
                     </div>
 
-                    <div class="derecho">
-                        <div class="titulodelposts">
-                            <label for="titulo">Título del post:</label>
-                            <input type="text" id="titulo" name="titulo_posts" value="<?= htmlspecialchars($datos->title) ?>" required>
-                        </div>
-                        <div class="contenidodelposts">
-                            <label for="contenido">Contenido:</label>
-                            <textarea id="contenido" name="contenido_posts" rows="6" required><?= htmlspecialchars($datos->content) ?></textarea>
-                        </div>
-                        <div class="imagendelpost">
-                            <label for="imagen">Imagen:</label>
-                            <input type="file" id="imagen" name="imagen_posts" accept="image/*">
-                            <label for="imagen_actual">Imagen actual:</label>
-                            <img class="imagenActual" src="<?= htmlspecialchars($datos->image) ?>" alt="Imagen actual" width="150">
-                        </div>
-                        <div class="referenciadelpost">
-                            <label for="referencias">Referencias:</label>
-                            <div id="contenedorReferencias" data-referencias="<?= htmlspecialchars($datos->referencia_posts) ?>">
-                                <!-- Los inputs se agregarán dinámicamente aquí -->
-                            </div>
-                            <button class="boton-agregar-referencia" type="button" onclick="agregarReferencia()">Agregar otra referencia</button>
-                        </div>
+                    <div class="fecha_div">
+                        <label for="fecha_publicacion">Fecha de Publicación:</label>
+                        <input class="fecha" type="date" id="fecha_publicacion" name="fecha_publicacion_posts" value="<?= $datos->post_date ?>" required>
+                    </div>
+
+                    <div class="autor_div">
+                        <?php if (isset($_SESSION['username'])): ?>
+                            <label for="usuario">Usuario:</label>
+                            <span class="username"><?= htmlspecialchars($_SESSION['username']) ?></span>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="boton-div">
+                        <a href="posts-consulta.php" class="btn-editar-publicacion">Regresar</a>
+                        <button type="submit" name="modificar_post">Modificar Publicación</button>
                     </div>
                 </div>
-            </form>
-        </div>
 
-        <!-- Modal de ALERTA NO BORRAR -->
-        <div id="modal" class="fondo-alerta" style="display: none;">
-            <div class="alerta">
-                <p id="alert-message"></p>
-                <button class="boton-alerta" onclick="cerrarAlerta()">Aceptar</button>
+                <div class="derecho">
+                    <div class="titulodelposts">
+                        <label for="titulo">Título del post:</label>
+                        <input type="text" id="titulo" name="titulo_posts" value="<?= htmlspecialchars($datos->title) ?>" required>
+                    </div>
+                    <div class="contenidodelposts">
+                        <label for="contenido">Contenido:</label>
+                        <textarea id="contenido" name="contenido_posts" rows="6" required><?= htmlspecialchars($datos->content) ?></textarea>
+                    </div>
+                    <div class="imagendelpost">
+                        <label for="imagen">Imagen:</label>
+                        <input type="file" id="imagen" name="imagen_posts" accept="image/*">
+                        <label for="imagen_actual">Imagen actual:</label>
+                        <img class="imagenActual" src="<?= htmlspecialchars($datos->image) ?>" alt="Imagen actual" width="150">
+                    </div>
+                    <div class="referenciadelpost">
+                        <label for="referencias">Referencias:</label>
+                        <div id="contenedorReferencias" data-referencias="<?= htmlspecialchars($datos->referencia_posts) ?>">
+                            <!-- Los inputs se agregarán dinámicamente aquí -->
+                        </div>
+                        <button class="boton-agregar-referencia" type="button" onclick="agregarReferencia()">Agregar otra referencia</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <!-- Modal de ALERTA NO BORRAR -->
+        </form>
+    </div>
 
-        <!-- Modal de confirmación -->
-        <div id="modal-modificar" class="fondo-alerta-modificar" style="display: none;">
-            <div class="alerta-modificar">
-                <p id="alert-message-modificar"></p>
-                <button class="boton-alerta-modificar" onclick="aceptarEnvio()">Aceptar</button>
-                <button class="boton-alerta-cancelar" onclick="cerrarAlerta()">Cancelar</button>
-            </div>
+    <!-- Modal de ALERTA NO BORRAR -->
+    <div id="modal" class="fondo-alerta" style="display: none;">
+        <div class="alerta">
+            <p id="alert-message"></p>
+            <button class="boton-alerta" onclick="cerrarAlerta()">Aceptar</button>
         </div>
-        
-        
-        <script src="../../js/post-modificar.js"></script>
-    </body>
+    </div>
+    <!-- Modal de ALERTA NO BORRAR -->
+
+    <!-- Modal de confirmación -->
+    <div id="modal-modificar" class="fondo-alerta-modificar" style="display: none;">
+        <div class="alerta-modificar">
+            <p id="alert-message-modificar"></p>
+            <button class="boton-alerta-modificar" onclick="aceptarEnvio()">Aceptar</button>
+            <button class="boton-alerta-cancelar" onclick="cerrarAlerta()">Cancelar</button>
+        </div>
+    </div>
+
+
+    <script src="../../js/post-modificar.js"></script>
+</body>
+
 </html>

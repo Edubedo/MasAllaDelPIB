@@ -3,11 +3,13 @@ session_start();
 include '../../config/database.php';
 
 // Verificar si GD está habilitado
-function isGDExtensionAvailable() {
+function isGDExtensionAvailable()
+{
     return extension_loaded('gd');
 }
 
-function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad = 85) {
+function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad = 85)
+{
     if (!extension_loaded('gd')) {
         error_log("La extensión GD no está habilitada.");
         return false;
@@ -66,7 +68,7 @@ function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad 
         imagecopyresampled($nuevaImagen, $imagen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
         imagedestroy($imagen); // Liberar la imagen original
 
-    } 
+    }
 
     // Guardar la imagen en formato WebP
     $resultado = imagewebp($nuevaImagen, $rutaDestino, $calidad); // calidad 0-100
@@ -117,7 +119,8 @@ if (isset($_POST["crear_post"])) {
         exit();
     }
 
-    $ruta_final = $target_dir . pathinfo($imagen_name, PATHINFO_FILENAME) . ".webp";
+    $filename = pathinfo($imagen_name, PATHINFO_FILENAME) . ".webp";
+    $ruta_final = $target_dir . $filename;
 
     // Si GD está habilitado, comprime la imagen. Si no, simplemente mueve la imagen
     if (isGDExtensionAvailable()) {
@@ -136,10 +139,13 @@ if (isset($_POST["crear_post"])) {
         }
     }
 
+    // Guardar solo la ruta relativa dentro de la carpeta uploads
+    $db_path = "uploads/" . $filename;
+
     $query = "INSERT INTO posts (title, content, post_date, category, image, user_creation, referencia_posts) 
               VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conexion->prepare($query);
-    $stmt->bind_param("sssssss", $titulo, $contenido, $fecha, $categoria, $ruta_final, $usuario, $referencias);
+    $stmt->bind_param("sssssss", $titulo, $contenido, $fecha, $categoria, $db_path, $usuario, $referencias);
 
     if ($stmt->execute()) {
         header("Location: posts-consulta.php");
@@ -153,6 +159,7 @@ if (isset($_POST["crear_post"])) {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -160,6 +167,7 @@ if (isset($_POST["crear_post"])) {
     <link rel="icon" href="../../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/crear.css">
 </head>
+
 <body>
     <div class="encabezado">
         <h1>Crear nueva publicación</h1>
@@ -232,5 +240,6 @@ if (isset($_POST["crear_post"])) {
     <!-- JS para validaciones y referencias -->
     <script src="../../js/posts-crear.js"></script>
 </body>
+
 </html>
- <!-- #region -->
+<!-- #region -->

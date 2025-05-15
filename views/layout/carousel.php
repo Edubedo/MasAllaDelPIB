@@ -62,7 +62,11 @@ try {
                         // Si no hay imagen, usamos la imagen predeterminada
                         $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
                         $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-                        $imageSrc = !empty($post['image']) ? $protocol . $host . "/admin/posts/" . htmlspecialchars($post['image']) : $protocol . $host . "/admin/posts/uploads/preterminada.jpg";
+                        if (!empty($post['image'])) {
+                            $imageSrc = $protocol . $host . "/admin/posts/" . htmlspecialchars($post['image']);
+                        } else {
+                            $imageSrc = $protocol . $host . "/admin/posts/uploads/preterminada.jpg";
+                        }
                     ?>
                         <a href="/views/post.php?id=<?= htmlspecialchars($post['Id_posts']); ?>">
                             <div class="post">
