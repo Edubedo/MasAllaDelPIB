@@ -21,10 +21,15 @@ body {
 }
 
 body {
-    background-image: url('../../assets/img/fondo_montaña.webp'); 
+    background-image: url('../../assets/img/puertomanzanillo.webp'); 
     background-size: cover; 
     background-position: center;
     background-attachment: fixed; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
 }
 
 h1, h3 {
@@ -286,5 +291,33 @@ h1, h3 {
     .pagina-index .posts-admin .cuerpo_post {
         height: 10rem;
     }
+}
+
+/* Container for the background image */
+.background-container {
+    position: relative;
+    background-image: url('../../assets/img/puertomanzanillo.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+/* Overlay to reduce attention */
+.background-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the color and opacity as needed */
+    z-index: 1;
+}
+
+/* Content inside the container */
+.background-container > * {
+    position: relative;
+    z-index: 2;
 }
 
