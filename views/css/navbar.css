@@ -165,11 +165,12 @@ nav button {
 .nav__logo-name {
     display: flex;
     align-items: center;
+    margin-left: -5rem; /* Mueve el logo más a la izquierda */
 }
 
 .nav__logo-name img {
     width: 5rem;
-    margin-right: 3rem;
+    margin-right: 1rem; /* Reduce el espacio entre el logo y el texto */
 }
 
 .nav__logo-name h2 {
@@ -308,6 +309,7 @@ nav button {
     .nav__items {
         display: none; /* Ocultar por defecto */
         flex-direction: column;
+        backdrop-filter: blur(6px);
         background-color: #183e67ae;
         width: 50%;
         height: 100vh; /* Ajustar al 100% de la pantalla en vertical */
