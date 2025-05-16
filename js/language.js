@@ -34,17 +34,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Almacenar textos originales
+let originalTexts = new Map();
+
 function translatePage(targetLang) {
     // Elementos que queremos traducir
     const elementsToTranslate = [
         // Elementos de navegación
+        ...document.querySelectorAll('.texto_a .hover-text'),
         ...document.querySelectorAll('.nav__items .hover-text'),
-        ...document.querySelectorAll('.nav__logo-name h2'),
         
         // Elementos de contenido principal
         ...document.querySelectorAll('.encabezado h1'),
         ...document.querySelectorAll('h1'),
-        ...document.querySelectorAll('h2'),
+        ...document.querySelectorAll('h2.texto[name="crear_posts"]'),
+        ...document.querySelectorAll('h2:not([style*="color:white"])'),
         ...document.querySelectorAll('h3'),
         ...document.querySelectorAll('h4'),
         ...document.querySelectorAll('.titulo-com'),
@@ -52,17 +56,21 @@ function translatePage(targetLang) {
         ...document.querySelectorAll('label'),
         ...document.querySelectorAll('input'),
         ...document.querySelectorAll('p'),
-        
         ...document.querySelectorAll('input[type="text"]'),
         ...document.querySelectorAll('input[type="email"]'),
         ...document.querySelectorAll('input[type="password"]'),
         ...document.querySelectorAll('#userPopup button'),
         ...document.querySelectorAll('#userPopup strong'),
-        // Elementos específicos de posts-consulta.php
         
-        ...document.querySelectorAll('table tfoot tr td'),
-        ...document.querySelectorAll('.table-responsive table th'),
-        ...document.querySelectorAll('.table-responsive table td'),
+        // Elementos de lista
+        ...document.querySelectorAll('.list li a'),
+        ...document.querySelectorAll('.list li span'),
+        ...document.querySelectorAll('.list li .hover-text'),
+        
+        // Elementos específicos de posts-consulta.php
+        ...document.querySelectorAll('table th'),
+        ...document.querySelectorAll('table tbody tr td:not(:has(.btn))'),
+        ...document.querySelectorAll('table tbody tr th'),
         ...document.querySelectorAll('.btn'),
         ...document.querySelectorAll('.modal-title'),
         ...document.querySelectorAll('.modal-body label'),
@@ -76,51 +84,222 @@ function translatePage(targetLang) {
         ...document.querySelectorAll('.form-group select'),
         ...document.querySelectorAll('.form-group select option'),
         ...document.querySelectorAll('.form-group button'),
+        
         // Categorías y valores
         ...document.querySelectorAll('select option'),
         ...document.querySelectorAll('input[type="text"]'),
         ...document.querySelectorAll('input[type="search"]'),
         ...document.querySelectorAll('.category-value'),
         ...document.querySelectorAll('[data-category]'),
-
-       
+        
+        // Botones de perfil
+        ...document.querySelectorAll('.btn-editar-perfil'),
+        
+        // Botones de inicio de sesión y registro
+        ...document.querySelectorAll('form button[type="submit"]'),
+        ...document.querySelectorAll('.form-container button'),
+        ...document.querySelectorAll('#btn__Iniciar-Sesión'),
+        ...document.querySelectorAll('#btn__registrarse'),
+        
+        // Botones de publicación
+        ...document.querySelectorAll('.btn-editar-publicacion'),
+        ...document.querySelectorAll('.boton-agregar-referencia'),
+        
+        // Inputs de referencias
+        ...document.querySelectorAll('.input-referencia'),
+        
+        // Elementos de comentarios
+        ...document.querySelectorAll('textarea[name="content"]'),
+        ...document.querySelectorAll('button[name="submit_comment"]'),
+        
+        // Texto de la página about
+        ...document.querySelectorAll('.texto')
     ];
 
     // Filtrar elementos que tienen texto
     const elementsWithText = elementsToTranslate.filter(el => el.textContent.trim());
 
+    // Función para dividir texto en chunks más pequeños
+    function splitTextIntoChunks(text, maxLength = 1000) {
+        const chunks = [];
+        let currentChunk = '';
+        const sentences = text.split(/(?<=[.!?])\s+/);
+        
+        for (const sentence of sentences) {
+            if ((currentChunk + sentence).length > maxLength) {
+                if (currentChunk) chunks.push(currentChunk.trim());
+                currentChunk = sentence;
+            } else {
+                currentChunk += (currentChunk ? ' ' : '') + sentence;
+            }
+        }
+        if (currentChunk) chunks.push(currentChunk.trim());
+        return chunks;
+    }
+
+    // Función para traducir texto
+    async function translateText(text, targetLang) {
+        if (targetLang !== 'en') return text;
+        
+        const chunks = splitTextIntoChunks(text);
+        const translatedChunks = [];
+        
+        for (const chunk of chunks) {
+            const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=es&tl=${targetLang}&dt=t&q=${encodeURIComponent(chunk)}`;
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                if (data && data[0] && data[0][0] && data[0][0][0]) {
+                    translatedChunks.push(data[0][0][0]);
+                }
+            } catch (error) {
+                console.error('Error translating chunk:', error);
+                translatedChunks.push(chunk);
+            }
+        }
+        
+        return translatedChunks.join(' ');
+    }
+
     // Traducir cada elemento
-    elementsWithText.forEach(element => {
+    elementsWithText.forEach(async element => {
         const originalText = element.textContent.trim();
         
-        // Usar la API de Google Translate
-        const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${targetLang}&dt=t&q=${encodeURIComponent(originalText)}`;
-        
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                if (data && data[0] && data[0][0] && data[0][0][0]) {
-                    element.textContent = data[0][0][0];
-                }
-            })
-            .catch(error => console.error('Error translating:', error));
+        // Guardar el texto original si no está guardado
+        if (!originalTexts.has(element)) {
+            originalTexts.set(element, originalText);
+        }
+
+        if (targetLang === 'en') {
+            const translatedText = await translateText(originalText, targetLang);
+            element.textContent = translatedText;
+        } else {
+            // Restaurar el texto original en español
+            element.textContent = originalTexts.get(element);
+        }
     });
 
-    // Actualizar el placeholder del buscador
-    const searchInput = document.getElementById('search-input');
-    if (searchInput) {
-        const placeholder = searchInput.placeholder;
-        const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${targetLang}&dt=t&q=${encodeURIComponent(placeholder)}`;
-        
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                if (data && data[0] && data[0][0] && data[0][0][0]) {
-                    searchInput.placeholder = data[0][0][0];
+    // Traducir específicamente el título de configuración
+    const allH2s = document.querySelectorAll('h2:not([style*="color:white"])');
+    allH2s.forEach(async h2 => {
+        const text = h2.textContent.trim();
+        if (text === 'Configuración') {
+            // Guardar el texto original si no está guardado
+            if (!originalTexts.has(h2)) {
+                originalTexts.set(h2, text);
+            }
+
+            if (targetLang === 'en') {
+                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=es&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
+                try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    if (data && data[0] && data[0][0] && data[0][0][0]) {
+                        h2.textContent = data[0][0][0];
+                    }
+                } catch (error) {
+                    console.error('Error translating configuration title:', error);
                 }
-            })
-            .catch(error => console.error('Error translating placeholder:', error));
-    }
+            } else {
+                h2.textContent = originalTexts.get(h2);
+            }
+        }
+    });
+
+    // Actualizar los placeholders de los buscadores
+    const searchInputs = [
+        document.getElementById('searchInput'),
+        document.getElementById('search-input')
+    ];
+
+    searchInputs.forEach(async searchInput => {
+        if (searchInput) {
+            const placeholder = searchInput.placeholder;
+            
+            // Guardar el placeholder original si no está guardado
+            if (!originalTexts.has(searchInput)) {
+                originalTexts.set(searchInput, placeholder);
+            }
+
+            if (targetLang === 'en') {
+                const translatedPlaceholder = await translateText(placeholder, targetLang);
+                searchInput.placeholder = translatedPlaceholder;
+            } else {
+                searchInput.placeholder = originalTexts.get(searchInput);
+            }
+        }
+    });
+
+    // Traducir placeholders de los campos de registro
+    const signinInputs = [
+        document.querySelector('input[name="fullname"]'),
+        document.querySelector('input[name="email"]'),
+        document.querySelector('input[name="username"]'),
+        document.querySelector('input[name="password"]'),
+        document.querySelector('input[type="email"]'),
+        document.querySelector('input[type="password"]'),
+        document.querySelector('#passwordRegistrarse'),
+        document.querySelector('#confirm_password')
+    ];
+
+    signinInputs.forEach(async input => {
+        if (input) {
+            const placeholder = input.placeholder;
+            
+            // Guardar el placeholder original si no está guardado
+            if (!originalTexts.has(input)) {
+                originalTexts.set(input, placeholder);
+            }
+
+            if (targetLang === 'en') {
+                const translatedPlaceholder = await translateText(placeholder, targetLang);
+                input.placeholder = translatedPlaceholder;
+            } else {
+                input.placeholder = originalTexts.get(input);
+            }
+        }
+    });
+
+    // Traducir placeholders de los campos de referencias
+    const referenceInputs = document.querySelectorAll('.input-referencia');
+    referenceInputs.forEach(async input => {
+        if (input) {
+            const placeholder = input.placeholder;
+            
+            // Guardar el placeholder original si no está guardado
+            if (!originalTexts.has(input)) {
+                originalTexts.set(input, placeholder);
+            }
+
+            if (targetLang === 'en') {
+                const translatedPlaceholder = await translateText(placeholder, targetLang);
+                input.placeholder = translatedPlaceholder;
+            } else {
+                input.placeholder = originalTexts.get(input);
+            }
+        }
+    });
+
+    // Traducir placeholders de los campos de comentarios
+    const commentTextareas = document.querySelectorAll('textarea[name="content"]');
+    commentTextareas.forEach(async textarea => {
+        if (textarea) {
+            const placeholder = textarea.placeholder;
+            
+            // Guardar el placeholder original si no está guardado
+            if (!originalTexts.has(textarea)) {
+                originalTexts.set(textarea, placeholder);
+            }
+
+            if (targetLang === 'en') {
+                const translatedPlaceholder = await translateText(placeholder, targetLang);
+                textarea.placeholder = translatedPlaceholder;
+            } else {
+                textarea.placeholder = originalTexts.get(textarea);
+            }
+        }
+    });
 
     // Guardar el idioma seleccionado
     localStorage.setItem('selectedLanguage', targetLang);
