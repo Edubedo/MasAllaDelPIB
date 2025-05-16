@@ -10,7 +10,7 @@
 }
 
 body {
-    background-image: url('../../assets/img/puertomanzanillo.png'); 
+    background-image: url('/public/puertomanzanillo.png'); 
     background-size: cover; 
     background-position: center;
     background-attachment: fixed; 
