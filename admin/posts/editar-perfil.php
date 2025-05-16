@@ -225,6 +225,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <link rel="icon" href="../../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/crear.css">
+    <script src="/js/language.js"></script>
+    <script src="/js/translations.js"></script>
 </head>
 <body>
     <div class="container">

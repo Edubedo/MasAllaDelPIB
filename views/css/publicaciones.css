@@ -200,6 +200,15 @@ li a{
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+@media (min-width: 1220px) {
+    .cuerpo {
+        max-width: 1400px;
+        margin: 0 auto;
+        gap: 2rem;
+        justify-items: center;
+    }
+}
+
 
 @media (max-width: 1030px) {
     .nav_public .list {
