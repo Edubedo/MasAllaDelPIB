@@ -37,20 +37,10 @@ session_start();
         <div class="container-nosotros">
             <div class="info">
                 <p class="texto">
-                    Este blog fue creado por estudiantes de la Universidad de Colima como parte de un
-                    proyecto escolar cuyo objetivo es contribuir a la sociedad a través de medios
-                    digitales. A través de esta iniciativa, buscamos generar contenido de valor que pueda
-                    servir de apoyo a la comunidad, aprovechando las ventajas de la tecnología y el desarrollo web.
-                    El proyecto se enfoca en el diseño e implementación de aplicaciones web mediante la
-                    Este blog fue creado por estudiantes de la Universidad de Colima como parte de un proyecto escolar cuyo objetivo es contribuir a la sociedad a través de medios digitales. Nuestra iniciativa busca generar contenido valioso que apoye a la comunidad, aprovechando las ventajas de la tecnología y el desarrollo web. El proyecto se centra en el diseño e implementación de aplicaciones web mediante la integración de diversas herramientas de desarrollo. Estas tecnologías nos permiten construir soluciones innovadoras y funcionales que responden a necesidades específicas, fomentando el aprendizaje práctico y el trabajo en equipo entre los estudiantes.
-                    construir soluciones innovadoras y funcionales que respondan a necesidades específicas,
-                    fomentando el aprendizaje práctico y el trabajo en equipo entre los estudiantes.
-
+                    Este blog fue creado por estudiantes de la Universidad de Colima como parte de un proyecto escolar. Nuestro objetivo es contribuir a la sociedad a través de medios digitales, generando contenido valioso que apoye a la comunidad. <br>El proyecto se centra en el diseño e implementación de aplicaciones web mediante la integración de diversas herramientas de desarrollo, permitiéndonos construir soluciones innovadoras y funcionales.
                 </p>
                 <p class="texto">
-                    Además, este blog representa un espacio de exploración y experimentación en el ámbito
-                    del desarrollo web, donde podemos aplicar nuestros conocimientos, compartir experiencias
-                    y fortalecer nuestras habilidades para futuros proyectos profesionales.
+                    Este espacio representa una oportunidad para explorar y experimentar en el desarrollo web, aplicando nuestros conocimientos y fortaleciendo nuestras habilidades profesionales.
                 </p>
             </div>
             <div class="foto">
