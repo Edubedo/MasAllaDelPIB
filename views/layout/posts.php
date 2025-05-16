@@ -77,9 +77,9 @@ foreach ($postsDB as $post) {
         echo '
             <div class="interaccion">
                 <div class="likes">
-                    <a class="options ' . ($userLiked ? 'liked' : 'not-liked') . '" data-vote-type="1" id="post_vote_up_' . htmlspecialchars($post['Id_posts']) . '">
+                    <span class="options ' . ($userLiked ? 'liked' : 'not-liked') . '" data-vote-type="1" id="post_vote_up_' . htmlspecialchars($post['Id_posts']) . '">
                         <i class="fas fa-thumbs-up"></i>
-                    </a>
+                    </span>
                     <span class="likes_count ' . ($userLiked ? 'liked' : 'not-liked') . '" id="vote_up_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['total_likes'] ?? 0) . '</span>
                 </div>
             </div>';
