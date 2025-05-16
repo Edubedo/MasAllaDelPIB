@@ -166,6 +166,8 @@ if (isset($_POST["crear_post"])) {
     <title>Crear publicación</title>
     <link rel="icon" href="../../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/crear.css">
+    <script src="/js/language.js"></script>
+    <script src="/js/translations.js"></script>
 </head>
 
 <body>
@@ -177,8 +179,8 @@ if (isset($_POST["crear_post"])) {
             <div class="izquierdo">
                 <h2>Configuración</h2>
                 <div class="categoria_div">
-                    <label for="categoria">Categoría:</label>
-                    <select name="categoria_posts" id="categoria" required>
+                    <label for="categoria" class="texto-a-traducir">Categoría:</label>
+                    <select name="categoria_posts" id="categoria" class="texto-a-traducir" required>
                         <option value="" disabled selected hidden>Categorías</option>
                         <option value="crecimiento-economico">Crecimiento Económico</option>
                         <option value="emprendimiento-negocios">Emprendimiento Y Negocios</option>

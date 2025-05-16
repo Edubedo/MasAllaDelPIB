@@ -192,12 +192,50 @@ nav button {
 .nav__items i {
     font-size: 2rem;
 }
+
+/* Estilos para el ícono de idioma */
+#language-icon {
+    position: relative;
+}
+
+#language-icon .flag-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    display: block;
+    z-index: 1;
+}
+
+#language-icon:hover .flag-icon {
+    transform: translateY(-10px);
+}
+
+#language-icon .hover-text {
+    font-size: 1.16rem;
+    color: white;
+    margin-top: 0.3rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    position: absolute;
+    bottom: -1.2rem;
+    white-space: nowrap;
+}
+
+#language-icon:hover .hover-text {
+    opacity: 1;
+    transform: translateY(0);
+    color: rgb(255, 184, 61);
+    bottom: 0;
+}
+
 .nav__icon-group {
     display: flex;
     align-items: center;
-    gap: 1rem; /* Aumenta este valor si quieres más separación */
+    gap: 1rem;
 }
-
 
 .search-container {
     display: flex;

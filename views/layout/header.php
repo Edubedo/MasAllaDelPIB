@@ -37,7 +37,7 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Website</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/views/css/navbar.css">
     <link rel="stylesheet" href="/admin/posts/css/userpop.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,800;1,700&display=swap" rel="stylesheet">
@@ -73,13 +73,15 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
                                 <span class="hover-text">Perfil</span>
                             </a>
                         </li>
-                        <li><a class="texto_a" id="settings-icon"><i class="fas fa-cog"></i><span class="hover-text">Ajustes</span></a></li>';
+                        <li><a class="texto_a" id="settings-icon"><i class="fas fa-cog"></i><span class="hover-text">Ajustes</span></a></li>
+                        <li><a class="texto_a" href="#" id="language-icon" data-lang="es"><img src="/views/uploads/Bandera_de_España.svg.png" alt="Español" class="flag-icon"><span class="hover-text">Idioma</span></a></li>';
                 } elseif ($idtypeuser == 3) {
                     echo '
                         <li><a class="texto_a" href="/index.php"><i class="fas fa-home"></i><span class="hover-text">Inicio</span></a></li>
                         <li><a class="texto_a" href="/views/publicaciones.php"><i class="fas fa-clipboard-list"></i><span class="hover-text">Posts</span></a></li>
                         <li><a class="texto_a" href="/views/about.php"><i class="fas fa-users-cog"></i><span class="hover-text">Nosotros</span></a></li>
-                        <li><a class="texto_a" href="/views/signin.php"><i class="fas fa-sign-in-alt"></i><span class="hover-text">Ingresar</span></a></li>';
+                        <li><a class="texto_a" href="/views/signin.php"><i class="fas fa-sign-in-alt"></i><span class="hover-text">Ingresar</span></a></li>
+                        <li><a class="texto_a" href="#" id="language-icon" data-lang="es"><img src="/views/uploads/Bandera_de_España.svg.png" alt="Español" class="flag-icon"><span class="hover-text">Idioma</span></a></li>';
                 }
                 ?>
             </ul>
@@ -143,6 +145,8 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
     <script src="/js/main.js"></script>
     <script src="/js/buscar.js"></script>
     <script src="/js/profile.js"></script>
+    <script src="/js/language.js"></script>
+    <script src="/js/translations.js"></script>
 </body>
 
 </html>
