@@ -21,19 +21,24 @@ body {
 }
 
 body {
-    background-image: url('../../assets/img/fondo_montaña.jpg'); 
+    background-image: url('/public/puertomanzanillo.png'); 
     background-size: cover; 
     background-position: center;
     background-attachment: fixed; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
 }
 
-h1, h3, p {
+h1, h3 {
     color: white;
     text-shadow: 2px 2px 4px #000000;
 }
 
 .footer p, h3 {
-    text-shadow: none;
+    text-shadow: none !important;
 }
 
 .encabezadoPrincipal {
@@ -129,14 +134,6 @@ h1, h3, p {
     text-shadow: none;
 }
 
-/* Evita que el contenido se desborde */
-.pagina-index .post-derecho,
-.cuerpo .p1 {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: normal;
-}
-
 /* Columna derecha (admin) */
 .div-derecho {
     display: flex;
@@ -185,7 +182,7 @@ h1, h3, p {
 }
 
 .pagina-index .posts-admin .cuerpo_post {
-    height: 17rem;
+    height: 20rem;
 }
 
 .pagina-index .posts-admin .titulo1 {

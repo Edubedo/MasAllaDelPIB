@@ -23,59 +23,80 @@ $idtypeuser = $_SESSION['id_type_user'];
 $error_password = ""; // 👈 Declarada fuera del POST
 
 // Función para comprimir imágen
-function comprimir_imagen($origen, $destino, $max_width, $max_height, $quality = 75) {
-    list($width, $height, $type) = getimagesize($origen);
-
-    // Calculamos las nuevas dimensiones respetando la relación de aspecto
-    $new_width = $width;
-    $new_height = $height;
-
-    if ($width > $max_width || $height > $max_height) {
-        $ratio = $width / $height;
-        if ($width > $height) {
-            $new_width = $max_width;
-            $new_height = $max_width / $ratio;
-        } else {
-            $new_height = $max_height;
-            $new_width = $max_height * $ratio;
-        }
+function comprimir_imagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad = 85) {
+    if (!extension_loaded('gd')) {
+        error_log("La extensión GD no está habilitada.");
+        return false;
     }
 
-    // Creamos la imagen de destino a partir de la original
-    switch ($type) {
-        case IMAGETYPE_JPEG:
-            $src = imagecreatefromjpeg($origen);
+    $info = getimagesize($rutaOriginal);
+    if (!$info) {
+        error_log("No se pudo obtener información de la imagen: $rutaOriginal");
+        return false;
+    }
+
+    $tipo = $info['mime'];
+    $ancho = $info[0];
+    $alto = $info[1];
+
+    if ($ancho <= 0 || $alto <= 0) {
+        error_log("Dimensiones inválidas para la imagen: $rutaOriginal");
+        return false;
+    }
+
+    // Procesar dependiendo del tipo de imagen
+    switch ($tipo) {
+        case 'image/jpeg':
+        case 'image/jpg':
+            $imagen = @imagecreatefromjpeg($rutaOriginal);
             break;
-        case IMAGETYPE_PNG:
-            $src = imagecreatefrompng($origen);
+        case 'image/png':
+            $imagen = @imagecreatefrompng($rutaOriginal);
             break;
-        case IMAGETYPE_GIF:
-            $src = imagecreatefromgif($origen);
+        case 'image/webp':
+            $imagen = @imagecreatefromwebp($rutaOriginal);
             break;
         default:
+            error_log("Formato de imagen no soportado: $tipo");
             return false;
     }
 
-    // Creamos la nueva imagen con las nuevas dimensiones
-    $dst = imagecreatetruecolor($new_width, $new_height);
-    imagecopyresampled($dst, $src, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
-
-    // Guardamos la imagen comprimida
-    switch ($type) {
-        case IMAGETYPE_JPEG:
-            imagejpeg($dst, $destino, $quality);
-            break;
-        case IMAGETYPE_PNG:
-            imagepng($dst, $destino, round($quality / 10)); // La calidad es de 0 a 9
-            break;
-        case IMAGETYPE_GIF:
-            imagegif($dst, $destino);
-            break;
+    if (!$imagen) {
+        error_log("No se pudo crear la imagen desde el archivo: $rutaOriginal");
+        return false;
     }
 
-    // Liberar memoria
-    imagedestroy($src);
-    imagedestroy($dst);
+    // Redimensionar si es necesario
+    $nuevaImagen = $imagen;
+    if ($ancho > $maxAncho) {
+        $nuevoAncho = $maxAncho;
+        $nuevoAlto = max(1, (int)(($maxAncho / $ancho) * $alto));
+        $nuevaImagen = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+        // Mantener transparencia para PNG y WebP
+        if ($tipo == 'image/png' || $tipo == 'image/webp') {
+            imagealphablending($nuevaImagen, false);
+            imagesavealpha($nuevaImagen, true);
+        }
+
+        imagecopyresampled($nuevaImagen, $imagen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+        imagedestroy($imagen); // Liberar la imagen original
+
+    } 
+
+    // Asegurarse de que el archivo de destino tenga la extensión .webp
+    $rutaDestino = preg_replace('/\.[a-zA-Z]+$/', '.webp', $rutaDestino);
+
+    // Guardar la imagen en formato WebP
+    $resultado = imagewebp($nuevaImagen, $rutaDestino, $calidad); // calidad 0-100
+
+    // Liberar recursos
+    imagedestroy($nuevaImagen);
+
+    if (!$resultado) {
+        error_log("No se pudo guardar la imagen comprimida en: $rutaDestino");
+        return false;
+    }
 
     return true;
 }
@@ -93,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $updates[] = "email = '$new_email'";
     }
 
-    // 👉 Verificar contraseña
+    // Verificar contraseña
     if (!empty($_POST['password'])) {
         $password_actual = md5($_POST['password']);
         $sql_verifica = "SELECT * FROM users WHERE iduser = $id AND password = '$password_actual'";
@@ -105,64 +126,73 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location: ../../views/nueva_contraseña.php");
             exit();
         } else {
-            $error_password = "❌ La contraseña actual es incorrecta.";
-            
+            $_SESSION['error_message'] = "❌ La contraseña actual es incorrecta.";
+            header("Location: editar-perfil.php?id=$id");
+            exit();
         }
     }
 
-    // 👇 Subir imagen
+    // Subir y comprimir imagen
     if (!empty($_FILES['foto']['name'])) {
-        $foto_nombre = time() . '_' . basename($_FILES['foto']['name']);
+        $foto_nombre = time() . '_' . pathinfo($_FILES['foto']['name'], PATHINFO_FILENAME) . '.webp';
         $ruta_guardado = '../../views/uploads/' . $foto_nombre;
+
         $extensiones_validas = ['jpg', 'jpeg', 'png', 'gif'];
-        $extension = strtolower(pathinfo($foto_nombre, PATHINFO_EXTENSION));
+        $extension = strtolower(pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION));
 
         if (in_array($extension, $extensiones_validas)) {
-            // Primero, obtener la foto actual para eliminarla
             $sql_foto_actual = "SELECT foto_perfil FROM users WHERE iduser = $id";
             $result_foto = $conexion->query($sql_foto_actual);
             $foto_actual = $result_foto->fetch_assoc()['foto_perfil'];
-            
-            // Eliminar la foto anterior si existe
+
             if (!empty($foto_actual)) {
                 $ruta_foto_anterior = '../../views/uploads/' . $foto_actual;
                 if (file_exists($ruta_foto_anterior)) {
-                    unlink($ruta_foto_anterior); // Elimina el archivo
+                    unlink($ruta_foto_anterior);
                 }
             }
-            // Comprimir la imagen antes de moverla
-            $ruta_comprimida = '../../views/uploads/' . time() . '_comprimida.' . $extension;
-            if (comprimir_imagen($_FILES['foto']['tmp_name'], $ruta_comprimida, 300, 300)) {
-                $foto_nombre_comprimida = basename($ruta_comprimida); // Usamos solo el nombre de la imagen comprimida
-                $updates[] = "foto_perfil = '$foto_nombre_comprimida'";
+
+            if (comprimir_imagen($_FILES['foto']['tmp_name'], $ruta_guardado, 300, 85)) {
+                $updates[] = "foto_perfil = '$foto_nombre'";
                 if ($id == $iduser) {
-                    $_SESSION['foto_perfil'] = $foto_nombre_comprimida;
+                    $_SESSION['foto_perfil'] = $foto_nombre;
                 }
             } else {
-                echo "❌ Error al subir la imagen.";
+                $_SESSION['error_message'] = "❌ Error al subir la imagen.";
+                header("Location: editar-perfil.php?id=$id");
+                exit();
             }
         } else {
-            echo "❌ Formato de imagen no permitido.";
+            $_SESSION['error_message'] = "❌ Formato de imagen no permitido.";
+            header("Location: editar-perfil.php?id=$id");
+            exit();
         }
     }
 
-    // 👇 Ejecutar actualizaciones solo si NO hubo error de contraseña
-    if (empty($error_password) && count($updates) > 0) {
-        $sql_old_username = "SELECT username FROM users WHERE iduser = $id";
-        $result = $conexion->query($sql_old_username);
-        $row = $result->fetch_assoc();
-        $old_username = $row['username'];
+    if (!empty($updates)) {
+        // Obtener el nombre anterior si se va a cambiar el username
+        if (!empty($_POST['username'])) {
+            $sql_old_username = "SELECT username FROM users WHERE iduser = $id";
+            $result = $conexion->query($sql_old_username);
+            $row = $result->fetch_assoc();
+            $old_username = $row['username'];
+        }
 
         $sql_update = "UPDATE users SET " . implode(", ", $updates) . " WHERE iduser = $id";
 
         if (!$conexion->query($sql_update)) {
-            die("❌ Error al actualizar usuario: " . $conexion->error);
+            $_SESSION['error_message'] = "❌ Error al actualizar usuario: " . $conexion->error;
+            header("Location: editar-perfil.php?id=$id");
+            exit();
         }
 
-        if (!empty($_POST['username'])) {
+        // Actualizar posts si cambió el nombre de usuario
+        if (!empty($_POST['username']) && isset($old_username)) {
             $sql_update_posts = "UPDATE posts SET user_creation = '$new_username' WHERE user_creation = '$old_username'";
             if (!$conexion->query($sql_update_posts)) {
-                die("❌ Error en la actualización de posts: " . mysqli_error($conexion));
+                $_SESSION['error_message'] = "❌ Error en la actualización de posts: " . mysqli_error($conexion);
+                header("Location: editar-perfil.php?id=$id");
+                exit();
             }
 
             if ($id == $iduser) {
@@ -173,13 +203,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!empty($_POST['email']) && $id == $iduser) {
             $_SESSION['email'] = $new_email;
         }
-        
-        
+
         $_SESSION['success_message'] = "✅ Perfil actualizado con éxito";
-        header("Location: editar-perfil.php?id=" . $id);
+        header("Location: editar-perfil.php?id=$id");
         exit();
-    } elseif (empty($error_password)) {
-        echo "⚠️ No se realizó ningún cambio.";
+    } else {
+        $_SESSION['error_message'] = "⚠️ No se realizó ningún cambio.";
+        header("Location: editar-perfil.php?id=$id");
+        exit();
     }
 }
 ?>
@@ -194,6 +225,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <link rel="icon" href="../../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/crear.css">
+    <script src="/js/language.js"></script>
+    <script src="/js/translations.js"></script>
 </head>
 <body>
     <div class="container">
@@ -210,7 +243,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         <!-- Mostrar error de contraseña -->
         <?php if (!empty($error_password)) : ?>
-            <div class="error-message" style="color: red; margin-bottom: 10px;">
+            <div class="error-message">
                 <?= $error_password ?>
             </div>
         <?php endif; ?>
@@ -230,22 +263,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="email" id="email" name="email" value="<?= $datos->email ?>">
                     </div>
 
-                    <div class="password-div">
-                        <label for="password">Contraseña:</label>
-                        <input type="password" id="password" name="password" placeholder="Contraseña Actual">
-                    </div>
-
+                    
                     <!-- Mostrar foto actual -->
                     <?php if (!empty($datos->foto_perfil)) : ?>
                         <div class="foto-actual">
                             <label>Foto actual:</label><br>
-                            <img src="../../views/uploads/<?= $datos->foto_perfil ?>" alt="Foto actual" style="width:100px; height:auto; border-radius:10px;">
+                            <img src="../../views/uploads/<?= $datos->foto_perfil ?>" alt="Foto actual" style="width:100px; height:auto; border-radius:10px; margin-left:1rem;">
                         </div>
                     <?php endif; ?>
 
                     <div class="foto-div">
-                        <label for="foto">Foto de perfil:</label>
+                        <label for="foto">Nueva Foto de perfil:</label>
                         <input type="file" id="foto" name="foto">
+                    </div>
+
+                    <div class="cambiarContrasena-div">
+                        <label for="email">Contraseña:</label>
+                        <a href="../../views/olvidaste_tu_contrasena.php"><p class="cambiarContrasena">Cambiar contraseña</p></a>
                     </div>
 
                     <div class="botones-div">

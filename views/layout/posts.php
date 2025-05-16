@@ -36,7 +36,11 @@ foreach ($postsDB as $post) {
     $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
     $ruta = !empty($foto_perfil) ? $protocol . $host . "/views/uploads/" . htmlspecialchars($foto_perfil) : $protocol . $host . "/views/uploads/user-default2.jpeg";
 
-    $imageSrc = !empty($post['image']) ? $protocol . $host . "/admin/posts/" . htmlspecialchars($post['image']) : $protocol . $host . "/admin/posts/uploads/preterminada.jpg";
+    if (!empty($post['image'])) {
+        $imageSrc = $protocol . $host . "/admin/posts/" . htmlspecialchars($post['image']);
+    } else {
+        $imageSrc = $protocol . $host . "/admin/posts/uploads/preterminada.jpg";
+    }
 
     $postLink = '/views/post.php?id=' . htmlspecialchars($post['Id_posts']);
     $titleLimit = isset($isIndex) && $isIndex ? 50 : 40;
@@ -73,9 +77,9 @@ foreach ($postsDB as $post) {
         echo '
             <div class="interaccion">
                 <div class="likes">
-                    <a class="options ' . ($userLiked ? 'liked' : 'not-liked') . '" data-vote-type="1" id="post_vote_up_' . htmlspecialchars($post['Id_posts']) . '">
+                    <span class="options ' . ($userLiked ? 'liked' : 'not-liked') . '" data-vote-type="1" id="post_vote_up_' . htmlspecialchars($post['Id_posts']) . '">
                         <i class="fas fa-thumbs-up"></i>
-                    </a>
+                    </span>
                     <span class="likes_count ' . ($userLiked ? 'liked' : 'not-liked') . '" id="vote_up_count_' . htmlspecialchars($post['Id_posts']) . '">' . htmlspecialchars($post['total_likes'] ?? 0) . '</span>
                 </div>
             </div>';

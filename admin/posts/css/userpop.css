@@ -1,21 +1,31 @@
+/* Estilos base del modal */
 #userPopup {
     display: none;
-    position: absolute;
-    top: 10rem;
-    left: 4rem;
-    width: 32rem;
+    position: fixed;
+    top: 6rem;
+    right: 30%;
+    left: 45%;
+    transform: none;
+    width: 100%;
+    max-width: 32rem;
     height: auto;
-    background: linear-gradient(to bottom right, #e0eafc, #cfdef3);
-    padding: 1rem;
-    padding-top: 1.5rem;
+    background: linear-gradient(to bottom right, #b3caf4, #a3c8fc);
+    padding: 1.5rem 1rem;
     border: 0.1rem solid #ccc;
     border-radius: 1.2rem;
     box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     animation: fadeInPopup 0.3s ease forwards;
-    z-index: 10;
+    z-index: 1000;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    text-shadow: none !important;
 }
 
+#userPopup.visible {
+    display: block;
+}
+
+/* Animación de entrada */
 @keyframes fadeInPopup {
     from {
         opacity: 0;
@@ -27,78 +37,174 @@
     }
 }
 
+/* Contenedor de la imagen */
 .imagen-pop {
     display: flex;
-    justify-content: center; /* Centra la imagen */
-    margin-bottom: 1rem; /* Espacio debajo de la imagen */
+    justify-content: center;
+    margin-bottom: 1rem;
 }
 
+/* Imagen de perfil */
 #img_user {
-    width: 8rem; /* Tamaño ajustado de la imagen */
-    height: 8rem; /* Tamaño ajustado de la imagen */
-    border-radius: 50%; /* Hacer la imagen redonda */
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+/* Sección del saludo */
 .nombre-pop {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     font-size: 2rem;
     color: #000;
     font-weight: bold;
+    margin-bottom: 1.5rem;
 }
 
-.info-pop{
-    margin-top: 2rem;
-    margin-left: 2.5rem;
-    margin-right: 2.5rem;
-    margin-bottom: 0.2rem;
-    background-color: #ffffffa8;
-    color: #000;
-    gap: 1rem;
+/* Contenedor de información */
+.info-pop {
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 1px !important;
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.67);
+    border-radius: 1rem;
     display: flex;
     flex-direction: column;
-    border-radius: 1rem;
+    gap: 1.2rem;
 }
 
-.nombredeluser, .emaildeluser {
+/* Estilos para nombre y email */
+.nombredeluser, 
+.emaildeluser {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-size: 1.5rem;
     line-height: 1.4;
     color: #242323;
 }
 
+/* Textos en negrita */
 .nombredeluser strong,
 .emaildeluser strong {
     color: #1b1b1b;
     font-weight: 600;
+    margin-bottom: 0.3rem;
 }
 
+/* Contenedor para ícono y texto */
+.texto_a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    text-decoration: none;
+    min-height: 4rem;
+    min-width: 4rem;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: visible;
+    padding: 0.5rem;
+}
+
+/* Eliminar la regla que afecta globalmente a nav button */
+nav .nav-button {
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.2rem;
+}
+
+/* Ajustar el tamaño de los íconos */
+.nav__items i {
+    font-size: 1.8rem;
+}
+
+/* Ajustar el espaciado entre elementos */
+.nav__items {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Contenedor de botones */
 .botones-pop {
-    margin: 1rem;
-    margin-bottom: 2rem;
-    margin-top: 0.2rem;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1px !important;
 }
 
-#userPopup button {
-    margin-top: 0.3rem;
+/* Botones del modal mejorados */
+.botones-pop button {
+    width: 100%;
+    height: 5rem;
+    padding: 1rem 2rem;
     border: none;
     border-radius: 1rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    background: #ffffffa8;
-    color: #1b1b1b;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #fff;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-    width: 90%;
-    height: 4rem; /* Altura del botón */
+    background: #4495ec8b;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
-
-#userPopup button:hover {
-    background-color: #86acb5; /* Color más oscuro en hover */
-    transform: scale(1.05); /* Efecto de zoom ligero en hover */
+.botones-pop button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(127, 16, 16, 0) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s, transform 0.4s;
+    transform: scale(0);
+    z-index: 0;
 }
 
-#userPopup button:active {
-    transform: scale(1); /* Restablece el tamaño al hacer clic */
+.botones-pop button:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.botones-pop button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #88bdf9 0%, #85a5fd 100%);
+}
+
+.botones-pop button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Asegurar que el texto quede por encima del efecto */
+.botones-pop button span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Asegurar visibilidad del texto */
+#userPopup,
+#userPopup * {
+    color: #000 !important;
+}
+@media (max-width: 625px) {
+    #userPopup {
+        left: 5%; /* Mueve el modal más a la izquierda en pantallas pequeñas */
+    }
 }

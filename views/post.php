@@ -21,7 +21,13 @@ if (!$post) {
 }
 
 // Definir imagen predeterminada si no hay imagen en la base de datos
-$imageSrc = !empty($post['image']) ? "../admin/posts/" . htmlspecialchars($post['image']) : "../admin/posts/uploads/preterminada.jpg";
+if (!empty($post['image'])) {
+    // Si la imagen ya está como ruta relativa completa (desde el admin)
+    $imageSrc = "../admin/posts/" . htmlspecialchars($post['image']);
+} else {
+    // Imagen predeterminada
+    $imageSrc = "../admin/posts/uploads/preterminada.jpg";
+}
 
 $idtypeuser = $_SESSION['id_type_user'] ?? 3; // Por defecto, tipo 3 = visitante
 
@@ -76,6 +82,7 @@ if (isset($_POST['submit_comment'])) {
     <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href='./css/footer.css'>
     <link rel="stylesheet" href='./css/post.css'>
+    
 </head>
 
 <body>
@@ -136,21 +143,27 @@ if (isset($_POST['submit_comment'])) {
     </div>
 
     <div class="caja-comentarios">
-        <div class="titulo-com">Comentarios</div>
+        <?php
+        $stmt = $pdo->prepare("SELECT * FROM comments_posts WHERE id_pubicacion = :id_pubicacion ORDER BY date_creation DESC");
+        $stmt->execute([':id_pubicacion' => $postId]);
+        $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>
+        <div class="titulo-com">Comentarios <span id="contador-comentarios" class="numero-comentarios">(<?php echo count($comments); ?>)</span></div>
         <?php if (isset($_SESSION['username'])): ?>
             <form method="POST" action="">
                 <textarea name="content" placeholder="Escribe tu comentario aquí..." required></textarea>
                 <button type="submit" name="submit_comment">Enviar</button>
             </form>
         <?php else: ?>
-            <p>Debes iniciar sesión para comentar.</p>
+            <div class="invitacion-registrarse">
+                <p>Para comentar en nuestras publicaciones registrate </p>
+                <a href="/views/signin.php" class="btn-iniciar-sesion">Aquí</a>
+            </div>
         <?php endif; ?>
 
         <div class="comentarios-lista">
             <?php
-            $stmt = $pdo->prepare("SELECT * FROM comments_posts WHERE id_pubicacion = :id_pubicacion ORDER BY date_creation DESC");
-            $stmt->execute([':id_pubicacion' => $postId]);
-            $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
             if ($comments):
                 foreach ($comments as $comment):
@@ -161,13 +174,18 @@ if (isset($_POST['submit_comment'])) {
                     $fotoPerfilComentario = $user['foto_perfil'] ?? null;
                     $commentImage = !empty($fotoPerfilComentario) ? "/views/uploads/" . htmlspecialchars($fotoPerfilComentario) : "/views/uploads/user-default2.jpeg";
             ?>
-                    <div class="comentario">
+                    <div class="comentario" id="comentario-<?php echo $comment['id_comments']; ?>">
                         <div class="imagen-user">
                             <img src="<?php echo htmlspecialchars($commentImage); ?>" alt="Foto de perfil">
                         </div>
 
                         <div class="comentario-contenido">
-                            <p><strong><?php echo htmlspecialchars($comment['user_creation']); ?></strong></p>
+                            <div class="comentario-header">
+                                <p><strong><?php echo htmlspecialchars($comment['user_creation']); ?></strong></p>
+                                <?php if (isset($_SESSION['username']) && ($_SESSION['username'] === $comment['user_creation'] || $_SESSION['id_type_user'] == 1)): ?>
+                                    <button class="eliminarComentario" data-id="<?php echo $comment['id_comments']; ?>">Eliminar</button>
+                                <?php endif; ?>
+                            </div>
                             <p><?php echo nl2br(htmlspecialchars($comment['content'])); ?></p>
                             <p class="fecha"><?php echo date("F d, Y H:i", strtotime($comment['date_creation'])); ?></p>
                         </div>

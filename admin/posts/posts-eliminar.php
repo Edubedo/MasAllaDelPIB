@@ -1,6 +1,5 @@
-
 <?php
-$mensaje = ''; 
+$mensaje = '';
 
 if (!empty($_GET["id"])) {
     $id = $_GET["id"];
@@ -20,4 +19,3 @@ if (!empty($_GET["id"])) {
         $mensaje = "<div class='error'>ID inválido.</div>";
     }
 }
-?>

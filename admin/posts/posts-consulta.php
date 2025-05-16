@@ -43,7 +43,6 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
     <link rel="icon" href="../../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/consulta.css">
     <link rel="stylesheet" href="../../views/css/navbar.css">
-    <link rel="stylesheet" href="css/userpop.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
@@ -85,36 +84,7 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
                 </div>
             </div>
 
-            <div id="userPopup">
-                <div class="imagen-pop">
-                    <div class="imagen-user">
-                        <?php 
-                            echo '<img id="img_user" src="' . $ruta . '" alt="Foto de perfil">';
-                        ?>
-                    </div>
-                </div>
-                <div class="nombre-pop">
-                    <p>!Hola, <span id="username"><?php echo htmlspecialchars($username); ?></span>!</p>
-                </div>
-                <div class="info-pop">
-                    <div class="nombredeluser">
-                        <p><strong>Nombre de usuario</strong></p>
-                        <p><span id="username"><?php echo htmlspecialchars($username); ?></span></p>
-                    </div>
-                    <div class="emaildeluser">
-                        <p><strong>Email</strong></p>
-                        <p><span id="email"><?php echo htmlspecialchars($email); ?></span></p>
-                    </div>
-                </div>
-                <div class="botones-pop">
-                    <a href="editar-perfil.php?id=<?php echo $iduser; ?>">
-                        <button>Editar perfil</button>
-                    </a>
-                    <a href="/config/logout.php" >
-                        <button>Cerrar sesion</button>
-                    </a>
-                </div>
-            </div>
+            
         </header>
 
         
@@ -141,12 +111,12 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
                         echo '<option value="">Todos los usuarios</option>';
 
                         // Obtener usuarios desde la base de datos
-                        $sql = "SELECT DISTINCT user_creation FROM posts"; 
+                        $sql = "SELECT DISTINCT username FROM users"; 
                         $result = mysqli_query($conexion, $sql);
                         
                         while ($row = mysqli_fetch_array($result)) {
-                            $user = ucwords(str_replace('-', ' ', $row['user_creation']));
-                            echo "<option value='" . $row['user_creation'] . "'>$user</option>";
+                            $user = ucwords(str_replace('-', ' ', $row['username']));
+                            echo "<option value='" . $row['username'] . "'>$user</option>";
                         }
                         echo '</select>';
                     }
@@ -221,7 +191,7 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
                                 <a href="posts-modificar.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn editar">Editar</a>
                                 <!-- Botón de eliminar publicación -->
                                 <a href="posts-consulta.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn eliminar" data-id="<?php echo $mostrar['Id_posts']; ?>">Eliminar</a>
-                                </td>
+                            </td>
                         </tr>
                     <?php
                     }
@@ -247,42 +217,43 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
     
     <script src="../../js/posts-consulta.js"></script>
 
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const botonContinuar = document.getElementById('botonContinuar');
-    if (botonContinuar) {
-        botonContinuar.addEventListener('click', function() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('modal').style.display = 'none';
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', '../../config/mark_modal_shown.php', true);
-            xhr.send();
-        });
-    }
-
-    // Manejar modal de eliminación con funcionalidad real
-    const deleteButtons = document.querySelectorAll('.btn.eliminar');
-    let postIdToDelete = null;
-
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            postIdToDelete = this.getAttribute('data-id');
-            document.getElementById('deleteModal').style.display = 'flex';
-        });
-    });
-
-    document.getElementById('cancelDelete').addEventListener('click', function() {
-        document.getElementById('deleteModal').style.display = 'none';
-        postIdToDelete = null;
-    });
-
-    document.getElementById('confirmDelete').addEventListener('click', function() {
-        if (postIdToDelete) {
-            window.location.href = `posts-consulta.php?id=${postIdToDelete}`;
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const botonContinuar = document.getElementById('botonContinuar');
+        if (botonContinuar) {
+            botonContinuar.addEventListener('click', function() {
+                document.getElementById('overlay').style.display = 'none';
+                document.getElementById('modal').style.display = 'none';
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', '../../config/mark_modal_shown.php', true);
+                xhr.send();
+            });
         }
+
+        // Manejar modal de eliminación con funcionalidad real
+        const deleteButtons = document.querySelectorAll('.btn.eliminar');
+        let postIdToDelete = null;
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                postIdToDelete = this.getAttribute('data-id');
+                document.getElementById('deleteModal').style.display = 'flex';
+            });
+        });
+
+        document.getElementById('cancelDelete').addEventListener('click', function() {
+            document.getElementById('deleteModal').style.display = 'none';
+            postIdToDelete = null;
+        });
+
+        document.getElementById('confirmDelete').addEventListener('click', function() {
+            if (postIdToDelete) {
+                window.location.href = `posts-consulta.php?id=${postIdToDelete}`;
+            }
+        });
     });
-});
+
 </script>
 
     

@@ -16,10 +16,14 @@
 }
 
 body {
-    background-image: url('../../assets/img/fondo_montaña.jpg'); 
+    background-image: url('/public/puertomanzanillo.png'); 
     background-size: cover; 
     background-position: center;
     background-attachment: fixed; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
     line-height: 1.6;
@@ -147,6 +151,12 @@ main {
     display: none;
 }
 
+#toggle-passwordNueva{
+    cursor: pointer;
+    color: #173692;
+    font-weight: bold;
+    font-size: 12px;
+}
 
 /* Diseño Responsivo */
 @media screen and (max-width: 2850px) {

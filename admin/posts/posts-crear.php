@@ -3,57 +3,86 @@ session_start();
 include '../../config/database.php';
 
 // Verificar si GD está habilitado
-function isGDExtensionAvailable() {
+function isGDExtensionAvailable()
+{
     return extension_loaded('gd');
 }
 
+<<<<<<< HEAD
 function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 1200, $calidad = 90) {
     // Si GD no está disponible, no hacemos nada
     if (!isGDExtensionAvailable()) {
+=======
+function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad = 85)
+{
+    if (!extension_loaded('gd')) {
+        error_log("La extensión GD no está habilitada.");
+>>>>>>> 6802cae64ba8bf141d1f7aed0a2871e1cea6e00f
         return false;
     }
 
     $info = getimagesize($rutaOriginal);
-    if (!$info) return false;
+    if (!$info) {
+        error_log("No se pudo obtener información de la imagen: $rutaOriginal");
+        return false;
+    }
 
     $tipo = $info['mime'];
     $ancho = $info[0];
     $alto = $info[1];
 
-    if ($ancho <= 0 || $alto <= 0) return false;
+    if ($ancho <= 0 || $alto <= 0) {
+        error_log("Dimensiones inválidas para la imagen: $rutaOriginal");
+        return false;
+    }
 
+    // Crear la imagen desde el archivo original
     switch ($tipo) {
         case 'image/jpeg':
-            $imagen = imagecreatefromjpeg($rutaOriginal);
+        case 'image/jpg':
+            $imagen = @imagecreatefromjpeg($rutaOriginal);
             break;
         case 'image/png':
-            $imagen = imagecreatefrompng($rutaOriginal);
-            imagealphablending($imagen, false);
-            imagesavealpha($imagen, true);
+            $imagen = @imagecreatefrompng($rutaOriginal);
             break;
         case 'image/webp':
-            $imagen = imagecreatefromwebp($rutaOriginal);
-            imagealphablending($imagen, false);
-            imagesavealpha($imagen, true);
+            $imagen = @imagecreatefromwebp($rutaOriginal);
             break;
         default:
+            error_log("Formato de imagen no soportado: $tipo");
             return false;
     }
 
+<<<<<<< HEAD
+=======
+    if (!$imagen) {
+        error_log("No se pudo crear la imagen desde el archivo: $rutaOriginal");
+        return false;
+    }
+
+    // Redimensionar si es necesario
+    $nuevaImagen = $imagen;
+>>>>>>> 6802cae64ba8bf141d1f7aed0a2871e1cea6e00f
     if ($ancho > $maxAncho) {
         $nuevoAncho = $maxAncho;
         $nuevoAlto = max(1, (int)(($maxAncho / $ancho) * $alto));
         $nuevaImagen = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
+        // Mantener transparencia para PNG y WebP
         if ($tipo == 'image/png' || $tipo == 'image/webp') {
+<<<<<<< HEAD
+=======
+            imagealphablending($nuevaImagen, false);
+>>>>>>> 6802cae64ba8bf141d1f7aed0a2871e1cea6e00f
             imagesavealpha($nuevaImagen, true);
         }
 
         imagecopyresampled($nuevaImagen, $imagen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-    } else {
-        $nuevaImagen = $imagen;
+        imagedestroy($imagen); // Liberar la imagen original
+
     }
 
+<<<<<<< HEAD
     switch ($tipo) {
         case 'image/jpeg':
             imagejpeg($nuevaImagen, $rutaDestino, $calidad);
@@ -65,9 +94,19 @@ function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 1200, $calidad
             imagewebp($nuevaImagen, $rutaDestino, $calidad);
             break;
     }
+=======
+    // Guardar la imagen en formato WebP
+    $resultado = imagewebp($nuevaImagen, $rutaDestino, $calidad); // calidad 0-100
+>>>>>>> 6802cae64ba8bf141d1f7aed0a2871e1cea6e00f
 
-    imagedestroy($imagen);
+    // Liberar recursos
     imagedestroy($nuevaImagen);
+
+    if (!$resultado) {
+        error_log("No se pudo guardar la imagen comprimida en: $rutaDestino");
+        return false;
+    }
+
     return true;
 }
 
@@ -105,7 +144,8 @@ if (isset($_POST["crear_post"])) {
         exit();
     }
 
-    $ruta_final = $target_dir . "comprimida_" . basename($imagen_name);
+    $filename = pathinfo($imagen_name, PATHINFO_FILENAME) . ".webp";
+    $ruta_final = $target_dir . $filename;
 
     // Si GD está habilitado, comprime la imagen. Si no, simplemente mueve la imagen
     if (isGDExtensionAvailable()) {
@@ -124,10 +164,13 @@ if (isset($_POST["crear_post"])) {
         }
     }
 
+    // Guardar solo la ruta relativa dentro de la carpeta uploads
+    $db_path = "uploads/" . $filename;
+
     $query = "INSERT INTO posts (title, content, post_date, category, image, user_creation, referencia_posts) 
               VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conexion->prepare($query);
-    $stmt->bind_param("sssssss", $titulo, $contenido, $fecha, $categoria, $ruta_final, $usuario, $referencias);
+    $stmt->bind_param("sssssss", $titulo, $contenido, $fecha, $categoria, $db_path, $usuario, $referencias);
 
     if ($stmt->execute()) {
         header("Location: posts-consulta.php");
@@ -143,13 +186,17 @@ if (isset($_POST["crear_post"])) {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear publicación</title>
     <link rel="icon" href="../../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/crear.css">
+    <script src="/js/language.js"></script>
+    <script src="/js/translations.js"></script>
 </head>
+
 <body>
     <div class="encabezado">
         <h1>Crear nueva publicación</h1>
@@ -159,8 +206,8 @@ if (isset($_POST["crear_post"])) {
             <div class="izquierdo">
                 <h2>Configuración</h2>
                 <div class="categoria_div">
-                    <label for="categoria">Categoría:</label>
-                    <select name="categoria_posts" id="categoria" required>
+                    <label for="categoria" class="texto-a-traducir">Categoría:</label>
+                    <select name="categoria_posts" id="categoria" class="texto-a-traducir" required>
                         <option value="" disabled selected hidden>Categorías</option>
                         <option value="crecimiento-economico">Crecimiento Económico</option>
                         <option value="emprendimiento-negocios">Emprendimiento Y Negocios</option>
@@ -222,5 +269,6 @@ if (isset($_POST["crear_post"])) {
     <!-- JS para validaciones y referencias -->
     <script src="../../js/posts-crear.js"></script>
 </body>
+
 </html>
- <!-- #region -->
+<!-- #region -->

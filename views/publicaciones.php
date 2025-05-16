@@ -14,7 +14,9 @@ $query = "SELECT
         p.vote_down,
         COUNT(l.id_post) AS total_likes
     FROM posts p
+    INNER JOIN users u ON p.user_creation = u.username
     LEFT JOIN likes l ON p.Id_posts = l.id_post
+    WHERE u.id_type_user = 2
     GROUP BY p.Id_posts
     ORDER BY p.post_date DESC";
 
@@ -35,8 +37,6 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MasAllaDelPIB - Publicaciones</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../js/main.js"></script>
-    <script src="../js/buscar.js"></script>
     <script src="../js/options.js"></script>
     <link rel="icon" href="../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/navbar.css">
@@ -51,7 +51,7 @@ try {
 <body class="pagina-publicaciones">
     <div class="fondo-overlay"></div>
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
-    <!-- <?php include './layout/header.php'; ?> -->
+    <?php include './layout/header.php'; ?>
 
     <nav class="nav_public">
         <input type="checkbox" id="toggle" style="display: none;">

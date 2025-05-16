@@ -2,13 +2,24 @@ document.addEventListener('DOMContentLoaded', function () {
     const icon = document.getElementById('search-icon');
     const input = document.getElementById('search-input');
     const resultsBox = document.getElementById('search-results');
+    const searchContainer = document.querySelector('.search-container');
 
-    icon.addEventListener('click', () => {
-        input.style.display = input.style.display === 'none' ? 'block' : 'none';
+    // Mostrar/ocultar input al hacer clic en el ícono
+    icon.addEventListener('click', (e) => {
+        e.stopPropagation(); // Previene que el click en el ícono se propague al document
+        input.classList.add('show');
         input.focus();
-        resultsBox.style.display = 'none';
     });
 
+    // Ocultar input y resultados al hacer clic fuera
+    document.addEventListener('click', function (e) {
+        if (!searchContainer.contains(e.target)) {
+            input.classList.remove('show');
+            resultsBox.style.display = 'none';
+        }
+    });
+
+    // Buscar cuando se escribe
     input.addEventListener('input', function () {
         const query = this.value;
 
@@ -18,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(data => {
                     resultsBox.innerHTML = '';
                     if (data.length === 0) {
-                        resultsBox.innerHTML = '<p style="padding:1rem; font-size:1.5rem">No se encontraron resultados.</p>';
+                        resultsBox.innerHTML = '<p style="padding:1rem; font-size:1.5rem; color:#000">No se encontraron resultados.</p>';
                     } else {
                         data.forEach(post => {
                             const link = document.createElement('a');
@@ -32,14 +43,6 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             resultsBox.innerHTML = '';
             resultsBox.style.display = 'none';
-        }
-    });
-
-    // Ocultar resultados si se hace clic fuera
-    document.addEventListener('click', function (e) {
-        if (!document.querySelector('.search-container').contains(e.target)) {
-            resultsBox.style.display = 'none';
-            input.style.display = 'none';
         }
     });
 });

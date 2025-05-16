@@ -82,3 +82,48 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  const botonesEliminar = document.querySelectorAll('.eliminarComentario');
+
+  botonesEliminar.forEach(boton => {
+    boton.addEventListener('click', function () {
+      const commentId = this.getAttribute('data-id');
+
+      fetch('eliminar_comentario.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'comment_id=' + encodeURIComponent(commentId)
+      })
+      .then(response => response.text())
+      .then(data => {
+        if (data.trim() === 'ok') {
+            const comentario = document.getElementById('comentario-' + commentId);
+            if (comentario) {
+            comentario.remove();
+
+            // Actualizar contador
+            const contador = document.getElementById('contador-comentarios');
+            if (contador) {
+                // Obtener el número actual del contador (quitando paréntesis)
+                let numeroActual = parseInt(contador.textContent.replace(/[()]/g, ''));
+                numeroActual = isNaN(numeroActual) ? 0 : numeroActual;
+                // Reducir en 1 y actualizar el texto con formato (n)
+                contador.textContent = `(${numeroActual - 1})`;
+            }
+            }
+        } else {
+            console.error('Error al eliminar comentario:', data);
+        }
+        })
+      .catch(error => {
+        console.error('Error en la solicitud AJAX:', error);
+      });
+    });
+  });
+
+  
+});
+

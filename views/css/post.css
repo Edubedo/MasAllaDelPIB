@@ -166,9 +166,9 @@ body {
 .caja-comentarios {
     margin-top: 30px;
     padding: 20px;
-    background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
 }
 
 .caja-comentarios textarea {
@@ -182,9 +182,22 @@ body {
 }
 
 .titulo-com {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
     margin-bottom: 20px;
+    color: #333;
+}
+
+.invitacion-registrarse {
+    display: flex; 
+    align-items: center;
+    gap: 1rem; 
+    margin-top: 2rem; 
+    font-size: 1.5rem;
+}
+
+.invitacion-registrarse p {
+    margin: 0; 
     color: #333;
 }
 
@@ -277,6 +290,27 @@ form button:hover {
     transform: scale(1.05);
 }
 
+.eliminarComentario {
+    background-color: #ff0400;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.eliminarComentario:hover {
+    background-color: #e60000;
+}
+
+
+.comentario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
 @media (max-width: 768px) {
     .noticia {
         width: 95%;

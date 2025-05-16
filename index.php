@@ -1,57 +1,61 @@
 <?php
-session_start();
-require 'config/database.php';
-// Obtener publicaciones del usuario con ID 1
-$queryUsuario = "SELECT 
-    p.Id_posts, 
-    p.title, 
-    p.content, 
-    p.post_date, 
-    p.image,
-    p.user_creation
-    FROM posts p 
-    INNER JOIN users u ON p.user_creation = u.username 
-    WHERE u.id_type_user = 1 
-    ORDER BY p.post_date DESC 
-    LIMIT 3";
-
-// puedes ajustar el límite si quieres más o menos
-
-try {
-    $stmtUsuario = $pdo->prepare($queryUsuario);
-    $stmtUsuario->execute();
-    $postsUsuario = $stmtUsuario->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    die("Error al consultar publicaciones del usuario: " . $e->getMessage());
-}
-
-// Obtener las publicaciones más recientes
-$query = "SELECT 
+    session_start();
+    require 'config/database.php';
+    // Obtener publicaciones del usuario con ID 1
+    $queryUsuario = "SELECT 
         p.Id_posts, 
         p.title, 
         p.content, 
         p.post_date, 
-        p.category, 
-        p.image, 
-        p.user_creation, 
+        p.image,
+        p.user_creation,
         p.vote_up, 
         p.vote_down,
         COUNT(l.id_post) AS total_likes
-        FROM posts p
+        FROM posts p 
+        INNER JOIN users u ON p.user_creation = u.username 
         LEFT JOIN likes l ON p.Id_posts = l.id_post
+        WHERE u.id_type_user = 1 
         GROUP BY p.Id_posts
         ORDER BY p.post_date DESC 
-          LIMIT 4";
+        LIMIT 3";
 
-try {
-    $stmt = $pdo->prepare($query);
-    $stmt->execute();
-    $postsDB = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    die("Error al consultar publicaciones: " . $e->getMessage());
-}
+    // puedes ajustar el límite si quieres más o menos
 
+    try {
+        $stmtUsuario = $pdo->prepare($queryUsuario);
+        $stmtUsuario->execute();
+        $postsUsuario = $stmtUsuario->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        die("Error al consultar publicaciones del usuario: " . $e->getMessage());
+    }
 
+    // Obtener las publicaciones más recientes
+    $query = "SELECT 
+        p.Id_posts, 
+        p.title, 
+        p.content, 
+        p.post_date, 
+        p.image,
+        p.user_creation,
+        p.vote_up, 
+        p.vote_down,
+        COUNT(l.id_post) AS total_likes
+        FROM posts p 
+        INNER JOIN users u ON p.user_creation = u.username 
+        LEFT JOIN likes l ON p.Id_posts = l.id_post
+        WHERE u.id_type_user = 2
+        GROUP BY p.Id_posts
+        ORDER BY p.post_date DESC 
+        LIMIT 4";
+
+    try {
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+        $postsDB = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        die("Error al consultar publicaciones: " . $e->getMessage());
+    }
 ?>
 
 <!DOCTYPE html>

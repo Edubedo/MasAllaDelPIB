@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
-    <!-- <?php include 'layout/header.php'; ?> -->
+     <?php include 'layout/header.php'; ?> 
     <!-- IMPORTAR BARRA DE NAVEGACIÓN -->
 
 
@@ -99,6 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <h2>Nueva contraseña</h2>
                     <p class="fa fa-lock" style="font-size: 20px; margin-right: 10px; color:rgb(55, 72, 155);"></p>
                     <input type="password" name="password" id="password" placeholder="Contraseña" required oninput="validarFortalezaPassword()">
+                    <p id="toggle-passwordNueva">Mostrar contraseña</p>
                     <div id="password-strength">
                         <p style="font-weight: bold;" id="length">✓ Al menos 8 caracteres</p>
                         <p style="font-weight: bold;" id="uppercase">✓ Al menos una mayúscula</p>

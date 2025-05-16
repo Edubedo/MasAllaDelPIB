@@ -67,6 +67,7 @@
     width: 20rem;
     height: 20rem;
     object-fit: cover;
+    padding: 1rem;
 }
 
 .texto1{
@@ -88,7 +89,7 @@ a img {
 
 .interaccion{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin: 1rem;
     height: 3rem;
 }
@@ -106,7 +107,7 @@ a img {
     margin-left: 1rem; /* Espaciado a la izquierda */
 }
 
-.interaccion .likes a {
+.interaccion .likes .options {
     display: inline-block;
     margin-right: 10px;  /* Espaciado entre los iconos */
     font-size: 24px;  /* Tamaño del icono */
@@ -115,7 +116,7 @@ a img {
 }
 
 /* Efecto de cambio de color cuando se pasa el cursor */
-.interaccion .likes a:hover {
+.interaccion .likes .options:hover {
     color: #0f141b;  /* Azul más oscuro al hacer hover */
     transform: scale(1.1);  /* Aumenta el tamaño del icono al hacer hover */
     transition: transform 0.3s ease;  /* Transición suave al aumentar el tamaño */
@@ -133,6 +134,7 @@ a img {
     font-size: 14px;
     margin-left: 8px; /* Espaciado entre los íconos de like y el contador */
     font-weight: bold;
+    color: #0f141b;
 }
 
 /* Botón cuando el usuario no ha dado "like" */
