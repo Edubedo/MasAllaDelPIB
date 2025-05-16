@@ -191,7 +191,7 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
                                 <a href="posts-modificar.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn editar">Editar</a>
                                 <!-- Botón de eliminar publicación -->
                                 <a href="posts-consulta.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn eliminar" data-id="<?php echo $mostrar['Id_posts']; ?>">Eliminar</a>
-                                </td>
+                            </td>
                         </tr>
                     <?php
                     }
