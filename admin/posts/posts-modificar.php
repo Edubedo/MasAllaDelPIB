@@ -285,5 +285,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <script src="../../js/post-modificar.js"></script>
         </body>
-
+        <script src="/js/language.js"></script>
 </html>
