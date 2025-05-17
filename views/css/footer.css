@@ -113,11 +113,22 @@ html, body {
 }
 
 .correos a {
-    margin: 0;
     color: white;
+    text-decoration: none;
+    display: inline-block;
+    padding: 2px 2px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
+
 .correos a:hover {
     color: #f0a500;
+    background-color: rgba(240, 165, 0, 0.1);
+}
+
+.correos a:active {
+    background-color: rgba(240, 165, 0, 0.2);
 }
 
 /* Redes sociales */
@@ -166,7 +177,6 @@ html, body {
     font-size: 2rem; /* Aumenta el tamaño del icono de copyright */
     color: white; /* Asegúrate de que el color sea blanco */
 }
-/* ... (código anterior se mantiene igual) ... */
 
 /* === ANIMACIONES MEJORADAS === */
 /* Enlaces de correo */
