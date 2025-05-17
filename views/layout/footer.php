@@ -56,10 +56,10 @@
                 <h3>Síguenos</h3>
                 <i class="fas fa-heart"></i> <!-- Icono de corazón -->
                 <div class="redes-sociales">
-                    <a href="https://www.instagram.com/innominds_2025?igsh=MTBnYTIyanlnN21haQ==" target="_blank">
+                    <a href="https://www.instagram.com/masalladelpib/" target="_blank">
                         <i class="fab fa-instagram"></i> <!-- Ícono de Instagram -->
                     </a>
-                    <a href="https://www.facebook.com/share/1Beb1kzcRW/" target="_blank">
+                    <a href="https://www.facebook.com/profile.php?id=61576732070090" target="_blank">
                         <i class="fab fa-facebook-f"></i> <!-- Ícono de Facebook -->
                     </a>
                 </div>
