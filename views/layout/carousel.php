@@ -45,6 +45,62 @@ try {
     <!-- Incluyendo los estilos -->
     <link rel="stylesheet" href="./views/css/carousel.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* Estilos para mejorar el carrusel */
+        .slick-track {
+            display: flex !important;
+            align-items: center;
+        }
+
+        .slick-slide {
+            opacity: 0.7;
+            transform: scale(0.9);
+            transition: all 0.5s ease;
+        }
+
+        .slick-slide.slick-current,
+        .slick-slide.slick-center {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .slick-slide.slick-current img,
+        .slick-slide.slick-center img {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Mejoras para navegación */
+        .prev,
+        .next {
+            font-size: 24px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+            cursor: pointer;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .post-wrapper {
+            position: relative;
+            overflow: visible !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -68,7 +124,7 @@ try {
                             $imageSrc = $protocol . $host . "/admin/posts/uploads/preterminada.jpg";
                         }
                     ?>
-                        <a href="/views/post.php?id=<?= htmlspecialchars($post['Id_posts']); ?>">
+                        <a href="/views/post.php?id=<?= htmlspecialchars($post['Id_posts']); ?>" class="post-link">
                             <div class="post">
                                 <!-- Usar la imagen predeterminada -->
                                 <img src="<?= $imageSrc; ?>" class="slider-image">
