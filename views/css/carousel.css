@@ -13,7 +13,7 @@
 }
 
 .post-slider .post-wrapper{
-    width: 95%;
+    width: 100%;
     height: 41rem;
     padding: 0 auto;
     margin: 0px auto;
@@ -61,10 +61,16 @@
     right: 20px; /* Ajusta la posición derecha */
 }
 
+.post-link{
+    text-decoration: none;
+    color: black;
+    width: 100%;
+}
+
 /** Estilo para el contenedor de las publicaciones */
 
 .post-slider .post-wrapper .post{
-    width: 320px;
+    width: 100%;
     height: 380px;
     display: inline-block;
     background: rgba(255, 255, 255, 0.2); /* fondo blanco semi-transparente */
@@ -169,7 +175,7 @@
 
 .post-slider .post-wrapper .post{
     color: black;
-    width: 300px;
+    width: 100%;
     height: 350px;
     display: inline-block;
     background: #ffffff;

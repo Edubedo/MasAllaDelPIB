@@ -243,7 +243,10 @@ if (isset($_POST["crear_post"])) {
                     <input type="file" id="imagen" name="imagen_posts" accept="image/*" required>
                 </div>
                 <div class="referenciadelpost">
-                    <label for="referencias">Referencias:</label>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <label for="referencias">Referencias:</label>
+                        <p style="margin: 0;">(Escribe un link por linea)</p>
+                    </div>
                     <div id="contenedorReferencias">
                         <input class="input-referencia" type="text" name="referencias_post[]" placeholder="Escribe una referencia" required>
                     </div>
