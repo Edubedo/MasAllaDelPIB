@@ -122,7 +122,7 @@ if (isset($_POST['submit_comment'])) {
                     <h3>Referencias</h3>
                     <?php
                     if (!empty($post['referencia_posts'])) {
-                        $referencias = explode('==', $post['referencia_posts']);
+                        $referencias = preg_split('/\r\n|\r|\n/', $post['referencia_posts']);
                         foreach ($referencias as $referencia) {
                             $referencia = trim($referencia);
                             if (!empty($referencia)) {
