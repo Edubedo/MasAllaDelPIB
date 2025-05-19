@@ -34,7 +34,7 @@ const translations = {
         cerrar_sesion: "Log Out",
         nombre_usuario: "Username",
         email: "Email",
-        hola: "Hello,",
+        hola: "Hi,",
         todas_categorias: "All Categories",
         crecimiento_economico: "Economic Growth",
         emprendimiento_negocios: "Business & Entrepreneurship",

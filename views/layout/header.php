@@ -95,7 +95,7 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
                         </div>
                     </div>
                     <div class="nombre-pop">
-                        <p>¡Hola, <span id="username"><?= htmlspecialchars($username) ?></span>!</p>
+                        <p><span id="hola-text">¡Hola,</span> <span id="username"><?= htmlspecialchars($username) ?></span>!</p>
                     </div>
                     <div class="info-pop">
                         <div class="nombredeluser">

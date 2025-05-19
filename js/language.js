@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const flagImg = this.querySelector('.flag-icon');
             if (flagImg) {
                 flagImg.src = newLang === 'es' 
-                    ? '../../views/uploads/Bandera_de_España.svg.png'
-                    : '../../views/uploads/Flag_of_the_United_Kingdom_(1-2).svg.png';
+                    ? '/views/uploads/Bandera_de_España.svg.png'
+                    : '/views/uploads/Flag_of_the_United_Kingdom_(1-2).svg.png';
                 flagImg.alt = newLang === 'es' ? 'Español' : 'English';
                 console.log('Flag image updated');
             }
@@ -43,6 +43,7 @@ function translatePage(targetLang) {
         // Elementos de navegación
         ...document.querySelectorAll('.texto_a .hover-text'),
         ...document.querySelectorAll('.nav__items .hover-text'),
+        document.getElementById('hola-text'),
         
         // Elementos de contenido principal
         ...document.querySelectorAll('.encabezado h1'),
@@ -118,6 +119,10 @@ function translatePage(targetLang) {
 
     // Filtrar elementos que tienen texto
     const elementsWithText = elementsToTranslate.filter(el => el.textContent.trim());
+    
+    // Debug: Imprimir elementos seleccionados
+    console.log('Elementos a traducir:', elementsToTranslate);
+    console.log('Elementos con texto:', elementsWithText);
 
     // Función para dividir texto en chunks más pequeños
     function splitTextIntoChunks(text, maxLength = 5000) {
@@ -196,7 +201,14 @@ function translatePage(targetLang) {
         }
 
         if (targetLang === 'en') {
-            const translatedText = await translateText(originalText, targetLang);
+            let translatedText;
+            
+            // Si es el elemento del saludo, usar la traducción predefinida
+            if (element.id === 'hola-text') {
+                translatedText = translations.en.hola;
+            } else {
+                translatedText = await translateText(originalText, targetLang);
+            }
             
             // Preservar el formato HTML original
             const original = originalTexts.get(element);
@@ -364,7 +376,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (flagImg) {
                 flagImg.src = savedLang === 'es' 
                     ? '/views/uploads/Bandera_de_España.svg.png'
-                    : '/views/uploads/Flag_of_the_United_States.svg.png';
+                    : '/views/uploads/Flag_of_the_United_Kingdom_(1-2).svg.png';
                 flagImg.alt = savedLang === 'es' ? 'Español' : 'English';
                 console.log('Initial flag set to:', savedLang);
             }
