@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const flagImg = this.querySelector('.flag-icon');
             if (flagImg) {
                 flagImg.src = newLang === 'es' 
-                    ? '/views/uploads/Bandera_de_España.svg.png'
-                    : '/views/uploads/Flag_of_the_United_States.svg.png';
+                    ? '../../views/uploads/Bandera_de_España.svg.png'
+                    : '../../views/uploads/Flag_of_the_United_Kingdom_(1-2).svg.png';
                 flagImg.alt = newLang === 'es' ? 'Español' : 'English';
                 console.log('Flag image updated');
             }
@@ -120,7 +120,12 @@ function translatePage(targetLang) {
     const elementsWithText = elementsToTranslate.filter(el => el.textContent.trim());
 
     // Función para dividir texto en chunks más pequeños
-    function splitTextIntoChunks(text, maxLength = 1000) {
+    function splitTextIntoChunks(text, maxLength = 5000) {
+        // Si el texto es corto, no lo dividimos
+        if (text.length <= maxLength) {
+            return [text];
+        }
+
         const chunks = [];
         let currentChunk = '';
         const sentences = text.split(/(?<=[.!?])\s+/);
@@ -141,42 +146,81 @@ function translatePage(targetLang) {
     async function translateText(text, targetLang) {
         if (targetLang !== 'en') return text;
         
-        const chunks = splitTextIntoChunks(text);
-        const translatedChunks = [];
+        // Dividir el texto en párrafos
+        const paragraphs = text.split(/\n\s*\n/);
+        const translatedParagraphs = [];
         
-        for (const chunk of chunks) {
-            const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=es&tl=${targetLang}&dt=t&q=${encodeURIComponent(chunk)}`;
+        for (const paragraph of paragraphs) {
+            const chunks = splitTextIntoChunks(paragraph);
+            const translatedChunks = [];
             
-            try {
-                const response = await fetch(url);
-                const data = await response.json();
-                if (data && data[0] && data[0][0] && data[0][0][0]) {
-                    translatedChunks.push(data[0][0][0]);
+            for (const chunk of chunks) {
+                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=es&tl=${targetLang}&dt=t&q=${encodeURIComponent(chunk)}`;
+                
+                try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    if (data && data[0]) {
+                        const translatedText = data[0]
+                            .map(item => item[0])
+                            .filter(text => text)
+                            .join(' ');
+                        translatedChunks.push(translatedText);
+                    }
+                } catch (error) {
+                    console.error('Error translating chunk:', error);
+                    translatedChunks.push(chunk);
                 }
-            } catch (error) {
-                console.error('Error translating chunk:', error);
-                translatedChunks.push(chunk);
             }
+            
+            translatedParagraphs.push(translatedChunks.join(' '));
         }
         
-        return translatedChunks.join(' ');
+        // Unir los párrafos traducidos manteniendo los saltos de línea
+        return translatedParagraphs.join('\n\n');
     }
 
     // Traducir cada elemento
     elementsWithText.forEach(async element => {
         const originalText = element.textContent.trim();
+        const originalHTML = element.innerHTML;
         
-        // Guardar el texto original si no está guardado
+        // Guardar el texto original y el HTML si no está guardado
         if (!originalTexts.has(element)) {
-            originalTexts.set(element, originalText);
+            originalTexts.set(element, {
+                text: originalText,
+                html: originalHTML,
+                style: element.getAttribute('style') || '',
+                class: element.getAttribute('class') || ''
+            });
         }
 
         if (targetLang === 'en') {
             const translatedText = await translateText(originalText, targetLang);
-            element.textContent = translatedText;
+            
+            // Preservar el formato HTML original
+            const original = originalTexts.get(element);
+            
+            // Reemplazar el texto manteniendo las etiquetas HTML
+            let newHTML = original.html;
+            const paragraphs = originalText.split(/\n\s*\n/);
+            const translatedParagraphs = translatedText.split(/\n\s*\n/);
+            
+            paragraphs.forEach((paragraph, index) => {
+                if (translatedParagraphs[index]) {
+                    newHTML = newHTML.replace(paragraph, translatedParagraphs[index]);
+                }
+            });
+            
+            element.innerHTML = newHTML;
+            element.setAttribute('style', original.style);
+            element.setAttribute('class', original.class);
         } else {
-            // Restaurar el texto original en español
-            element.textContent = originalTexts.get(element);
+            // Restaurar el texto original en español con su formato
+            const original = originalTexts.get(element);
+            element.innerHTML = original.html;
+            element.setAttribute('style', original.style);
+            element.setAttribute('class', original.class);
         }
     });
 
