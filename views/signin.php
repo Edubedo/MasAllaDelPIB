@@ -63,8 +63,10 @@
                     <p class="fa fa-envelope" style="font-size: 20px; margin-right: 5px; color:rgb(55, 72, 155);"></p>
                     <input type="text" name="email" placeholder="Correo Electrónico" required>
                     <p class="fa fa-lock" style="font-size: 20px; margin-right: 10px; color:rgb(55, 72, 155);"></p>
-                    <input type="password" name="password" id="passwordLogin" placeholder="Contraseña" required>
-                    <p id="toggle-password">Mostrar contraseña</p>
+                    <div style="position: relative;">
+                        <input type="password" name="password" id="passwordLogin" placeholder="Contraseña" required>
+                        <i id="toggle-password" class="fa fa-eye" style="position: absolute; right: 10px; top: 35%; cursor: pointer;"></i>
+                    </div>
                     <?php if (!empty($_SESSION['error_message'])): ?>
                         <?php $tiempo = $_SESSION['bloqueo_restante'] ?? 0; ?>
                         <p id="error-msg" style="font-size:14px;margin-top:2px;color: red;">
@@ -109,8 +111,10 @@
                     <input type="text" name="fullname" placeholder="Nombre Completo" required>
                     <input type="email" name="email" placeholder="Correo Electrónico" required>
                     <input type="text" name="username" placeholder="Usuario" required>
-                    <input type="password" name="password" id="passwordRegistrarse" placeholder="Contraseña" required oninput="validarFortalezaPassword()">
-                    <p id="toggle-passwordRegistrar">Mostrar contraseña</p>
+                    <div style="position: relative;">
+                        <input type="password" name="password" id="passwordRegistrarse" placeholder="Contraseña" required oninput="validarFortalezaPassword()">
+                        <i id="toggle-passwordRegistrar" class="fa fa-eye" style="position: absolute; right: 10px; top: 35%; cursor: pointer; color:rgb(55, 72, 155);"></i>
+                    </div>
                     <div id="password-strength">
                         <p style="font-weight: bold;" id="length">✓ Al menos 8 caracteres</p>
                         <p style="font-weight: bold;" id="uppercase">✓ Al menos una mayúscula</p>

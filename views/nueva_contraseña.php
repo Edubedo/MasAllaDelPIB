@@ -98,8 +98,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <form action="nueva_contraseña.php" method="POST" class="formulario__login" onsubmit="return validarPassword()">
                     <h2>Nueva contraseña</h2>
                     <p class="fa fa-lock" style="font-size: 20px; margin-right: 10px; color:rgb(55, 72, 155);"></p>
-                    <input type="password" name="password" id="password" placeholder="Contraseña" required oninput="validarFortalezaPassword()">
-                    <p id="toggle-passwordNueva">Mostrar contraseña</p>
+                    <div style="position: relative;">
+                        <input type="password" name="password" id="password" placeholder="Contraseña" required oninput="validarFortalezaPassword()">
+                        <i id="toggle-passwordNueva" class="fa fa-eye" style="position: absolute; right: 10px; top: 35%; cursor: pointer; color:rgb(55, 72, 155);"></i>
+                    </div>
                     <div id="password-strength">
                         <p style="font-weight: bold;" id="length">✓ Al menos 8 caracteres</p>
                         <p style="font-weight: bold;" id="uppercase">✓ Al menos una mayúscula</p>

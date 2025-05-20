@@ -70,16 +70,19 @@ function validarPassword() {
 }
 
 
-// Mostrar y ocultar contraseña del formulario de login
-const passwordInputNueva = document.getElementById('password');
-const togglePasswordTextNuevaNueva = document.getElementById('toggle-passwordNueva');
+function togglePassword(inputId, toggleId) {
+    const input = document.getElementById(inputId);
+    const toggle = document.getElementById(toggleId);
 
-togglePasswordTextNuevaNueva.addEventListener('click', function () {
-    if (passwordInputNueva.type === 'password') {
-        passwordInputNueva.type = 'text';
-        togglePasswordTextNueva.textContent = 'Ocultar contraseña';
-    } else {
-        passwordInputNueva.type = 'password';
-        togglePasswordTextNuevaNueva.textContent = 'Mostrar contraseña';
-    }
+    toggle.addEventListener('click', () => {
+        const isPassword = input.type === 'password';
+        input.type = isPassword ? 'text' : 'password';
+        toggle.classList.toggle('fa-eye');
+        toggle.classList.toggle('fa-eye-slash');
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    togglePassword('password', 'toggle-passwordNueva');
+    togglePassword('confirm_password', 'toggle-passwordConfirmar');
 });
