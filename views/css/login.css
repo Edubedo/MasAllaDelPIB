@@ -220,6 +220,37 @@ main {
     font-size: 12px;
 }
 
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: #333;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 10rem!important;
+    margin-right: 8px;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.checkbox-container label {
+    font-weight: normal;
+    display: inline;
+}
+
+.checkbox-container a {
+    color: #173692;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+.checkbox-container a:hover {
+    text-decoration: none;
+}
+
 /* Diseño Responsivo */
 @media screen and (max-width: 850px) {
     main {
