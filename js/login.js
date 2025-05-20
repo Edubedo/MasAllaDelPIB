@@ -136,19 +136,15 @@ function validarPassword() {
     return true;
 }
 
-// Mostrar/Ocultar contraseñas
 function togglePassword(inputId, toggleId) {
     const input = document.getElementById(inputId);
     const toggle = document.getElementById(toggleId);
 
     toggle.addEventListener('click', () => {
-        if (input.type === 'password') {
-            input.type = 'text';
-            toggle.textContent = 'Ocultar contraseña';
-        } else {
-            input.type = 'password';
-            toggle.textContent = 'Mostrar contraseña';
-        }
+        const isPassword = input.type === 'password';
+        input.type = isPassword ? 'text' : 'password';
+        toggle.classList.toggle('fa-eye');
+        toggle.classList.toggle('fa-eye-slash');
     });
 }
 
