@@ -221,7 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                             <div class="fecha_div">
                                 <label for="fecha_publicacion">Fecha de Publicación:</label>
-                                <input class="fecha" type="date" id="fecha_publicacion" name="fecha_publicacion_posts" value="<?= htmlspecialchars($datos->post_date ?? '') ?>" required>
+                                <input class="fecha" type="text" id="fecha_publicacion" name="fecha_publicacion_posts" value="<?= htmlspecialchars($datos->post_date ?? '') ?>" readonly>
                             </div>
 
                             <div class="autor_div">

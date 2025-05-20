@@ -108,6 +108,8 @@ main {
     background: #fff;
     position: absolute;
     border-radius: 20px;
+    max-height: 500px;  /* ajustá a lo que necesites */
+    overflow-y: auto;
 }
 
 .contenedor__Login-register form h2 {
