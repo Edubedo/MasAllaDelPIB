@@ -133,7 +133,7 @@
                     <div class="checkbox-container">
                         <input type="checkbox" id="terminos" required>
                         <label for="terminos">
-                            He leído y acepto los <a href="/views/layout/politicasprivacidad.php" target="_blank">Términos y Condiciones</a>
+                            He leído y acepto los <a href="/views/layout/terminosycondiciones.php" target="_blank">Términos y Condiciones</a>
                         </label>
                     </div>
 
