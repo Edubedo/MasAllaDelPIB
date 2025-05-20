@@ -104,7 +104,7 @@
                 </form>
 
                 <!-- Formulario de registro -->
-                <form action="registro-usuarios.php" class="formulario__register" method="POST" enctype="multipart/form-data" onsubmit="return validarPassword()">
+                <form action="registro-usuarios.php" class="formulario__register" method="POST" enctype="multipart/form-data" onsubmit="return validarFormularioRegistro()">
                     <h2 class="fa fa-user" style="font-size: 40px; margin-bottom: 10px; text-align: center; display: block;"></h2>
                     <input type="text" name="fullname" placeholder="Nombre Completo" required>
                     <input type="email" name="email" placeholder="Correo Electrónico" required>
@@ -118,19 +118,35 @@
                         <p style="font-weight: bold;" id="special">✓ Al menos un carácter especial</p>
                     </div>
                     <input type="password" id="confirm_password" placeholder="Confirmar Contraseña" required>
-                    <!-- Reemplaza el input de archivo actual por este código -->
                     <div class="custom-file-input">
                         <label for="foto-perfil-input">
                             <i class="fas fa-camera" style="margin-right: 5px;"></i>
                             <span id="file-name">Selecciona foto de perfil</span>
                         </label>
                         <input type="file" id="foto-perfil-input" name="foto_perfil" accept="image/*" required>
-                        <!-- Vista previa de la imagen seleccionada -->
                         <div id="preview-container" style="display: none; margin-top: 10px;">
                             <img id="preview-image" style="max-width: 100px; max-height: 100px; border-radius: 50%;">
                         </div>
                     </div>
-                    <button type="submit">Registrate</button>
+
+                    
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="terminos" required>
+                        <label for="terminos">
+                            He leído y acepto los <a href="/views/layout/politicasprivacidad.php" target="_blank">Términos y Condiciones</a>
+                        </label>
+                    </div>
+
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="privacidad" required>
+                        <label for="privacidad">
+                            He leído y acepto las <a href="/views/layout/politicasprivacidad.php" target="_blank">Políticas de Privacidad</a>
+                        </label>
+                    </div>
+
+
+
+                    <button type="submit" style="margin-top: 15px;">Regístrate</button>
                 </form>
             </div>
         </div>
