@@ -231,6 +231,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 </head>
 <body>
+    <?php 
+        /*include(__DIR__ . '/../../views/layout/header.php');*/
+    ?>
     <div class="container">
         <div class="encabezado">
             <h1>Modificación de usuario</h1>
@@ -256,12 +259,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="moduser-div">
 
                     <div class="username-div">
-                        <label for="username">Nombre de Usuario:</label>
+                        <label for="username"><i class="fas fa-user"></i> Nombre de Usuario:</label>
                         <input type="text" id="username" name="username" value="<?= $datos->username ?>">
                     </div>
 
                     <div class="email-div">
-                        <label for="email">Correo Electrónico:</label>
+                        <label for="email"><i class="fas fa-envelope"></i> Correo Electrónico:</label>
                         <input type="email" id="email" name="email" value="<?= $datos->email ?>">
                     </div>
 
@@ -269,20 +272,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <!-- Mostrar foto actual -->
                     <?php if (!empty($datos->foto_perfil)) : ?>
                         <div class="foto-actual">
-                            <label>Foto actual:</label><br>
+                            <label><i class="fas fa-image"></i> Foto actual:</label><br>
                             <img src="../../views/uploads/<?= $datos->foto_perfil ?>" alt="Foto actual" style="width:100px; height:auto; border-radius:10px; margin-left:1rem;">
                         </div>
                     <?php endif; ?>
 
                     <div class="foto-div">
-                        <label for="foto">Nueva Foto de perfil:</label>
+                        <label for="foto"><i class="fas fa-upload"></i> Nueva Foto de perfil:</label>
                         <input type="file" id="foto" name="foto">
                     </div>
 
                     <div class="cambiarContrasena-div">
-                        <label for="email">Contraseña:</label>
+                        <label><i class="fas fa-lock"></i> Contraseña:</label>
                         <button type="button" class="btn-cambiar-contrasena" onclick="window.location.href='../../views/olvidaste_tu_contrasena.php'">
-                            Cambiar contraseña
+                            <i class="fas fa-key"></i> Cambiar contraseña
                         </button>
                     </div>
 

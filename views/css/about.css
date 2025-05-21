@@ -7,6 +7,80 @@ html {
 *, *:before, *:after {
     box-sizing: inherit;
 }
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.team-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.member-card {
+    width: 250px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    /* animación */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
+}
+
+
+.member-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.member-name {
+    font-weight: bold;
+    margin-top: 0.8rem;
+    font-size: 2rem;
+}
+
+.member-phrase {
+    font-style: italic;
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+.member-email {
+    color: #333;
+    font-size: 1.5rem;
+}
+.member-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+.member-email::before {
+    content: "📧 ";
+}
+.member-phrase::before {
+    content: "💬 ";
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
 
 .fondo-overlay {
     position: fixed;

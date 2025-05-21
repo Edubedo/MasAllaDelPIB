@@ -9,6 +9,8 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MasAllaDelPIB - Sobre nostros</title>
     <script src="../js/main.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
     <link rel="icon" href="../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href='./css/footer.css'>
@@ -52,32 +54,49 @@ session_start();
             <h1>COLABORADORES</h1>
         </div>
 
-
-        <div class="contacts">
-            <div class="foto2">
-                <img class="img2" src="../assets/img/team.jpg" alt="imagen del equipo">
-            </div>
-            <div class="info-contacts">
-                <p class="texto-contacts">
-                    Este blog fue realizado por parte de estuadiantes de la universidad de Colima como
-                    parte de un proyecto escolar en donde el objetivo es contribuir a la sociedad
-                    por medios digitales y Diseñar e implementar aplicaciones web mediante la integración de
-                    herramientas de desarrollo tales como IDEs, navegadores, frameworks, librerías, lenguajes
-                    de programación, servidores y gestores de bases de datos.
-                </p>
-
-                <ul class="team-list">
-                    <li><span>Eduardo Escobedo</span> - ehernandez@ucol.mx</li>
-                    <li><span>Nancy Laureano</span> - nlaureano@ucol.mx</li>
-                    <li><span>Pamela Rodriguez</span> - drodriguez@ucol.mx</li>
-                    <li><span>Juan Pablo Angelina</span> - jangelina@ucol.mx</li>
-                    <li><span>Juan Pablo Alcala</span> - jalcala@ucol.mx</li>
-                    <li><span>Jesus Antonio Quintero</span> - jquintero@ucol.mx</li>
-                </ul>
+        <div class="team-section">
+            <div class="member-card">
+                <img src="/views/uploads/esco.jpeg" alt="Eduardo Escobedo">
+                <div class="member-name">Eduardo Escobedo</div>
+                <div class="member-phrase">"La tecnología es la herramienta del cambio."</div>
+                <div class="member-email">ehernandez71@ucol.mx</div>
             </div>
 
+            <div class="member-card">
+                <img src="/views/uploads/nancylaureano.jpeg" alt="Nancy Laureano">
+                <div class="member-name">Nancy Laureano</div>
+                <div class="member-phrase">"Siempre en busca de soluciones creativas."</div>
+                <div class="member-email">nlaureano@ucol.mx</div>
+            </div>
+
+            <div class="member-card">
+                <img src="/views/uploads/pamela.jpeg" alt="Pamela Rodriguez">
+                <div class="member-name">Pamela Rodriguez</div>
+                <div class="member-phrase">"Cada línea de código es un paso hacia el futuro."</div>
+                <div class="member-email">drodriguez64@ucol.mx</div>
+            </div>
+
+            <div class="member-card">
+                <img src="/views/uploads/juan.jpeg" alt="Juan Pablo Angelina">
+                <div class="member-name">Juan Pablo Angelina</div>
+                <div class="member-phrase">"Construyendo ideas que impactan."</div>
+                <div class="member-email">jangelina@ucol.mx</div>
+            </div>
+
+            <div class="member-card">
+                <img src="/views/uploads/pablo.jpeg" alt="Juan Pablo Alcala">
+                <div class="member-name">Juan Pablo Alcala</div>
+                <div class="member-phrase">"La innovación nace de la perseverancia."</div>
+                <div class="member-email">jalcala5@ucol.mx</div>
+            </div>
+
+            <div class="member-card">
+                <img src="/views/uploads/jesusquintero.jpeg" alt="Jesus Antonio Quintero">
+                <div class="member-name">Jesus Antonio Quintero</div>
+                <div class="member-phrase">"El desarrollo web es arte con lógica."</div>
+                <div class="member-email">jquintero12@ucol.mx</div>
+            </div>
         </div>
-
 
 
     </div>
