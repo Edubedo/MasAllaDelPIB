@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const flagImg = this.querySelector('.flag-icon');
             if (flagImg) {
                 flagImg.src = newLang === 'es'
-                    ? '../../views/uploads/Bandera_de_España.svg.png'
-                    : '../../views/uploads/Flag_of_the_United_Kingdom_(1-2).svg.png';
+                    ? '/views/uploads/Bandera_de_España.svg.png'
+                    : '/views/uploads/Flag_of_the_United_Kingdom_(1-2).svg.png';
                 flagImg.alt = newLang === 'es' ? 'Español' : 'English';
                 console.log('Flag image updated');
             }
@@ -43,7 +43,7 @@ function translatePage(targetLang) {
         // Elementos de navegación
         ...document.querySelectorAll('.texto_a .hover-text'),
         ...document.querySelectorAll('.nav__items .hover-text'),
-
+        ...(document.getElementById('hola-text') ? [document.getElementById('hola-text')] : []),
         // Elementos de contenido principal
         ...document.querySelectorAll('.encabezado h1'),
         ...document.querySelectorAll('h1'),
@@ -61,12 +61,10 @@ function translatePage(targetLang) {
         ...document.querySelectorAll('input[type="password"]'),
         ...document.querySelectorAll('#userPopup button'),
         ...document.querySelectorAll('#userPopup strong'),
-
         // Elementos de lista
         ...document.querySelectorAll('.list li a'),
         ...document.querySelectorAll('.list li span'),
         ...document.querySelectorAll('.list li .hover-text'),
-
         // Elementos específicos de posts-consulta.php
         ...document.querySelectorAll('table th'),
         ...document.querySelectorAll('table tbody tr td:not(:has(.btn))'),
@@ -84,40 +82,33 @@ function translatePage(targetLang) {
         ...document.querySelectorAll('.form-group select'),
         ...document.querySelectorAll('.form-group select option'),
         ...document.querySelectorAll('.form-group button'),
-
         // Categorías y valores
         ...document.querySelectorAll('select option'),
         ...document.querySelectorAll('input[type="text"]'),
         ...document.querySelectorAll('input[type="search"]'),
         ...document.querySelectorAll('.category-value'),
         ...document.querySelectorAll('[data-category]'),
-
         // Botones de perfil
         ...document.querySelectorAll('.btn-editar-perfil'),
-
         // Botones de inicio de sesión y registro
         ...document.querySelectorAll('form button[type="submit"]'),
         ...document.querySelectorAll('.form-container button'),
         ...document.querySelectorAll('#btn__Iniciar-Sesión'),
         ...document.querySelectorAll('#btn__registrarse'),
-
         // Botones de publicación
         ...document.querySelectorAll('.btn-editar-publicacion'),
         ...document.querySelectorAll('.boton-agregar-referencia'),
-
         // Inputs de referencias
         ...document.querySelectorAll('.input-referencia'),
-
         // Elementos de comentarios
         ...document.querySelectorAll('textarea[name="content"]'),
         ...document.querySelectorAll('button[name="submit_comment"]'),
-
         // Texto de la página about
         ...document.querySelectorAll('.texto')
     ];
 
     // Filtrar elementos que tienen texto
-    const elementsWithText = elementsToTranslate.filter(el => el.textContent.trim());
+    const elementsWithText = elementsToTranslate.filter(el => el && el.textContent && el.textContent.trim());
 
     // Función para dividir texto en chunks más pequeños
     function splitTextIntoChunks(text, maxLength = 5000) {
@@ -364,9 +355,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (flagImg) {
                 flagImg.src = savedLang === 'es'
                     ? '/views/uploads/Bandera_de_España.svg.png'
-                    : '/views/uploads/Flag_of_the_United_States.svg.png';
+                    : '/views/uploads/Flag_of_the_United_Kingdom_(1-2).svg.png';
                 flagImg.alt = savedLang === 'es' ? 'Español' : 'English';
-                console.log('Initial flag set to:', savedLang);
             }
         }
         translatePage(savedLang);
