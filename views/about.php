@@ -55,47 +55,47 @@ session_start();
         </div>
 
         <div class="team-section">
-            <div class="member-card">
+            <a href="https://github.com/edubedo" target="_blank" class="member-card">
                 <img src="/views/uploads/esco.jpeg" alt="Eduardo Escobedo">
                 <div class="member-name">Eduardo Escobedo</div>
                 <div class="member-phrase">"La tecnología es la herramienta del cambio."</div>
                 <div class="member-email">ehernandez71@ucol.mx</div>
-            </div>
+            </a>
 
-            <div class="member-card">
+            <a href="https://github.com/nanchi1005" target="_blank" class="member-card">
                 <img src="/views/uploads/nancylaureano.jpeg" alt="Nancy Laureano">
                 <div class="member-name">Nancy Laureano</div>
                 <div class="member-phrase">"Siempre en busca de soluciones creativas."</div>
                 <div class="member-email">nlaureano@ucol.mx</div>
-            </div>
+            </a>
 
-            <div class="member-card">
+            <a href="https://github.com/pame-dev" target="_blank" class="member-card">
                 <img src="/views/uploads/pamela.jpeg" alt="Pamela Rodriguez">
                 <div class="member-name">Pamela Rodriguez</div>
                 <div class="member-phrase">"Cada línea de código es un paso hacia el futuro."</div>
                 <div class="member-email">drodriguez64@ucol.mx</div>
-            </div>
+            </a>
 
-            <div class="member-card">
+            <a href="https://github.com/juanangelina" target="_blank" class="member-card">
                 <img src="/views/uploads/juan.jpeg" alt="Juan Pablo Angelina">
                 <div class="member-name">Juan Pablo Angelina</div>
                 <div class="member-phrase">"Construyendo ideas que impactan."</div>
                 <div class="member-email">jangelina@ucol.mx</div>
-            </div>
+            </a>
 
-            <div class="member-card">
+            <a href="https://github.com/pablo56171" target="_blank" class="member-card">
                 <img src="/views/uploads/pablo.jpeg" alt="Juan Pablo Alcala">
                 <div class="member-name">Juan Pablo Alcala</div>
                 <div class="member-phrase">"La innovación nace de la perseverancia."</div>
                 <div class="member-email">jalcala5@ucol.mx</div>
-            </div>
+            </a>
 
-            <div class="member-card">
+            <a href="https://github.com/quinterodios18" target="_blank" class="member-card">
                 <img src="/views/uploads/jesusquintero.jpeg" alt="Jesus Antonio Quintero">
                 <div class="member-name">Jesus Antonio Quintero</div>
                 <div class="member-phrase">"El desarrollo web es arte con lógica."</div>
                 <div class="member-email">jquintero12@ucol.mx</div>
-            </div>
+            </a>
         </div>
 
 

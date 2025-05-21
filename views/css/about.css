@@ -24,6 +24,7 @@ body {
     background-color: #f5f5f5;
     border-radius: 10px;
     overflow: hidden;
+    color: inherit;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     text-align: center;
     padding: 1rem;
@@ -33,6 +34,9 @@ body {
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.6s forwards;
+}
+.a{
+    color: #000000;
 }
 
 
