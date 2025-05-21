@@ -174,6 +174,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <title>Modificar publicacion</title>
         <link rel="stylesheet" href="css/crear.css">
         <link rel="stylesheet" href="../../views/css/navbar.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     </head>
 
     <body>
@@ -203,7 +204,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <div class="contenedor-general">
                     <div class="izquierdo">
-                        <h2>Configuración</h2>
+                        <h2><i class="fas fa-cog"></i>Configuración</h2>
 
                         <div class="categoria_div">
                             <label for="categoria">Categoría:</label>
