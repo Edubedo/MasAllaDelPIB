@@ -43,7 +43,8 @@ function translatePage(targetLang) {
         // Elementos de navegación
         ...document.querySelectorAll('.texto_a .hover-text'),
         ...document.querySelectorAll('.nav__items .hover-text'),
-        document.getElementById('hola-text'),
+        // Only add the element if it exists
+        ...(document.getElementById('hola-text') ? [document.getElementById('hola-text')] : []),
 
         // Elementos de contenido principal
         ...document.querySelectorAll('.encabezado h1'),
@@ -118,7 +119,7 @@ function translatePage(targetLang) {
     ];
 
     // Filtrar elementos que tienen texto
-    const elementsWithText = elementsToTranslate.filter(el => el && el.textContent.trim());
+    const elementsWithText = elementsToTranslate.filter(el => el && el.textContent && el.textContent.trim());
 
     // Debug: Imprimir elementos seleccionados
     console.log('Elementos a traducir:', elementsToTranslate);
