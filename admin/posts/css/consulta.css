@@ -369,6 +369,7 @@ tbody tr:nth-child(even) {
     background: linear-gradient(to right, #38ef7d, #11998e);
     color: white;
     border: none;
+    margin-right: 0.5rem;
 }
 
 .btn.editar:hover {
