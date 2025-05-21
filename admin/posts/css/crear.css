@@ -380,25 +380,19 @@ button:hover {
 .imagenActual{
     padding-left: 1rem;
 }
-.cambiarContrasena {
-        color: #007BFF;
-        text-decoration: underline;
-        cursor: pointer;
-        margin: 0;
-        margin-left: 1.8rem;
-        transition: color 0.3s ease;
-    }
 
-    .cambiarContrasena:hover {
-        color: #0056b3;
-        text-decoration: none;
-    }
+.btn-cambiar-contrasena {
+            width: auto;
+            height: 2.8rem;
+            background-color: #007bff;
+}
 
-    .cambiarContrasena-div a {
-        text-decoration: none;
-    }
 
-/* --- Tu estilo base permanece igual (el que enviaste) --- */
+.btn-cambiar-contrasena:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+}
+
 
 /* --- Media Queries para hacerlo RESPONSIVO --- */
 

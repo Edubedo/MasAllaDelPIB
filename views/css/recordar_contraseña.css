@@ -158,6 +158,31 @@ main {
     font-size: 12px;
 }
 
+.btn-regresar, .boton-enviar, .btn-verificar {
+    padding: 0.7rem 1.4rem;
+    font-size: 1.6rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+    background-color: #1d47bad8;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 1.5rem;    
+}
+
+.btn-regresar:hover, .boton-enviar:hover, .btn-verificar:hover {|
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.botones-contenedor {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+
 /* Diseño Responsivo */
 @media screen and (max-width: 2850px) {
     main {
