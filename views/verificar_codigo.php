@@ -84,7 +84,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php endif; ?>
 
                     <input type="text" name="codigo" placeholder="Código de verificación" required>
-                    <button type="submit">Verificar</button>
+                    <div class="botones-contenedor">
+                        <button onclick="window.history.back()" class="btn-regresar">
+                            Regresar
+                        </button>
+                        <button class="btn-verificar" type="submit">Verificar</button>
+                    </div>
                 </form>
             </div>
         </div>

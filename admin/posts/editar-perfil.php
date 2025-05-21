@@ -281,7 +281,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     <div class="cambiarContrasena-div">
                         <label for="email">Contraseña:</label>
-                        <a href="../../views/olvidaste_tu_contrasena.php"><p class="cambiarContrasena">Cambiar contraseña</p></a>
+                        <button type="button" class="btn-cambiar-contrasena" onclick="window.location.href='../../views/olvidaste_tu_contrasena.php'">
+                            Cambiar contraseña
+                        </button>
                     </div>
 
                     <div class="botones-div">

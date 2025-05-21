@@ -134,7 +134,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php endif; ?>
 
                     <input type="email" name="email" placeholder="Correo Electrónico" required>
-                    <button type="submit">Enviar</button>
+                    <div class="botones-contenedor">
+                        <button onclick="window.history.back()" class="btn-regresar">
+                            Regresar
+                        </button>
+                        <button class="boton-enviar" type="submit">Enviar</button>
+                    </div>
                 </form>
             </div>
         </div>
