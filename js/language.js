@@ -1,27 +1,27 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log('Language script loaded');
     const languageIcon = document.getElementById('language-icon');
-    
+
     if (languageIcon) {
         console.log('Language icon found');
-        languageIcon.addEventListener('click', function(e) {
+        languageIcon.addEventListener('click', function (e) {
             e.preventDefault();
             console.log('Language icon clicked');
             const currentLang = this.getAttribute('data-lang');
             console.log('Current language:', currentLang);
             const newLang = currentLang === 'es' ? 'en' : 'es';
             console.log('New language:', newLang);
-            
+
             // Update the flag image
             const flagImg = this.querySelector('.flag-icon');
             if (flagImg) {
-                flagImg.src = newLang === 'es' 
+                flagImg.src = newLang === 'es'
                     ? '/views/uploads/Bandera_de_España.svg.png'
                     : '/views/uploads/Flag_of_the_United_Kingdom_(1-2).svg.png';
                 flagImg.alt = newLang === 'es' ? 'Español' : 'English';
                 console.log('Flag image updated');
             }
-            
+
             // Update the data attribute
             this.setAttribute('data-lang', newLang);
             console.log('Data attribute updated');
@@ -44,7 +44,7 @@ function translatePage(targetLang) {
         ...document.querySelectorAll('.texto_a .hover-text'),
         ...document.querySelectorAll('.nav__items .hover-text'),
         document.getElementById('hola-text'),
-        
+
         // Elementos de contenido principal
         ...document.querySelectorAll('.encabezado h1'),
         ...document.querySelectorAll('h1'),
@@ -62,12 +62,12 @@ function translatePage(targetLang) {
         ...document.querySelectorAll('input[type="password"]'),
         ...document.querySelectorAll('#userPopup button'),
         ...document.querySelectorAll('#userPopup strong'),
-        
+
         // Elementos de lista
         ...document.querySelectorAll('.list li a'),
         ...document.querySelectorAll('.list li span'),
         ...document.querySelectorAll('.list li .hover-text'),
-        
+
         // Elementos específicos de posts-consulta.php
         ...document.querySelectorAll('table th'),
         ...document.querySelectorAll('table tbody tr td:not(:has(.btn))'),
@@ -85,41 +85,41 @@ function translatePage(targetLang) {
         ...document.querySelectorAll('.form-group select'),
         ...document.querySelectorAll('.form-group select option'),
         ...document.querySelectorAll('.form-group button'),
-        
+
         // Categorías y valores
         ...document.querySelectorAll('select option'),
         ...document.querySelectorAll('input[type="text"]'),
         ...document.querySelectorAll('input[type="search"]'),
         ...document.querySelectorAll('.category-value'),
         ...document.querySelectorAll('[data-category]'),
-        
+
         // Botones de perfil
         ...document.querySelectorAll('.btn-editar-perfil'),
-        
+
         // Botones de inicio de sesión y registro
         ...document.querySelectorAll('form button[type="submit"]'),
         ...document.querySelectorAll('.form-container button'),
         ...document.querySelectorAll('#btn__Iniciar-Sesión'),
         ...document.querySelectorAll('#btn__registrarse'),
-        
+
         // Botones de publicación
         ...document.querySelectorAll('.btn-editar-publicacion'),
         ...document.querySelectorAll('.boton-agregar-referencia'),
-        
+
         // Inputs de referencias
         ...document.querySelectorAll('.input-referencia'),
-        
+
         // Elementos de comentarios
         ...document.querySelectorAll('textarea[name="content"]'),
         ...document.querySelectorAll('button[name="submit_comment"]'),
-        
+
         // Texto de la página about
         ...document.querySelectorAll('.texto')
     ];
 
     // Filtrar elementos que tienen texto
-    const elementsWithText = elementsToTranslate.filter(el => el.textContent.trim());
-    
+    const elementsWithText = elementsToTranslate.filter(el => el && el.textContent.trim());
+
     // Debug: Imprimir elementos seleccionados
     console.log('Elementos a traducir:', elementsToTranslate);
     console.log('Elementos con texto:', elementsWithText);
@@ -134,7 +134,7 @@ function translatePage(targetLang) {
         const chunks = [];
         let currentChunk = '';
         const sentences = text.split(/(?<=[.!?])\s+/);
-        
+
         for (const sentence of sentences) {
             if ((currentChunk + sentence).length > maxLength) {
                 if (currentChunk) chunks.push(currentChunk.trim());
@@ -150,18 +150,18 @@ function translatePage(targetLang) {
     // Función para traducir texto
     async function translateText(text, targetLang) {
         if (targetLang !== 'en') return text;
-        
+
         // Dividir el texto en párrafos
         const paragraphs = text.split(/\n\s*\n/);
         const translatedParagraphs = [];
-        
+
         for (const paragraph of paragraphs) {
             const chunks = splitTextIntoChunks(paragraph);
             const translatedChunks = [];
-            
+
             for (const chunk of chunks) {
                 const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=es&tl=${targetLang}&dt=t&q=${encodeURIComponent(chunk)}`;
-                
+
                 try {
                     const response = await fetch(url);
                     const data = await response.json();
@@ -177,10 +177,10 @@ function translatePage(targetLang) {
                     translatedChunks.push(chunk);
                 }
             }
-            
+
             translatedParagraphs.push(translatedChunks.join(' '));
         }
-        
+
         // Unir los párrafos traducidos manteniendo los saltos de línea
         return translatedParagraphs.join('\n\n');
     }
@@ -189,7 +189,7 @@ function translatePage(targetLang) {
     elementsWithText.forEach(async element => {
         const originalText = element.textContent.trim();
         const originalHTML = element.innerHTML;
-        
+
         // Guardar el texto original y el HTML si no está guardado
         if (!originalTexts.has(element)) {
             originalTexts.set(element, {
@@ -202,28 +202,28 @@ function translatePage(targetLang) {
 
         if (targetLang === 'en') {
             let translatedText;
-            
+
             // Si es el elemento del saludo, usar la traducción predefinida
             if (element.id === 'hola-text') {
                 translatedText = translations.en.hola;
             } else {
                 translatedText = await translateText(originalText, targetLang);
             }
-            
+
             // Preservar el formato HTML original
             const original = originalTexts.get(element);
-            
+
             // Reemplazar el texto manteniendo las etiquetas HTML
             let newHTML = original.html;
             const paragraphs = originalText.split(/\n\s*\n/);
             const translatedParagraphs = translatedText.split(/\n\s*\n/);
-            
+
             paragraphs.forEach((paragraph, index) => {
                 if (translatedParagraphs[index]) {
                     newHTML = newHTML.replace(paragraph, translatedParagraphs[index]);
                 }
             });
-            
+
             element.innerHTML = newHTML;
             element.setAttribute('style', original.style);
             element.setAttribute('class', original.class);
@@ -272,7 +272,7 @@ function translatePage(targetLang) {
     searchInputs.forEach(async searchInput => {
         if (searchInput) {
             const placeholder = searchInput.placeholder;
-            
+
             // Guardar el placeholder original si no está guardado
             if (!originalTexts.has(searchInput)) {
                 originalTexts.set(searchInput, placeholder);
@@ -302,7 +302,7 @@ function translatePage(targetLang) {
     signinInputs.forEach(async input => {
         if (input) {
             const placeholder = input.placeholder;
-            
+
             // Guardar el placeholder original si no está guardado
             if (!originalTexts.has(input)) {
                 originalTexts.set(input, placeholder);
@@ -322,7 +322,7 @@ function translatePage(targetLang) {
     referenceInputs.forEach(async input => {
         if (input) {
             const placeholder = input.placeholder;
-            
+
             // Guardar el placeholder original si no está guardado
             if (!originalTexts.has(input)) {
                 originalTexts.set(input, placeholder);
@@ -342,7 +342,7 @@ function translatePage(targetLang) {
     commentTextareas.forEach(async textarea => {
         if (textarea) {
             const placeholder = textarea.placeholder;
-            
+
             // Guardar el placeholder original si no está guardado
             if (!originalTexts.has(textarea)) {
                 originalTexts.set(textarea, placeholder);
@@ -363,18 +363,18 @@ function translatePage(targetLang) {
 }
 
 // Load saved language preference on page load
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log('Checking saved language preference');
     const savedLang = localStorage.getItem('selectedLanguage') || 'es';
     console.log('Saved language:', savedLang);
-    
+
     if (savedLang !== 'es') {
         const languageIcon = document.getElementById('language-icon');
         if (languageIcon) {
             languageIcon.setAttribute('data-lang', savedLang);
             const flagImg = languageIcon.querySelector('.flag-icon');
             if (flagImg) {
-                flagImg.src = savedLang === 'es' 
+                flagImg.src = savedLang === 'es'
                     ? '/views/uploads/Bandera_de_España.svg.png'
                     : '/views/uploads/Flag_of_the_United_Kingdom_(1-2).svg.png';
                 flagImg.alt = savedLang === 'es' ? 'Español' : 'English';
