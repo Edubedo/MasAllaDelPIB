@@ -142,11 +142,11 @@ if (isset($_POST["crear_post"])) {
     // Guardar solo la ruta relativa dentro de la carpeta uploads
     $db_path = "uploads/" . $filename;
 
-    $query = "INSERT INTO posts (title, content, post_date, category, image, user_creation, referencia_posts) 
-              VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO posts (title, content, post_date, category, image, user_creation, referencia_posts, status) 
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conexion->prepare($query);
-    $stmt->bind_param("sssssss", $titulo, $contenido, $fecha, $categoria, $db_path, $usuario, $referencias);
-
+    $status = 'ACTIVO';
+    $stmt->bind_param("ssssssss", $titulo, $contenido, $fecha, $categoria, $db_path, $usuario, $referencias, $status);
     if ($stmt->execute()) {
         header("Location: posts-consulta.php");
         exit();
@@ -173,14 +173,14 @@ if (isset($_POST["crear_post"])) {
 </head>
 
 <body>
-    <?php 
-        include ('../../views/layout/header.php')
+    <?php
+    include('../../views/layout/header.php')
     ?>
 
     <div class="encabezado">
         <h1>Crear nueva publicación</h1>
     </div>
-    
+
     <form id="crearForm" action="" method="post" enctype="multipart/form-data">
         <div class="contenedor-general">
             <div class="izquierdo">

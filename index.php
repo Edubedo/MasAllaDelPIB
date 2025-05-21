@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    require 'config/database.php';
-    // Obtener publicaciones del usuario con ID 1
-    $queryUsuario = "SELECT 
+session_start();
+require 'config/database.php';
+// Obtener publicaciones del usuario con ID 1
+$queryUsuario = "SELECT 
         p.Id_posts, 
         p.title, 
         p.content, 
@@ -16,22 +16,23 @@
         INNER JOIN users u ON p.user_creation = u.username 
         LEFT JOIN likes l ON p.Id_posts = l.id_post
         WHERE u.id_type_user = 1 
+        AND p.status = 'ACTIVO'
         GROUP BY p.Id_posts
         ORDER BY p.post_date DESC 
         LIMIT 3";
 
-    // puedes ajustar el límite si quieres más o menos
+// puedes ajustar el límite si quieres más o menos
 
-    try {
-        $stmtUsuario = $pdo->prepare($queryUsuario);
-        $stmtUsuario->execute();
-        $postsUsuario = $stmtUsuario->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        die("Error al consultar publicaciones del usuario: " . $e->getMessage());
-    }
+try {
+    $stmtUsuario = $pdo->prepare($queryUsuario);
+    $stmtUsuario->execute();
+    $postsUsuario = $stmtUsuario->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Error al consultar publicaciones del usuario: " . $e->getMessage());
+}
 
-    // Obtener las publicaciones más recientes
-    $query = "SELECT 
+// Obtener las publicaciones más recientes
+$query = "SELECT 
         p.Id_posts, 
         p.title, 
         p.content, 
@@ -45,17 +46,18 @@
         INNER JOIN users u ON p.user_creation = u.username 
         LEFT JOIN likes l ON p.Id_posts = l.id_post
         WHERE u.id_type_user = 2
+        AND p.status = 'ACTIVO'
         GROUP BY p.Id_posts
         ORDER BY p.post_date DESC 
         LIMIT 4";
 
-    try {
-        $stmt = $pdo->prepare($query);
-        $stmt->execute();
-        $postsDB = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        die("Error al consultar publicaciones: " . $e->getMessage());
-    }
+try {
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $postsDB = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Error al consultar publicaciones: " . $e->getMessage());
+}
 ?>
 
 <!DOCTYPE html>

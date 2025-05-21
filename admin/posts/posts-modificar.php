@@ -175,40 +175,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <link rel="stylesheet" href="css/crear.css">
         <link rel="stylesheet" href="../../views/css/navbar.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        
     </head>
 
     <body>
-        
+        <?php 
+            include ('../../views/layout/header.php')
+        ?>
+
         <div id="contenedor">
-            <?php 
-                /*include(__DIR__ . '/../../views/layout/header.php');*/
-            ?>
+        
             <div class="encabezado">
-            
                 <h1>Modificar publicación</h1>
             </div>
 
-            <!-- Mostrar el mensaje de éxito si está disponible -->
-            <?php if (isset($_SESSION['success_message'])): ?>
-                <div class="success-message">
-                    <?php
-                        echo $_SESSION['success_message'];
-                        unset($_SESSION['success_message']); // Eliminar el mensaje después de mostrarlo
-                    ?>
-                </div>
-            <?php endif; ?>
+        <!-- Mostrar el mensaje de éxito si está disponible -->
+        <?php if (isset($_SESSION['success_message'])): ?>
+            <div class="success-message">
+                <?php
+                echo $_SESSION['success_message'];
+                unset($_SESSION['success_message']); // Eliminar el mensaje después de mostrarlo
+                ?>
+            </div>
+        <?php endif; ?>
 
-            <form id="modificarForm" action="" name="modificar_post" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="id" value="<?= htmlspecialchars($id ?? '') ?>">
-                <input type="hidden" name="usuario_posts" value="<?= htmlspecialchars($_SESSION['username'] ?? '') ?>">
+        <form id="modificarForm" action="" name="modificar_post" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?= htmlspecialchars($id ?? '') ?>">
+            <input type="hidden" name="usuario_posts" value="<?= htmlspecialchars($_SESSION['username'] ?? '') ?>">
 
-                <div class="contenedor-general">
-                    <div class="izquierdo">
-                        <h2><i class="fas fa-cog"></i>Configuración</h2>
+            <div class="contenedor-general">
+                <div class="izquierdo">
+                    <h2><i class="fas fa-cog"></i>Configuración</h2>
 
                         <div class="categoria_div">
-                            <label for="categoria"><i class="fas fa-layer-group"></i> Categoría:</label>
+                            <label for="categoria">Categoría:</label>
                             <select name="categoria_posts" id="categoria" required>
                                     <option value="" disabled hidden>Categorías</option>
                                     <option value="crecimiento-economico" <?= $datos->category == 'crecimiento-economico' ? 'selected' : '' ?>>Crecimiento Económico</option>
@@ -218,72 +217,72 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
 
                         <div class="fecha_div">
-                        <label for="fecha_publicacion"><i class="fas fa-calendar-alt"></i> Fecha de Publicación:</label>
+                            <label for="fecha_publicacion">Fecha de Publicación:</label>
                             <input class="fecha" type="text" id="fecha_publicacion" name="fecha_publicacion_posts" value="<?= htmlspecialchars($datos->post_date ?? '') ?>" readonly>
                         </div>
 
                         <div class="autor_div">
                             <?php if (isset($_SESSION['username'])): ?>
-                                <label for="usuario"><i class="fas fa-user"></i> Usuario:</label>
+                                <label for="usuario">Usuario:</label>
                                 <span class="username"><?= htmlspecialchars($_SESSION['username'] ?? '') ?></span>
                             <?php endif; ?>
                         </div>
 
                         <div class="boton-div">
-                            <a href="posts-consulta.php" class="btn-editar-publicacion"><i class="fas fa-arrow-left"></i> Regresar</a>
-                            <button type="submit" name="modificar_post"><i class="fas fa-save"></i> Modificar Publicación</button>
-
+                                <a href="posts-consulta.php" class="btn-editar-publicacion">Regresar</a>
+                                <button type="submit" name="modificar_post">Modificar Publicación</button>
                         </div>
                     </div>
 
                     <div class="derecho">
                         <div class="titulodelposts">
-                            <label for="titulo"><i class="fas fa-heading"></i> Título del post:</label>
+                            <label for="titulo">Título del post:</label>
                             <input type="text" id="titulo" name="titulo_posts" value="<?= htmlspecialchars($datos->title ?? '') ?>" required>
                         </div>
                         <div class="contenidodelposts">
-                            <label for="contenido"><i class="fas fa-align-left"></i> Contenido:</label>
+                            <label for="contenido">Contenido:</label>
                             <textarea id="contenido" name="contenido_posts" rows="6" required><?= htmlspecialchars($datos->content ?? '') ?></textarea>
                         </div>
                         <div class="imagendelpost">
-                            <label for="imagen"><i class="fas fa-image"></i> Imagen:</label>
+                            <label for="imagen">Imagen:</label>
                             <input type="file" id="imagen" name="imagen_posts" accept="image/*">
-                            <label for="imagen_actual"><i class="fas fa-photo-video"></i> Imagen actual:</label>
+                            <label for="imagen_actual">Imagen actual:</label>
                             <img class="imagenActual" src="<?= htmlspecialchars($datos->image ?? '') ?>" alt="Imagen actual" width="150">
                         </div>
                         <div class="referenciadelpost">
-                            <label for="referencias"><i class="fas fa-link"></i> Referencias:</label>        
+                            <label for="referencias">Referencias:</label>        
                             <div id="contenedorReferencias" data-referencias="<?= htmlspecialchars($datos->referencia_posts ?? '') ?>">
                             <!-- Los inputs se agregarán dinámicamente aquí -->
-                            <button class="boton-agregar-referencia" type="button" onclick="agregarReferencia()">
-                              <i class="fas fa-plus"></i> Agregar otra referencia
-                            </button>       
+                            </div>
+                                <button class="boton-agregar-referencia" type="button" onclick="agregarReferencia()">Agregar otra referencia</button>
+                            </div>        
                         </div>
                     </div>
                 </div>
             </form>
         </div>
 
-        <!-- Modal de ALERTA NO BORRAR -->
-        <div id="modal" class="fondo-alerta" style="display: none;">
-            <div class="alerta">
-                <p id="alert-message"></p>
-                <button class="boton-alerta" onclick="cerrarAlerta()">Aceptar</button>
-            </div>
+    <!-- Modal de ALERTA NO BORRAR -->
+    <div id="modal" class="fondo-alerta" style="display: none;">
+        <div class="alerta">
+            <p id="alert-message"></p>
+            <button class="boton-alerta" onclick="cerrarAlerta()">Aceptar</button>
         </div>
-        <!-- Modal de ALERTA NO BORRAR -->
+    </div>
+    <!-- Modal de ALERTA NO BORRAR -->
 
-        <!-- Modal de confirmación -->
-        <div id="modal-modificar" class="fondo-alerta-modificar" style="display: none;">
-            <div class="alerta-modificar">
-                <p id="alert-message-modificar"></p>
-                <button class="boton-alerta-modificar" onclick="aceptarEnvio()">Aceptar</button>
-                <button class="boton-alerta-cancelar" onclick="cerrarAlerta()">Cancelar</button>
-            </div>
+    <!-- Modal de confirmación -->
+    <div id="modal-modificar" class="fondo-alerta-modificar" style="display: none;">
+        <div class="alerta-modificar">
+            <p id="alert-message-modificar"></p>
+            <button class="boton-alerta-modificar" onclick="aceptarEnvio()">Aceptar</button>
+            <button class="boton-alerta-cancelar" onclick="cerrarAlerta()">Cancelar</button>
         </div>
+    </div>
 
 
-        <script src="../../js/post-modificar.js"></script>
-        <script src="/js/language.js"></script>
-    </body>
+    <script src="../../js/post-modificar.js"></script>
+    <script src="/js/language.js"></script>
+</body>
+
 </html>
