@@ -10,7 +10,7 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 $postId = $_GET['id'];
 
 // Consultar la base de datos
-$stmt = $pdo->prepare("SELECT * FROM posts WHERE Id_posts = :id");
+$stmt = $pdo->prepare("SELECT * FROM posts WHERE Id_posts = :id AND status = 'ACTIVO'");
 $stmt->execute(['id' => $postId]);
 
 $post = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -82,7 +82,7 @@ if (isset($_POST['submit_comment'])) {
     <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href='./css/footer.css'>
     <link rel="stylesheet" href='./css/post.css'>
-    
+
 </head>
 
 <body>

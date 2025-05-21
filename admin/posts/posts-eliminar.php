@@ -1,7 +1,8 @@
 <?php
 $mensaje = '';
 
-if (!empty($_GET["id"])) {
+// Solo eliminar si hay un ID y NO hay una acción especificada
+if (!empty($_GET["id"]) && !isset($_GET["action"])) {
     $id = $_GET["id"];
 
     if (is_numeric($id)) {

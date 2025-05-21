@@ -7,6 +7,7 @@ include '././config/database.php';
 // consulta a la base de datos y limitamos a 6 el carousel
 $query = "SELECT Id_posts, title, content, post_date, category, image, user_creation 
           FROM posts 
+          WHERE status = 'ACTIVO'
           ORDER BY RAND()
           LIMIT 6";
 
