@@ -37,10 +37,10 @@ session_start();
         <div class="container-nosotros">
             <div class="info">
                 <p class="texto">
-                    Este blog fue creado por estudiantes de la Universidad de Colima como parte de un proyecto escolar. Nuestro objetivo es contribuir a la sociedad a través de medios digitales, generando contenido valioso que apoye a la comunidad. <br>El proyecto se centra en el diseño e implementación de aplicaciones web mediante la integración de diversas herramientas de desarrollo, permitiéndonos construir soluciones innovadoras y funcionales.
+
                 </p>
                 <p class="texto">
-                    Este espacio representa una oportunidad para explorar y experimentar en el desarrollo web, aplicando nuestros conocimientos y fortaleciendo nuestras habilidades profesionales.
+                    Este blog fue creado por estudiantes de la Universidad de Colima como parte de un proyecto escolar. Nuestro objetivo es contribuir a la sociedad a través de medios digitales, generando contenido valioso que apoye a la comunidad. El proyecto se centra en el diseño e implementación de aplicaciones web mediante la integración de diversas herramientas de desarrollo, permitiéndonos construir soluciones innovadoras y funcionales. Este espacio representa una oportunidad para explorar y experimentar en el desarrollo web, aplicando nuestros conocimientos y fortaleciendo nuestras habilidades profesionales.
                 </p>
             </div>
             <div class="foto">

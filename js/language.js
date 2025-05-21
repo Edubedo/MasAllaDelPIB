@@ -43,7 +43,8 @@ function translatePage(targetLang) {
         // Elementos de navegación
         ...document.querySelectorAll('.texto_a .hover-text'),
         ...document.querySelectorAll('.nav__items .hover-text'),
-        ...(document.getElementById('hola-text') ? [document.getElementById('hola-text')] : []),
+        document.getElementById('hola-text'),
+
         // Elementos de contenido principal
         ...document.querySelectorAll('.encabezado h1'),
         ...document.querySelectorAll('h1'),
@@ -61,10 +62,12 @@ function translatePage(targetLang) {
         ...document.querySelectorAll('input[type="password"]'),
         ...document.querySelectorAll('#userPopup button'),
         ...document.querySelectorAll('#userPopup strong'),
+
         // Elementos de lista
         ...document.querySelectorAll('.list li a'),
         ...document.querySelectorAll('.list li span'),
         ...document.querySelectorAll('.list li .hover-text'),
+
         // Elementos específicos de posts-consulta.php
         ...document.querySelectorAll('table th'),
         ...document.querySelectorAll('table tbody tr td:not(:has(.btn))'),
@@ -82,27 +85,34 @@ function translatePage(targetLang) {
         ...document.querySelectorAll('.form-group select'),
         ...document.querySelectorAll('.form-group select option'),
         ...document.querySelectorAll('.form-group button'),
+
         // Categorías y valores
         ...document.querySelectorAll('select option'),
         ...document.querySelectorAll('input[type="text"]'),
         ...document.querySelectorAll('input[type="search"]'),
         ...document.querySelectorAll('.category-value'),
         ...document.querySelectorAll('[data-category]'),
+
         // Botones de perfil
         ...document.querySelectorAll('.btn-editar-perfil'),
+
         // Botones de inicio de sesión y registro
         ...document.querySelectorAll('form button[type="submit"]'),
         ...document.querySelectorAll('.form-container button'),
         ...document.querySelectorAll('#btn__Iniciar-Sesión'),
         ...document.querySelectorAll('#btn__registrarse'),
+
         // Botones de publicación
         ...document.querySelectorAll('.btn-editar-publicacion'),
         ...document.querySelectorAll('.boton-agregar-referencia'),
+
         // Inputs de referencias
         ...document.querySelectorAll('.input-referencia'),
+
         // Elementos de comentarios
         ...document.querySelectorAll('textarea[name="content"]'),
         ...document.querySelectorAll('button[name="submit_comment"]'),
+
         // Texto de la página about
         ...document.querySelectorAll('.texto')
     ];
@@ -112,15 +122,12 @@ function translatePage(targetLang) {
 
     // Función para dividir texto en chunks más pequeños
     function splitTextIntoChunks(text, maxLength = 5000) {
-        // Si el texto es corto, no lo dividimos
         if (text.length <= maxLength) {
             return [text];
         }
-
         const chunks = [];
         let currentChunk = '';
         const sentences = text.split(/(?<=[.!?])\s+/);
-
         for (const sentence of sentences) {
             if ((currentChunk + sentence).length > maxLength) {
                 if (currentChunk) chunks.push(currentChunk.trim());
@@ -136,18 +143,13 @@ function translatePage(targetLang) {
     // Función para traducir texto
     async function translateText(text, targetLang) {
         if (targetLang !== 'en') return text;
-
-        // Dividir el texto en párrafos
         const paragraphs = text.split(/\n\s*\n/);
         const translatedParagraphs = [];
-
         for (const paragraph of paragraphs) {
             const chunks = splitTextIntoChunks(paragraph);
             const translatedChunks = [];
-
             for (const chunk of chunks) {
                 const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=es&tl=${targetLang}&dt=t&q=${encodeURIComponent(chunk)}`;
-
                 try {
                     const response = await fetch(url);
                     const data = await response.json();
@@ -163,16 +165,20 @@ function translatePage(targetLang) {
                     translatedChunks.push(chunk);
                 }
             }
-
             translatedParagraphs.push(translatedChunks.join(' '));
         }
-
-        // Unir los párrafos traducidos manteniendo los saltos de línea
         return translatedParagraphs.join('\n\n');
     }
 
     // Traducir cada elemento
     elementsWithText.forEach(async element => {
+        if (!element) return;
+        // Traducción personalizada para el saludo
+        if (element.id === 'hola-text') {
+            element.textContent = targetLang === 'en' ? 'Hello' : 'Hola';
+            return;
+        }
+
         const originalText = element.textContent.trim();
         const originalHTML = element.innerHTML;
 
