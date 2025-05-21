@@ -79,7 +79,7 @@
     <?php include 'views/layout/header.php'; ?>
 
     <div class="encabezadoPrincipal">
-        <h1>Bienvenidos a Nuestro Blog</h1>
+        <h1>Nuestro Blog les da la bienvenida</h1>
         <p>Descubre artículos, consejos y recursos para mantenerte siempre informado.</p>
     </div>
 

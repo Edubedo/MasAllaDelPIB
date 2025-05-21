@@ -137,12 +137,9 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
             <table id="postsTable">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Título</th>
                         <th>Categoría</th>
                         <th>Contenido</th>
-                        <th>Referencias</th>
-                        <th>Creador</th>
                         <th>Fecha</th>
                         <th></th>
                     </tr>
@@ -161,36 +158,20 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
                     while ($mostrar = mysqli_fetch_array($result)) {
                     ?>
                         <tr class="postRow">
-                            <td><?php echo $mostrar['Id_posts']; ?></td>
                             <td><?php echo $mostrar['title']; ?></td>
                             <td><?php echo $mostrar['category']; ?></td>
                             <td><?php echo $mostrar['content']; ?></td>
-                            <td>
-                            <?php
-                                $referencias = explode("\n", trim($mostrar['referencia_posts']));
-                                if (!empty($referencias)) {
-                                    foreach ($referencias as $ref) {
-                                        $ref = trim($ref);
-                                        if (!empty($ref)) {
-                                            if (filter_var($ref, FILTER_VALIDATE_URL)) {
-                                                echo '<a class="referencias-links" href="' . htmlspecialchars($ref) . '" target="_blank" style="color:black;">' . htmlspecialchars($ref) . '</a><br>';
-                                            } else {
-                                                echo htmlspecialchars($ref) . '<br>';
-                                            }
-                                        }
-                                    }
-                                } else {
-                                    echo '—';
-                                }
-                            ?>
-                            </td>
-                            <td><?php echo $mostrar['user_creation']; ?></td>
                             <td><?php echo $mostrar['post_date']; ?></td>
                             <td>
                                 <!-- Botón de modificar post -->
-                                <a href="posts-modificar.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn editar">Editar</a>
+                                <a href="posts-modificar.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn editar">
+                                    <i class="fas fa-pencil-alt"></i> Editar
+                                </a>
+                                
                                 <!-- Botón de eliminar publicación -->
-                                <a href="posts-consulta.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn eliminar" data-id="<?php echo $mostrar['Id_posts']; ?>">Eliminar</a>
+                                <a href="posts-consulta.php?id=<?php echo $mostrar['Id_posts']; ?>" class="btn eliminar" data-id="<?php echo $mostrar['Id_posts']; ?>">
+                                    <i class="fas fa-times"></i> Eliminar
+                                </a>
                             </td>
                         </tr>
                     <?php
