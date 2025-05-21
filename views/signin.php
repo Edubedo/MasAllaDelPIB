@@ -63,8 +63,10 @@
                     <p class="fa fa-envelope" style="font-size: 20px; margin-right: 5px; color:rgb(55, 72, 155);"></p>
                     <input type="text" name="email" placeholder="Correo Electrónico" required>
                     <p class="fa fa-lock" style="font-size: 20px; margin-right: 10px; color:rgb(55, 72, 155);"></p>
-                    <input type="password" name="password" id="passwordLogin" placeholder="Contraseña" required>
-                    <p id="toggle-password">Mostrar contraseña</p>
+                    <div style="position: relative;">
+                        <input type="password" name="password" id="passwordLogin" placeholder="Contraseña" required>
+                        <i id="toggle-password" class="fa fa-eye" style="position: absolute; right: 10px; top: 35%; cursor: pointer;"></i>
+                    </div>
                     <?php if (!empty($_SESSION['error_message'])): ?>
                         <?php $tiempo = $_SESSION['bloqueo_restante'] ?? 0; ?>
                         <p id="error-msg" style="font-size:14px;margin-top:2px;color: red;">
@@ -104,13 +106,15 @@
                 </form>
 
                 <!-- Formulario de registro -->
-                <form action="registro-usuarios.php" class="formulario__register" method="POST" enctype="multipart/form-data" onsubmit="return validarPassword()">
+                <form action="registro-usuarios.php" class="formulario__register" method="POST" enctype="multipart/form-data" onsubmit="return validarFormularioRegistro()">
                     <h2 class="fa fa-user" style="font-size: 40px; margin-bottom: 10px; text-align: center; display: block;"></h2>
                     <input type="text" name="fullname" placeholder="Nombre Completo" required>
                     <input type="email" name="email" placeholder="Correo Electrónico" required>
                     <input type="text" name="username" placeholder="Usuario" required>
-                    <input type="password" name="password" id="passwordRegistrarse" placeholder="Contraseña" required oninput="validarFortalezaPassword()">
-                    <p id="toggle-passwordRegistrar">Mostrar contraseña</p>
+                    <div style="position: relative;">
+                        <input type="password" name="password" id="passwordRegistrarse" placeholder="Contraseña" required oninput="validarFortalezaPassword()">
+                        <i id="toggle-passwordRegistrar" class="fa fa-eye" style="position: absolute; right: 10px; top: 35%; cursor: pointer; color:rgb(55, 72, 155);"></i>
+                    </div>
                     <div id="password-strength">
                         <p style="font-weight: bold;" id="length">✓ Al menos 8 caracteres</p>
                         <p style="font-weight: bold;" id="uppercase">✓ Al menos una mayúscula</p>
@@ -118,19 +122,35 @@
                         <p style="font-weight: bold;" id="special">✓ Al menos un carácter especial</p>
                     </div>
                     <input type="password" id="confirm_password" placeholder="Confirmar Contraseña" required>
-                    <!-- Reemplaza el input de archivo actual por este código -->
                     <div class="custom-file-input">
                         <label for="foto-perfil-input">
                             <i class="fas fa-camera" style="margin-right: 5px;"></i>
                             <span id="file-name">Selecciona foto de perfil</span>
                         </label>
                         <input type="file" id="foto-perfil-input" name="foto_perfil" accept="image/*" required>
-                        <!-- Vista previa de la imagen seleccionada -->
                         <div id="preview-container" style="display: none; margin-top: 10px;">
                             <img id="preview-image" style="max-width: 100px; max-height: 100px; border-radius: 50%;">
                         </div>
                     </div>
-                    <button type="submit">Registrate</button>
+
+                    
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="terminos" required>
+                        <label for="terminos">
+                            He leído y acepto los <a href="/views/layout/terminosycondiciones.php" target="_blank">Términos y Condiciones</a>
+                        </label>
+                    </div>
+
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="privacidad" required>
+                        <label for="privacidad">
+                            He leído y acepto las <a href="/views/layout/politicasprivacidad.php" target="_blank">Políticas de Privacidad</a>
+                        </label>
+                    </div>
+
+
+
+                    <button type="submit" style="margin-top: 15px;">Regístrate</button>
                 </form>
             </div>
         </div>

@@ -217,14 +217,17 @@ body {
 }
 
 .comentario img {
-    width: 50px;
-    height: 50px;
+    width: 10rem;
+    height: 10rem;
     border-radius: 50%;
     object-fit: cover;
+    align-items: center;
+    margin: 0 1rem 0 0;
 }
 
 .comentario-contenido {
     flex: 1;
+    font-size: 2rem;
 }
 
 .comentario-contenido p {
@@ -233,7 +236,7 @@ body {
 
 .comentario-contenido strong {
     color: #007bff;
-    font-size: 1rem;
+    font-size: 2.5rem;
 }
 
 .comentario-contenido .fecha {
@@ -269,7 +272,7 @@ form button:hover {
 .no-comentarios {
     text-align: center;
     color: #666;
-    font-size: 1rem;
+    font-size: 2rem;
 }
 
 .btn-regresar{

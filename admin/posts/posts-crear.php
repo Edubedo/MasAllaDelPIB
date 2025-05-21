@@ -195,16 +195,23 @@ if (isset($_POST["crear_post"])) {
     <link rel="stylesheet" href="css/crear.css">
     <script src="/js/language.js"></script>
     <script src="/js/translations.js"></script>
+    <link rel="stylesheet" href="../../views/css/navbar.css">
+
 </head>
 
 <body>
+    <?php 
+        include ('../../views/layout/header.php')
+    ?>
+
     <div class="encabezado">
         <h1>Crear nueva publicación</h1>
     </div>
+    
     <form id="crearForm" action="" method="post" enctype="multipart/form-data">
         <div class="contenedor-general">
             <div class="izquierdo">
-                <h2>Configuración</h2>
+                <h2><i class="fas fa-cog"></i>Configuración</h2>
                 <div class="categoria_div">
                     <label for="categoria" class="texto-a-traducir">Categoría:</label>
                     <select name="categoria_posts" id="categoria" class="texto-a-traducir" required>

@@ -33,7 +33,7 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de usuarios</title>
+    <title>Panel de control Usuarios</title>
 
     <link rel="icon" href="../../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/consulta.css">

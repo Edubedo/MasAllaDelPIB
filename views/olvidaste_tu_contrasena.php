@@ -32,12 +32,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cabeceras = "From: no-responder@masalladelpib.com";
 
         // Enviar código por correo usando SendGrid
+        // Enviar código por correo usando SendGrid
         $emailSendgrid = new \SendGrid\Mail\Mail();
         $emailSendgrid->setFrom("masalladelpib1@gmail.com", "MasAllaDelPib");
-        $emailSendgrid->setSubject("Código de recuperación de contraseña");
+        $emailSendgrid->setSubject("MasAlláDelPib - Código de recuperación de contraseña");
         $emailSendgrid->addTo($email);
-        $emailSendgrid->addContent("text/plain", "Tu código de verificación es: $codigo");
-        $emailSendgrid->addContent("text/html", "<strong>Tu código de verificación es: $codigo</strong>");
+        $emailSendgrid->addContent(
+            "text/plain",
+            "Tu código de verificación es: $codigo"
+        );
+        $emailSendgrid->addContent(
+            "text/html",
+            "<p><strong>Tu código de verificación es: $codigo</strong></p>
+            <img src='https://www.masalladelpib.site/assets/img/logo.png' alt='Logo MasAllaDelPib' style='width:200px;'>"
+        );
+
 
 
         //llama a la variable de .env 
@@ -125,7 +134,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <?php endif; ?>
 
                     <input type="email" name="email" placeholder="Correo Electrónico" required>
-                    <button type="submit">Enviar</button>
+                    <div class="botones-contenedor">
+                        <button onclick="window.history.back()" class="btn-regresar">
+                            Regresar
+                        </button>
+                        <button class="boton-enviar" type="submit">Enviar</button>
+                    </div>
                 </form>
             </div>
         </div>

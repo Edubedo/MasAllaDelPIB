@@ -227,6 +227,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="css/crear.css">
     <script src="/js/language.js"></script>
     <script src="/js/translations.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 <body>
     <div class="container">
@@ -279,7 +281,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     <div class="cambiarContrasena-div">
                         <label for="email">Contraseña:</label>
-                        <a href="../../views/olvidaste_tu_contrasena.php"><p class="cambiarContrasena">Cambiar contraseña</p></a>
+                        <button type="button" class="btn-cambiar-contrasena" onclick="window.location.href='../../views/olvidaste_tu_contrasena.php'">
+                            Cambiar contraseña
+                        </button>
                     </div>
 
                     <div class="botones-div">
@@ -287,10 +291,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         if ($idtypeuser == 1) {
                             echo '<a href="panel-usuarios.php" class="btn-editar-perfil">Regresar</a>';
                         } elseif ($idtypeuser == 2) {
-                            echo '<a href="posts-consulta.php?id=' . $iduser . '" class="btn-editar-perfil">Regresar</a>';
+                            echo '<a href="posts-consulta.php?id=' . $iduser . '" class="btn-editar-perfil"><i class="fas fa-arrow-left"></i> Regresar</a>';
                         }
                         ?>
-                        <button type="submit" name="editar-perfil" style="width: 96%;">Modificar perfil</button>
+                        <button type="submit" name="editar-perfil" style="width: 75%;"><i class="fas fa-pen" style="margin-right: 0.5rem;"></i>Modificar perfil</button>
                     </div>
                 </div>
             </form>
