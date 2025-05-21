@@ -118,6 +118,11 @@ function translatePage(targetLang) {
         ...document.querySelectorAll('.texto')
     ];
 
+    console.log('elementsToTranslate:', elementsToTranslate);
+    elementsToTranslate.forEach((el, i) => {
+        if (!el) console.warn('Elemento null en posición', i);
+    });
+
     // Filtrar elementos que tienen texto
     const elementsWithText = elementsToTranslate.filter(el => el && el.textContent && el.textContent.trim());
 
