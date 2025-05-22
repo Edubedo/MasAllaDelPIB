@@ -107,6 +107,13 @@
 
                 <!-- Formulario de registro -->
                 <form action="registro-usuarios.php" class="formulario__register" method="POST" enctype="multipart/form-data" onsubmit="return validarFormularioRegistro()">
+                    <?php if (!empty($_SESSION['error_message'])): ?>
+                        <p style="color: red; font-size: 14px; margin-top: 5px;">
+                            <?= $_SESSION['error_message'] ?>
+                        </p>
+                        <?php unset($_SESSION['error_message']); ?>
+                    <?php endif; ?>
+
                     <h2 class="fa fa-user" style="font-size: 40px; margin-bottom: 10px; text-align: center; display: block;"></h2>
                     <input type="text" name="fullname" placeholder="Nombre Completo" required>
                     <input type="email" name="email" placeholder="Correo Electrónico" required>
