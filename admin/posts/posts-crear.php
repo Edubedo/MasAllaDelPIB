@@ -8,16 +8,10 @@ function isGDExtensionAvailable()
     return extension_loaded('gd');
 }
 
-<<<<<<< HEAD
-function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 1200, $calidad = 90) {
-    // Si GD no está disponible, no hacemos nada
-    if (!isGDExtensionAvailable()) {
-=======
 function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad = 85)
 {
     if (!extension_loaded('gd')) {
         error_log("La extensión GD no está habilitada.");
->>>>>>> 6802cae64ba8bf141d1f7aed0a2871e1cea6e00f
         return false;
     }
 
@@ -53,8 +47,6 @@ function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad 
             return false;
     }
 
-<<<<<<< HEAD
-=======
     if (!$imagen) {
         error_log("No se pudo crear la imagen desde el archivo: $rutaOriginal");
         return false;
@@ -62,7 +54,6 @@ function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad 
 
     // Redimensionar si es necesario
     $nuevaImagen = $imagen;
->>>>>>> 6802cae64ba8bf141d1f7aed0a2871e1cea6e00f
     if ($ancho > $maxAncho) {
         $nuevoAncho = $maxAncho;
         $nuevoAlto = max(1, (int)(($maxAncho / $ancho) * $alto));
@@ -70,10 +61,7 @@ function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad 
 
         // Mantener transparencia para PNG y WebP
         if ($tipo == 'image/png' || $tipo == 'image/webp') {
-<<<<<<< HEAD
-=======
             imagealphablending($nuevaImagen, false);
->>>>>>> 6802cae64ba8bf141d1f7aed0a2871e1cea6e00f
             imagesavealpha($nuevaImagen, true);
         }
 
@@ -82,22 +70,8 @@ function comprimirImagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad 
 
     }
 
-<<<<<<< HEAD
-    switch ($tipo) {
-        case 'image/jpeg':
-            imagejpeg($nuevaImagen, $rutaDestino, $calidad);
-            break;
-        case 'image/png':
-            imagepng($nuevaImagen, $rutaDestino, 0);
-            break;
-        case 'image/webp':
-            imagewebp($nuevaImagen, $rutaDestino, $calidad);
-            break;
-    }
-=======
     // Guardar la imagen en formato WebP
     $resultado = imagewebp($nuevaImagen, $rutaDestino, $calidad); // calidad 0-100
->>>>>>> 6802cae64ba8bf141d1f7aed0a2871e1cea6e00f
 
     // Liberar recursos
     imagedestroy($nuevaImagen);
