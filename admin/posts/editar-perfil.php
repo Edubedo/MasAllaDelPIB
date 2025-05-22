@@ -23,7 +23,8 @@ $idtypeuser = $_SESSION['id_type_user'];
 $error_password = ""; // 👈 Declarada fuera del POST
 
 // Función para comprimir imágen
-function comprimir_imagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad = 85) {
+function comprimir_imagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad = 85)
+{
     if (!extension_loaded('gd')) {
         error_log("La extensión GD no está habilitada.");
         return false;
@@ -82,7 +83,7 @@ function comprimir_imagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad
         imagecopyresampled($nuevaImagen, $imagen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
         imagedestroy($imagen); // Liberar la imagen original
 
-    } 
+    }
 
     // Asegurarse de que el archivo de destino tenga la extensión .webp
     $rutaDestino = preg_replace('/\.[a-zA-Z]+$/', '.webp', $rutaDestino);
@@ -104,14 +105,32 @@ function comprimir_imagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $updates = [];
 
-    if (!empty($_POST['username'])) {
+    // Fetch current values from the database
+    $sql_current = "SELECT username, email, foto_perfil FROM users WHERE iduser = $id";
+    $result_current = $conexion->query($sql_current);
+    $current_data = $result_current->fetch_assoc();
+
+    // Check for changes
+    $changes_made = false;
+
+    if (!empty($_POST['username']) && $_POST['username'] !== $current_data['username']) {
         $new_username = $_POST['username'];
         $updates[] = "username = '$new_username'";
+        $changes_made = true;
     }
 
-    if (!empty($_POST['email'])) {
+    if (!empty($_POST['email']) && $_POST['email'] !== $current_data['email']) {
         $new_email = $_POST['email'];
         $updates[] = "email = '$new_email'";
+        $changes_made = true;
+    }
+
+    // Check for photo change
+    if (!empty($_FILES['foto']['name'])) {
+        $foto_nombre = time() . '_' . pathinfo($_FILES['foto']['name'], PATHINFO_FILENAME) . '.webp';
+        if ($foto_nombre !== $current_data['foto_perfil']) {
+            $changes_made = true;
+        }
     }
 
     // Verificar contraseña
@@ -132,52 +151,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    // Subir y comprimir imagen
-    if (!empty($_FILES['foto']['name'])) {
-        $foto_nombre = time() . '_' . pathinfo($_FILES['foto']['name'], PATHINFO_FILENAME) . '.webp';
-        $ruta_guardado = '../../views/uploads/' . $foto_nombre;
-
-        $extensiones_validas = ['jpg', 'jpeg', 'png', 'gif'];
-        $extension = strtolower(pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION));
-
-        if (in_array($extension, $extensiones_validas)) {
-            $sql_foto_actual = "SELECT foto_perfil FROM users WHERE iduser = $id";
-            $result_foto = $conexion->query($sql_foto_actual);
-            $foto_actual = $result_foto->fetch_assoc()['foto_perfil'];
-
-            if (!empty($foto_actual)) {
-                $ruta_foto_anterior = '../../views/uploads/' . $foto_actual;
-                if (file_exists($ruta_foto_anterior)) {
-                    unlink($ruta_foto_anterior);
-                }
-            }
-
-            if (comprimir_imagen($_FILES['foto']['tmp_name'], $ruta_guardado, 300, 85)) {
-                $updates[] = "foto_perfil = '$foto_nombre'";
-                if ($id == $iduser) {
-                    $_SESSION['foto_perfil'] = $foto_nombre;
-                }
-            } else {
-                $_SESSION['error_message'] = "❌ Error al subir la imagen.";
-                header("Location: editar-perfil.php?id=$id");
-                exit();
-            }
-        } else {
-            $_SESSION['error_message'] = "❌ Formato de imagen no permitido.";
-            header("Location: editar-perfil.php?id=$id");
-            exit();
-        }
+    if (empty($_POST['username']) || empty($_POST['email'])) {
+        $_SESSION['error_message'] = "❌ No puede dejar campos vacíos.";
+        header("Location: editar-perfil.php?id=$id");
+        exit();
     }
 
-    if (!empty($updates)) {
-        // Obtener el nombre anterior si se va a cambiar el username
-        if (!empty($_POST['username'])) {
-            $sql_old_username = "SELECT username FROM users WHERE iduser = $id";
-            $result = $conexion->query($sql_old_username);
-            $row = $result->fetch_assoc();
-            $old_username = $row['username'];
-        }
-
+    if ($changes_made) {
+        // Se ejecuta la consulta de actualización
         $sql_update = "UPDATE users SET " . implode(", ", $updates) . " WHERE iduser = $id";
 
         if (!$conexion->query($sql_update)) {
@@ -186,7 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
 
-        // Actualizar posts si cambió el nombre de usuario
+        // Se actualizan los posts si cambió el nombre de usuario
         if (!empty($_POST['username']) && isset($old_username)) {
             $sql_update_posts = "UPDATE posts SET user_creation = '$new_username' WHERE user_creation = '$old_username'";
             if (!$conexion->query($sql_update_posts)) {
@@ -213,11 +194,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 }
+
 ?>
 
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -230,22 +213,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
+
 <body>
-    <?php 
-        /*include(__DIR__ . '/../../views/layout/header.php');*/
+    <?php
+    /*include(__DIR__ . '/../../views/layout/header.php');*/
     ?>
     <div class="container">
         <div class="encabezado">
             <h1>Modificación de usuario</h1>
         </div>
 
+        <?php
+        // Display error message if set
+        if (isset($_SESSION['error_message'])): ?>
+            <div class="error-message">
+                <?= $_SESSION['error_message'];
+                unset($_SESSION['error_message']); ?>
+            </div>
+        <?php endif;
+        ?>
+
         <!-- Mostrar mensaje de éxito -->
         <?php if (isset($_SESSION['success_message'])): ?>
             <div class="success-message">
-                <?= $_SESSION['success_message']; unset($_SESSION['success_message']); ?>
+                <?= $_SESSION['success_message'];
+                unset($_SESSION['success_message']); ?>
             </div>
         <?php endif; ?>
-        
+
         <!-- Mostrar error de contraseña -->
         <?php if (!empty($error_password)) : ?>
             <div class="error-message">
@@ -268,7 +263,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="email" id="email" name="email" value="<?= $datos->email ?>">
                     </div>
 
-                    
+
                     <!-- Mostrar foto actual -->
                     <?php if (!empty($datos->foto_perfil)) : ?>
                         <div class="foto-actual">
@@ -304,4 +299,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php } ?>
     </div>
 </body>
+
 </html>
