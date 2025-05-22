@@ -123,9 +123,15 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
                             <td><?php echo $mostrar['email']; ?></td>
                             <td>
                                 <!-- Botón de modificar usuario -->
-                                <a href="editar-perfil.php?id=<?php echo $mostrar['iduser']; ?>" class="btn editar">Editar</a>
-                                <!-- Botón de eliminar usuario -->
-                                <a href="panel-usuarios.php?id=<?php echo $mostrar['iduser']; ?>" class="btn eliminar">Eliminar</a>
+                                <a href="editar-perfil.php?id=<?php echo $mostrar['iduser']; ?>" class="btn editar">
+                                    <i class="fas fa-edit"></i> Editar
+                                </a>
+
+                                <!-- Botón de eliminar usuario con ícono -->
+                                <a href="panel-usuarios.php?id=<?php echo $mostrar['iduser']; ?>" class="btn eliminar">
+                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                </a>
+
                             </td>
                         </tr>
                     <?php
@@ -142,8 +148,13 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
         <div class="deletemodal-content">
             <h3>¿Estás seguro que deseas eliminar este usuario?</h3>
             <div class="deletemodal-buttons">
-                <button id="confirmDelete">Eliminar</button>
-                <button id="cancelDelete">Cancelar</button>
+            <button id="confirmDelete">
+                <i class="fas fa-trash-alt"></i> Eliminar
+            </button>
+            <button id="cancelDelete">
+                <i class="fas fa-times-circle"></i> Cancelar
+            </button>
+
             </div>
         </div>
     </div>

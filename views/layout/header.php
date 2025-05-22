@@ -109,10 +109,10 @@ $rutaImagen = !empty($foto_perfil) ? "/views/uploads/" . $foto_perfil : "/views/
                     </div>
                     <div class="botones-pop">
                         <a href="/admin/posts/editar-perfil.php?id=<?= $iduser ?>">
-                            <button type="button">Editar perfil</button>
+                            <button type="button"><i class="fas fa-user-edit"></i> Editar perfil</button>
                         </a>
                         <a href="/config/logout.php">
-                            <button type="button">Cerrar sesión</button>
+                            <button type="button"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</button>
                         </a>
                     </div>
                 </div>

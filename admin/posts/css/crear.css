@@ -387,6 +387,32 @@ button:hover {
             background-color: #007bff;
 }
 
+.boton-div a.btn-editar-publicacion,
+.boton-div button[type="submit"] {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    background: #25384c;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.boton-div a.btn-editar-publicacion:hover,
+.boton-div button[type="submit"]:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+    background: #25384c;
+}
+
+
 
 .btn-cambiar-contrasena:hover {
     background-color: #0056b3;
@@ -477,6 +503,15 @@ button:hover {
         width: 95%;
         padding: 0.8rem;
         font-size: 1rem;
+    }
+    .category-menu {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: stretch;
+    }
+
+    .category-menu select {
+        width: 100%;
     }
 
     .referencia-input-group {

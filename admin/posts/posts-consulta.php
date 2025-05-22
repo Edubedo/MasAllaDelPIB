@@ -79,8 +79,11 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
     <div id="overlay" style="display: <?php echo $_SESSION["modal_mostrado"] ? 'none' : 'block'; ?>;"></div>
 
     <section id="modal" style="display: <?php echo $_SESSION["modal_mostrado"] ? 'none' : 'block'; ?>;">
-        <h2 class="titulo-modal">¡Bienvenido al Panel de <?php echo $idtypeuser == 2 ? htmlspecialchars("Autor") : htmlspecialchars("Administrador"); ?>, <?php echo htmlspecialchars($username); ?>!</h2>
-        <button id="botonContinuar">Continuar</button>
+        <h2 class="titulo-modal">¡Te damos la bienvenida al Panel de <?php echo $idtypeuser == 2 ? htmlspecialchars("Autor") : htmlspecialchars("Administrador"); ?>, <?php echo htmlspecialchars($username); ?>!</h2>
+        <button id="botonContinuar">
+            <i class="fas fa-arrow-right"></i> Continuar
+        </button>
+
     </section>
 
 
@@ -114,7 +117,7 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
             <!-- Menú de Categorías -->
             <div class="category-menu">
                 <select class="categories" id="categoryFilter">
-                    <option value="" disabled selected hidden>Categorías</option>
+                    <option value="" disabled selected hidden><Categorías class="fas fa-layer-group">Categorías</option>
                     <option value="">Todas las categorías</option>
                     <?php
                     // Obtener categorías desde la base de datos
@@ -239,8 +242,13 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
         <div class="deletemodal-content">
             <h3>¿Estás seguro que deseas eliminar esta publicación?</h3>
             <div class="deletemodal-buttons">
-                <button id="confirmDelete">Eliminar</button>
-                <button id="cancelDelete">Cancelar</button>
+            <button id="confirmDelete">
+                <i class="fas fa-trash-alt"></i> Eliminar
+            </button>
+            <button id="cancelDelete">
+                <i class="fas fa-times-circle"></i> Cancelar
+            </button>
+
             </div>
         </div>
     </div>
@@ -250,8 +258,13 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
         <div class="deletemodal-content">
             <h3 id="statusModalTitle">¿Estás seguro que deseas cambiar el estado de esta publicación?</h3>
             <div class="deletemodal-buttons">
-                <button id="confirmStatus">Confirmar</button>
-                <button id="cancelStatus">Cancelar</button>
+            <button id="confirmStatus">
+                <i class="fas fa-check-circle"></i> Confirmar
+            </button>
+            <button id="cancelStatus">
+                <i class="fas fa-times-circle"></i> Cancelar
+            </button>
+
             </div>
         </div>
     </div>
