@@ -59,6 +59,13 @@
             <!-- Formularios de login y registro -->
             <div class="contenedor__Login-register">
                 <form action="../config/validacionLogin.php" method="POST" class="formulario__login">
+                    <?php if (!empty($_SESSION['success_message'])): ?>
+                        <p style="color: green; font-size: 18px; margin-top: 0px;">
+                            <?= $_SESSION['success_message'] ?>
+                        </p>
+                        <?php unset($_SESSION['success_message']); ?>
+                    <?php endif; ?>
+
                     <h2 class="fa fa-user" style="font-size: 40px; margin-bottom: 30px; text-align: center; display: block;"></h2>
                     <p class="fa fa-envelope" style="font-size: 20px; margin-right: 5px; color:rgb(55, 72, 155);"></p>
                     <input type="text" name="email" placeholder="Correo Electrónico" required>
