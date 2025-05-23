@@ -86,9 +86,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="text" name="codigo" placeholder="Código de verificación" required>
                     <div class="botones-contenedor">
                         <button onclick="window.history.back()" class="btn-regresar">
-                            Regresar
+                            <i class="fas fa-arrow-left"></i> Regresar
                         </button>
-                        <button class="btn-verificar" type="submit">Verificar</button>
+                        <button class="boton-enviar" type="submit">
+                            Enviar <i class="fas fa-paper-plane"></i>
+                        </button>
                     </div>
                 </form>
             </div>
