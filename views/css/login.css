@@ -281,6 +281,16 @@ main {
     text-decoration: none;
 }
 
+#btn__registrarse i {
+    margin-right: 8px;
+
+}
+
+button[type="submit"] i {
+  margin-right: 6px;
+}
+    
+
 /* Diseño Responsivo */
 @media screen and (max-width: 850px) {
     main {

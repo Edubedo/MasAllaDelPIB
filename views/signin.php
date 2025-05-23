@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<?php session_start(); 
+// Si ya hay sesión iniciada con tipo de usuario 1 (admin) o 2 (autor), redirige
+if (isset($_SESSION['id_type_user']) && in_array($_SESSION['id_type_user'], [1, 2])) {
+    header("Location: /index.php"); // o a donde prefieras redirigir
+    exit;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -53,7 +59,9 @@
                     </a>
                     <h3>¿Ya tienes una cuenta aquí?</h3>
                     <p>Inicia sesión para entrar en la página</p>
-                    <button id="btn__Iniciar-Sesión">Iniciar Sesión</button>
+                    <button id="btn__Iniciar-Sesión">
+                      <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                    </button>
                 </div>
                 <div class="caja__tracera-register">
                     <a href="/index.php" class="nav__logo">
@@ -64,7 +72,9 @@
                     </a>
                     <h3>¿Aún no tienes una cuenta?</h3>
                     <p>Regístrate para que puedas iniciar sesión</p>
-                    <button id="btn__registrarse">Regístrate</button>
+                    <button id="btn__registrarse">
+                      <i class="fas fa-user-plus"></i> Regístrate
+                    </button>
                 </div>
             </div>
 
@@ -124,7 +134,10 @@
                     <?php endif; ?>
 
                     <a href="olvidaste_tu_contrasena.php"><p style="color: blue; font-size: 14px;">¿Olvidaste tu contraseña?</p></a>
-                    <button type="submit">Inicia  sesión</button>
+                    <button type="submit">
+                      <i class="fas fa-sign-in-alt"></i> Inicia sesión
+                    </button>
+
                 </form>
 
                 <!-- Formulario de registro -->
@@ -177,9 +190,10 @@
                         </label>
                     </div>
 
+                    <button type="submit" style="margin-top: 15px;">
+                      <i class="fas fa-user-plus" style="margin-right: 6px;"></i> Regístrate
+                    </button>
 
-
-                    <button type="submit" style="margin-top: 15px;">Regístrate</button>
                 </form>
             </div>
         </div>
