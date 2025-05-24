@@ -92,9 +92,11 @@ if (isset($_POST['submit_comment'])) {
 
     <div class="noticia">
         <div class="titulo">
-            <button onclick="window.history.back()" class="btn-regresar">
-                ← Regresar
-            </button>
+            <a href="/views/publicaciones.php">
+                <button class="btn-regresar">
+                    ←   Publicaciones
+                </button>
+            </a>
             <h1><?php echo htmlspecialchars($post['title']); ?></h1>
 
             <div class="datos">

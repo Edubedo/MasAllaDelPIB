@@ -25,7 +25,7 @@ if (!$comment) {
     exit('Comentario no encontrado');
 }
 
-if ($comment['user_creation'] !== $username && $idtypeuser != 2) {
+if ($comment['user_creation'] !== $username && $idtypeuser != 1) {
     exit('No autorizado');
 }
 
