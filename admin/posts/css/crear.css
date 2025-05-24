@@ -17,6 +17,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     margin-top: 5rem;
+    
 }
 
 .encabezado{
@@ -27,7 +28,6 @@ body {
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    margin-bottom: 2rem;
     position: relative;
 }
 
@@ -219,9 +219,9 @@ button:hover {
     background-color: #d4edda;
     border: 0.2rem solid #c3e6cb; 
     padding: 1rem; 
-    margin-bottom: 2rem; 
     font-size: 1.5rem;
     text-align: center;
+
 }
 
 .error-message {
