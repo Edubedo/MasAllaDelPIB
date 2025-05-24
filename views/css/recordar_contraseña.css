@@ -171,7 +171,7 @@ main {
     margin-bottom: 1.5rem;    
 }
 
-.btn-regresar:hover, .boton-enviar:hover, .btn-verificar:hover {|
+.btn-regresar:hover, .boton-enviar:hover, .btn-verificar:hover {
     background-color: #0056b3;
     transform: scale(1.05);
 }
@@ -181,6 +181,45 @@ main {
     justify-content: space-between;
     margin-top: 10px;
 }
+.btn-regresar i,
+.boton-enviar i {
+    margin-right: 6px;
+}
+.input-con-icono {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 16px;
+    background: #f2f2f2;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+.input-con-icono i.fa-lock {
+    color: rgb(55, 72, 155);
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.input-con-icono input {
+    border: none;
+    background: transparent;
+    flex: 1;
+    padding: 10px 0;
+    font-size: 16px;
+    outline: none;
+    color: #000;
+}
+
+#toggle-passwordNueva {
+    position: absolute;
+    right: 10px;
+    color: rgb(55, 72, 155);
+    font-size: 16px;
+    cursor: pointer;
+}
+
 
 
 /* Diseño Responsivo */
@@ -230,3 +269,37 @@ main {
         margin-top: 30px; /* Reducción de espacio para mejorar en pantallas pequeñas */
     }
 }
+
+@media screen and (max-width: 600px) {
+    .btn-regresar,
+    .boton-enviar,
+    .btn-verificar {
+        font-size: 8px;
+        padding: 4px 6px;
+        width: 100%;
+        max-width: 120px;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .btn-regresar,
+    .boton-enviar,
+    .btn-verificar {
+        font-size: 4px;
+        justify-content: center;
+        padding: 4px 6px;
+        width: 100%;
+        max-width: 60px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: auto;
+    }
+}
+
+
+
+
+

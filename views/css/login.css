@@ -47,6 +47,7 @@ main {
 .caja__tracera {
     width: 100%;
     padding: 10px 20px;
+    max-height: 380px;
     display: flex;
     justify-content: center;
     backdrop-filter: blur(1px); /* Agregando un mayor desenfoque para mejor visibilidad */
@@ -143,6 +144,33 @@ main {
     outline: none;
     border-radius: 5px; /* Bordes redondeados en botón */
 }
+
+.input-icon-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    padding: 0 10px;
+    background-color: #fff;
+}
+
+.input-icon-container i {
+    color: rgb(55, 72, 155);
+    margin-right: 10px;
+    font-size: 22px;
+}
+
+.input-icon-container input {
+    border: none;
+    outline: none;
+    padding: 10px;
+    width: 100%;
+    font-size: 14px;
+    background-color: transparent;
+}
+
 /* Estilo para el input de archivo personalizado */
 .custom-file-input {
     position: relative;
@@ -252,6 +280,16 @@ main {
 .checkbox-container a:hover {
     text-decoration: none;
 }
+
+#btn__registrarse i {
+    margin-right: 8px;
+
+}
+
+button[type="submit"] i {
+  margin-right: 6px;
+}
+    
 
 /* Diseño Responsivo */
 @media screen and (max-width: 850px) {

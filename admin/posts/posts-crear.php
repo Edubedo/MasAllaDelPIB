@@ -166,6 +166,7 @@ if (isset($_POST["crear_post"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear publicación</title>
     <link rel="icon" href="../../assets/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/crear.css">
     <script src="/js/language.js"></script>
     <script src="/js/translations.js"></script>
@@ -174,9 +175,7 @@ if (isset($_POST["crear_post"])) {
 </head>
 
 <body>
-    <?php
-    include('../../views/layout/header.php')
-    ?>
+    
 
     <div class="encabezado">
         <h1>Crear nueva publicación</h1>
@@ -185,9 +184,9 @@ if (isset($_POST["crear_post"])) {
     <form id="crearForm" action="" method="post" enctype="multipart/form-data">
         <div class="contenedor-general">
             <div class="izquierdo">
-                <h2><i class="fas fa-cog"></i>Configuración</h2>
+                <h2><i class="fas fa-cog"></i> Configuración</h2>
                 <div class="categoria_div">
-                    <label for="categoria" class="texto-a-traducir">Categoría:</label>
+                    <label for="categoria"><i class="fas fa-tags"></i> Categoría:</label>
                     <select name="categoria_posts" id="categoria" class="texto-a-traducir" required>
                         <option value="" disabled selected hidden>Categorías</option>
                         <option value="crecimiento-economico">Crecimiento Económico</option>
@@ -196,42 +195,42 @@ if (isset($_POST["crear_post"])) {
                     </select>
                 </div>
                 <div class="fecha_div">
-                    <label for="fecha_publicacion">Fecha de Publicación:</label>
+                    <label for="fecha_publicacion"><i class="fas fa-calendar-alt"></i> Fecha de Publicación:</label>
                     <input class="fecha" type="text" id="fecha_publicacion" name="fecha_publicacion_posts" readonly>
                 </div>
                 <div class="autor_div">
                     <?php if (isset($_SESSION['username'])): ?>
-                        <label for="usuario">Usuario:</label>
+                        <label for="usuario"><i class="fas fa-user"></i> Usuario:</label>
                         <span class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
                     <?php endif; ?>
                 </div>
                 <div class="boton-div">
-                    <a href="posts-consulta.php" class="btn-editar-publicacion">Regresar</a>
-                    <button type="submit" name="crear_post">Guardar Publicación</button>
+                    <a href="posts-consulta.php" class="btn-editar-publicacion"><i class="fas fa-arrow-left"></i> Regresar</a>
+                    <button type="submit" name="crear_post"><i class="fas fa-save"></i> Guardar Publicación</button>
                 </div>
             </div>
             <div class="derecho">
                 <div class="titulodelposts">
-                    <label for="titulo">Título del post:</label>
+                    <label for="titulo"><i class="fas fa-heading"></i> Título del post:</label>
                     <input type="text" id="titulo" name="titulo_posts" required>
                 </div>
                 <div class="contenidodelposts">
-                    <label for="contenido">Contenido:</label>
+                    <label for="contenido"><i class="fas fa-align-left"></i> Contenido:</label>
                     <textarea id="contenido" name="contenido_posts" rows="6" required></textarea>
                 </div>
                 <div class="imagendelpost">
-                    <label for="imagen">Imagen:</label>
+                    <label for="imagen"><i class="fas fa-image"></i> Imagen:</label>
                     <input type="file" id="imagen" name="imagen_posts" accept="image/*" required>
                 </div>
                 <div class="referenciadelpost">
                     <div style="display: flex; align-items: center; gap: 1rem;">
-                        <label for="referencias">Referencias:</label>
+                        <label for="referencias"><i class="fas fa-link"></i> Referencias:</label>
                         <p style="margin: 0;">(Escribe un link por linea)</p>
                     </div>
                     <div id="contenedorReferencias">
                         <input class="input-referencia" type="text" name="referencias_post[]" placeholder="Escribe una referencia" required>
                     </div>
-                    <button class="boton-agregar-referencia" type="button" onclick="agregarReferencia()">Agregar otra referencia</button>
+                        <button class="boton-agregar-referencia" type="button" onclick="agregarReferencia()"><i class="fas fa-plus-circle"></i> Agregar otra referencia</button>
                 </div>
             </div>
         </div>

@@ -21,6 +21,14 @@ main {
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
 }
+.category-menu {
+    font-size: 0.8rem;
+    padding: 4px 6px;
+    width: 8rem;
+    min-width: 150px;
+    margin-right: 8px;
+    border-radius: 6px;
+}
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

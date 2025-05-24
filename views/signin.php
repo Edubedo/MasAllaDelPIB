@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<?php session_start(); 
+// Si ya hay sesión iniciada con tipo de usuario 1 (admin) o 2 (autor), redirige
+if (isset($_SESSION['id_type_user']) && in_array($_SESSION['id_type_user'], [1, 2])) {
+    header("Location: /index.php"); // o a donde prefieras redirigir
+    exit;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -45,14 +51,30 @@
         <div class="contenedor__todo">
             <div class="caja__tracera">
                 <div class="caja__tracera-login">
+                    <a href="/index.php" class="nav__logo">
+                            <span class="nav__logo-name" style="margin-left: 30px;">
+                                <img src="/assets/img/logo.png" alt="imagen logo empresa" width="50" height="40">
+                                <h2 style="color:white;">Mas Allá Del PIB</h2>
+                            </span>
+                    </a>
                     <h3>¿Ya tienes una cuenta aquí?</h3>
                     <p>Inicia sesión para entrar en la página</p>
-                    <button id="btn__Iniciar-Sesión">Iniciar Sesión</button>
+                    <button id="btn__Iniciar-Sesión">
+                      <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                    </button>
                 </div>
                 <div class="caja__tracera-register">
+                    <a href="/index.php" class="nav__logo">
+                        <span class="nav__logo-name" style="margin-left: 30px;">
+                            <img src="/assets/img/logo.png" alt="imagen logo empresa" width="50" height="40">
+                            <h2 style="color:white;">Mas Allá Del PIB</h2>
+                        </span>
+                    </a>
                     <h3>¿Aún no tienes una cuenta?</h3>
                     <p>Regístrate para que puedas iniciar sesión</p>
-                    <button id="btn__registrarse">Regístrate</button>
+                    <button id="btn__registrarse">
+                      <i class="fas fa-user-plus"></i> Regístrate
+                    </button>
                 </div>
             </div>
 
@@ -67,13 +89,16 @@
                     <?php endif; ?>
 
                     <h2 class="fa fa-user" style="font-size: 40px; margin-bottom: 30px; text-align: center; display: block;"></h2>
-                    <p class="fa fa-envelope" style="font-size: 20px; margin-right: 5px; color:rgb(55, 72, 155);"></p>
-                    <input type="text" name="email" placeholder="Correo Electrónico" required>
-                    <p class="fa fa-lock" style="font-size: 20px; margin-right: 10px; color:rgb(55, 72, 155);"></p>
-                    <div style="position: relative;">
-                        <input type="password" name="password" id="passwordLogin" placeholder="Contraseña" required>
-                        <i id="toggle-password" class="fa fa-eye" style="position: absolute; right: 10px; top: 35%; cursor: pointer;"></i>
+                    <div class="input-icon-container">
+                        <i class="fa fa-envelope"></i>
+                        <input type="text" name="email" placeholder="Correo Electrónico" required>
                     </div>
+                    <div class="input-icon-container" style="position: relative;">
+                        <i class="fa fa-lock"></i>
+                        <input type="password" name="password" id="passwordLogin" placeholder="Contraseña" required>
+                        <i id="toggle-password" class="fa fa-eye" style="position: absolute; right: 10px; cursor: pointer;"></i>
+                    </div>
+
                     <?php if (!empty($_SESSION['error_message'])): ?>
                         <?php $tiempo = $_SESSION['bloqueo_restante'] ?? 0; ?>
                         <p id="error-msg" style="font-size:14px;margin-top:2px;color: red;">
@@ -109,7 +134,10 @@
                     <?php endif; ?>
 
                     <a href="olvidaste_tu_contrasena.php"><p style="color: blue; font-size: 14px;">¿Olvidaste tu contraseña?</p></a>
-                    <button type="submit">Inicia  sesión</button>
+                    <button type="submit">
+                      <i class="fas fa-sign-in-alt"></i> Inicia sesión
+                    </button>
+
                 </form>
 
                 <!-- Formulario de registro -->
@@ -162,9 +190,10 @@
                         </label>
                     </div>
 
+                    <button type="submit" style="margin-top: 15px;">
+                      <i class="fas fa-user-plus" style="margin-right: 6px;"></i> Regístrate
+                    </button>
 
-
-                    <button type="submit" style="margin-top: 15px;">Regístrate</button>
                 </form>
             </div>
         </div>
