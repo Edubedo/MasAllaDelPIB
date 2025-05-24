@@ -104,36 +104,52 @@ function comprimir_imagen($rutaOriginal, $rutaDestino, $maxAncho = 900, $calidad
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $updates = [];
+    $changes_made = false;
 
-    // Fetch current values from the database
     $sql_current = "SELECT username, email, foto_perfil FROM users WHERE iduser = $id";
     $result_current = $conexion->query($sql_current);
     $current_data = $result_current->fetch_assoc();
 
-    // Check for changes
-    $changes_made = false;
+    $old_username = $current_data['username'];
 
+    // Username
     if (!empty($_POST['username']) && $_POST['username'] !== $current_data['username']) {
-        $new_username = $_POST['username'];
+        $new_username = $conexion->real_escape_string($_POST['username']);
         $updates[] = "username = '$new_username'";
         $changes_made = true;
     }
 
+    // Email
     if (!empty($_POST['email']) && $_POST['email'] !== $current_data['email']) {
-        $new_email = $_POST['email'];
+        $new_email = $conexion->real_escape_string($_POST['email']);
         $updates[] = "email = '$new_email'";
         $changes_made = true;
     }
 
-    // Check for photo change
+    // Foto
     if (!empty($_FILES['foto']['name'])) {
         $foto_nombre = time() . '_' . pathinfo($_FILES['foto']['name'], PATHINFO_FILENAME) . '.webp';
-        if ($foto_nombre !== $current_data['foto_perfil']) {
+        $ruta_destino = "../../views/uploads/" . $foto_nombre;
+        $foto_tmp = $_FILES['foto']['tmp_name'];
+
+        if (comprimir_imagen($foto_tmp, $ruta_destino)) {
+            $updates[] = "foto_perfil = '$foto_nombre'";
             $changes_made = true;
+        } else {
+            $_SESSION['error_message'] = "❌ Error al procesar la imagen.";
+            header("Location: editar-perfil.php?id=$id");
+            exit();
         }
     }
 
-    // Verificar contraseña
+    // Validar campos vacíos
+    if (empty($_POST['username']) || empty($_POST['email'])) {
+        $_SESSION['error_message'] = "❌ No puede dejar campos vacíos.";
+        header("Location: editar-perfil.php?id=$id");
+        exit();
+    }
+
+    // Contraseña
     if (!empty($_POST['password'])) {
         $password_actual = md5($_POST['password']);
         $sql_verifica = "SELECT * FROM users WHERE iduser = $id AND password = '$password_actual'";
@@ -151,14 +167,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    if (empty($_POST['username']) || empty($_POST['email'])) {
-        $_SESSION['error_message'] = "❌ No puede dejar campos vacíos.";
-        header("Location: editar-perfil.php?id=$id");
-        exit();
-    }
-
-    if ($changes_made) {
-        // Se ejecuta la consulta de actualización
+    // Aplicar actualizaciones si las hay
+    if (!empty($updates)) {
         $sql_update = "UPDATE users SET " . implode(", ", $updates) . " WHERE iduser = $id";
 
         if (!$conexion->query($sql_update)) {
@@ -167,21 +177,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
 
-        // Se actualizan los posts si cambió el nombre de usuario
-        if (!empty($_POST['username']) && isset($old_username)) {
+        // Actualizar nombre en posts si cambió el username
+        if (isset($new_username) && $old_username !== $new_username) {
             $sql_update_posts = "UPDATE posts SET user_creation = '$new_username' WHERE user_creation = '$old_username'";
-            if (!$conexion->query($sql_update_posts)) {
-                $_SESSION['error_message'] = "❌ Error en la actualización de posts: " . mysqli_error($conexion);
-                header("Location: editar-perfil.php?id=$id");
-                exit();
-            }
-
+            $conexion->query($sql_update_posts);
             if ($id == $iduser) {
                 $_SESSION['username'] = $new_username;
             }
         }
 
-        if (!empty($_POST['email']) && $id == $iduser) {
+        if (isset($new_email) && $id == $iduser) {
             $_SESSION['email'] = $new_email;
         }
 
@@ -194,6 +199,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 }
+
 
 ?>
 
