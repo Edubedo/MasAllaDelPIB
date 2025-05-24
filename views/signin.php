@@ -1,10 +1,24 @@
-<?php session_start(); 
-// Si ya hay sesión iniciada con tipo de usuario 1 (admin) o 2 (autor), redirige
+<?php
+ob_start(); // Inicia el buffer de salida
+session_start();
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Sat, 1 Jul 2000 05:00:00 GMT");
+
+// Redirección inmediata si ya está logueado
 if (isset($_SESSION['id_type_user']) && in_array($_SESSION['id_type_user'], [1, 2])) {
-    header("Location: /index.php"); // o a donde prefieras redirigir
-    exit;
+    header("Location: /index.php");
+    exit();
 }
+ob_end_flush(); // Libera el contenido del buffer
 ?>
+
+<script>
+    window.addEventListener("pageshow", function (event) {
+        if (event.persisted || window.performance && window.performance.navigation.type === 2) {
+            window.location.reload();
+        }
+    });
+</script>
 
 <!DOCTYPE html>
 <html lang="es">
