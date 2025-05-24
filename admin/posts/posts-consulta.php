@@ -258,10 +258,10 @@ $ruta = isset($foto_perfil) && !empty($foto_perfil) ? "../../views/uploads/" . $
         <div class="deletemodal-content">
             <h3 id="statusModalTitle">¿Estás seguro que deseas cambiar el estado de esta publicación?</h3>
             <div class="deletemodal-buttons">
-            <button id="confirmStatus">
+            <button id="confirmStatus" style="background-color: rgb(23, 143, 69);">
                 <i class="fas fa-check-circle"></i> Confirmar
             </button>
-            <button id="cancelStatus">
+            <button id="cancelStatus" style="background-color: #f44336;">
                 <i class="fas fa-times-circle"></i> Cancelar
             </button>
 
