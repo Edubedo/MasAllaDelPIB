@@ -47,6 +47,7 @@ if ($category) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MasAllaDelPIB - Categorías</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/buscar.js"></script>
     <script src="../js/options.js"></script>
